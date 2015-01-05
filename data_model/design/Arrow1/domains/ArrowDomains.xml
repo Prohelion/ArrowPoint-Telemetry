@@ -1,0 +1,103 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<DomainFile class="oracle.dbtools.crest.model.design.DomainFileWrapper" fileName="ArrowDomains">
+   <domains>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="SurrogateKey" id="4A2F171F-248A-6BC9-9335-ECD97B813CBC">
+         <createdBy>WSweeney</createdBy>
+         <createdTime>2013-06-24 11:58:45 UTC</createdTime>
+         <ownerDesignName>ArrowDomains</ownerDesignName>
+         <importedID>4A2F171F-248A-6BC9-9335-ECD97B813CBC</importedID>
+         <avTSortOrder>0</avTSortOrder>
+         <fileName>ArrowDomains</fileName>
+         <logicalDatatype>LOGDT019</logicalDatatype>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="NotificationState" id="8B543DD1-8388-11E5-8AE9-7F3C5C2C113C">
+         <createdBy>WSweeney</createdBy>
+         <createdTime>2013-08-07 10:40:25 UTC</createdTime>
+         <ownerDesignName>System</ownerDesignName>
+         <importedID>8B543DD1-8388-11E5-8AE9-7F3C5C2C113C</importedID>
+         <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>10</dataTypeSize>
+         <fileName>ArrowDomains</fileName>
+         <logicalDatatype>LOGDT024</logicalDatatype>
+         <listOfValues>
+            <valueDef value="HighErr" description=""/>
+            <valueDef value="HighWarn" description=""/>
+            <valueDef value="LowErr" description=""/>
+            <valueDef value="LowWarn" description=""/>
+            <valueDef value="Normal" description=""/>
+         </listOfValues>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="DeviceType" id="916AF2E0-B816-8627-58C9-AACDA7A31FAF">
+         <createdBy>WSweeney</createdBy>
+         <createdTime>2013-07-10 07:30:50 UTC</createdTime>
+         <ownerDesignName>Arrow1</ownerDesignName>
+         <importedID>916AF2E0-B816-8627-58C9-AACDA7A31FAF</importedID>
+         <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>20</dataTypeSize>
+         <fileName>ArrowDomains</fileName>
+         <logicalDatatype>LOGDT024</logicalDatatype>
+         <listOfValues>
+            <valueDef value="Analog" description=""/>
+            <valueDef value="Binary" description=""/>
+         </listOfValues>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="DataType" id="95D4E696-8A5B-40F3-211D-5A0D384A489F">
+         <createdBy>WSweeney</createdBy>
+         <createdTime>2013-08-07 10:43:05 UTC</createdTime>
+         <ownerDesignName>Arrow1</ownerDesignName>
+         <importedID>95D4E696-8A5B-40F3-211D-5A0D384A489F</importedID>
+         <avTSortOrder>0</avTSortOrder>
+         <fileName>ArrowDomains</fileName>
+         <logicalDatatype>LOGDT017</logicalDatatype>
+         <listOfValues>
+            <valueDef value="Char" description=""/>
+            <valueDef value="Float" description=""/>
+            <valueDef value="Int" description=""/>
+         </listOfValues>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="MeasurementType" id="C457F678-30EF-8ECD-6213-09B2814D3FF8">
+         <createdBy>WSweeney</createdBy>
+         <createdTime>2013-08-07 10:43:05 UTC</createdTime>
+         <ownerDesignName>Arrow1</ownerDesignName>
+         <importedID>C457F678-30EF-8ECD-6213-09B2814D3FF8</importedID>
+         <avTSortOrder>0</avTSortOrder>
+         <dataTypeSize>100</dataTypeSize>
+         <fileName>ArrowDomains</fileName>
+         <logicalDatatype>LOGDT024</logicalDatatype>
+         <listOfValues>
+            <valueDef value="BMS_CMU_Sts" description=""/>
+            <valueDef value="BMS_Cell_Voltage" description=""/>
+            <valueDef value="BMS_Charger_Control" description=""/>
+            <valueDef value="BMS_Device_Info" description=""/>
+            <valueDef value="BMS_Ext_Pack_Sts" description=""/>
+            <valueDef value="BMS_Fan_Sts" description=""/>
+            <valueDef value="BMS_Min_Max_Cell_Voltage" description=""/>
+            <valueDef value="BMS_Min_Max_Celll_Temp" description=""/>
+            <valueDef value="BMS_Pack_Balance" description=""/>
+            <valueDef value="BMS_Pack_Sts" description=""/>
+            <valueDef value="BMS_Pack_Voltage_Current" description=""/>
+            <valueDef value="BMS_Precharge_Sts" description=""/>
+            <valueDef value="BMS_SOC" description=""/>
+            <valueDef value="EVDC_Device_info" description=""/>
+            <valueDef value="EVDC_Motor_Drive_Cmd" description=""/>
+            <valueDef value="EVDC_Motor_Power_Cmd" description=""/>
+            <valueDef value="EVDC_Switch_Pos" description=""/>
+            <valueDef value="MPPT_Master_Request" description=""/>
+            <valueDef value="MPPT_Reply" description=""/>
+            <valueDef value="WS22_Bus_Measurement" description=""/>
+            <valueDef value="WS22_DSP_Supply_Voltage" description=""/>
+            <valueDef value="WS22_DSP_Temp" description=""/>
+            <valueDef value="WS22_Device_Info" description=""/>
+            <valueDef value="WS22_Energy_Odo" description=""/>
+            <valueDef value="WS22_Heat_Motor_Temp" description=""/>
+            <valueDef value="WS22_Motor_Back_EMF" description=""/>
+            <valueDef value="WS22_Motor_Current" description=""/>
+            <valueDef value="WS22_Motor_Voltage" description=""/>
+            <valueDef value="WS22_Phase_Current" description=""/>
+            <valueDef value="WS22_Status_Info" description=""/>
+            <valueDef value="WS22_Supply_Voltage" description=""/>
+            <valueDef value="WS22_Velocity" description=""/>
+         </listOfValues>
+      </Domain>
+   </domains>
+</DomainFile>

@@ -1,0 +1,105 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" id="45A685E3-4852-50CA-6163-8FBBD1E0B177" directorySegmentName="seg_0" name="Device Type">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-07-01 03:43:24 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="4F88C490-4D89-0342-77D3-FDAC7CB59DFA" value="true"/>
+</engineerTo>
+<pkName>Device Type PK</pkName>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<fonts>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Title</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Attribute</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Datatype</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>PK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>FK Element</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>UK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Not Null</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Key</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+</fonts>
+<attributes>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Device Type ID" id="32588F80-2C08-0997-6DA4-A8C770FE4979">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-07-01 03:43:30 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="4F88C490-4D89-0342-77D3-FDAC7CB59DFA" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>4A2F171F-248A-6BC9-9335-ECD97B813CBC</domain>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Device Type" id="A0B7E51E-F4B6-5076-4F12-449115261B22">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-07-01 03:43:36 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="4F88C490-4D89-0342-77D3-FDAC7CB59DFA" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<domain>916AF2E0-B816-8627-58C9-AACDA7A31FAF</domain>
+</Attribute>
+</attributes>
+<identifiers>
+<identifier class="oracle.dbtools.crest.model.design.logical.CandidateKey" id="2256178F-DE93-2383-14D4-01B1EDE3DEF7" name="Device Type PK">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-07-01 03:44:04 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="4F88C490-4D89-0342-77D3-FDAC7CB59DFA" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>32588F80-2C08-0997-6DA4-A8C770FE4979</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier class="oracle.dbtools.crest.model.design.logical.CandidateKey" id="ABB121A3-0769-74E2-DA60-7EB24FE8A845" name="Device Type UK">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-07-01 03:44:09 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="4F88C490-4D89-0342-77D3-FDAC7CB59DFA" value="true"/>
+</engineerTo>
+<usedAttributes>
+<attributeRef>A0B7E51E-F4B6-5076-4F12-449115261B22</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

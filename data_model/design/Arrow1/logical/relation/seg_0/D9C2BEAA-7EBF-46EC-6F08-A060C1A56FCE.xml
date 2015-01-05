@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Measurement Data Point" id="D9C2BEAA-7EBF-46EC-6F08-A060C1A56FCE" directorySegmentName="seg_0">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-07-31 11:30:13 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="478B2ED8-0D1D-FB73-C946-6D415B88DF46" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>8998E4C6-8C90-5220-2409-C4268A82F0E0</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>2789F0D6-45C5-3938-52DD-7E07F3137EBC</targetEntity>
+<transferable>true</transferable>
+</Relation>

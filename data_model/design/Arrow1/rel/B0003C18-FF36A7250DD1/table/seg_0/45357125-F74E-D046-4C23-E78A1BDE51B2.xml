@@ -1,0 +1,178 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" id="45357125-F74E-D046-4C23-E78A1BDE51B2" directorySegmentName="seg_0" name="MSRMNT">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 10:59:01 UTC</createdTime>
+<generatorID>8998E4C6-8C90-5220-2409-C4268A82F0E0</generatorID>
+<ownerDesignName>Arrow1</ownerDesignName>
+<pkName>MSRMNT_PK</pkName>
+<fonts>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Title</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Column</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Datatype</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>PK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>FK Element</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>UK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Not Null</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Key</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+</fonts>
+<columns>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="MSRMNT_ID" id="DCC31A41-0684-0BE6-0A5B-9122EA899C70">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 10:59:01 UTC</createdTime>
+<generatorID>A174FC85-5BD9-E3DD-0BF0-F16A329474F9</generatorID>
+<ownerDesignName>Arrow1</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>4A2F171F-248A-6BC9-9335-ECD97B813CBC</domain>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="MSRMNT_NAME" id="918F783E-20FE-44EB-2581-F56FA96766F3">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 10:59:01 UTC</createdTime>
+<generatorID>B83DD831-9303-946A-71D4-804EAC162203</generatorID>
+<ownerDesignName>Arrow1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="CAN_ID" id="06455193-9237-A17A-7627-C65BC5B4DFBE">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 10:59:01 UTC</createdTime>
+<generatorID>618CB027-5A0E-C692-F7B6-E3B242A71939</generatorID>
+<ownerDesignName>Arrow1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="DEV_ID_FK" id="A828C9BA-7F3A-33B7-0717-F05B0E323923">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 10:59:01 UTC</createdTime>
+<generatorID>BAC2B862-DB1C-FF64-A8E5-DE83C142B900</generatorID>
+<ownerDesignName>Arrow1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>4A2F171F-248A-6BC9-9335-ECD97B813CBC</domain>
+<delegate>C465C01C-9057-02D0-E6E4-0D748B6B5991</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="86215B0A-C5CD-28D3-72C2-541AD8EEDA60" referredColumn="C465C01C-9057-02D0-E6E4-0D748B6B5991"/>
+</associations>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="DEV_TYPE_ID_FK" id="726FC64E-6F6D-9777-D59F-2C6330288BF2">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 10:59:01 UTC</createdTime>
+<generatorID>C036A568-D681-8E86-2FE2-B2A4626CC6B5</generatorID>
+<ownerDesignName>Arrow1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>4A2F171F-248A-6BC9-9335-ECD97B813CBC</domain>
+<delegate>9020A230-3110-78BA-5F2B-6A12774297F4</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9A5DA208-EBE4-21AA-68D0-3207B0BC9569" referredColumn="9020A230-3110-78BA-5F2B-6A12774297F4"/>
+</associations>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="REPRTNG_FRQ" id="1FADC270-4281-057E-FD8B-D22F52AB9F2A">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 10:59:01 UTC</createdTime>
+<generatorID>303A0038-7CCF-F7A9-FAB9-FD6F482C4360</generatorID>
+<ownerDesignName>Arrow1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="MSRMNT_TYPE" id="BF0BD6E3-D460-AB25-C3BA-F2F08F8B1A02">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 10:59:01 UTC</createdTime>
+<generatorID>95433EB6-5189-DFBD-0844-A778F2986A2D</generatorID>
+<ownerDesignName>Arrow1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes>
+<ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" id="AF8E7796-066C-2A72-E5FF-9182CC67F6DB" name="MSRMNT_PK">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 10:59:01 UTC</createdTime>
+<generatorID>6DD67B2F-271D-B967-5209-CA175374B44A</generatorID>
+<ownerDesignName>Arrow1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="DCC31A41-0684-0BE6-0A5B-9122EA899C70"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" id="CE54B347-9F30-2F7C-9A83-D1909F10AD93" name="MSRMNT__IDXv1">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 11:01:20 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<indexColumnUsage>
+<colUsage columnID="06455193-9237-A17A-7627-C65BC5B4DFBE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" id="EEFF98FD-5B68-86DD-D460-D2B472FD99A6" name="DEV_MSRMNT">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 10:59:02 UTC</createdTime>
+<generatorID>65F4A48B-F849-3354-FE23-ACDC59C4F399</generatorID>
+<ownerDesignName>Arrow1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<indexColumnUsage>
+<colUsage columnID="A828C9BA-7F3A-33B7-0717-F05B0E323923"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" id="E2009DAE-7718-1A79-7C45-E3F33944AA3F" name="MSRMNT_DEV_TYPE">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 10:59:02 UTC</createdTime>
+<generatorID>251826D6-13B9-7B93-F8B1-1915364BA31F</generatorID>
+<ownerDesignName>Arrow1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<indexColumnUsage>
+<colUsage columnID="726FC64E-6F6D-9777-D59F-2C6330288BF2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

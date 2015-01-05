@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-ip="http://www.springframework.org/schema/integration/ip"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+	http://www.springframework.org/schema/integration/ip http://www.springframework.org/schema/integration/ip/spring-integration-ip.xsd">
+	
+	<!-- **************************************************************** -->
+	<!--  RESOURCE FOLDERS CONFIGURATION                                  -->
+	<!--  Dispatcher configuration for serving static resources           -->
+	<!-- **************************************************************** -->
+	<mvc:resources location="/img/" mapping="/img/**" />
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+
+	<!-- **************************************************************** -->
+	<!--  SPRING ANNOTATION PROCESSING                                    -->
+	<!-- **************************************************************** -->
+	<bean id="objectMapper" class="au.com.teamarrow.contrib.jodatime.mapping.JodaObjectMapper">
+<!-- 		<property name="dateFormat"> -->
+<!-- 			<bean class="java.text.SimpleDateFormat"> -->
+<!-- 	            <constructor-arg value="yyyy-MM-dd'T'HH:mm:ssZ"/> -->
+<!-- 	        </bean> -->
+<!-- 	    </property> -->
+	</bean>
+	 
+	<mvc:annotation-driven>	        
+	    <mvc:message-converters register-defaults="false">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter" />
+			<bean class="org.springframework.http.converter.ResourceHttpMessageConverter" />
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper" ref="objectMapper" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<!-- <mvc:annotation-driven /> -->
+	
+	<!-- <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	    <property name="messageConverters">
+	        <array>
+	            <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+	                <property name="objectMapper">
+	                    <bean class="com.fasterxml.jackson.datatype.joda.ser.DateTimeSerializer"/>
+	                </property>
+	            </bean>
+	        </array>
+	    </property>
+	</bean> -->
+	
+	<context:component-scan base-package="au.com.teamarrow.web.controller" />
+	
+	<!-- **************************************************************** -->
+	<!--  MESSAGE EXTERNALIZATION/INTERNATIONALIZATION                    -->
+	<!--  Standard Spring MessageSource implementation                    -->
+	<!-- **************************************************************** -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="Messages" />
+	</bean>
+	
+	<!-- **************************************************************** -->
+	<!--  THYMELEAF-SPECIFIC ARTIFACTS                                    -->
+	<!--  TemplateResolver <- TemplateEngine <- ViewResolver              -->
+	<!-- **************************************************************** -->
+	<bean id="templateResolver"
+		class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+		<property name="prefix" value="/WEB-INF/templates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML5" />
+		<!-- Template cache is true by default. Set to false if you want -->
+    	<!-- templates to be automatically updated when modified.        -->
+    	<property name="cacheable" value="true" />
+	</bean>
+
+	<bean id="templateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
+	</bean>
+
+	<bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
+		<property name="templateEngine" ref="templateEngine" />
+		<property name="viewNames" value="*" />
+    	<property name="order" value="1" />
+	</bean>    
+	
+</beans>

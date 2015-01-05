@@ -1,0 +1,106 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" id="8732ABE0-1F3A-729C-BEBB-D45BB595ED91" directorySegmentName="seg_0" name="Device">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-28 01:39:16 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="0CF15DCB-669A-478D-4343-A0181949A1BF" value="true"/>
+</engineerTo>
+<pkName>Device PK</pkName>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<fonts>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Title</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Attribute</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Datatype</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>PK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>FK Element</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>UK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Not Null</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Key</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+</fonts>
+<attributes>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Device ID" id="682DDEE9-E179-443C-C350-9A4A63D332BD">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-28 01:39:21 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="0CF15DCB-669A-478D-4343-A0181949A1BF" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>4A2F171F-248A-6BC9-9335-ECD97B813CBC</domain>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Device Name" id="10F57631-009D-756A-1607-A09A02E49A65">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-28 01:39:43 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="0CF15DCB-669A-478D-4343-A0181949A1BF" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Device Abbreviation" id="F57E63B8-214E-D19E-1BDB-F04A0EC57F43">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-07-18 02:47:28 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="0CF15DCB-669A-478D-4343-A0181949A1BF" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers>
+<identifier class="oracle.dbtools.crest.model.design.logical.CandidateKey" id="B7AE2F47-5001-8474-0F2F-CAACEC8F07D6" name="Device PK">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-28 01:40:09 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="0CF15DCB-669A-478D-4343-A0181949A1BF" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>682DDEE9-E179-443C-C350-9A4A63D332BD</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

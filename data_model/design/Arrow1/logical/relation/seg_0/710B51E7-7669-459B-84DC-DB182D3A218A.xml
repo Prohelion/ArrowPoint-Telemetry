@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Measurement Device Type" id="710B51E7-7669-459B-84DC-DB182D3A218A" directorySegmentName="seg_0">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-07-02 11:31:12 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="BB969BBE-E745-78A7-EE0D-0BC0E7AAF390" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>8732ABE0-1F3A-729C-BEBB-D45BB595ED91</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>45A685E3-4852-50CA-6163-8FBBD1E0B177</targetEntity>
+<transferable>true</transferable>
+</Relation>

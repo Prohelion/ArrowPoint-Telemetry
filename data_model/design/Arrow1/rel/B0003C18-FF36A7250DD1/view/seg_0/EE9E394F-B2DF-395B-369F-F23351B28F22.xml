@@ -1,0 +1,126 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" id="EE9E394F-B2DF-395B-369F-F23351B28F22" directorySegmentName="seg_0" name="ALERTS">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 11:28:19 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL>SELECT t1.DATA_PNT_CAN_ID,&lt;br/&gt;  t1.TSTAMP,&lt;br/&gt;  t1.FVAL,&lt;br/&gt;  t1.IVAL,&lt;br/&gt;  t1.CVAL,&lt;br/&gt;  t1.STATE&lt;br/&gt;FROM MSRMNT_DATA t1&lt;br/&gt;WHERE t1.TSTAMP =&lt;br/&gt;  (SELECT MAX(t2.TSTAMP)&lt;br/&gt;  FROM MSRMNT_DATA t2&lt;br/&gt;  WHERE t1.DATA_PNT_CAN_ID = t2.DATA_PNT_CAN_ID&lt;br/&gt;  )&lt;br/&gt;AND t1.STATE != &apos;Normal&apos;</userDefinedSQL>
+<layoutSQL>&lt;?xml version = &apos;1.0&apos; encoding = &apos;UTF-8&apos;?&gt;&lt;br&gt;&lt;ActiveQueryBuilderLayout&gt;&lt;SQL&gt;Select t1.DATA_PNT_CAN_ID, t1.TSTAMP, t1.FVAL, t1.IVAL, t1.CVAL, t1.STATE From MSRMNT_DATA t1 Where t1.TSTAMP = (Select Max(t2.TSTAMP) From MSRMNT_DATA t2 Where t1.DATA_PNT_CAN_ID = t2.DATA_PNT_CAN_ID) And t1.STATE != &apos;Normal&apos;&lt;/SQL&gt;&lt;SubQueries&gt;&lt;SubQuery SQL=&quot;Select t1.DATA_PNT_CAN_ID, t1.TSTAMP, t1.FVAL, t1.IVAL, t1.CVAL, t1.STATE From MSRMNT_DATA t1 Where t1.TSTAMP = (Select Max(t2.TSTAMP) From MSRMNT_DATA t2 Where t1.DATA_PNT_CAN_ID = t2.DATA_PNT_CAN_ID) And t1.STATE != &apos;Normal&apos;&quot;&gt;&lt;UnionSubQuery&gt;&lt;DataSource SQL=&quot;MSRMNT_DATA t1&quot; X=&quot;50&quot; Y=&quot;20&quot; Height=&quot;227&quot; Width=&quot;140&quot;/&gt;&lt;/UnionSubQuery&gt;&lt;/SubQuery&gt;&lt;SubQuery SQL=&quot;Select Max(t2.TSTAMP) From MSRMNT_DATA t2 Where t1.DATA_PNT_CAN_ID = t2.DATA_PNT_CAN_ID&quot;&gt;&lt;UnionSubQuery&gt;&lt;DataSource SQL=&quot;MSRMNT_DATA t2&quot; X=&quot;50&quot; Y=&quot;20&quot; Height=&quot;227&quot; Width=&quot;140&quot;/&gt;&lt;/UnionSubQuery&gt;&lt;/SubQuery&gt;&lt;/SubQueries&gt;&lt;/ActiveQueryBuilderLayout&gt;</layoutSQL>
+<parsed>true</parsed>
+<fonts>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Title</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Column</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Datatype</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+</fonts>
+<usedContainers>
+<container alias="t1" containerID="1EEAB5CD-31A9-A613-C795-4DB606167514"/>
+</usedContainers>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DATA_PNT_CAN_ID" id="50F9CB62-0521-AEC8-A69B-EA4DCA993882" directorySegmentName="seg_0">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 11:44:06 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<dataType>NUMBER</dataType>
+<reference>false</reference>
+<referencedColumn>5882E4EA-37FF-9E37-7FFA-A462DDE8450F</referencedColumn>
+<table>1EEAB5CD-31A9-A613-C795-4DB606167514</table>
+<tableAlias>t1</tableAlias>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TSTAMP" id="38ECC808-535B-072B-C1E5-CB1CDF451372" directorySegmentName="seg_0">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 11:46:59 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<dataType>DATE</dataType>
+<reference>false</reference>
+<referencedColumn>B76C68C5-1390-B7C9-A6DE-ADD19BA508BE</referencedColumn>
+<table>1EEAB5CD-31A9-A613-C795-4DB606167514</table>
+<tableAlias>t1</tableAlias>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FVAL" id="CB842BC2-3FEB-61CD-1A68-98D27FE25870" directorySegmentName="seg_0">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 11:46:59 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<dataType>FLOAT</dataType>
+<reference>false</reference>
+<referencedColumn>B021B660-17BA-FB3E-262B-00880A087E2D</referencedColumn>
+<table>1EEAB5CD-31A9-A613-C795-4DB606167514</table>
+<tableAlias>t1</tableAlias>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="IVAL" id="E4A46B9C-1FC7-15F8-9243-8FED0F453896" directorySegmentName="seg_0">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 11:46:59 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<dataType>NUMBER</dataType>
+<reference>false</reference>
+<referencedColumn>C6B58E30-D444-7CC3-767C-55AAE5D1A8CD</referencedColumn>
+<table>1EEAB5CD-31A9-A613-C795-4DB606167514</table>
+<tableAlias>t1</tableAlias>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CVAL" id="7A9AA14A-449E-1A6E-6908-55DEA1D4F8D4" directorySegmentName="seg_0">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 11:46:59 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<dataType>CHAR (16)</dataType>
+<reference>false</reference>
+<referencedColumn>9B867C92-0539-1099-3A74-CD6FE2BE6B76</referencedColumn>
+<table>1EEAB5CD-31A9-A613-C795-4DB606167514</table>
+<tableAlias>t1</tableAlias>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="STATE" id="C676F39D-985E-A00D-1980-E22AD22C0DBF" directorySegmentName="seg_0">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 11:46:59 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<dataType>VARCHAR2 (10)</dataType>
+<reference>false</reference>
+<referencedColumn>4723ECAD-9173-D9F4-A7BC-0FB5CF264066</referencedColumn>
+<table>1EEAB5CD-31A9-A613-C795-4DB606167514</table>
+<tableAlias>t1</tableAlias>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="1EEAB5CD-31A9-A613-C795-4DB606167514">
+<container>true</container>
+<tableName>MSRMNT_DATA</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="5882E4EA-37FF-9E37-7FFA-A462DDE8450F">
+<columnName>DATA_PNT_CAN_ID</columnName>
+<tableName>MSRMNT_DATA</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="B76C68C5-1390-B7C9-A6DE-ADD19BA508BE">
+<columnName>TSTAMP</columnName>
+<tableName>MSRMNT_DATA</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="B021B660-17BA-FB3E-262B-00880A087E2D">
+<columnName>FVAL</columnName>
+<tableName>MSRMNT_DATA</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C6B58E30-D444-7CC3-767C-55AAE5D1A8CD">
+<columnName>IVAL</columnName>
+<tableName>MSRMNT_DATA</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="9B867C92-0539-1099-3A74-CD6FE2BE6B76">
+<columnName>CVAL</columnName>
+<tableName>MSRMNT_DATA</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="4723ECAD-9173-D9F4-A7BC-0FB5CF264066">
+<columnName>STATE</columnName>
+<tableName>MSRMNT_DATA</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

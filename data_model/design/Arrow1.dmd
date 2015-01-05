@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="Arrow1" id="12FFB029-17BF-937D-2735-979755AAE6D3" version="3.5">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 11:38:42 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>12FFB029-17BF-937D-2735-979755AAE6D3</designId>
+</OSDM_Design>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title></title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+		<style>
+		body {
+			padding-top: 20px;
+			padding-bottom: 20px;
+		}
+		</style>
+		<link rel="stylesheet" th:href="@{/css/bootstrap-responsive.min.css}" />
+		<link rel="stylesheet" th:href="@{/css/bootstrap-switch.css}" />
+		<link rel="stylesheet" th:href="@{/css/main.css}" />
+		
+		<script th:src="@{/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js}"></script>
+	</head>
+	<body>
+		<div th:substituteBy="header :: menu"></div>
+	
+		<div class="container">
+	
+			<!-- Example row of columns -->
+			<div class="row">
+				<div class="span6">
+					<form method="post" class="form-horizontal">
+						<div class="control-group">
+							<label class="control-label" for="c1-devices">Device</label>
+							<div class="controls">
+								<select id="c1-devices" name="c1-devices" class="device-select">
+									<option value="">-- Please select --</option>
+									<option th:each="dev : ${devices}" th:value="${dev.id}"
+										th:text="${dev.name}">Device</option>
+								</select>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="c1-measurements">Measurement</label>
+							<div class="controls">
+								<select id="c1-measurements" name="c1-measurements" class="measurement-select"></select>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="c1-dataPoints">Data Point</label>
+							<div class="controls">
+								<select id="c1-dataPoints" name="c1-dataPoints" class="dataPoint-select" data-chart-idx="0"></select>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="c1-devices">Auto Refresh</label>
+							<div class="controls">
+								<div class="make-switch live-data-switch">
+								    <input id="c1-onoff" type="checkbox" />
+								</div>
+							</div>
+						</div>
+					</form>
+					
+					<div id="c1-chartdiv" style="height: 300px; width: 500px;"></div>
+				</div>
+				<div class="span6">
+					<form method="post" class="form-horizontal">
+						<div class="control-group">
+							<label class="control-label" for="c2-devices">Device</label>
+							<div class="controls">
+								<select id="c2-devices" name="c2-devices" class="device-select">
+									<option value="">-- Please select --</option>
+									<option th:each="dev : ${devices}" th:value="${dev.id}"
+										th:text="${dev.name}">Device</option>
+								</select>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="c2-measurements">Measurement</label>
+							<div class="controls">
+								<select id="c2-measurements" name="c2-measurements" class="measurement-select"></select>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="c2-dataPoints">Data Point</label>
+							<div class="controls">
+								<select id="c2-dataPoints" name="c2-dataPoints" class="dataPoint-select" data-chart-idx="1"></select>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="c2-devices">Auto Refresh</label>
+							<div class="controls">
+								<div class="make-switch live-data-switch">
+								    <input id="c2-onoff" type="checkbox" />
+								</div>
+							</div>
+						</div>
+					</form>
+					<div id="c2-chartdiv" style="height: 300px; width: 500px;"></div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="span12">
+					<h3>Vehicle Velocity</h3>
+					<table>
+						<thead>
+							<tr>
+								<th>Vehicle Velocity (m/s)</th>
+								<th>Vehicle Velocity (km/h)</th>
+								<th>Motor RPM</th>
+								<th>Throttle SetPoint</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td id="vehicleVelocityFormatted" class="okay">0</td>
+								<td id="vehicleVelocityKMHFormatted" class="okay">0</td>
+								<td id="motorRpm" class="okay">0</td>
+								<td id="throttleSetPointFormatted" class="okay">0</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="span12">
+					<h3>Battery State of Charge/Balance</h3>
+					<table>
+						<thead>
+							<tr>
+								<th>SOC Percentage</th>
+								<th>SOC (aH)</th>			
+								<th>Pack Voltage (mV)</th>
+								<th>Pack Current (mA)</th>
+								<th>Pack Power (W)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td id="socPercentage" class="okay">0</td>
+								<td id="socAh" class="okay">0</td>
+								<td id="packVoltage" class="okay">0</td>
+								<td id="packCurrent" class="okay">0</td>
+								<td id="packPowerFormatted" class="okay">0</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<h3>Motor Controller Temps</h3>
+					<table>
+						<thead>
+							<tr>
+								<th>WS22 Heatsink Temp</th>
+								<th>Motor Temperature</th>							
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td id="ws22HeatsinkTemperature" class="okay">0</td>
+								<td id="motorTemperature" class="okay">0</td>								
+							</tr>
+						</tbody>
+					</table>	
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="span12">
+					<h3>MPPTs</h3>
+					<table>
+						<thead>
+							<tr>
+								<th>MPPT</th>
+								<th>Voltage (V)</th>
+								<th>Amps (A)</th>
+								<th>Power (W)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="okay">1</td>
+								<td id="voltage1" class="okay">0</td>
+								<td id="amps1" class="okay">0</td>
+								<td id="power1" class="okay">0</td>
+							</tr>
+							<tr>
+								<td class="okay">2</td>
+								<td id="voltage2" class="okay">0</td>
+								<td id="amps2" class="okay">0</td>
+								<td id="power2" class="okay">0</td>
+							</tr>
+							<tr>
+								<td class="okay">2</td>
+								<td id="voltage3" class="okay">0</td>
+								<td id="amps3" class="okay">0</td>
+								<td id="power3" class="okay">0</td>
+							</tr>
+							<tr>
+								<td class="okay"><b>Total</b></td>
+								<td/>
+								<td/>
+								<td id="totalPower3" class="okay">0</td>
+							</tr>
+						</tbody>
+					</table>	
+				</div>
+			</div>
+
+			<hr />
+	
+	
+			<footer>
+				<p>&copy; TeamArrow Vehicle Management System</p>
+			</footer>
+	
+		</div>
+		<!-- /container -->
+	
+		<script type="text/javascript" th:src="@{/js/vendor/jquery-1.9.1.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/vendor/bootstrap.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap-switch.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery.flot.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery.flot.time.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/main.js}"></script>
+	</body>
+</html>

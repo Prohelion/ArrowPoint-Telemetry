@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Measurement Short Term Trend" id="89B7F9F5-CA6E-1D82-869E-2723C87C3A0C" directorySegmentName="seg_0">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 13:02:00 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="91A41801-8A6F-CAAC-8469-1FE04C10B063" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>8998E4C6-8C90-5220-2409-C4268A82F0E0</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>E1E36821-F6B8-E954-0566-F5123E25EE1A</targetEntity>
+<transferable>true</transferable>
+</Relation>

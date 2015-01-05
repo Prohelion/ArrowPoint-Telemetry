@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.relational.RelationalDesign>
+   <object objectType="Table" objectID="6E9AB637-388B-2921-0A5B-3F6F5D684572" name="DATA_PNT" seqName="seg_0"/>
+   <object objectType="Table" objectID="728561C3-9A4F-28C3-7E62-24E3CBB50A4C" name="DEV" seqName="seg_0"/>
+   <object objectType="Table" objectID="07CFA6E9-BD2F-2AEA-9DD9-1888C9D6B658" name="DEV_TYPE" seqName="seg_0"/>
+   <object objectType="Table" objectID="FEFBBE81-58D1-8510-181A-212BDAAB93A3" name="LNG_TERM_TREND_DATA" seqName="seg_0"/>
+   <object objectType="Table" objectID="EE9C2F24-0B36-5321-1ACC-3B21F5428405" name="MED_TERM_TREND_DATA" seqName="seg_0"/>
+   <object objectType="Table" objectID="45357125-F74E-D046-4C23-E78A1BDE51B2" name="MSRMNT" seqName="seg_0"/>
+   <object objectType="Table" objectID="1EEAB5CD-31A9-A613-C795-4DB606167514" name="MSRMNT_DATA" seqName="seg_0"/>
+   <object objectType="Table" objectID="8D0F6424-0FAA-7581-C9AE-43AF9F78D4C6" name="SHT_TERM_TREND_DATA" seqName="seg_0"/>
+   <object objectType="View" objectID="EE9E394F-B2DF-395B-369F-F23351B28F22" name="ALERTS" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="86215B0A-C5CD-28D3-72C2-541AD8EEDA60" name="DEV_MSRMNT" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="539DFA5A-ED42-E02F-FCAC-84FB5F971EA1" name="MSRMNT_DATA_PNT" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="9A5DA208-EBE4-21AA-68D0-3207B0BC9569" name="MSRMNT_DEV_TYPE" seqName="seg_0"/>
+</oracle.dbtools.crest.model.design.relational.RelationalDesign>

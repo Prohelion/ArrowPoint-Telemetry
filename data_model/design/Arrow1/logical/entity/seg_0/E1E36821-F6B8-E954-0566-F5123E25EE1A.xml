@@ -1,0 +1,191 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" id="E1E36821-F6B8-E954-0566-F5123E25EE1A" directorySegmentName="seg_0" name="Short Term Trend Data">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 13:00:56 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="4B04BD89-2322-0E27-A858-BC05B2BE1A8D" value="true"/>
+</engineerTo>
+<pkName>Measurement Data PK</pkName>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<fonts>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Title</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Attribute</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Datatype</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>PK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>FK Element</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>UK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Not Null</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Key</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+</fonts>
+<attributes>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Short Term Trend Data ID" id="B422A10A-730B-29D1-E1C8-E75C07745EA1">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 13:00:56 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="4B04BD89-2322-0E27-A858-BC05B2BE1A8D" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>4A2F171F-248A-6BC9-9335-ECD97B813CBC</domain>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Data Point CAN ID" id="B97DB89E-274C-C6B0-67CC-0E1FD77872AA">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 13:00:56 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="4B04BD89-2322-0E27-A858-BC05B2BE1A8D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Timestamp" id="442D46E4-BED5-1134-4F11-E2C4971FA31A">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 13:00:56 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="4B04BD89-2322-0E27-A858-BC05B2BE1A8D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Extended" id="DA7D0843-33B8-4405-5584-5164A3FD8371">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 13:00:56 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="4B04BD89-2322-0E27-A858-BC05B2BE1A8D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="RTR" id="3D850BF4-AB51-D806-13E1-34B8767B9594">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 13:00:56 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="4B04BD89-2322-0E27-A858-BC05B2BE1A8D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Data Length" id="D7ACC71A-55A0-681C-8548-4E9237D0EDFE">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 13:00:56 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="4B04BD89-2322-0E27-A858-BC05B2BE1A8D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="fValue" id="E0725403-D498-279C-C8AF-180A6D15EFBB">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 13:00:56 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="4B04BD89-2322-0E27-A858-BC05B2BE1A8D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="iValue" id="B65A05A0-328A-EE11-AEA9-6B3F135045B9">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-07-31 13:16:33 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="4B04BD89-2322-0E27-A858-BC05B2BE1A8D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="cValue" id="774D7FFE-4BC4-4B63-FCEE-920DBEB21A1F">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-07-31 13:16:45 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="4B04BD89-2322-0E27-A858-BC05B2BE1A8D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>16</dataTypeSize>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="State" id="2B72042A-E985-ED7E-CAB5-77E34B435195">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-08-07 10:48:43 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="4B04BD89-2322-0E27-A858-BC05B2BE1A8D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>8B543DD1-8388-11E5-8AE9-7F3C5C2C113C</domain>
+</Attribute>
+</attributes>
+<identifiers>
+<identifier class="oracle.dbtools.crest.model.design.logical.CandidateKey" id="8163ACEC-9F63-5A4E-DB09-012D9DA455E2" name="Short Term Trend Data PK">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 13:00:56 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="4B04BD89-2322-0E27-A858-BC05B2BE1A8D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>B422A10A-730B-29D1-E1C8-E75C07745EA1</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

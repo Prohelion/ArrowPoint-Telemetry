@@ -1,0 +1,152 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" id="3243E609-6CF6-5EB9-5A6F-09EBD7506839" directorySegmentName="seg_0" name="Measurement Type">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 12:29:31 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="91A41801-8A6F-CAAC-8469-1FE04C10B063" value="true"/>
+</engineerTo>
+<pkName>Measurement Type PK</pkName>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<fonts>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Title</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Attribute</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Datatype</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>PK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>FK Element</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>UK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Not Null</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Key</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+</fonts>
+<attributes>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Measurement Type ID" id="643CACCF-EB1C-9480-2BCB-7C2896BC1D48">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 12:29:42 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="91A41801-8A6F-CAAC-8469-1FE04C10B063" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>4A2F171F-248A-6BC9-9335-ECD97B813CBC</domain>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Measurement Type" id="5F27F748-BB9B-1F3B-8C92-136270994DD5">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 12:32:02 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="91A41801-8A6F-CAAC-8469-1FE04C10B063" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>C457F678-30EF-8ECD-6213-09B2814D3FF8</domain>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Low Error Threshold" id="98513314-AA34-EEC3-340A-2C3108A21581">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 12:29:53 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="91A41801-8A6F-CAAC-8469-1FE04C10B063" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Low Warning Threshold" id="728B8F66-D1EE-B1C8-0375-C547BA5B370D">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 12:31:22 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="91A41801-8A6F-CAAC-8469-1FE04C10B063" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="High Error Threshold" id="3CD5EE60-E0A7-76B4-459C-02BAC10DD194">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 12:30:49 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="91A41801-8A6F-CAAC-8469-1FE04C10B063" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="High Warning Threshold" id="904DEEE3-5ABF-F032-E3C2-3C51F59544A6">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 12:31:41 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="91A41801-8A6F-CAAC-8469-1FE04C10B063" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Reporting Frequency" id="CDD74AA5-EBC2-D9ED-E340-6CA51C72063E">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-28 01:26:22 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="91A41801-8A6F-CAAC-8469-1FE04C10B063" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+</Attribute>
+</attributes>
+<identifiers>
+<identifier class="oracle.dbtools.crest.model.design.logical.CandidateKey" id="5ABF4E98-0AED-6DEE-F541-6E1B535C3DCE" name="Measurement Type PK">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 12:29:50 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="91A41801-8A6F-CAAC-8469-1FE04C10B063" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>643CACCF-EB1C-9480-2BCB-7C2896BC1D48</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

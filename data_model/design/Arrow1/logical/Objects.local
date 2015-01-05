@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.logical.LogicalDesign>
+   <object objectType="Entity" objectID="2789F0D6-45C5-3938-52DD-7E07F3137EBC" name="Data Point" seqName="seg_0"/>
+   <object objectType="Entity" objectID="8732ABE0-1F3A-729C-BEBB-D45BB595ED91" name="Device" seqName="seg_0"/>
+   <object objectType="Entity" objectID="45A685E3-4852-50CA-6163-8FBBD1E0B177" name="Device Type" seqName="seg_0"/>
+   <object objectType="Entity" objectID="6C23D845-B7AB-DD10-637A-F917F4310FE6" name="Long Term Trend Data" seqName="seg_0"/>
+   <object objectType="Entity" objectID="8998E4C6-8C90-5220-2409-C4268A82F0E0" name="Measurement" seqName="seg_0"/>
+   <object objectType="Entity" objectID="B61610F4-8C23-6834-E7E3-AE3439FABAB1" name="Measurement Data" seqName="seg_0"/>
+   <object objectType="Entity" objectID="9092BBDE-7F3F-E336-5A41-E112D780CC04" name="Medium Term Trend Data" seqName="seg_0"/>
+   <object objectType="Entity" objectID="E1E36821-F6B8-E954-0566-F5123E25EE1A" name="Short Term Trend Data" seqName="seg_0"/>
+   <object objectType="Relation" objectID="65F4A48B-F849-3354-FE23-ACDC59C4F399" name="Device Measurement" seqName="seg_0"/>
+   <object objectType="Relation" objectID="D9C2BEAA-7EBF-46EC-6F08-A060C1A56FCE" name="Measurement Data Point" seqName="seg_0"/>
+   <object objectType="Relation" objectID="251826D6-13B9-7B93-F8B1-1915364BA31F" name="Measurement Device Type" seqName="seg_0"/>
+</oracle.dbtools.crest.model.design.logical.LogicalDesign>

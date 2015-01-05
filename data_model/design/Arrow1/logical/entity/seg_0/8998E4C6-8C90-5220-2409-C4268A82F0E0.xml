@@ -1,0 +1,157 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" id="8998E4C6-8C90-5220-2409-C4268A82F0E0" directorySegmentName="seg_0" name="Measurement">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 11:47:19 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="5386D9A4-376E-8266-6D1B-9FF5BADE31AB" value="true"/>
+</engineerTo>
+<pkName>Device PK</pkName>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<fonts>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Title</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Attribute</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Datatype</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>PK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>FK Element</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>UK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Not Null</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Key</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+</fonts>
+<attributes>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Measurement ID" id="A174FC85-5BD9-E3DD-0BF0-F16A329474F9">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 11:54:49 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="5386D9A4-376E-8266-6D1B-9FF5BADE31AB" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>4A2F171F-248A-6BC9-9335-ECD97B813CBC</domain>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Measurement Name" id="B83DD831-9303-946A-71D4-804EAC162203">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 12:15:28 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="5386D9A4-376E-8266-6D1B-9FF5BADE31AB" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="CAN ID" id="618CB027-5A0E-C692-F7B6-E3B242A71939">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 13:14:52 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="5386D9A4-376E-8266-6D1B-9FF5BADE31AB" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Device ID FK" id="BAC2B862-DB1C-FF64-A8E5-DE83C142B900">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-28 01:40:44 UTC</createdTime>
+<generatorID>65F4A48B-F849-3354-FE23-ACDC59C4F399</generatorID>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="5386D9A4-376E-8266-6D1B-9FF5BADE31AB" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>682DDEE9-E179-443C-C350-9A4A63D332BD</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>4A2F171F-248A-6BC9-9335-ECD97B813CBC</domain>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Device Type ID FK" id="C036A568-D681-8E86-2FE2-B2A4626CC6B5">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-07-05 23:23:13 UTC</createdTime>
+<generatorID>251826D6-13B9-7B93-F8B1-1915364BA31F</generatorID>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="5386D9A4-376E-8266-6D1B-9FF5BADE31AB" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>32588F80-2C08-0997-6DA4-A8C770FE4979</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>4A2F171F-248A-6BC9-9335-ECD97B813CBC</domain>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Reporting Frequency" id="303A0038-7CCF-F7A9-FAB9-FD6F482C4360">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-07-18 02:48:47 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="5386D9A4-376E-8266-6D1B-9FF5BADE31AB" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+</Attribute>
+<Attribute class="oracle.dbtools.crest.model.design.logical.Attribute" name="Measurement Type" id="95433EB6-5189-DFBD-0844-A778F2986A2D">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-07-31 10:59:08 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="5386D9A4-376E-8266-6D1B-9FF5BADE31AB" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>C457F678-30EF-8ECD-6213-09B2814D3FF8</domain>
+</Attribute>
+</attributes>
+<identifiers>
+<identifier class="oracle.dbtools.crest.model.design.logical.CandidateKey" id="6DD67B2F-271D-B967-5209-CA175374B44A" name="Measurement PK">
+<createdBy>WSweeney</createdBy>
+<createdTime>2013-06-24 12:00:22 UTC</createdTime>
+<ownerDesignName>Arrow1</ownerDesignName>
+<engineerTo>
+<item key="5386D9A4-376E-8266-6D1B-9FF5BADE31AB" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>A174FC85-5BD9-E3DD-0BF0-F16A329474F9</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

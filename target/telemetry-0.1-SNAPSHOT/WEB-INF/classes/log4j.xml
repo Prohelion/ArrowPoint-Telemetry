@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <!-- Appenders -->
+    <appender name="error" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="logs/error.log"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %-5p: %c - %m%n" />
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="levelMin" value="error" />
+            <param name="levelMax" value="fatal" />
+        </filter>
+        <filter class="org.apache.log4j.varia.DenyAllFilter"/>
+    </appender>
+    
+  
+   
+    <appender name="canlog" class="org.apache.log4j.RollingFileAppender">
+       	<param name="file" value="logs/canlog.log"/>
+        <param name="Append" value="true" />
+        <param name="Encoding" value="UTF-8" />
+        <param name="MaxFileSize" value="10000KB"/>        
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{HH:mm:ss.SSS}  , 0, %m%n"/>
+        </layout>
+    </appender>
+    
+    
+    <appender name="debug" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="logs/debug.log"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %-5p: %c - %m%n" />
+        </layout>
+    </appender>
+    
+    <appender name="arrow" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="logs/arrow.log"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %-5p: %c - %m%n" />
+        </layout>
+    </appender>
+    
+    <appender name="console" class="org.apache.log4j.ConsoleAppender"> 
+		<param name="Target" value="System.out"/> 
+		<layout class="org.apache.log4j.PatternLayout"> 
+			<param name="ConversionPattern" value="%-5p %c{1} - %m%n"/> 
+		</layout> 
+	</appender>
+
+	<logger name="CanLog" additivity="true">
+	    <level value="info"/>
+	    <appender-ref ref="canlog" /> 
+	</logger>
+	
+	<logger name="au.com.teamarrow" additivity="true">
+	    <level value="info"/>
+	    <appender-ref ref="arrow" /> 
+	</logger>
+		
+	<logger name="org.springframework" additivity="false">
+	    <level value="info"/>
+	    <appender-ref ref="debug" /> 
+	</logger> 
+    
+    <logger name="org.hibernate.tool.hbm2ddl" additivity="false">
+	    <level value="info"/>
+	    <appender-ref ref="console" /> 
+	</logger>
+	
+	<logger name="org.hibernate" additivity="false">
+	    <level value="info"/>
+	    <appender-ref ref="console" />
+	</logger>
+    
+    <!-- Root Logger -->
+    <root>
+        <priority value="info" />
+        <appender-ref ref="error" />
+    </root>
+
+</log4j:configuration>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<cwd_glossary name="Arrow1" description="generated from logical model of design Arrow1" id="4C8AAE70-079E-7EF2-1D74-1FDF9FA23888" incomplete_modifiers="true" unique_abbreviations="true" separator_type="Character" mw_separator="_" >
+
+   <glossaryWord name="1" plural="" abbreviation="1" alt_abbreviation="" id="41FEAD17-9691-889D-A3C1-CB822EE73C22" import_id="" description="" />
+   <glossaryWord name="2" plural="" abbreviation="2" alt_abbreviation="" id="89BD3398-DA39-2FC0-67A8-8FE5787F28FA" import_id="" description="" />
+   <glossaryWord name="CAN" plural="" abbreviation="CAN" alt_abbreviation="" id="CCB93E6F-4C40-F8C4-3D42-2569F840EE47" import_id="" description="" />
+   <glossaryWord name="Data" plural="" abbreviation="DATA" alt_abbreviation="" id="F3F793AC-2077-9750-8D99-1D2915BAB1BB" import_id="" description="" />
+   <glossaryWord name="Device" plural="" abbreviation="DEV" alt_abbreviation="" id="792924A5-B72F-955A-386D-7FFDBF97CC5F" import_id="" description="" />
+   <glossaryWord name="Error" plural="" abbreviation="ERR" alt_abbreviation="" id="0FC9F17C-5632-299A-11B8-2307A14653FE" import_id="" description="" />
+   <glossaryWord name="Extended" plural="" abbreviation="EXTD" alt_abbreviation="" id="C141C96D-56C6-98BB-1129-6013CA2385E4" import_id="" description="" />
+   <glossaryWord name="Frequency" plural="" abbreviation="FRQ" alt_abbreviation="" id="911DBC27-4DBB-2484-5431-45D72DF4FE75" import_id="" description="" />
+   <glossaryWord name="High" plural="" abbreviation="HIGH" alt_abbreviation="" id="A356822B-C063-AC1E-E12A-AC9B2D250A29" import_id="" description="" />
+   <glossaryWord name="ID" plural="" abbreviation="ID" alt_abbreviation="" id="9B67B297-7CD3-2E83-AFC2-585EB91676F8" import_id="" description="" />
+   <glossaryWord name="Length" plural="" abbreviation="LEN" alt_abbreviation="" id="66ECA68B-5101-2194-ADC5-8061B795ED74" import_id="" description="" />
+   <glossaryWord name="Long" plural="" abbreviation="LNG" alt_abbreviation="" id="B2CD463A-789C-BA9C-E14F-81692A96878C" import_id="" description="" />
+   <glossaryWord name="Low" plural="" abbreviation="LOW" alt_abbreviation="" id="205521B0-AC28-DD8A-3FB6-2A7306A9DE34" import_id="" description="" />
+   <glossaryWord name="Measurement" plural="" abbreviation="MSRMNT" alt_abbreviation="" id="FA36063E-DF8E-D67F-64C5-A6A300A2429E" import_id="" description="" />
+   <glossaryWord name="Medium" plural="" abbreviation="MED" alt_abbreviation="" id="77C70B11-1154-F2FF-00D8-10B39B26E469" import_id="" description="" />
+   <glossaryWord name="Name" plural="" abbreviation="NAME" alt_abbreviation="" id="8C95369C-26B6-FE9A-2267-6AB65365CAF2" import_id="" description="" />
+   <glossaryWord name="PK" plural="" abbreviation="PK" alt_abbreviation="" id="DA1AF006-CE2F-7CAF-E342-5F95EBB09A8C" import_id="" description="" />
+   <glossaryWord name="Point" plural="" abbreviation="PNT" alt_abbreviation="" id="8ED13CDC-EC98-08B4-F6A4-1455376FD155" import_id="" description="" />
+   <glossaryWord name="RTR" plural="" abbreviation="RTR" alt_abbreviation="" id="F2DB88CD-0B02-2E48-143A-164F1A2AF3DD" import_id="" description="" />
+   <glossaryWord name="Raw" plural="" abbreviation="RAW" alt_abbreviation="" id="92A5E5BA-EA57-27CF-E1BB-2CBF4319E451" import_id="" description="" />
+   <glossaryWord name="Reporting" plural="" abbreviation="REPRTNG" alt_abbreviation="" id="7025B71D-A0AE-5EFA-5F24-40BEB3A074B9" import_id="" description="" />
+   <glossaryWord name="Seg" plural="" abbreviation="SEG" alt_abbreviation="" id="7A59F3CE-9E85-8F74-E19C-FFF65967E6E9" import_id="" description="" />
+   <glossaryWord name="Short" plural="" abbreviation="SHT" alt_abbreviation="" id="364F8FB7-7F15-B75E-0A82-4CA3A0D61F8E" import_id="" description="" />
+   <glossaryWord name="Term" plural="" abbreviation="TERM" alt_abbreviation="" id="35AD0034-2908-8F42-1EA2-7EE4C3FE6E2D" import_id="" description="" />
+   <glossaryWord name="Threshold" plural="" abbreviation="THRHLD" alt_abbreviation="" id="AC30FCAA-76DC-DA97-5F46-E10503FCAB69" import_id="" description="" />
+   <glossaryWord name="Timestamp" plural="" abbreviation="TSTAMP" alt_abbreviation="" id="DB2FC07C-F68C-25DE-9641-3CC5459207B0" import_id="" description="" />
+   <glossaryWord name="Trend" plural="" abbreviation="TREND" alt_abbreviation="" id="B7DD3CC1-E147-A99A-4208-F01625A7F410" import_id="" description="" />
+   <glossaryWord name="Type" plural="" abbreviation="TYPE" alt_abbreviation="" id="7D2188AB-D7AE-15A5-4ABD-674D3AF104DF" import_id="" description="" />
+   <glossaryWord name="UK" plural="" abbreviation="UK" alt_abbreviation="" id="92822210-2844-FFF1-E093-18693C8EA5D3" import_id="" description="" />
+   <glossaryWord name="Warning" plural="" abbreviation="WRNG" alt_abbreviation="" id="5FD63BC1-B4AB-72AA-3982-58DEB4376908" import_id="" description="" />
+   <glossaryWord name="Value" plural="" abbreviation="VAL" alt_abbreviation="" id="C3969DE4-22AD-C00B-920E-A36969A85E91" import_id="" description="" />
+   <glossaryWord name="Description" plural="" abbreviation="DESCR" alt_abbreviation="" id="488DC515-40E8-60E3-A73F-F2A12A283968" import_id="" description="" />
+   <glossaryWord name="Units" plural="" abbreviation="UNITS" alt_abbreviation="" id="A3006E36-0F71-5745-D55C-CF821100EB64" import_id="" description="" />
+   <glossaryWord name="Abbreviation" plural="" abbreviation="ABBREV" alt_abbreviation="" id="8638302D-91A1-6F2A-3E62-0BA4C4CE5948" import_id="" description="" />
+   <glossaryWord name="iValue" plural="" abbreviation="IVAL" alt_abbreviation="" id="2CB4528A-2E21-E349-881C-801ACBFE2424" import_id="" description="" />
+   <glossaryWord name="fValue" plural="" abbreviation="FVAL" alt_abbreviation="" id="BE5F82CE-425C-BC4E-C97B-B8002BEAE3F5" import_id="" description="" />
+   <glossaryWord name="cValue" plural="" abbreviation="CVAL" alt_abbreviation="" id="DF880B8A-E670-7166-3A64-0DF5684856B3" import_id="" description="" />
+   <glossaryWord name="Offset" plural="" abbreviation="OFFST" alt_abbreviation="" id="932D194E-827F-3DA4-7A09-2E2A4306D5D9" import_id="" description="" />
+   <glossaryWord name="State" plural="" abbreviation="STATE" alt_abbreviation="" id="D5961817-86C5-24EC-7623-CACA4079BF1E" import_id="" description="" />
+   <glossaryWord name="Alerts" plural="" abbreviation="ALERTS" alt_abbreviation="" id="449ADA2D-0CA9-B9FD-F4B3-9BD49EA05596" import_id="" description="" />
+
+</cwd_glossary>
