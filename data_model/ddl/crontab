@@ -1,4 +1,0 @@
-* * * * * psql --username=postgres -d arrow1 -a -c "select archiveCANData(60, 'msrmnt_data', 'sht_term_trend_data')"
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * psql --username=postgres -d arrow1 -a -c "select calcRollingPowerAvg (600, 'sht_term_trend_data', 'avg_power', 16420, 16416)"
-0,10,20,30,40,50 * * * * psql --username=postgres -d arrow1 -a -c "select archiveCANData(300, 'sht_term_trend_data', 'med_term_trend_data')"
-59 23 * * * psql --username=postgres -d arrow1 -a -c "select archiveCANData(0, 'med_term_trend_data', 'lng_term_trend_data')"
