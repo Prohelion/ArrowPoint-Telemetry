@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: au.com.teamarrow.service.impl.TestCanbusService
--------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.885 sec

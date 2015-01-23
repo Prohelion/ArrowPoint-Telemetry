@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title></title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+		<link rel="stylesheet" th:href="@{/css/main.css}" />
+		<link rel="stylesheet" th:href="@{/css/bootstrap-responsive.min.css}" />
+		<link rel="stylesheet" th:href="@{/css/main.css}" />
+		
+		<script th:src="@{/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js}"></script>
+	</head>
+	<body>
+	
+		
+	
+		<div th:substituteBy="header :: menu"></div>
+	
+		<div class="container">
+	
+			<!-- SOC Predicted vs Actual Today -->
+			<div class="row">
+				<h1>Strategy Model for Today</h1>	
+			</div>						
+
+			<div class="row">
+				<h3>&nbsp;</h3>	
+				<div class="span12">			
+					<img src="/teamarrow/images/SOCToday.png" alt="SOC Predicted vs Actual (Today)" />
+				</div>	
+			</div>						
+
+			
+			<!-- SOC Predicted vs Actual Today -->
+			<div class="row">
+				<h3>&nbsp;</h3>
+				<div class="span12">			
+					<img src="/teamarrow/images/BusToday.png" alt="Bus Predicted vs Actual (Today)"/>			
+				</div>	
+			</div>
+	
+			<!-- Solar Power Predicted vs. Actual Today -->
+			<div class="row">	
+				<h3>&nbsp;</h3>
+				<div class="span12">				
+					<img src="/teamarrow/images/SunToday.png" alt="Solar Power Predicted vs Actual (Today)"/>				
+				</div>	
+			</div>
+
+			<!-- Solar Power Predicted vs. Actual Today -->
+			<div class="row">	
+				<h3>&nbsp;</h3>
+				<div class="span12">				
+					<img src="/teamarrow/images/ArrayToday.png" alt="Solar Power Predicted vs Actual (Today)"/>				
+				</div>	
+			</div>
+
+
+
+			<!-- SOC Predicted vs Actual Today -->
+			<div class="row">
+				<br/><br/>
+				<h1>Strategy Model for Entire Race</h1>	
+			</div>						
+
+			<div class="row">
+				<h3>&nbsp;</h3>	
+				<div class="span12">			
+					<img src="/teamarrow/images/SOCRace.png" alt="SOC Predicted vs Actual (Race)" />
+				</div>	
+			</div>						
+
+			
+			<!-- SOC Predicted vs Actual Race -->
+			<div class="row">
+				<h3>&nbsp;</h3>
+				<div class="span12">			
+					<img src="/teamarrow/images/BusRace.png" alt="Bus Predicted vs Actual (Race)"/>			
+				</div>	
+			</div>
+	
+			<!-- Solar Power Predicted vs. Actual Today -->
+			<div class="row">	
+				<h3>&nbsp;</h3>
+				<div class="span12">				
+					<img src="/teamarrow/images/SunRace.png" alt="Solar Power Predicted vs Actual (Race)"/>				
+				</div>	
+			</div>
+
+			<!-- Solar Power Predicted vs. Actual Race -->
+			<div class="row">	
+				<h3>&nbsp;</h3>
+				<div class="span12">				
+					<img src="/teamarrow/images/ArrayRace.png" alt="Solar Power Predicted vs Actual (Race)"/>				
+				</div>	
+			</div>
+
+		
+			
+			<hr />
+	
+			<footer>
+				<p>&copy; TeamArrow Vehicle Management System</p>
+			</footer>
+	
+		</div>
+		<!-- /container -->
+	
+		<!-- script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script -->
+		<script src="/js/vendor/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript">window.jQuery || document.write('\x3Cscript type="text/javascript" src="/telemetry/js/vendor/jquery-1.9.1.min.js">\x3C/script>');</script>
+	
+		<script th:src="@{/js/vendor/bootstrap.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery.flot.js}"></script>
+		<script th:src="@{/js/bms.js}"></script>
+	</body>
+</html>

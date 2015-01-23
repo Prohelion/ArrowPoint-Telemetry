@@ -16,8 +16,18 @@
         <filter class="org.apache.log4j.varia.DenyAllFilter"/>
     </appender>
     
+    
+    <appender name="lapTrackerlog" class="org.apache.log4j.RollingFileAppender">
+       	<param name="file" value="logs/lapTracker.log"/>
+        <param name="Append" value="true" />
+        <param name="Encoding" value="UTF-8" />
+        <param name="MaxFileSize" value="10000KB"/>        
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{HH:mm:ss.SSS}  , %m%n"/>
+        </layout>
+    </appender>
   
-   
+
     <appender name="canlog" class="org.apache.log4j.RollingFileAppender">
        	<param name="file" value="logs/canlog.log"/>
         <param name="Append" value="true" />
@@ -27,11 +37,13 @@
             <param name="ConversionPattern" value="%d{HH:mm:ss.SSS}  , 0, %m%n"/>
         </layout>
     </appender>
-    
-    
-    <appender name="debug" class="org.apache.log4j.DailyRollingFileAppender">
+        
+    <appender name="debug" class="org.apache.log4j.RollingFileAppender">
         <param name="file" value="logs/debug.log"/>
-        <param name="datePattern" value="'.'yyyy-MM-dd"/>
+        <param name="Append" value="true" />
+        <param name="Encoding" value="UTF-8" />
+        <param name="MaxFileSize" value="1000KB"/> 
+        <param name="MaxBackupIndex" value="10"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{ISO8601} %-5p: %c - %m%n" />
         </layout>
@@ -63,7 +75,7 @@
 	</logger>
 		
 	<logger name="org.springframework" additivity="false">
-	    <level value="info"/>
+	    <level value="debug"/>
 	    <appender-ref ref="debug" /> 
 	</logger> 
     
@@ -76,6 +88,12 @@
 	    <level value="info"/>
 	    <appender-ref ref="console" />
 	</logger>
+
+	<logger name="LapTracker" additivity="false">
+	    <level value="debug"/>
+	    <appender-ref ref="lapTrackerlog" />
+	</logger>
+
     
     <!-- Root Logger -->
     <root>

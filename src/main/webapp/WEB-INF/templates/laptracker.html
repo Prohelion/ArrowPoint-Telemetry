@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title></title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+		<link rel="stylesheet" th:href="@{/css/main.css}" />
+		<link rel="stylesheet" th:href="@{/css/bootstrap-responsive.min.css}" />
+		<link rel="stylesheet" th:href="@{/css/main.css}" />
+		
+		<script th:src="@{/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js}"></script>
+	</head>
+	<body>
+	
+	
+<script>
+
+var prefix = '/telemetry';
+
+function LogTeam(teamNumber) {
+    
+    $.ajax({
+        type: 'GET',
+        url:  prefix + '/laptracker.json?teamNumber=' + teamNumber,
+        contentType: 'application/json; charset=utf-8',        
+        dataType: 'text',
+        async: false,
+        error: function(result) {
+        	alert("Failure go see the IT department");
+        },
+        success: function(result) {        		
+        		$("td#lastrecorded").text(result);
+			}
+        });        
+    
+}
+
+</script>  
+	
+	
+	
+		<div th:substituteBy="header :: menu"></div>
+	
+		<div class="container">
+	
+			<!-- Example row of columns -->
+			<div class="row">
+				
+				<div class="span12">
+					<h3>Team Tracker - Press the button as they pass the start</h3>
+					
+					<table>
+						<tbody>
+							<tr>
+								<td id="lastrecorded" class="okay">Last Recorded Team: None</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<!-- Example row of columns -->
+			<div class="row">
+				
+				<div class="span12">
+					<h3>Team Numbers</h3>					
+					<table>
+						<tbody>
+							<tr>
+								<td><button type='button' onclick='LogTeam(30)'>30</button></td>
+								<td><button type='button' onclick='LogTeam(31)'>31</button></td>
+								<td><button type='button' onclick='LogTeam(32)'>32</button></td>
+								<td><button type='button' onclick='LogTeam(33)'>33</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>							
+				
+			</div>
+		
+		<hr />
+	
+		<footer>
+			<p>&copy; TeamArrow Vehicle Management System</p>
+		</footer>
+	
+		</div>
+		<!-- /container -->
+	
+		<!-- script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script -->
+		<script src="/js/vendor/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript">window.jQuery || document.write('\x3Cscript type="text/javascript" src="/telemetry/js/vendor/jquery-1.9.1.min.js">\x3C/script>');</script>
+	
+		<script th:src="@{/js/vendor/bootstrap.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery.flot.js}"></script>		
+	</body>
+</html>
