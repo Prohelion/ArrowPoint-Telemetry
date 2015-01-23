@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.teamarrow</groupId>
   <artifactId>telemetry</artifactId>
-  <version>0.1-SNAPSHOT</version>
+  <version>0.2-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>Team Arrow Telemetry</name>
   <description>Team Arrow Telemetry System</description>
