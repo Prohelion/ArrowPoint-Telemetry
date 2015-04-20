@@ -25,7 +25,8 @@
 	
 	<!-- <int:poller default="true" fixed-rate="5000" max-messages-per-poll="1" />
 		
-	<!-- <int-file:inbound-channel-adapter id="csvIn" directory="file:///tmp" prevent-duplicates="true" filename-pattern="*.csv" /> -->
+	 <int-file:inbound-channel-adapter id="csvIn" directory="file://C:/tmp" prevent-duplicates="true" filename-pattern="*.csv" />
+ 	</int-file:inbound-channel-adapter> -->
  	
  	<int-file:file-to-string-transformer input-channel="csvIn" output-channel="csvOut" delete-files="false" charset="UTF-8" />
  	
