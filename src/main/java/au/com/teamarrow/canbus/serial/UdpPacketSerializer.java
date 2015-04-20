@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.core.serializer.Serializer;
 import org.springframework.stereotype.Component;
@@ -14,9 +18,41 @@ import au.com.teamarrow.canbus.model.UdpPacket;
 @Component
 public class UdpPacketSerializer implements Serializer<UdpPacket> {
 
-	private NetworkInterface network;
-	private InetAddress ip;
 	private byte[] mac;
+	
+	public String searchForMac() throws SocketException {
+	    String firstInterface = null;        
+	    Map<String, String> addressByNetwork = new HashMap<>();
+	    Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
+
+	    while(networkInterfaces.hasMoreElements()){
+	        NetworkInterface network = networkInterfaces.nextElement();
+
+	        byte[] bmac = network.getHardwareAddress();
+	        if(bmac != null){
+	            StringBuilder sb = new StringBuilder();
+	            for (int i = 0; i < bmac.length; i++){
+	                sb.append(String.format("%02X%s", bmac[i], (i < bmac.length - 1) ? "-" : ""));        
+	            }
+
+	            if(sb.toString().isEmpty()==false){
+	                addressByNetwork.put(network.getName(), sb.toString());	                
+	            }
+
+	            if(sb.toString().isEmpty()==false && firstInterface == null){
+	                firstInterface = network.getName();
+	            }
+	        }
+	    }
+
+	    if(firstInterface != null){
+	        return addressByNetwork.get(firstInterface);
+	    }
+
+	    return null;
+	}
+	
+	
 	
 	@Override
 	public void serialize(UdpPacket udp, OutputStream arg1) throws IOException {
@@ -26,11 +62,8 @@ public class UdpPacketSerializer implements Serializer<UdpPacket> {
 		byte[] id = udp.getCanPackets().get(0).getId();
 		byte[] data = udp.getCanPackets().get(0).getData();
 					
-		
-		if (ip == null)	ip = InetAddress.getLocalHost();
-        if (network == null) {
-        	network = NetworkInterface.getByInetAddress(ip);
-        	mac = network.getHardwareAddress();
+        if (mac == null) {
+        	mac = searchForMac().getBytes();
         }
 		
 		System.arraycopy(header, 0, outputBytes, 0, header.length);
