@@ -22,13 +22,7 @@
 		level="INFO"
 		expression="'Payload:' + payload + ', Headers:' + headers" />
 
-	
-	<!-- <int:poller default="true" fixed-rate="5000" max-messages-per-poll="1" />
-		
-	 <int-file:inbound-channel-adapter id="csvIn" directory="file://C:/tmp" prevent-duplicates="true" filename-pattern="*.csv" />
- 	</int-file:inbound-channel-adapter> -->
- 	
- 	<int-file:file-to-string-transformer input-channel="csvIn" output-channel="csvOut" delete-files="false" charset="UTF-8" />
+	 	 
  	
  	<int:splitter id="csvSplitter"
 		input-channel="csvOut" 
@@ -36,13 +30,18 @@
 		ref="csvLineSplitter">
 	</int:splitter>
 	
+	<int:channel id="csvOut"/>
+	<int:channel id="csvLineOut"/>	
+	<int:channel id="nullChannel"/>
+	
+	
 	<int-ip:udp-outbound-channel-adapter id="csvUdpOut" host="239.255.60.60" port="4876" multicast="true" /> -->
 
 
 
 	
 	
-	<int-file:inbound-channel-adapter id="csvIn" directory="file:///C:/temp/arrow" filename-pattern="*.csv" prevent-duplicates="true">
+	<int-file:inbound-channel-adapter id="csvIn" directory="file:///tmp" filename-pattern="*.csv" prevent-duplicates="true">
 		<int:poller id="poller" fixed-rate="5000" />
 	</int-file:inbound-channel-adapter>
 
@@ -149,10 +148,12 @@
 				datatype="au.com.teamarrow.model.MeasurementData">
 	</int:channel>
 	
-	<int:header-enricher input-channel="measurementDataChannel" output-channel="measurementDataChannelWithHeader">
+	<int:header-enricher input-channel="measurementDataChannel"
+		output-channel="measurementDataChannelWithHeader"
+		id="headerEnrichment">
         <int:correlation-id expression="payload.dataPointCanId" overwrite="true" />
     </int:header-enricher>
-	
+
 	<bean id="releaseStrategy" class="org.springframework.integration.aggregator.TimeoutCountSequenceSizeReleaseStrategy">
     	<!-- Release when: 10 Messages ... or ... -->
     	<constructor-arg index="0" value="10" />
