@@ -321,7 +321,99 @@ WHERE t1.TSTAMP =
 AND t1.STATE != 'Normal' ;
 
 
+CREATE OR REPLACE VIEW all_trend_data_summary AS 
+ SELECT ct.tstamp,
+    ct."Bus_mA",
+    ct."Bus_V",
+    ct."Array1_mA",
+    ct."Array1_V",
+    ct."Array2_mA",
+    ct."Array2_V",
+    ct."Array3_mA",
+    ct."Array3_V",
+    ct."Wind_Speed",
+    ct."Wind_Direction",
+    ct."Latitiude",
+    ct."Longitude"
+   FROM crosstab('
+	SELECT date_trunc(''second'',tstamp) as tstamp, data_pnt_can_id, fval
+		FROM all_trend_data
+		where data_pnt_can_id in (16420,16416,28692,28688,28756,28752,28820,28816,12852,13076,13072)
+		ORDER  BY 1,2 '::text, 'VALUES (''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072'')  '::text) ct(tstamp timestamp without time zone, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision);
 
+ALTER TABLE all_trend_data_summary
+  OWNER TO postgres;
+
+
+CREATE OR REPLACE VIEW lng_term_trend_data_summary AS 
+ SELECT ct.tstamp,
+    ct."Bus_mA",
+    ct."Bus_V",
+    ct."Array1_mA",
+    ct."Array1_V",
+    ct."Array2_mA",
+    ct."Array2_V",
+    ct."Array3_mA",
+    ct."Array3_V",
+    ct."Wind_Speed",
+    ct."Wind_Direction",
+    ct."Latitiude",
+    ct."Longitude"
+   FROM crosstab('
+	SELECT date_trunc(''second'',tstamp) as tstamp, data_pnt_can_id, fval
+		FROM lng_term_trend_data
+		where data_pnt_can_id in (16420,16416,28692,28688,28756,28752,28820,28816,12852,13076,13072)
+		ORDER  BY 1,2 '::text, 'VALUES (''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072'')  '::text) ct(tstamp timestamp without time zone, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision);
+
+ALTER TABLE lng_term_trend_data_summary
+  OWNER TO postgres;
+
+CREATE OR REPLACE VIEW med_term_trend_data_summary AS 
+ SELECT ct.tstamp,
+    ct."Bus_mA",
+    ct."Bus_V",
+    ct."Array1_mA",
+    ct."Array1_V",
+    ct."Array2_mA",
+    ct."Array2_V",
+    ct."Array3_mA",
+    ct."Array3_V",
+    ct."Wind_Speed",
+    ct."Wind_Direction",
+    ct."Latitiude",
+    ct."Longitude"
+   FROM crosstab('
+	SELECT date_trunc(''second'',tstamp) as tstamp, data_pnt_can_id, fval
+		FROM med_term_trend_data
+		where data_pnt_can_id in (16420,16416,28692,28688,28756,28752,28820,28816,12852,13076,13072)
+		ORDER  BY 1,2 '::text, 'VALUES (''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072'')  '::text) ct(tstamp timestamp without time zone, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision);
+
+ALTER TABLE med_term_trend_data_summary
+  OWNER TO postgres;
+
+
+CREATE OR REPLACE VIEW sht_term_trend_data_summary AS 
+ SELECT ct.tstamp,
+    ct."Bus_mA",
+    ct."Bus_V",
+    ct."Array1_mA",
+    ct."Array1_V",
+    ct."Array2_mA",
+    ct."Array2_V",
+    ct."Array3_mA",
+    ct."Array3_V",
+    ct."Wind_Speed",
+    ct."Wind_Direction",
+    ct."Latitiude",
+    ct."Longitude"
+   FROM crosstab('
+	SELECT date_trunc(''second'',tstamp) as tstamp, data_pnt_can_id, fval
+		FROM sht_term_trend_data
+		where data_pnt_can_id in (16420,16416,28692,28688,28756,28752,28820,28816,12852,13076,13072)
+		ORDER  BY 1,2 '::text, 'VALUES (''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072'')  '::text) ct(tstamp timestamp without time zone, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision);
+
+ALTER TABLE sht_term_trend_data_summary
+  OWNER TO postgres;
 
 
 -- Oracle SQL Developer Data Modeler Summary Report: 

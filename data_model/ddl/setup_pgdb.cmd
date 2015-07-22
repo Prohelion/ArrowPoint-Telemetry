@@ -4,8 +4,8 @@ Rem Setup arrow1 database and create schema
 Rem Run this as the postgres user
 Rem Assumes required DDL scripts are in the same directory as this script
 
-
 Rem Create database and setup required plsql language support
+dropdb --username=postgres arrow1
 createdb --username=postgres arrow1
 createlang --username=postgres -d arrow1 plpgsql
 
