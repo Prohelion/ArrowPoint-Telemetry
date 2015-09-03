@@ -107,7 +107,7 @@
 	</logger>
 	
 	<logger name="au.com.teamarrow" additivity="true">
-	    <level value="debug"/>
+	    <level value="info"/>
 	    <appender-ref ref="arrow" /> 
 	</logger>
 		
