@@ -1,13 +1,16 @@
 package au.com.teamarrow.service.impl;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -18,8 +21,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 import au.com.teamarrow.dao.MeasurementDataRepository;
 import au.com.teamarrow.model.MeasurementData;
-import org.springframework.integration.Message;
-
+import org.springframework.messaging.Message;
 
 public class MeasurementDataServiceImplTest {
 
@@ -76,4 +78,39 @@ public class MeasurementDataServiceImplTest {
         verify(mMeasurementDataRepository).save(mMeasurementData);
         verifyNoMoreInteractions(mMessage, mMeasurementDataRepository);
     } */
+    
+    final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
+    public static String bytesToHex(byte[] bytes) {
+        char[] hexChars = new char[bytes.length * 2];
+        for ( int j = 0; j < bytes.length; j++ ) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = hexArray[v >>> 4];
+            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+        }
+        return new String(hexChars);
+    }
+    
+    @Test
+    public void testSignedVsUnsignedData() {
+    	
+    	assertEquals(Integer.valueOf("FA98",16).shortValue(),-1384);
+    	assertEquals(Integer.valueOf("66",16).shortValue(),102);
+    	assertEquals(Integer.valueOf("0020",16).shortValue(),32);
+    	
+    	byte[] testArray =  new byte[] {(byte)-99,(byte)-6};
+    	
+    	ArrayUtils.reverse(testArray);
+    	
+		byte[] sa = ArrayUtils.subarray(testArray, 0, 0 + 2);
+        String hex = null;
+		hex = bytesToHex(sa);
+		
+		Integer value = new Integer(Integer.valueOf(hex,16).shortValue());
+    	
+		assertEquals((Integer)value,new Integer(-1379));
+    	
+    }
+    
+    
+    
 }

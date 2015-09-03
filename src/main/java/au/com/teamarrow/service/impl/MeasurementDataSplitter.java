@@ -1,5 +1,6 @@
 package au.com.teamarrow.service.impl;
 
+import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
@@ -25,7 +26,8 @@ import au.com.teamarrow.model.MeasurementData;
 @Component
 public class MeasurementDataSplitter {
 
-private static final Logger LOG = LoggerFactory.getLogger(MeasurementDataSplitter.class);
+	private static final Logger LOG = LoggerFactory.getLogger(MeasurementDataSplitter.class);
+	final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
 
     @Autowired
     private DeviceRepository deviceRepository;
@@ -35,6 +37,17 @@ private static final Logger LOG = LoggerFactory.getLogger(MeasurementDataSplitte
     
     @Autowired
     private DataPointRepository dataPointRepository;
+    
+    
+    private String bytesToHex(byte[] bytes) {
+        char[] hexChars = new char[bytes.length * 2];
+        for ( int j = 0; j < bytes.length; j++ ) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = hexArray[v >>> 4];
+            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+        }
+        return new String(hexChars);
+    }
 
     @Splitter
     public List<MeasurementData> extractMeasurementData(CanPacket canPacket) {
@@ -64,30 +77,46 @@ private static final Logger LOG = LoggerFactory.getLogger(MeasurementDataSplitte
             Integer offset = dp.getDataOffsetPosition();
                         
             byte[] sa = ArrayUtils.subarray(data, offset, offset + dataLength);
-            
-            
+                        
             int bits = 0;
             for (int i = 0; i < sa.length; i++) {
                 bits = bits | ((sa[i] & 0xFF) << (i * 8));
-            }
+            }           
             
+            // Now we reverse the array to get a Hex string that is correct as the byte order is wrong for
+            // the utilities we are using for Integers
+            ArrayUtils.reverse(sa);
+            String hex = bytesToHex(sa);
             
             Float f = new Float(0.0);
+            Integer i = new Integer(0);
+            String s = new String("");
+            
             if (dp.getType().equalsIgnoreCase("float"))
             {
             	f = Float.intBitsToFloat(bits);
-            	//f = new Float(ByteBuffer.wrap(sa).order(ByteOrder.LITTLE_ENDIAN).getFloat());
+            	i = f.intValue();
+            	s = f.toString();            	
             	LOG.debug("A floating Point {} Length {} points offset {} data {} sa {} bits {} float {} ", dp.getDataPointCanId(), dataLength, offset, data, sa, bits, f);	
             }
-            else
+            else if (dp.getType().equalsIgnoreCase("int"))
+            {            	            
+            	i = new Integer(Integer.valueOf(hex,16).shortValue());
+            	f = new Float(i);
+            	s = i.toString();            	            
+            	LOG.debug("A integer Point {} Length {} points offset {} data {} sa {} bits {} float {} ", dp.getDataPointCanId(), dataLength, offset, data, sa, bits, f);	
+            }
+            else            	
             {
             	f = new Float(bits);
-            	LOG.debug("Non floating point of type {} Point {} Length {} points offset {} data {} sa {} bits {} float {} ", dp.getType(), dp.getDataPointCanId(), dataLength, offset, data, sa, bits, f);
+            	i = f.intValue();
+            	s = f.toString();            
+            	LOG.debug("Non floating point or integer type {} Point {} Length {} points offset {} data {} sa {} bits {} float {} ", dp.getType(), dp.getDataPointCanId(), dataLength, offset, data, sa, bits, f);
             }
                  
             //LOG.warn("Point {} Length {} points offset {}", dp.getDataPointCanId(), dataLength, offset);
             measurements.add(new MeasurementData((cpId << 4) | offset, new DateTime(), canPacket.isExtended(), canPacket.isRtr(), 
-                canPacket.getData().length, f.doubleValue(), f.intValue(), f.toString(), "Normal"));
+                canPacket.getData().length, f.doubleValue(), i, s, "Normal"));
         }
         
         return measurements;

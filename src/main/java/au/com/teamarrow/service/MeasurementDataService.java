@@ -2,8 +2,7 @@ package au.com.teamarrow.service;
 
 import java.util.List;
 
-import org.springframework.integration.Message;
-
+import org.springframework.messaging.Message;
 import au.com.teamarrow.model.LongTermTrendData;
 import au.com.teamarrow.model.MeasurementData;
 import au.com.teamarrow.model.MediumTermTrendData;

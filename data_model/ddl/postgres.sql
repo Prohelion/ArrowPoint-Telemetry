@@ -321,8 +321,55 @@ WHERE t1.TSTAMP =
 AND t1.STATE != 'Normal' ;
 
 
+
+CREATE OR REPLACE VIEW all_trend_data AS 
+        (         SELECT sht_term_trend_data.sht_term_trend_data_id,
+                    sht_term_trend_data.data_pnt_can_id,
+                    sht_term_trend_data.tstamp,
+                    sht_term_trend_data.extd,
+                    sht_term_trend_data.rtr,
+                    sht_term_trend_data.data_len,
+                    sht_term_trend_data.fval,
+                    sht_term_trend_data.ival,
+                    sht_term_trend_data.cval,
+                    sht_term_trend_data.state
+                   FROM sht_term_trend_data
+        UNION
+                 SELECT med_term_trend_data.med_term_trend_data_id AS sht_term_trend_data_id,
+                    med_term_trend_data.data_pnt_can_id,
+                    med_term_trend_data.tstamp,
+                    med_term_trend_data.extd,
+                    med_term_trend_data.rtr,
+                    med_term_trend_data.data_len,
+                    med_term_trend_data.fval,
+                    med_term_trend_data.ival,
+                    med_term_trend_data.cval,
+                    med_term_trend_data.state
+                   FROM med_term_trend_data)
+UNION
+         SELECT lng_term_trend_data.lng_term_trend_data_id AS sht_term_trend_data_id,
+            lng_term_trend_data.data_pnt_can_id,
+            lng_term_trend_data.tstamp,
+            lng_term_trend_data.extd,
+            lng_term_trend_data.rtr,
+            lng_term_trend_data.data_len,
+            lng_term_trend_data.fval,
+            lng_term_trend_data.ival,
+            lng_term_trend_data.cval,
+            lng_term_trend_data.state
+           FROM lng_term_trend_data;
+
+ALTER TABLE all_trend_data
+  OWNER TO postgres;
+
+
+DROP VIEW all_trend_data_summary;
+
 CREATE OR REPLACE VIEW all_trend_data_summary AS 
  SELECT ct.tstamp,
+    ct."Velocity",
+    ct."Battery_Ah",
+    ct."Battery_SOC",
     ct."Bus_mA",
     ct."Bus_V",
     ct."Array1_mA",
@@ -334,19 +381,25 @@ CREATE OR REPLACE VIEW all_trend_data_summary AS
     ct."Wind_Speed",
     ct."Wind_Direction",
     ct."Latitiude",
-    ct."Longitude"
+    ct."Longitude",
+    ct."Setpoint",
+    ct."Irradiance"
    FROM crosstab('
 	SELECT date_trunc(''second'',tstamp) as tstamp, data_pnt_can_id, fval
 		FROM all_trend_data
-		where data_pnt_can_id in (16420,16416,28692,28688,28756,28752,28820,28816,12852,13076,13072)
-		ORDER  BY 1,2 '::text, 'VALUES (''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072'')  '::text) ct(tstamp timestamp without time zone, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision);
+		where data_pnt_can_id in (16436,28484,28480,16420,16416,28692,28688,28756,28752,28820,28816,12852,13076,13072,20500,12884)
+		ORDER  BY 1,2 '::text, 'VALUES (''16436''), (''28484''), (''28480''),(''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072''), (''20500''), (''12884'')  '::text) ct(tstamp timestamp without time zone, "Velocity" double precision, "Battery_SOC" double precision, "Battery_Ah" double precision, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision, "Setpoint" double precision, "Irradiance" double precision);
 
 ALTER TABLE all_trend_data_summary
   OWNER TO postgres;
 
+DROP VIEW lng_term_trend_data_summary;
 
 CREATE OR REPLACE VIEW lng_term_trend_data_summary AS 
- SELECT ct.tstamp,
+SELECT ct.tstamp,
+    ct."Velocity",
+    ct."Battery_Ah",
+    ct."Battery_SOC",
     ct."Bus_mA",
     ct."Bus_V",
     ct."Array1_mA",
@@ -359,17 +412,24 @@ CREATE OR REPLACE VIEW lng_term_trend_data_summary AS
     ct."Wind_Direction",
     ct."Latitiude",
     ct."Longitude"
+    ct."Setpoint",
+    ct."Irradiance"
    FROM crosstab('
 	SELECT date_trunc(''second'',tstamp) as tstamp, data_pnt_can_id, fval
 		FROM lng_term_trend_data
-		where data_pnt_can_id in (16420,16416,28692,28688,28756,28752,28820,28816,12852,13076,13072)
-		ORDER  BY 1,2 '::text, 'VALUES (''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072'')  '::text) ct(tstamp timestamp without time zone, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision);
+		where data_pnt_can_id in (16436,28484,28480,16420,16416,28692,28688,28756,28752,28820,28816,12852,13076,13072,20500,12884)
+		ORDER  BY 1,2 '::text, 'VALUES (''16436''), (''28484''), (''28480''),(''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072''), (''20500''), (''12884'')  '::text) ct(tstamp timestamp without time zone, "Velocity" double precision, "Battery_SOC" double precision, "Battery_Ah" double precision, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision, "Setpoint" double precision, "Irradiance" double precision);
 
 ALTER TABLE lng_term_trend_data_summary
   OWNER TO postgres;
 
+DROP VIEW med_term_trend_data_summary;
+
 CREATE OR REPLACE VIEW med_term_trend_data_summary AS 
- SELECT ct.tstamp,
+SELECT ct.tstamp,
+    ct."Velocity",
+    ct."Battery_Ah",
+    ct."Battery_SOC",
     ct."Bus_mA",
     ct."Bus_V",
     ct."Array1_mA",
@@ -382,18 +442,25 @@ CREATE OR REPLACE VIEW med_term_trend_data_summary AS
     ct."Wind_Direction",
     ct."Latitiude",
     ct."Longitude"
+    ct."Setpoint",
+    ct."Irradiance"
    FROM crosstab('
 	SELECT date_trunc(''second'',tstamp) as tstamp, data_pnt_can_id, fval
 		FROM med_term_trend_data
-		where data_pnt_can_id in (16420,16416,28692,28688,28756,28752,28820,28816,12852,13076,13072)
-		ORDER  BY 1,2 '::text, 'VALUES (''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072'')  '::text) ct(tstamp timestamp without time zone, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision);
+		where data_pnt_can_id in (16436,28484,28480,16420,16416,28692,28688,28756,28752,28820,28816,12852,13076,13072,20500,12884)
+		ORDER  BY 1,2 '::text, 'VALUES (''16436''), (''28484''), (''28480''),(''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072''), (''20500''), (''12884'')  '::text) ct(tstamp timestamp without time zone, "Velocity" double precision, "Battery_SOC" double precision, "Battery_Ah" double precision, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision, "Setpoint" double precision, "Irradiance" double precision);
 
 ALTER TABLE med_term_trend_data_summary
   OWNER TO postgres;
 
+DROP VIEW sht_term_trend_data_summary;
+
 
 CREATE OR REPLACE VIEW sht_term_trend_data_summary AS 
- SELECT ct.tstamp,
+SELECT ct.tstamp,
+    ct."Velocity",
+    ct."Battery_Ah",
+    ct."Battery_SOC",
     ct."Bus_mA",
     ct."Bus_V",
     ct."Array1_mA",
@@ -406,13 +473,83 @@ CREATE OR REPLACE VIEW sht_term_trend_data_summary AS
     ct."Wind_Direction",
     ct."Latitiude",
     ct."Longitude"
+    ct."Setpoint",
+    ct."Irradiance"
    FROM crosstab('
 	SELECT date_trunc(''second'',tstamp) as tstamp, data_pnt_can_id, fval
 		FROM sht_term_trend_data
-		where data_pnt_can_id in (16420,16416,28692,28688,28756,28752,28820,28816,12852,13076,13072)
-		ORDER  BY 1,2 '::text, 'VALUES (''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072'')  '::text) ct(tstamp timestamp without time zone, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision);
+		where data_pnt_can_id in (16436,28484,28480,16420,16416,28692,28688,28756,28752,28820,28816,12852,13076,13072,20500,12884)
+		ORDER  BY 1,2 '::text, 'VALUES (''16436''), (''28484''), (''28480''),(''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072''), (''20500''), (''12884'')  '::text) ct(tstamp timestamp without time zone, "Velocity" double precision, "Battery_SOC" double precision, "Battery_Ah" double precision, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision, "Setpoint" double precision, "Irradiance" double precision);
 
 ALTER TABLE sht_term_trend_data_summary
+  OWNER TO postgres;
+
+
+CREATE OR REPLACE VIEW sht_and_med_term_trend_data AS 
+ SELECT sht_term_trend_data.sht_term_trend_data_id,
+    sht_term_trend_data.data_pnt_can_id,
+    sht_term_trend_data.tstamp,
+    sht_term_trend_data.extd,
+    sht_term_trend_data.rtr,
+    sht_term_trend_data.data_len,
+    sht_term_trend_data.fval,
+    sht_term_trend_data.ival,
+    sht_term_trend_data.cval,
+    sht_term_trend_data.state
+   FROM sht_term_trend_data;
+
+ALTER TABLE sht_and_med_term_trend_data
+  OWNER TO postgres;
+
+
+CREATE OR REPLACE VIEW sht_and_med_term_trend_data_summary AS 
+ SELECT ct.tstamp,
+    ct."Velocity",
+    ct."Battery_Ah",
+    ct."Battery_SOC",
+    ct."Bus_mA",
+    ct."Bus_V",
+    ct."Array1_mA",
+    ct."Array1_V",
+    ct."Array2_mA",
+    ct."Array2_V",
+    ct."Array3_mA",
+    ct."Array3_V",
+    ct."Wind_Speed",
+    ct."Wind_Direction",
+    ct."Latitiude",
+    ct."Longitude"
+    ct."Setpoint",
+    ct."Irradiance"
+   FROM crosstab('
+	SELECT date_trunc(''second'',tstamp) as tstamp, data_pnt_can_id, fval
+		FROM sht_and_med_term_trend_data
+		where data_pnt_can_id in (16436,28484,28480,16420,16416,28692,28688,28756,28752,28820,28816,12852,13076,13072,20500,12884)
+		ORDER  BY 1,2 '::text, 'VALUES (''16436''), (''28484''), (''28480''),(''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072''), (''20500''), (''12884'')  '::text) ct(tstamp timestamp without time zone, "Velocity" double precision, "Battery_SOC" double precision, "Battery_Ah" double precision, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision, "Setpoint" double precision, "Irradiance" double precision);
+
+ALTER TABLE sht_and_med_term_trend_data_summary
+  OWNER TO postgres;
+
+-- View: all_trend_data_with_deviceinfo
+
+DROP VIEW all_trend_data_with_deviceinfo;
+
+CREATE OR REPLACE VIEW all_trend_data_with_deviceinfo AS 
+ SELECT trend_data.tstamp + '10:00:00'::interval AS "BNE_time",
+    dev.dev_name,
+    msrmnt.msrmnt_name,
+    data_pnt.name,
+    trend_data.data_pnt_can_id,
+    trend_data.fval,
+    trend_data.ival,
+    trend_data.cval
+   FROM all_trend_data trend_data
+   JOIN data_pnt ON trend_data.data_pnt_can_id = data_pnt.data_pnt_can_id
+   JOIN msrmnt ON msrmnt.msrmnt_id = data_pnt.msrmnt_id_fk
+   JOIN dev ON dev.dev_id = msrmnt.dev_id_fk
+  ORDER BY trend_data.tstamp, trend_data.data_pnt_can_id;
+
+ALTER TABLE all_trend_data_with_deviceinfo
   OWNER TO postgres;
 
 

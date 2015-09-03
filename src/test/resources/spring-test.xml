@@ -4,6 +4,7 @@
 	xmlns:int="http://www.springframework.org/schema/integration"
 	xmlns:int-ip="http://www.springframework.org/schema/integration/ip"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:int-splunk="http://www.springframework.org/schema/integration/splunk"	
 	xsi:schemaLocation="http://www.springframework.org/schema/integration
 		http://www.springframework.org/schema/integration/spring-integration.xsd
 		http://www.springframework.org/schema/beans
@@ -11,7 +12,9 @@
 		http://www.springframework.org/schema/integration/ip
 		http://www.springframework.org/schema/integration/ip/spring-integration-ip.xsd
 		http://www.springframework.org/schema/context
-		http://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/integration/splunk 
+		http://www.springframework.org/schema/integration/splunk/spring-integration-splunk.xsd">
 
 	<context:component-scan base-package="com.teamarrow.utils.test"/>
 	
@@ -50,24 +53,20 @@
     	channel="output" />
 
 	
+	 <!-- Splunk Configuration -->
+	 
+	<int:transformer id="measurementDataToSplunkTransformer" input-channel="measurementAggregatedDataChannel"
+                output-channel="splunkData" ref="measurementDataToSplunkTransformerBean"/>
+                
+	<bean id="measurementDataToSplunkTransformerBean" class="au.com.teamarrow.splunk.MeasurementDataToSplunkTransformer"/>                
+                	
+	 <int:channel id="splunkData"/>
+	 <int:channel id="measurementAggregatedDataChannel"/>		
 
+     <int-splunk:server id="splunkServer" host="localhost" port="8089" username="admin" password="teamarrow" scheme="https"/>
 	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-
-	
-
-	
-	
-	
+	 <int-splunk:outbound-channel-adapter id="splunkOutboundChannelAdapter" channel="splunkData" splunk-server-ref="splunkServer">     
+     	<int-splunk:tcp-writer port="9999"/>
+     </int-splunk:outbound-channel-adapter>
+		
 </beans>

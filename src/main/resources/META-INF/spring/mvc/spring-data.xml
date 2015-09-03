@@ -43,6 +43,9 @@
 	        <!-- <prop key="hibernate.hbm2ddl.auto">validate</prop> -->
 	        <prop key="hibernate.hbm2ddl.auto">update</prop>
 	        <prop key="hibernate.show_sql">false</prop>
+	        <prop key="jadira.usertype.autoRegisterUserTypes">true</prop>
+            <prop key="jadira.usertype.databaseZone">jvm</prop>
+            <prop key="jadira.usertype.javaZone">jvm</prop>
 	      </props>
 	    </property>
 	</bean>

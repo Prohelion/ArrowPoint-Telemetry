@@ -1,6 +1,5 @@
 package au.com.teamarrow.canbus.model;
 
-import java.math.BigInteger;
 import java.nio.ByteBuffer;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -27,8 +26,8 @@ public class CanPacket {
     public CanPacket() {
         
     }
+        
     
-  
     public CanPacket(byte[] id, boolean extended, boolean rtr, byte length, byte[] data) {
         this.timestamp = new DateTime();
         this.id = id;

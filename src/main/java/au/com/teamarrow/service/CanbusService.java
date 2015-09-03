@@ -1,6 +1,6 @@
 package au.com.teamarrow.service;
 
-import org.springframework.integration.Message;
+import org.springframework.messaging.Message;
 
 import au.com.teamarrow.canbus.model.CanPacket;
 

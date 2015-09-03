@@ -37,4 +37,12 @@ public class MeasurementData extends AbstractMeasurementData implements Serializ
     public long getId() {
         return this.id;
     }
+    
+    public String toString() {
+		return "dataPointCanId=" + this.getDataPointCanId() + 
+				",timestamp=" + this.getTimestamp().toString() + 
+				",fval="+ this.getFloatValue() +
+				",ival=" + this.getIntegerValue() + 
+				",cval=" + this.getCharValue();    	
+    }
 }

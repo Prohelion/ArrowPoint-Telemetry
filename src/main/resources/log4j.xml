@@ -3,9 +3,10 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
     <!-- Appenders -->
-    <appender name="error" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="file" value="logs/error.log"/>
-        <param name="datePattern" value="'.'yyyy-MM-dd"/>
+    <appender name="error" class="org.apache.log4j.RollingFileAppender">
+        <param name="file" value="logs/error.log"/>        
+        <param name="MaxFileSize" value="10000KB"/>
+        <param name="MaxBackupIndex" value="10"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{ISO8601} %-5p: %c - %m%n" />
         </layout>
@@ -21,7 +22,8 @@
        	<param name="file" value="logs/lapTracker.log"/>
         <param name="Append" value="true" />
         <param name="Encoding" value="UTF-8" />
-        <param name="MaxFileSize" value="10000KB"/>        
+        <param name="MaxFileSize" value="10000KB"/>
+        <param name="MaxBackupIndex" value="10"/>        
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{HH:mm:ss.SSS}  , %m%n"/>
         </layout>
@@ -32,30 +34,65 @@
        	<param name="file" value="logs/canlog.log"/>
         <param name="Append" value="true" />
         <param name="Encoding" value="UTF-8" />
-        <param name="MaxFileSize" value="10000KB"/>        
+        <param name="MaxFileSize" value="20000KB"/>
+        <param name="MaxBackupIndex" value="50"/>        
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{HH:mm:ss.SSS}  , 0, %m%n"/>
         </layout>
     </appender>
         
+    <appender name="spring" class="org.apache.log4j.RollingFileAppender">
+        <param name="file" value="logs/spring.log"/>
+        <param name="Append" value="true" />
+        <param name="Encoding" value="UTF-8" />
+        <param name="MaxFileSize" value="10000KB"/> 
+        <param name="MaxBackupIndex" value="10"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %-5p: %c - %m%n" />
+        </layout>
+    </appender>        
+        
+    <appender name="tcpAlerts" class="org.apache.log4j.RollingFileAppender">
+        <param name="file" value="logs/tcp_alerts.log"/>
+        <param name="Append" value="true" />
+        <param name="Encoding" value="UTF-8" />
+        <param name="MaxFileSize" value="10000KB"/> 
+        <param name="MaxBackupIndex" value="10"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %-5p: %c - %m%n" />
+        </layout>
+    </appender>
+                    
     <appender name="debug" class="org.apache.log4j.RollingFileAppender">
         <param name="file" value="logs/debug.log"/>
         <param name="Append" value="true" />
         <param name="Encoding" value="UTF-8" />
-        <param name="MaxFileSize" value="1000KB"/> 
+        <param name="MaxFileSize" value="10000KB"/> 
         <param name="MaxBackupIndex" value="10"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{ISO8601} %-5p: %c - %m%n" />
         </layout>
     </appender>
     
-    <appender name="arrow" class="org.apache.log4j.DailyRollingFileAppender">
+    <appender name="arrow" class="org.apache.log4j.RollingFileAppender">
         <param name="file" value="logs/arrow.log"/>
-        <param name="datePattern" value="'.'yyyy-MM-dd"/>
+        <param name="Append" value="true" />
+        <param name="Encoding" value="UTF-8" />
+        <param name="MaxFileSize" value="10000KB"/>
+        <param name="MaxBackupIndex" value="10"/>        
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{ISO8601} %-5p: %c - %m%n" />
         </layout>
     </appender>
+    
+    <appender name="alerts" class="org.apache.log4j.RollingFileAppender">
+        <param name="file" value="logs/alerts.log"/>        
+        <param name="MaxFileSize" value="10000KB"/>
+        <param name="MaxBackupIndex" value="10"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %-5p: %c - %m%n" />
+        </layout>
+    </appender>    
     
     <appender name="console" class="org.apache.log4j.ConsoleAppender"> 
 		<param name="Target" value="System.out"/> 
@@ -70,13 +107,13 @@
 	</logger>
 	
 	<logger name="au.com.teamarrow" additivity="true">
-	    <level value="info"/>
+	    <level value="debug"/>
 	    <appender-ref ref="arrow" /> 
 	</logger>
 		
 	<logger name="org.springframework" additivity="false">
-	    <level value="debug"/>
-	    <appender-ref ref="debug" /> 
+	    <level value="info"/>
+	    <appender-ref ref="spring" /> 
 	</logger> 
     
     <logger name="org.hibernate.tool.hbm2ddl" additivity="false">
@@ -90,10 +127,21 @@
 	</logger>
 
 	<logger name="LapTracker" additivity="false">
-	    <level value="debug"/>
+	    <level value="info"/>
 	    <appender-ref ref="lapTrackerlog" />
 	</logger>
+	
+	<logger name="Alerts" additivity="false">
+	    <level value="info"/>
+	    <appender-ref ref="alerts" />
+	</logger>
 
+
+	<!-- Logger to remove TCP outbound alerts to a seperate file -->    
+    <logger name="org.springframework.integration.ip.tcp.TcpSendingMessageHandler" additivity="false">
+	    <level value="info"/>
+	    <appender-ref ref="tcpAlerts" />
+	</logger>
     
     <!-- Root Logger -->
     <root>
