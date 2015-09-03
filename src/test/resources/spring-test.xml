@@ -63,7 +63,7 @@
 	 <int:channel id="splunkData"/>
 	 <int:channel id="measurementAggregatedDataChannel"/>		
 
-     <int-splunk:server id="splunkServer" host="localhost" port="8089" username="admin" password="teamarrow" scheme="https"/>
+     <int-splunk:server id="splunkServer" host="localhost" port="8089" username="admin" password="***REMOVED***" scheme="https"/>
 	
 	 <int-splunk:outbound-channel-adapter id="splunkOutboundChannelAdapter" channel="splunkData" splunk-server-ref="splunkServer">     
      	<int-splunk:tcp-writer port="9999"/>

@@ -262,7 +262,7 @@
 		
 	<!-- Splunk Configuration -->
 
-     <int-splunk:server id="splunkServer" host="localhost" port="8089" username="admin" password="teamarrow" scheme="https"/>
+     <int-splunk:server id="splunkServer" host="localhost" port="8089" username="admin" password="***REMOVED***" scheme="https"/>
 	
 	 <int-splunk:outbound-channel-adapter
         id="splunkOutboundChannelAdapter"
