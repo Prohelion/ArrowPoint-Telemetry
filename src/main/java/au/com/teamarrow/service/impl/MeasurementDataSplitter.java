@@ -1,6 +1,7 @@
 package au.com.teamarrow.service.impl;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
@@ -94,21 +95,39 @@ public class MeasurementDataSplitter {
             
             if (dp.getType().equalsIgnoreCase("float"))
             {
-            	f = Float.intBitsToFloat(bits);
+            	try { 
+            		f = Float.intBitsToFloat(bits);
+            	} catch (Exception ex) {
+            		LOG.error("A value CanID {} data {} could not be converted to a float", dp.getDataPointCanId(), data);
+            		f = (float)0;
+            	}
             	i = f.intValue();
             	s = f.toString();            	
             	LOG.debug("A floating Point {} Length {} points offset {} data {} sa {} bits {} float {} ", dp.getDataPointCanId(), dataLength, offset, data, sa, bits, f);	
             }
-            else if (dp.getType().equalsIgnoreCase("int"))
-            {            	            
-            	i = new Integer(Integer.valueOf(hex,16).shortValue());
+            else if (dp.getType().equalsIgnoreCase("int") || dp.getType().equalsIgnoreCase("uint"))
+            {       
+            	try {
+            		//i = new Integer(Integer.valueOf(hex,16).intValue());
+            		i = new BigInteger(hex, 16).intValue(); 
+            	} catch (Exception ex) {
+            		LOG.error("A value CanID {} data {} could not be converted to an int", dp.getDataPointCanId(), data);
+            		f = (float)0;
+            	}
+
             	f = new Float(i);
             	s = i.toString();            	            
             	LOG.debug("A integer Point {} Length {} points offset {} data {} sa {} bits {} float {} ", dp.getDataPointCanId(), dataLength, offset, data, sa, bits, f);	
-            }
+            }            
             else            	
             {
-            	f = new Float(bits);
+            	try {
+            		f = new Float(bits);
+            	} catch (Exception ex) {
+            		LOG.error("A value CanID {} data {} could not be converted to a float", dp.getDataPointCanId(), data);
+            		f = (float)0;
+            	}
+            	
             	i = f.intValue();
             	s = f.toString();            
             	LOG.debug("Non floating point or integer type {} Point {} Length {} points offset {} data {} sa {} bits {} float {} ", dp.getType(), dp.getDataPointCanId(), dataLength, offset, data, sa, bits, f);

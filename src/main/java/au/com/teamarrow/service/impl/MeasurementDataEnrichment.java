@@ -4,25 +4,76 @@ import au.com.teamarrow.model.MeasurementData;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
-import org.springframework.integration.annotation.MessageEndpoint;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.integration.annotation.Splitter;
 import org.springframework.messaging.Message;
+import org.springframework.stereotype.Component;
 
 
-@MessageEndpoint
 public class MeasurementDataEnrichment {
 	
-	private Double array1Voltage = (double)-1;
-	private Double array2Voltage = (double)-1;
-	private Double array3Voltage = (double)-1;
+	private static final Logger LOG = LoggerFactory.getLogger(MeasurementDataEnrichment.class);
 	
-	private Double array1Current = (double)-1;
-	private Double array2Current = (double)-1;
-	private Double array3Current = (double)-1;
+	private Integer array1Voltage = new Integer(-1);
+	private Integer array2Voltage = new Integer(-1);
+	private Integer array3Voltage = new Integer(-1);
+	
+	private Integer array1Current = new Integer(-1);
+	private Integer array2Current = new Integer(-1);
+	private Integer array3Current = new Integer(-1);
 	
 	private Double busVoltage = (double)-1;
 	private Double busCurrent = (double)-1;
+	
+	private Double currentLat = (double)-1;
+	private Double currentLong = (double)-1;
+	
+	private int velocityCount = 0;	
+	private Double velocitySum = (double)0;
+		
+	
+	public void setCurrentLat(Double currentLat) {
+		LOG.debug("Set currentLat" + currentLat);
+		this.currentLat = currentLat;
+	}
+
+	public void setCurrentLong(Double currentLong) {
+		LOG.debug("Set currentLong" + currentLong);
+		this.currentLong = currentLong;
+	}
+	
+	public void addVelocity(Double velocity) {
+		LOG.debug("Add velcocity" + currentLong);
+		
+		if (velocityCount >= 300) {
+			velocityCount = 0;
+			velocitySum = (double)0;
+		}
+		
+		velocitySum = velocitySum + velocity;
+		velocityCount++;	
+	}
+	
+	public Double getCurrentLat() {
+		LOG.debug("Get currentLat" + currentLat);
+		return currentLat;
+	}
+	
+	public Double getCurrentLong() {	
+		LOG.debug("Get currentLat" + currentLong);
+		return currentLong;
+	}
+	
+	public Double getAverageVelocity() {
+		
+		 if (velocityCount == 0) return((double)0);
+		
+		 return (velocitySum / velocityCount);
+		
+	}	
 	
     @Splitter
     public List<MeasurementData> enrichMeasurementDataMessages(Message<MeasurementData> message) {
@@ -38,58 +89,76 @@ public class MeasurementDataEnrichment {
     	
     	switch (measurementData.getDataPointCanId()) {
     	
+    		// Vehicle velocity
+    		case 0x4034: addVelocity(measurementData.getFloatValue());    					 
+    					 break;
+    					 
+    		// Latitude
+    		case 0x3310: setCurrentLat(measurementData.getFloatValue());
+    					 break;
+    			
+    		// Longitude
+    		case 0x3314: setCurrentLong(measurementData.getFloatValue());
+    					 break;
+    	
 	    	// Array 1 Amps
-	    	case 0x7014: array1Current = measurementData.getFloatValue();
+	    	case 0x7014: array1Current = measurementData.getIntegerValue();
 	    				 break;
 	    	
 	    	// Array 1 Volts
-	    	case 0x7010: array1Voltage = measurementData.getFloatValue();
+	    	case 0x7010: array1Voltage = measurementData.getIntegerValue();
 	    				 if (array1Current != -1) {
-	    					 Double power = (array1Current / 1000) * (array1Voltage / 1000);
+	    					 Double power = (double)(array1Current * array1Voltage) / 1000000;
 	    					 
 	    					 // Create new item 3410
-	    					 powerData = new MeasurementData(0x3410, measurementData.getTimestamp(), false, false, 8, power, 0, "", "");	    					 
+	    					 powerData = new MeasurementData(0x3410, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
 	    				 }
 	    				 break;
 	    	
 	    	// Array 2 Amps
-	    	case 0x7054: array2Current = measurementData.getFloatValue();
+	    	case 0x7054: array2Current = measurementData.getIntegerValue();
 	    				 break;
 	    	
 	    	// Array 2 Volts
-	    	case 0x7050: array2Voltage = measurementData.getFloatValue();
+	    	case 0x7050: array2Voltage = measurementData.getIntegerValue();
 						 if (array2Current != -1) {
-							 Double power = (array2Current / 1000) * (array2Voltage / 1000);
+							 Double power = (double)(array2Current * array2Voltage) / 1000000;
 							 
 							 // Create new item 3420
-							 powerData = new MeasurementData(0x3420, measurementData.getTimestamp(), false, false, 8, power, 0, "", "");	    					 
+							 powerData = new MeasurementData(0x3420, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
 						 }	    	
 	    				 break;
 	    	
 	    	// Array 3 Amps
-	    	case 0x7094: array3Current = measurementData.getFloatValue();
+	    	case 0x7094: array3Current = measurementData.getIntegerValue();
 	    				 break;
 	    	
 	    	// Array 3 Volts
-	    	case 0x7090: array3Voltage = measurementData.getFloatValue();
+	    	case 0x7090: array3Voltage = measurementData.getIntegerValue();
 						 if (array3Current != -1) {
-							 Double power = (array3Current / 1000) * (array3Voltage / 1000);
+							 Double power = (double)(array3Current * array3Voltage) / 1000000;
 							 
 							 // Create new item 3430
-							 powerData = new MeasurementData(0x3430, measurementData.getTimestamp(), false, false, 8, power, 0, "", "");	    					 
+							 powerData = new MeasurementData(0x3430, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
 						 }
-						 
-						 
+						 						 
 						 // Check if all array power data has been received and if so set the full array power
 						 if (array1Current != -1 && array1Voltage != -1 &&
-							 array2Current != -1 && array3Voltage != -1 &&
-							 array2Current != -1 && array3Voltage != -1) {
-							 Double power = ((array1Current / 1000) * (array1Voltage / 1000)) + 
-									 		((array2Current / 1000) * (array2Voltage / 1000)) +
-									 		((array3Current / 1000) * (array3Voltage / 1000));
+							 array2Current != -1 && array2Voltage != -1 &&
+							 array3Current != -1 && array3Voltage != -1) {
+							 Double power = (double)((array1Current * array1Voltage) + 
+									 		 		 (array2Current * array2Voltage) +
+									 		 		 (array3Current * array3Voltage)) / 1000000;
 							 
 							 // Create new item 3440
-							 totalPowerData = new MeasurementData(0x3440, measurementData.getTimestamp(), false, false, 8, power, 0, "", "");	    					 
+							 totalPowerData = new MeasurementData(0x3440, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");
+							 
+							 // Check as we have been seeing weird data
+							 if (power < 0) {
+								 LOG.error("Calulated Total Array power ({}) is in error: Array1Current {}, Array1Voltage {}, Array2Current {}, Array2Voltage {}, Array3Current {}, Array3Voltage", power, array1Current, array1Voltage, array2Current, array2Voltage, array3Current, array3Voltage  );
+							 }
+							 
+							 
 						 }	    		    	
 
 						 
@@ -105,25 +174,25 @@ public class MeasurementDataEnrichment {
 							 Double power = (busCurrent) * (busVoltage);
 							 
 							 // Create new item 3450
-							 powerData = new MeasurementData(0x3450, measurementData.getTimestamp(), false, false, 8, power, 0, "", "");	    					 
+							 powerData = new MeasurementData(0x3450, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
 						 }
 
 						 // Check if all array power data has been received and if so set the full array power
 						 if (array1Current != -1 && array1Voltage != -1 &&
-							 array2Current != -1 && array3Voltage != -1 &&
-							 array2Current != -1 && array3Voltage != -1 &&
+							 array2Current != -1 && array2Voltage != -1 &&
+							 array3Current != -1 && array3Voltage != -1 &&
 						 	 busCurrent != -1 && busVoltage != -1) {
 							 
 							 // Calculate array power
-							 Double power = ((array1Current / 1000) * (array1Voltage / 1000)) + 
-									 		((array2Current / 1000) * (array2Voltage / 1000)) +
-									 		((array3Current / 1000) * (array3Voltage / 1000));
-							 
+							 Double power = (double)((array1Current * array1Voltage) + 
+					 		 		 				 (array2Current * array2Voltage) +
+					 		 		 				 (array3Current * array3Voltage)) / 1000000;
+			  
 							 // Subtract bus power
-							 power = power - (busCurrent) * (busVoltage);
+							 power = power - (busCurrent * busVoltage);
 							 
 							 // Create new item 3440
-							 totalPowerData = new MeasurementData(0x3460, measurementData.getTimestamp(), false, false, 8, power, 0, "", "");	    					 
+							 totalPowerData = new MeasurementData(0x3460, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
 						 }	    		    	
 						 
 						 

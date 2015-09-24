@@ -32,15 +32,7 @@ public class TelemetryScheduler {
     @Autowired
     @Qualifier("calculateRollingPowerAvgWorker")
     private Worker calculateRollingPowerAvgWorker;
-   
-    @Autowired
-    @Qualifier("pingRulesEngineWorker")
-    private Worker pingRulesEngineWorker;
-    
-    @Autowired
-    @Qualifier("canRulesEngineWorker")
-    private Worker canRulesEngineWorker;    
-    
+         
     @Scheduled(cron="0 * * * * *")
 	public void doArchiveCanShortTerm() {
 		 LOG.debug("Start archive of short term data");	   

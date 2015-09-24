@@ -28,8 +28,8 @@ public class GpsSplitterTest {
 		CanPacket canPacket = udpPackets.get(0).getCanPackets().get(0); 
 		
 		assertEquals(canPacket.getIdBase10(),0x333);
-		assertEquals((long)canPacket.getDataSegmentOne(),(long)8);
-		assertEquals((long)canPacket.getDataSegmentTwo(),(long)10.9);
+		assertEquals((long)canPacket.getDataSegmentOne(),(long)10.9);
+		assertEquals((long)canPacket.getDataSegmentTwo(),(long)8);
 	}
 	
 	
@@ -53,8 +53,8 @@ public class GpsSplitterTest {
 		assertEquals(canPacket331.getIdBase10(),0x331);		
 		assertEquals(canPacket332.getIdBase10(),0x332);
 		
-		assertEquals((long)canPacket331.getDataSegmentOne(),(long)15257.756);
-		assertEquals((long)canPacket331.getDataSegmentTwo(),(long)-2731.773);
+		assertEquals((long)canPacket331.getDataSegmentOne(),(long)-27.529550000000004);
+		assertEquals((long)canPacket331.getDataSegmentTwo(),(long)152.96259999999998);
 			
 		assertEquals((long)canPacket332.getDataSegmentOne(),(long)(10 * 0.514444444));
 		assertEquals((long)canPacket332.getDataSegmentTwo(),(long)145);

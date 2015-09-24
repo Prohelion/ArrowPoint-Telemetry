@@ -47,6 +47,8 @@ public class CruiseSimulatorServiceImpl implements CruiseSimulatorService {
     private double currentVelocity = 0;
     private long clock = 1;
     
+    private boolean active = false;
+    
     
     public int getVariationHertz() {
 		return variationHertz;
@@ -105,12 +107,19 @@ public class CruiseSimulatorServiceImpl implements CruiseSimulatorService {
     	    	    	
     }
     
+    public void setActive(boolean active) {
+    	this.active = active;
+    }
+    
     
     @ServiceActivator
     public void processCanPacketMessage(Message<CanPacket> message) {
     	              
         // High is two
     	// Low is one
+    	
+    	if (!active) return;
+    	
 
     	NumberFormat percentFormat = NumberFormat.getPercentInstance();
     	percentFormat.setMaximumFractionDigits(1);

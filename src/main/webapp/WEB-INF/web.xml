@@ -15,7 +15,8 @@
         <param-value>
         	classpath:META-INF/spring/mvc/spring-context.xml 
         	classpath:META-INF/spring/integration/spring-integration-context.xml
-        	classpath:META-INF/spring/mvc/spring-data.xml 
+        	classpath:META-INF/spring/mvc/spring-data.xml
+        	classpath:META-INF/spring/maps/ArrowPointMaps.xml  
         </param-value>
     </context-param>
 

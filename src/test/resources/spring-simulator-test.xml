@@ -27,6 +27,7 @@
 	<bean id="cruiseSimulatorService" class="au.com.teamarrow.service.impl.CruiseSimulatorServiceImpl">
 		<property name="variationHertz" value="5"/>
 		<property name="velocityVariationPercent" value="0.001"/>	
+		<property name="active" value="false"/>
 	</bean>	
 	
 	

@@ -24,10 +24,7 @@
 		level="INFO"
 		expression="'Payload:' + payload + ', Headers:' + headers" />
 
-
-	<bean id="canAvailabilityCheck" class="au.com.teamarrow.rules.impl.CanAvailabilityCheck"/>
-	<bean id="canStatusCheck" class="au.com.teamarrow.rules.impl.CanStatusCheck"/>
-
+	
 	<int:channel id="csvOut"/>	
 	<int:channel id="csvLineOut"/>	
 	
@@ -114,13 +111,13 @@
 		output-channel="nullChannel" 
 		ref="measurementDataService" />
 
-
 	<bean id="aggregatorBean" class="au.com.teamarrow.service.impl.MeasurementDataAggregator"/>
 	<bean id="enricherBean" class="au.com.teamarrow.service.impl.MeasurementDataEnrichment"/>	
 
-
-	
-	
+	<bean id="mapGenerator" class="au.com.teamarrow.maps.impl.MapGenerator">
+	   		<property name="measurementDataEnrichment" ref="enricherBean"/>
+	</bean>	   		
+		
 	<int:channel id="measurementDataChannel"
 		datatype="au.com.teamarrow.model.MeasurementData">
 	</int:channel>

@@ -17,17 +17,22 @@ public class GpsSplitter {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(GpsSplitter.class);
 	
-	private float safeValueOf(String input, float defaultValue) {
+	private Double safeValueOf(String input, Double defaultValue) {
 			
-		float value = defaultValue;
+		Double value = defaultValue;
 		
 		try {
-			value = Float.valueOf(input);
+			value = Double.valueOf(input);
 		} catch (NumberFormatException ex) {}
 		
 		return value;
 		
 	}
+	
+	private Double GPRMC2Degrees(Double value) {
+    	return (int)(value / 100) + (value - ((int)(value / 100) * 100)) / 60;
+	}
+	
 	
 	@Splitter
 	public List<UdpPacket> splitGPS(byte[] bytes) {
@@ -54,19 +59,22 @@ public class GpsSplitter {
 			
 			if ( gpsArray[0].equals("$GPRMC") ) {
 				
-				float latitude = safeValueOf(gpsArray[3],0);
-				float longitude = safeValueOf(gpsArray[5],0);
-				float speed = (float)(safeValueOf(gpsArray[7],0) * 0.514444444);
-				float direction = safeValueOf(gpsArray[8],0);
+				Double latitude = safeValueOf(gpsArray[3],(double)0);
+				Double longitude = safeValueOf(gpsArray[5],(double)0);
+				Double speed = (Double)(safeValueOf(gpsArray[7],(double)0) * 0.514444444);
+				Double direction = safeValueOf(gpsArray[8],(double)0);
 				
 				if (gpsArray[4].equals("S")) latitude = latitude * -1;
 				if (gpsArray[6].equals("W")) longitude = longitude * -1;
+												
+				latitude = GPRMC2Degrees(latitude);
+				longitude = GPRMC2Degrees(longitude);
 								
-				canPacketList1.add(new CanPacket(0x331,latitude,longitude));
+				canPacketList1.add(new CanPacket(0x331,longitude.floatValue(),latitude.floatValue()));
 				udpPacket1.setCanPackets(canPacketList1);
 				udpPackets.add(udpPacket1);				
 				
-				canPacketList2.add(new CanPacket(0x332,direction,speed));								
+				canPacketList2.add(new CanPacket(0x332,direction.floatValue(),speed.floatValue()));								
 				udpPacket2.setCanPackets(canPacketList2);
 				udpPackets.add(udpPacket2);										
 				
@@ -75,10 +83,10 @@ public class GpsSplitter {
 			
 			if ( gpsArray[0].equals("$GPGGA") ) {
 				
-				float altitude = safeValueOf(gpsArray[9],0);
+				Double altitude = safeValueOf(gpsArray[9],(double)0);
 				int numberOfSatelites = Integer.valueOf(gpsArray[7]);
 								
-				canPacketList1.add(new CanPacket(0x333,altitude,numberOfSatelites));				
+				canPacketList1.add(new CanPacket(0x333,numberOfSatelites,altitude.floatValue()));				
 				udpPacket1.setCanPackets(canPacketList1);
 				udpPackets.add(udpPacket1);				
 				

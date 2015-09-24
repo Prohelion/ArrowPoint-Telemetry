@@ -44,10 +44,6 @@ public class CanbusServiceImpl implements CanbusService {
             | ((data[6] & 0xFF) << 16) 
             | ((data[7] & 0xFF) << 24);
         float second = Float.intBitsToFloat(intbits);
-        
-               
-//        MeasurementData md = new MeasurementData(0, cp.getBaseId(), cp.getTimestamp(), cp.getId(), false, false, cp.getData().length, cp.getData(), (double)cp.getDataSegmentOne(), (double)cp.getDataSegmentTwo());
-//        measurementDataRepository.save(md);
-
+                       
     }
 }

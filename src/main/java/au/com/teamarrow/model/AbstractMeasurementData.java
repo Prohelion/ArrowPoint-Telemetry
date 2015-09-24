@@ -139,6 +139,10 @@ public abstract class AbstractMeasurementData implements java.io.Serializable {
 
     @Column(name = "state", length = 10)
     public String getState() {
+    	// Added this check as it is possible for it not to be set if it
+    	// has been constructed poorly.  Not having a state violates the constraints
+    	// in the database table
+    	if (this.state == null || this.state.equals("")) return("Normal");    	
         return this.state;
     }
 

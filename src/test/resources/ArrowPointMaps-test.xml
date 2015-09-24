@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- These beans are used to set up the core engine of maps system -->
+	<bean id="Route" class="au.com.teamarrow.maps.impl.CvsRouteImpl">
+		<property name="routeFile" value="/test_routedata.csv"/>
+		<property name="controlStopDistances">
+			<list>
+				<value>321000</value>
+				<value>633000</value>
+				<value>988000</value>
+				<value>1302000</value>
+				<value>1493000</value>
+				<value>1766000</value>
+				<value>2171000</value>
+				<value>2432000</value>
+				<value>2719000</value>
+			</list>
+		</property>
+		<property name ="controlStopDescriptions">
+			<list>	
+				<value>"Katherine Control Stop"</value>
+				<value>"Dunmarra Control Stop"</value>
+				<value>"Tennant Creek Control Stop"</value>
+				<value>"Ti Tree Control Stop"</value>
+				<value>"Alice Springs Control Stop"</value>
+				<value>"Kulgera Control Stop""</value>
+				<value>"Coober Pedy Control Stop"</value>
+				<value>"Glendambo Control Stop"</value>
+				<value>"Port Augusta Control Stop"</value>
+			</list>
+		</property>
+	</bean>
+             
+</beans>
