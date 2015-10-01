@@ -20,7 +20,7 @@ public class MapGeneratorTest {
 		mapGenerator.setMeasurementDataEnrichment(new MeasurementDataEnrichment());
 		mapGenerator.setRoute(route);		
 		mapGenerator.generateAllLayers();			
-		mapGenerator.writeResultToFile("D:/test.kml");		
+		mapGenerator.writeResultToFile("C:/TeamArrow/testing/test.kml");		
 	}	
 		
 	
