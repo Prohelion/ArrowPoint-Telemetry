@@ -44,7 +44,8 @@ public class CruiseSimulator {
 		        int variationHertz = Integer.parseInt(br.readLine());
 		        
 		        cruiseSimulatorService.setVariationHertz(variationHertz);		        
-		        cruiseSimulatorService.setVelocityVariationPercent(variationPercent);		        
+		        cruiseSimulatorService.setVelocityVariationPercent(variationPercent);	
+		        cruiseSimulatorService.setActive(true);
 		        
 		} catch (Exception ex) {
 				System.out.print("SOMETHING WENT WRONG - EXITING");
@@ -71,6 +72,7 @@ public class CruiseSimulator {
   	    }    	
    	    	
 
+    	cruiseSimulatorService.setActive(false);
     	
     	System.out.println("./run.txt has been removed");
     	System.out.println("Cruise Control Simulator is shutting down");

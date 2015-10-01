@@ -16,6 +16,8 @@ public interface CruiseSimulatorService {
 	public double getVelocityVariationPercent();
 
 	public void setVelocityVariationPercent(double velocityVariationPercent);
+	
+	public void setActive(boolean active);
     
 	
 }
