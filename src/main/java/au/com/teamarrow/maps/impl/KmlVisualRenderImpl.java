@@ -72,11 +72,11 @@ public class KmlVisualRenderImpl implements VisualRender {
 
 	public void addToTour(double latitude, double longitude, double elevation) {
 		playlist.createAndAddFlyTo()
-		.withDuration(10)
+		.withDuration(3)
 		.withFlyToMode(FlyToMode.SMOOTH)
 		.createAndSetLookAt()
 			.withAltitudeMode(AltitudeMode.CLAMP_TO_GROUND)
-			.withRange(100)
+			.withRange(200)
 			.withTilt(45)
 			.withHeading(0)
 			.withLatitude(latitude)

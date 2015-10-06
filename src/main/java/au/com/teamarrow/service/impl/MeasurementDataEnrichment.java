@@ -1,5 +1,7 @@
 package au.com.teamarrow.service.impl;
 
+import au.com.teamarrow.maps.Route;
+import au.com.teamarrow.maps.impl.NoRouteNodeException;
 import au.com.teamarrow.model.MeasurementData;
 
 import java.util.ArrayList;
@@ -8,6 +10,7 @@ import java.util.ListIterator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.annotation.Splitter;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
@@ -31,9 +34,14 @@ public class MeasurementDataEnrichment {
 	private Double currentLat = (double)-1;
 	private Double currentLong = (double)-1;
 	
+	private Double distanceRemaining = (double)-1;
+	private Double totalDistance = (double)-1;
+	
 	private int velocityCount = 0;	
 	private Double velocitySum = (double)0;
-		
+	
+	@Autowired
+	private Route route;	
 	
 	public void setCurrentLat(Double currentLat) {
 		LOG.debug("Set currentLat" + currentLat);
@@ -86,6 +94,8 @@ public class MeasurementDataEnrichment {
     	
     	MeasurementData powerData = null;
     	MeasurementData totalPowerData = null;
+    	MeasurementData distanceTravelledData = null;
+    	MeasurementData distanceRemainingData = null;
     	
     	switch (measurementData.getDataPointCanId()) {
     	
@@ -99,6 +109,26 @@ public class MeasurementDataEnrichment {
     			
     		// Longitude
     		case 0x3314: setCurrentLong(measurementData.getFloatValue());
+    				     if (getCurrentLat() != -1 && getCurrentLong() != -1) {
+    				    	 try {
+								route.gotoNearestNode(getCurrentLat(), getCurrentLong());
+								distanceRemaining = route.getTotalDistanceRemaining();
+								
+								if (totalDistance == -1) totalDistance = route.getTotalDistance();
+								
+								double distanceTravelled = totalDistance - distanceRemaining;
+								
+								// Create new item 3470
+								distanceTravelledData = new MeasurementData(0x3470, measurementData.getTimestamp(), false, false, 8, distanceTravelled, 0, "", "Normal");
+
+								// Create new item 3474
+								distanceRemainingData = new MeasurementData(0x3474, measurementData.getTimestamp(), false, false, 8, distanceRemaining, 0, "", "Normal");
+								
+							} catch (NoRouteNodeException e) {
+								e.printStackTrace();
+							}
+    		
+    				     }
     					 break;
     	
 	    	// Array 1 Amps
@@ -194,17 +224,15 @@ public class MeasurementDataEnrichment {
 							 // Create new item 3440
 							 totalPowerData = new MeasurementData(0x3460, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
 						 }	    		    	
-						 
-						 
-						 
+						 						 					
 	    			     break;
-    		    		
-    			
+    		    		    			
     	}
     	
     	if (powerData != null) returnList.add(powerData);
     	if (totalPowerData != null) returnList.add(totalPowerData);
-    	
+    	if (distanceTravelledData != null) returnList.add(distanceTravelledData);
+    	if (distanceRemainingData != null) returnList.add(distanceRemainingData);    	
     	
         return returnList;
     }

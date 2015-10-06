@@ -4,7 +4,7 @@
 	xmlns:int="http://www.springframework.org/schema/integration"
 	xmlns:int-ip="http://www.springframework.org/schema/integration/ip"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:int-splunk="http://www.springframework.org/schema/integration/splunk"	
+	xmlns:int-splunk="http://www.springframework.org/schema/integration/splunk"
 	xsi:schemaLocation="http://www.springframework.org/schema/integration
 		http://www.springframework.org/schema/integration/spring-integration.xsd
 		http://www.springframework.org/schema/beans
@@ -65,8 +65,13 @@
 
      <int-splunk:server id="splunkServer" host="localhost" port="8089" username="teamarrow" password="***REMOVED***" scheme="https"/>
 	
-	 <int-splunk:outbound-channel-adapter id="splunkOutboundChannelAdapter" channel="splunkData" splunk-server-ref="splunkServer">     
+	 <!-- <int-splunk:outbound-channel-adapter id="splunkOutboundChannelAdapter" channel="splunkData" splunk-server-ref="splunkServer">     
      	<int-splunk:tcp-writer port="9999"/>
-     </int-splunk:outbound-channel-adapter>
+     </int-splunk:outbound-channel-adapter> -->
 		
+	 
+	 
+	 <int:delayer id="delayer" input-channel="splunkData"
+	 	output-channel="nullChannel" default-delay="1">
+	 </int:delayer>
 </beans>

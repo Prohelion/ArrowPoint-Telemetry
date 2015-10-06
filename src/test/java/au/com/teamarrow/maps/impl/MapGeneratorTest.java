@@ -1,5 +1,7 @@
 package au.com.teamarrow.maps.impl;
 
+import java.io.File;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -20,7 +22,13 @@ public class MapGeneratorTest {
 		mapGenerator.setMeasurementDataEnrichment(new MeasurementDataEnrichment());
 		mapGenerator.setRoute(route);		
 		mapGenerator.generateAllLayers();			
-		mapGenerator.writeResultToFile("C:/TeamArrow/testing/test.kml");		
+		
+		String filename = System.getProperty("java.io.tmpdir") + "/test.kml";
+		
+		mapGenerator.writeResultToFile(filename);
+		
+		File file = new File(filename);
+        file.delete();
 	}	
 		
 	

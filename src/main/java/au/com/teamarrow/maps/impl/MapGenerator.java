@@ -69,6 +69,18 @@ public class MapGenerator {
 	}
 
 	
+	public void runRouteFromNodeToNode(int startNode, int endNode, Double speedMps, int minutesAhead, boolean showMarkers, boolean flyover) {
+		
+		try {
+			route.setStartNode(startNode);
+		} catch (NoRouteNodeException e) {		
+			e.printStackTrace();
+			return;
+		}
+				
+		runRoute(startNode,endNode,route.getCurrentLatitude(),route.getCurrentLongitude(),speedMps,minutesAhead,showMarkers,flyover);		
+	}
+	
 	public void runRouteFromStart(Double speedMps, int minutesAhead, boolean showMarkers, boolean flyover) {
 		
 		try {
@@ -78,7 +90,7 @@ public class MapGenerator {
 			return;
 		}
 				
-		runRoute(0,route.getCurrentLatitude(),route.getCurrentLongitude(),speedMps,minutesAhead,showMarkers,flyover);
+		runRoute(0,-1,route.getCurrentLatitude(),route.getCurrentLongitude(),speedMps,minutesAhead,showMarkers,flyover);
 	}
 	
 	public void runRouteFromLatLong(Double startLat, Double startLong, double speedMps, int minutesAhead, boolean showMarkers, boolean flyover) {
@@ -93,18 +105,20 @@ public class MapGenerator {
 		}
 		currentSector = route.getCurrentSector();
 		
-		runRoute(currentSector, startLat, startLong, speedMps, minutesAhead, showMarkers,flyover);
+		runRoute(currentSector, -1, startLat, startLong, speedMps, minutesAhead, showMarkers,flyover);
 				
 	}
 	
 	
-	private void runRoute(int currentSector, Double startLat, Double startLong, Double speedMps, int minutesAhead, boolean showMarkers, boolean flyover)  {		
+	private void runRoute(int currentSector, int toSector, Double startLat, Double startLong, Double speedMps, int minutesAhead, boolean showMarkers, boolean flyover)  {		
 
 		int loopCount = 0;		
 		int interval = 10;
 		int outputInterval = 6;
 		long intervalsCounted = 0;
 		long secondsAhead = minutesAhead * 60;
+		
+		if (toSector <= 0) toSector = route.getNumberOfNodes() + 100;
 		
 		simulationData.setEnvironment(new EnvironmentImpl());
 		simulationData.getEnvironment().setLatitude(startLat);
@@ -119,7 +133,7 @@ public class MapGenerator {
 			addPlacemark("ff00ff55");			
 		}
 		
-		while (route.isRouteComplete() == false && (minutesAhead == -1 || intervalsCounted <= secondsAhead)) {
+		while (route.isRouteComplete() == false && (minutesAhead == -1 || intervalsCounted <= secondsAhead) && route.getCurrentSector() < toSector) {
 
 				// Add one second to the calendar
 				simulationData.getEnvironment().getGregorianCalendar().add(Calendar.SECOND, simulationData.getSimulationInterval());
@@ -306,10 +320,21 @@ public class MapGenerator {
 	
 	public String generateFlyOver() {
 		
+		int flyOverSectors = 5;	
+		int nodesInSector = route.getNumberOfNodes() / flyOverSectors;
+		int startNode = 0;
+		int endNode = -1;
+		
 		// Generate a fly-over for the race view
-		visualRender.newTour("Fly Over", false);
-		runRouteFromStart(100/3.6,-1,false,true);
-				
+		for ( int i = 1; i <= flyOverSectors; i++ ) {
+			visualRender.newTour("Fly Over: Sector " + i, false);
+			
+			startNode = nodesInSector * (i-1);
+			endNode = startNode + nodesInSector;
+			
+			runRouteFromNodeToNode(startNode,endNode,100/3.6,-1,false,true);
+		}
+					
 		return visualRender.toString();	
 	}	
 		
