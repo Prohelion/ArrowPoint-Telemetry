@@ -213,10 +213,14 @@ public class MapGenerator {
 	
 		// Find and load each strategy file
 		File folder = new File("C:/TeamArrow/Strategy Drop Folder");
-		File[] listOfFiles = folder.listFiles();
+		File[] listOfFiles = null;
 		InputStream fis = null;
 		BufferedReader br = null;
 
+		if (folder != null)
+			listOfFiles = folder.listFiles();
+				
+		if (listOfFiles != null) {
 		    for (int i = 0; i < listOfFiles.length; i++) {
 		      if (listOfFiles[i].isFile()) {
 		        if (!listOfFiles[i].getName().equals("Available Strategies.csv")) {
@@ -261,14 +265,11 @@ public class MapGenerator {
 		    					e.printStackTrace();
 		    				}
 		    			}
-		    		}
-		        
+		    		}		        
 		        }
 		      } 
-		    }
-		
-		
-		
+		    }			
+		}
 		
 		
 		return visualRender.toString();	
