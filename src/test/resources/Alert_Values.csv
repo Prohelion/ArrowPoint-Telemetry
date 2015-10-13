@@ -1,0 +1,27 @@
+Device,Measurement,CanId,dataPointCanId,Warning Threshold,Alert Threshold,Shutdown Threshold,Alert Type
+BMS,Min Cell Voltage,6F80,28544,2900,2750,2600,Low
+BMS,Max Cell Temp,6F92,28562,55,60,65,High
+BMS,CMU 1 PCB Temp,6014,24596,75,80,85,High
+BMS,CMU 2 PCB Temp,6044,24644,75,80,85,High
+BMS,CMU 3 PCB Temp,6074,24692,75,80,85,High
+BMS,CMU 4 PCB Temp,60A4,24740,75,80,85,High
+BMS,CMU 5 PCB Temp,60D4,24788,75,80,85,High
+BMS,Overvoltage,6F82,28546,4100,4150,4200,High
+,,,,,,,
+WaveSculpter,Motor Temp,40B0,16560,90,100,120,High
+WaveSculpter,Heatsink Temp,40B4,16564,60,65,80,High
+WaveSculpter,DSP Operating Temp,40C0,16576,80,90,100,High
+WaveSculpter,12v system voltage?,,0,1200,1150,1080,Low
+,,,,,,,
+,,,,,,,
+Arrays,Array 1 Power,3410,13328,0.1,,,Percentage
+Arrays,Array 2 Power,3420,13344,0.1,,,Percentage
+Arrays,Array 3 Power,3430,13360,0.1,,,Percentage
+Arrays,Total Array Power,3440,13376,100,10,0,Low
+,,,,,,,
+Flags,What flags should we be looking for,,,,,,
+,,,,,,,
+Strategy,Cd,0.12,,,,,
+Strategy,Cda,0.91,,,,,
+Strategy,Crr,0.008,,,,,
+Strategy,Weight,310,,,,,

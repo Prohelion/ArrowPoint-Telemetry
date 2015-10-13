@@ -33,10 +33,12 @@ public interface Route {
 	
 	double getSectorDistanceRemaining();
 		
-	double getTotalDistance();
+	double getTotalDistanceTravelled();
 	
 	double getTotalDistanceRemaining();
 	
+	double getTotalRouteDistance();
+			
 	double getCurrentLatitude();
 	
 	double getCurrentLongitude();
@@ -48,6 +50,8 @@ public interface Route {
 	int getNumberOfNodes();
 	
 	boolean atScheduledStop();
+	
+	boolean atEnd();
 	
 	String getScheduledStopDescription();
 	

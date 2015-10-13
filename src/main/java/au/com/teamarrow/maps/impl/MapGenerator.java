@@ -321,21 +321,58 @@ public class MapGenerator {
 	
 	public String generateFlyOver() {
 		
-		int flyOverSectors = 5;	
-		int nodesInSector = route.getNumberOfNodes() / flyOverSectors;
-		int startNode = 0;
-		int endNode = -1;
+		int flyOverSectors = 8;			
+		int sectorStartNode = 0;
+		int sectorEndNode = -1;
+		int extendedEndNode = -1;
+		double crossoverPercentage = .1;
+		double distanceInSector = -1;
+		double extendedDistanceInSector = -1;
+		int sectorCount = 1;
+
+		try {
+			
+			route.setStartNode(0);
+			
+			distanceInSector = (route.getTotalRouteDistance()) / flyOverSectors;
+			
+			// Now extend this by the crossOverPercentage
+			extendedDistanceInSector = distanceInSector + (distanceInSector * crossoverPercentage);
+			
+			route.goForwards(distanceInSector);
+			sectorEndNode = route.getCurrentSector();
 		
-		// Generate a fly-over for the race view
-		for ( int i = 1; i <= flyOverSectors; i++ ) {
-			visualRender.newTour("Fly Over: Sector " + i, false);
-			
-			startNode = nodesInSector * (i-1);
-			endNode = startNode + nodesInSector;
-			
-			runRouteFromNodeToNode(startNode,endNode,100/3.6,-1,false,true);
-		}
+			route.setStartNode(sectorStartNode);		
+			route.goForwards(extendedDistanceInSector);
+			extendedEndNode = route.getCurrentSector();
+				
+			// SectorendNode is to deal with a condition where the route does not load.
+			// In which case this can result in an infinite loop
+			while (route.atEnd() == false && sectorEndNode > 0) {
+				visualRender.newTour("Fly Over: Sector " + sectorCount, false);
+				runRouteFromNodeToNode(sectorStartNode,extendedEndNode,100/3.6,-1,false,true);
+	
+				sectorStartNode = sectorEndNode;
+				
+				if (sectorEndNode > 0) {
+				
+					route.setStartNode(sectorStartNode);			
+					route.goForwards(distanceInSector);
+					sectorEndNode = route.getCurrentSector();
 					
+					route.setStartNode(sectorStartNode);			
+					route.goForwards(extendedDistanceInSector);
+					extendedEndNode = route.getCurrentSector();
+							
+					sectorCount++;
+				}
+			}
+
+		} catch (NoRouteNodeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return visualRender.toString();	
 	}	
 		

@@ -8,21 +8,26 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import au.com.teamarrow.alerts.AlertManager;
 import au.com.teamarrow.model.MeasurementData;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/spring-test.xml"})
 public class MeasurementDataEnrichmentImplTest {
-
+	
+	@Autowired
+    @Qualifier("enricherBean")
+	MeasurementDataEnrichment enrichment;	
 	
 	@Test
     public void testEnrichment() throws Exception {
-		
-		MeasurementDataEnrichment enrichment = new MeasurementDataEnrichment();
+				
 		List<MeasurementData> results = null;
 		
 		DateTime dateTime = new DateTime();

@@ -31,6 +31,50 @@
 		<property name="variationHertz" value="5"/>
 		<property name="velocityVariationPercent" value="0.001"/>	
 	</bean>	
+	<bean id="enricherBean" class="au.com.teamarrow.service.impl.MeasurementDataEnrichment"/>		
+	
+	<!-- These beans are used to set up the core engine of maps system -->
+	<bean id="AlertManager" class="au.com.teamarrow.alerts.AlertManager">
+		<property name="alertsFile" value="/Alert_Values.csv"/>
+		<property name="flagsFile" value="/Flag_Values.csv"/>
+		<property name="normalLevelScript" value="StatusNormal.bat"/>
+		<property name="warningLevelScript" value="StatusWarning.bat"/>
+		<property name="alertLevelScript" value="StatusAlert.bat"/>
+		<property name="shutdownLevelScript" value="StatusShutdown.bat"/>
+		<property name="scriptDir" value="C:/TeamArrow/alerts/"/>
+	</bean>
+
+	<!-- These beans are used to set up the core engine of maps system -->
+	<bean id="Route" class="au.com.teamarrow.maps.impl.CvsRouteImpl">
+		<property name="routeFile" value="/test_routedata.csv"/>
+		<property name="controlStopDistances">
+			<list>
+				<value>321000</value>
+				<value>633000</value>
+				<value>988000</value>
+				<value>1302000</value>
+				<value>1493000</value>
+				<value>1766000</value>
+				<value>2171000</value>
+				<value>2432000</value>
+				<value>2719000</value>
+			</list>
+		</property>
+		<property name ="controlStopDescriptions">
+			<list>	
+				<value>"Katherine Control Stop"</value>
+				<value>"Dunmarra Control Stop"</value>
+				<value>"Tennant Creek Control Stop"</value>
+				<value>"Ti Tree Control Stop"</value>
+				<value>"Alice Springs Control Stop"</value>
+				<value>"Kulgera Control Stop""</value>
+				<value>"Coober Pedy Control Stop"</value>
+				<value>"Glendambo Control Stop"</value>
+				<value>"Port Augusta Control Stop"</value>
+			</list>
+		</property>
+	</bean>
+	
 	
 	
 	<int:channel id="canbusOutputChannel"

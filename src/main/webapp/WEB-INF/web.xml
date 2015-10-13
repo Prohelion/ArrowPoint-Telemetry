@@ -16,7 +16,9 @@
         	classpath:META-INF/spring/mvc/spring-context.xml 
         	classpath:META-INF/spring/integration/spring-integration-context.xml
         	classpath:META-INF/spring/mvc/spring-data.xml
-        	classpath:META-INF/spring/maps/ArrowPointMaps.xml  
+        	classpath:META-INF/spring/maps/ArrowPointMaps.xml
+        	classpath:META-INF/spring/alerts/ArrowPointAlerts.xml    
+        	classpath:META-INF/spring/scheduler/scheduler.xml
         </param-value>
     </context-param>
 

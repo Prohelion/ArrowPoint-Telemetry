@@ -34,7 +34,7 @@ public class MapGeneratorTest {
 	
 	@Before
     public void setUp() throws Exception {
-		context = new ClassPathXmlApplicationContext("ArrowPointMaps-test.xml");
+		context = new ClassPathXmlApplicationContext("spring-test.xml");
 		
 		route = (Route) context.getBean("Route");				
 	}

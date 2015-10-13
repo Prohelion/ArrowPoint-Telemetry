@@ -21,7 +21,7 @@ public class CvsRouteImpl implements Route {
 
 	GeoSpatialUtilities geoUtils = new GeoSpatialUtilities();	
 	List<RouteNode> route = new ArrayList<RouteNode>();
-	double totalRouteDistance;
+	//double totalRouteDistance;
 	double sectorDistanceRemaining;
 	int currentNode = 0;
 	int[] controlStopDistances;
@@ -92,6 +92,8 @@ public class CvsRouteImpl implements Route {
 			previousPoint.setLatitude(Double.parseDouble(routeItem[0]));
 			previousPoint.setLongitude(Double.parseDouble(routeItem[1]));
 			previousPoint.setElevation(Double.parseDouble(routeItem[2]));
+			
+			//totalRouteDistance = 0;
 
 			while ((line = br.readLine()) != null) {
 
@@ -119,7 +121,8 @@ public class CvsRouteImpl implements Route {
 						previousPoint.getElevation(),
 						currentPoint.getElevation()));
 
-				totalRouteDistance = totalRouteDistance + previousPoint.getDistance();
+				// @todo:  This doesn't seem to work so I am post calcing it currently
+				//totalRouteDistance = totalRouteDistance + previousPoint.getDistance();
 
 				route.add(previousPoint);
 
@@ -268,7 +271,7 @@ public class CvsRouteImpl implements Route {
 	 * @see au.com.teamarrow.simulator.Route#isRouteComplete()
 	 */
 	public boolean isRouteComplete() {
-		return (currentNode == route.size() - 1);
+		return (currentNode >= route.size() - 1);
 	}
 
 	/*
@@ -276,9 +279,9 @@ public class CvsRouteImpl implements Route {
 	 * 
 	 * @see au.com.teamarrow.simulator.Route#getTotalRouteDistance()
 	 */
-	public double getTotalRouteDistance() {
+	/* public double getTotalRouteDistance() {
 		return totalRouteDistance;
-	}
+	}*/
 
 	/*
 	 * (non-Javadoc)
@@ -363,7 +366,7 @@ public class CvsRouteImpl implements Route {
 		return sectorDistanceRemaining;
 	}
 
-	public double getTotalDistance() {
+	public double getTotalDistanceTravelled() {
 		
 		double totalDistance = 0;
 
@@ -377,7 +380,7 @@ public class CvsRouteImpl implements Route {
 
 		return totalDistance;	
 	}
-
+	
 	public double getTotalDistanceRemaining() {
 
 		double totalDistanceRemaining = 0;
@@ -392,7 +395,22 @@ public class CvsRouteImpl implements Route {
 
 		return totalDistanceRemaining;
 	}
+	
 
+	
+	public double getTotalRouteDistance() {
+
+		double totalRouteDistance = 0;
+
+		for (int countIndex = 0; countIndex < route.size(); countIndex++) {
+			totalRouteDistance = totalRouteDistance
+					+ route.get(countIndex).getDistance();
+		}
+
+		return totalRouteDistance;
+	}
+
+	
 	public void gotoNearestNode(double latitude, double longitude)
 			throws NoRouteNodeException {
 		currentNode = getNearestNode(latitude, longitude);
@@ -452,7 +470,7 @@ public class CvsRouteImpl implements Route {
 		//if we still have places to stop at
 		if (scheduleStopNo < numberOfControlStops){
 		
-			if (getTotalDistance() > controlStopDistances[scheduleStopNo]){
+			if (getTotalDistanceTravelled() > controlStopDistances[scheduleStopNo]){
 				
 				scheduleStopNo++;
 				areWeStopped = true;		
@@ -460,6 +478,14 @@ public class CvsRouteImpl implements Route {
 		} 
 		
 		return areWeStopped;
+	}
+	
+	public boolean atEnd() {
+						
+		if (route == null) return(true);
+		if (currentNode >= route.size()) return(true);		
+		return(false);
+		
 	}
 
 	public String getScheduledStopDescription() {
@@ -470,7 +496,7 @@ public class CvsRouteImpl implements Route {
 	public double getDistanceToNextScheduledStop(){
 		
 		if (scheduleStopNo < numberOfControlStops){
-			return controlStopDistances[scheduleStopNo] - getTotalDistance();
+			return controlStopDistances[scheduleStopNo] - getTotalDistanceTravelled();
 		} else {
 			return -1;
 		}

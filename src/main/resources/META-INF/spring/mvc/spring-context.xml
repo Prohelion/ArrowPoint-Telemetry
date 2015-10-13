@@ -18,20 +18,6 @@
 
 	<context:component-scan base-package="au.com.teamarrow"/>
 	
-	<!-- Activates @Scheduled and @Async annotations for scheduling -->
- 	<task:annotation-driven executor="executorWithPoolSizeRange" scheduler="taskScheduler"/>
-  
-	<!-- Defines a ThreadPoolTaskExecutor instance with configurable pool size, queue-capacity, keep-alive, 
-	    and rejection-policy values. The id becomes the default thread name prefix -->
-	<task:executor id="executorWithPoolSizeRange"
-	                pool-size="5-25"
-	                queue-capacity="100"/>
-	   
-	<!-- Defines a ThreadPoolTaskScheduler instance with configurable pool size.
-	    The id becomes the default thread name prefix. -->             
-	<task:scheduler id="taskScheduler" pool-size="1"/>
-	
 	<context:property-placeholder location="classpath:/META-INF/hibernate.properties"/>
-
   
 </beans>

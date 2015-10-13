@@ -4,15 +4,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import au.com.teamarrow.alerts.AlertManager;
 import au.com.teamarrow.scheduled.Worker;
  
 /**
  * Scheduler for handling jobs
  */
-@Service
+@Component
 public class TelemetryScheduler {
  
     private static final Logger LOG = LoggerFactory.getLogger(TelemetryScheduler.class);
@@ -32,49 +35,39 @@ public class TelemetryScheduler {
     @Autowired
     @Qualifier("calculateRollingPowerAvgWorker")
     private Worker calculateRollingPowerAvgWorker;
-         
-    @Scheduled(cron="0 * * * * *")
+    
+    @Autowired
+    @Qualifier("alertsWorker")
+    private Worker alertsWorker;
+    
+    /* Coders beware.... for here lies dragons */
+    /* For some reason the annotations don't seem to work at least with the version of spring
+     * that I have been using.  Hence I've gone back to the XML configuration for the time being
+     */
+        
 	public void doArchiveCanShortTerm() {
 		 LOG.debug("Start archive of short term data");	   
 		 archiveCanShortTermWorker.work();	     
 		 LOG.debug("Archive of short term data complete");
 	 }
- 
-    @Scheduled(cron="0 0,10,20,30,40,50 * * * *")
+  
 	public void doArchiveCanMediumTerm() {
 		 LOG.debug("Start archive of medium term data");	   
 		 archiveCanMediumTermWorker.work();	     
 		 LOG.debug("Archive of medium term data complete");
     }
         
-    @Scheduled(cron="0 59 23 * * *")
 	public void doArchiveCanLongTerm() {
 		 LOG.debug("Start archive of long term data");	   
 		 archiveCanLongTermWorker.work();	     
 		 LOG.debug("Archive of long term data complete");
     }
-   
-	@Scheduled(cron="0 0,5,10,15,20,25,30,35,40,45,50,55 * * * *")
-	public void doCalculateRollingPowerAvg() {
-		 LOG.debug("Start calculation of rolling power averages");	   
-		 calculateRollingPowerAvgWorker.work();	     
-		 LOG.debug("Calculation of rolling power averages complete");
-	}   
-	
-    @Scheduled(fixedDelay=30000)
-	public void doExecutePingRulesEngine() {
-		 /*LOG.debug("Starting Ping Rules Engine");	   
-		 pingRulesEngineWorker.work();	     
-		 LOG.debug("Ping Rules engine work complete");*/
-	 }
-
-    @Scheduled(fixedDelay=3000)
+   	   
+   	
 	public void doExecuteCanRulesEngine() {
-		 /*LOG.debug("Starting Can Rules Engine");	   
-		 canRulesEngineWorker.work();	     
-		 LOG.debug("Can Rules engine work complete");*/
-	 }
-
-	
+    	 LOG.debug("Start alerts worker");	   
+		 alertsWorker.work();	     
+		 LOG.debug("Alerts worker complete");
+    }
 
 }

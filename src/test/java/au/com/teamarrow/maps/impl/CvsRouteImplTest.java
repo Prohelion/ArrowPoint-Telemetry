@@ -140,7 +140,7 @@ public class CvsRouteImplTest {
 			e.printStackTrace();
 		}
 		
-		assertEquals(50.2012534, route.getTotalDistanceRemaining() - route.getTotalDistance(), 0.0000001);
+		assertEquals(50.2012534, route.getTotalDistanceRemaining() - route.getTotalDistanceTravelled(), 0.0000001);
 	}
 	
 	@Test 
@@ -191,7 +191,7 @@ public class CvsRouteImplTest {
 	public void getTotalDistance() {
 		
 		route.setRoute(testRoute1);
-		assertEquals(-35.100626748293294, route.getTotalDistance(), 0.00000000001);
+		assertEquals(-35.100626748293294, route.getTotalDistanceTravelled(), 0.00000000001);
 		
 	}
 	
@@ -268,7 +268,7 @@ public class CvsRouteImplTest {
 	
 	@Before
     public void setUp() throws Exception {
-		context = new ClassPathXmlApplicationContext("ArrowPointMaps-test.xml");
+		context = new ClassPathXmlApplicationContext("spring-test.xml");
 		
 		route = (Route) context.getBean("Route");
 		

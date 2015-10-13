@@ -1,5 +1,6 @@
 package au.com.teamarrow.service.impl;
 
+import au.com.teamarrow.alerts.AlertManager;
 import au.com.teamarrow.maps.Route;
 import au.com.teamarrow.maps.impl.NoRouteNodeException;
 import au.com.teamarrow.model.MeasurementData;
@@ -11,6 +12,7 @@ import java.util.ListIterator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.integration.annotation.Splitter;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
@@ -42,6 +44,13 @@ public class MeasurementDataEnrichment {
 	
 	@Autowired
 	private Route route;	
+	
+	@Autowired    
+    private AlertManager alertManager;
+
+	public void setAlertManager(AlertManager alertManager) {
+		this.alertManager = alertManager;
+	}
 	
 	public void setCurrentLat(Double currentLat) {
 		LOG.debug("Set currentLat" + currentLat);
@@ -92,6 +101,9 @@ public class MeasurementDataEnrichment {
     	List<MeasurementData> returnList = new ArrayList<MeasurementData>();    	
     	returnList.add(measurementData);
     	
+    	// Send the data point to the alerts engine
+    	alertManager.setDataPoint(measurementData.getDataPointCanId(), measurementData.getFloatValue());
+    	
     	MeasurementData powerData = null;
     	MeasurementData totalPowerData = null;
     	MeasurementData distanceTravelledData = null;
@@ -114,7 +126,7 @@ public class MeasurementDataEnrichment {
 								route.gotoNearestNode(getCurrentLat(), getCurrentLong());
 								distanceRemaining = route.getTotalDistanceRemaining();
 								
-								if (totalDistance == -1) totalDistance = route.getTotalDistance();
+								if (totalDistance == -1) totalDistance = route.getTotalDistanceTravelled();
 								
 								double distanceTravelled = totalDistance - distanceRemaining;
 								
