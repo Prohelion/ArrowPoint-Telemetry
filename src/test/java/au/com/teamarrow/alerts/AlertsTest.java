@@ -34,6 +34,8 @@ public class AlertsTest {
 	@Test
 	public void testLoadAlertFileCheckAlertLow() {
 		
+		alertManager.resetAlerts();
+		
 		alertManager.setDataPoint(28544, (double)3000);
 		assertTrue(alertManager.getCurrentAlertLevel() == AlertData.NORMAL);
 
@@ -55,22 +57,62 @@ public class AlertsTest {
 	@Test
 	public void testLoadAlertFileCheckAlertHigh() {
 		
+		alertManager.resetAlerts();
+		
 		alertManager.setDataPoint(28562, (double)40);
 		assertTrue(alertManager.getCurrentAlertLevel() == AlertData.NORMAL);
 
-		alertManager.setDataPoint(28562, (double)56);
+		alertManager.setDataPoint(28562, (double)51);
 		assertTrue(alertManager.getCurrentAlertLevel() == AlertData.WARNING);
 		
-		alertManager.setDataPoint(28562, (double)61);
+		alertManager.setDataPoint(28562, (double)56);
 		assertTrue(alertManager.getCurrentAlertLevel() == AlertData.ALERT);
 				
-		alertManager.setDataPoint(28562, (double)66);
+		alertManager.setDataPoint(28562, (double)61);
 		assertTrue(alertManager.getCurrentAlertLevel() == AlertData.SHUTDOWN);
 		
 		alertManager.setDataPoint(28562, (double)40);
 		assertTrue(alertManager.getCurrentAlertLevel() == AlertData.NORMAL);	
 	}	
 	
+
+	@Test
+	public void testAlertsReset() {
+		
+		try {		
+			
+			alertManager.setSupressionDelay(0);
+			
+			alertManager.resetAlerts();
+			
+			alertManager.setDataPoint(0x4012, (double)3);
+			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.ALERT);
+			System.out.println("Alert - Orange Flash");
+			System.out.flush();
+			alertManager.triggerAlertScripts(false);			
+			Thread.sleep(3000);
+
+			alertManager.setDataPoint(28544, (double)2590);
+			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.SHUTDOWN);
+			System.out.println("Alert - Red Flash");
+			System.out.flush();
+			alertManager.triggerAlertScripts(false);			
+			Thread.sleep(3000);
+			
+			alertManager.resetAlerts();
+			
+			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.NORMAL);
+			System.out.println("Alert - Green On");
+			System.out.flush();
+			alertManager.triggerAlertScripts(false);			
+			Thread.sleep(3000);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 	
 	@Test
 	public void testFlags() {		
@@ -78,40 +120,53 @@ public class AlertsTest {
 		try {
 			alertManager.setSupressionDelay(0);
 			
-			alertManager.setDataPoint(0x4012, (double)2);
+			alertManager.resetAlerts();
+			
+			alertManager.setDataPoint(0x4012, (double)1);
 			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.ALERT);
+			
+			alertManager.setDataPoint(0x4012, (double)3);
+			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.ALERT);
+			System.out.println("Alert - Orange Flash");
+			alertManager.triggerAlertScripts(false);			
+			Thread.sleep(3000);
 			
 			alertManager.setDataPoint(0x4012, (double)0);
 			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.NORMAL);
-	
+			System.out.println("Alert - Green On");
+			alertManager.triggerAlertScripts(false);			
+			Thread.sleep(3000);
+			
 			alertManager.setDataPoint(0x4012, (double)2);
 			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.ALERT);
 	
 			alertManager.setDataPoint(0x4012, (double)4);
 			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.ALERT);
 	
-			alertManager.setDataPoint(0x4012, (double)6);
+			alertManager.setDataPoint(0x4012, (double)12);
 			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.ALERT);
 	
 			alertManager.setDataPoint(0x4012, (double)0);
 			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.NORMAL);
-			
+						
 			alertManager.setDataPoint(0x5056, (double)1);
 			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.ALERT);			
 			
-			alertManager.setDataPoint(0x4012, (double)6);
+			alertManager.setDataPoint(0x4012, (double)12);
 			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.ALERT);
-			alertManager.triggerAlertScripts();			
+			alertManager.triggerAlertScripts(false);		
+			System.out.println("Alert - Orange Flash");
 			Thread.sleep(3000);
 
 			alertManager.setDataPoint(0x4012, (double)0);
 			alertManager.setDataPoint(0x5056, (double)0);			
 			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.NORMAL);
-			alertManager.triggerAlertScripts();			
+			System.out.println("Alert - Green On");
+			alertManager.triggerAlertScripts(false);						
+						
 			Thread.sleep(3000);
 			
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+		} catch (InterruptedException e) { 
 			e.printStackTrace();
 		}
 		
@@ -135,33 +190,40 @@ public class AlertsTest {
 		
 			alertManager.setSupressionDelay(0);
 			
+			alertManager.resetAlerts();
+			
 			alertManager.setDataPoint(28562, (double)40);
 			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.NORMAL);
-			alertManager.triggerAlertScripts();
+			System.out.println("Alert - Green On");
+			alertManager.triggerAlertScripts(false);
 			
 			Thread.sleep(3000);
 			
-			alertManager.setDataPoint(28562, (double)56);
+			alertManager.setDataPoint(28562, (double)51);
 			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.WARNING);
-			alertManager.triggerAlertScripts();
+			System.out.println("Alert - Orange On");
+			alertManager.triggerAlertScripts(false);
 			
 			Thread.sleep(3000);
 			
 			alertManager.setDataPoint(28562, (double)61);
-			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.ALERT);
-			alertManager.triggerAlertScripts();
+			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.SHUTDOWN);
+			System.out.println("Alert - Orange Flash");
+			alertManager.triggerAlertScripts(false);
 					
 			Thread.sleep(3000);
 			
 			alertManager.setDataPoint(28562, (double)66);
 			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.SHUTDOWN);
-			alertManager.triggerAlertScripts();
+			System.out.println("Alert - Red Flash");
+			alertManager.triggerAlertScripts(false);
 			
 			Thread.sleep(3000);
 			
 			alertManager.setDataPoint(28562, (double)40);
 			assertTrue(alertManager.getCurrentAlertLevel() == AlertData.NORMAL);
-			alertManager.triggerAlertScripts();
+			System.out.println("Alert - Green On");
+			alertManager.triggerAlertScripts(false);
 						
 			Thread.sleep(3000);
 		} catch (Exception ex) {

@@ -23,7 +23,7 @@ public class AlertsWorker implements Worker {
 	
 	@Async    
 	public void work() {			
-		alertManager.triggerAlertScripts();		
+		alertManager.triggerAlertScripts(false);		
 		return;
 	}
 

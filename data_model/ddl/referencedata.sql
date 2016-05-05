@@ -10,6 +10,7 @@ insert into dev(DEV_ID, DEV_NAME, DEV_ABBREV) values (6, 'Max Power Point Tracke
 insert into dev(DEV_ID, DEV_NAME, DEV_ABBREV) values (7, 'Weather Station', 'WEATHER');
 insert into dev(DEV_ID, DEV_NAME, DEV_ABBREV) values (8, 'Global Positioning System', 'GPS');
 insert into dev(DEV_ID, DEV_NAME, DEV_ABBREV) values (9, 'Telemetry Calculated Data', 'TELEMETRY');
+insert into dev(DEV_ID, DEV_NAME, DEV_ABBREV) values (10, 'BMS DC-DC Board', 'BMS-DC-DC');
 
 insert into msrmnt_type(MSRMNT_TYPE_ID, MSRMNT_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_ERR_THRHLD , HIGH_WRNG_THRHLD , REPRTNG_FRQ) values (1, 'BatteryVoltage',10, 20, 100, 110, 5);
 
@@ -78,14 +79,34 @@ insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_T
 insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (60, 'GPS Speed / Direction', 'GPS_Speed_Direction', hex_to_int('332'), 8, 1, 1);
 insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (61, 'GPS Altitude / Satelite Nos', 'GPS_Alt_Sats', hex_to_int('333'), 8, 1, 1);
 
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (62, 'Array 1 Power', 'Array 1 Power', hex_to_int('341'), 9, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (63, 'Array 2 Power', 'Array 2 Power', hex_to_int('342'), 9, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (64, 'Array 3 Power', 'Array 3 Power', hex_to_int('343'), 9, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (65, 'Total Array Power', 'Total Array Power', hex_to_int('344'), 9, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (66, 'Bus Power', 'Bus Power', hex_to_int('345'), 9, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (67, 'Net Power Position', 'Net Power Position', hex_to_int('346'), 9, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (62, 'Array 1 Power', 'Array_1_Power', hex_to_int('341'), 9, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (63, 'Array 2 Power', 'Array_2_Power', hex_to_int('342'), 9, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (64, 'Array 3 Power', 'Array_3_Power', hex_to_int('343'), 9, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (65, 'Total Array Power', 'Total_Array_Power', hex_to_int('344'), 9, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (66, 'Bus Power', 'Bus_Power', hex_to_int('345'), 9, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (67, 'Net Power Position', 'Net_Power_Position', hex_to_int('346'), 9, 1, 1);
 insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (68, 'Distance', 'Distance', hex_to_int('347'), 9, 1, 1);
 
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (80, 'BMS DC-DC Heartbeat', 'DC-DC_Heartbeat', hex_to_int('100'), 10, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (81, 'BMS DC-DC Cell Temp', 'DC-DC_Cell_Temp', hex_to_int('103'), 10, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (82, 'BMS DC-DC Cell Voltages', 'DC-DC_Cell_Voltages', hex_to_int('104'), 10, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (83, 'BMS DC-DC Cell Currents', 'DC-DC_Cell_Currents', hex_to_int('105'), 10, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (84, 'BMS DC-DC Status Info', 'DC-DC_Status_Info', hex_to_int('106'), 10, 1, 1);
+
+-- DC-DC
+insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('1004'), 'Flash Serial', 'Flash Serial', 4,  4 ,'int', 0, 0, 0, 0, 80, 'NA');
+insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('1000'), 'Device Id', 'Device Id', 4,  0 ,'int', 0, 0, 0, 0, 80, 'NA');
+insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('1030'), 'Cell Temp', 'Cell Temp', 2,  0 ,'int', 0, 0, 0, 0, 81, 'NA');
+insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('1046'), 'Cell 4 Voltage', 'Cell 1 Voltage', 2,  6 ,'int', 0, 0, 0, 0, 82, 'mV');
+insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('1044'), 'Cell 3 Voltage', 'Cell 2 Voltage', 2,  4 ,'int', 0, 0, 0, 0, 82, 'mV');
+insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('1042'), 'Cell 2 Voltage', 'Cell 3 Voltage', 2,  2 ,'int', 0, 0, 0, 0, 82, 'mV');
+insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('1040'), 'Cell 1 Voltage', 'Cell 4 Voltage', 2,  0 ,'int', 0, 0, 0, 0, 82, 'mv');
+insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('1054'), 'Net 12v Current', 'Net 12v Current', 4,  4 ,'int', 0, 0, 0, 0, 83, 'mA');
+insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('1050'), 'HV DC-DC Curent', 'Device Id', 4,  0 ,'int', 0, 0, 0, 0, 83, 'mA');
+insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('1062'), 'Status Flags', 'Status Flags', 2,  2 ,'int', 0, 0, 0, 0, 84, 'NA');
+insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('1060'), 'Status Events', 'Status Events', 0,  0 ,'int', 0, 0, 0, 0, 84, 'NA');
+
+-- Environmental Systems
 insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('3214'), 'Windchill Temp', 'Windchill Temp (Float)', 4,  4 ,'Float', 0, 0, 0, 0, 52, 'C');
 insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('3210'), 'Air Temp', 'Air Temp (Float)', 4,  0 ,'Float', 0, 0, 0, 0, 52, 'C');
 insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('3224'), 'Relative Humidity', 'Relative Humidity (Float)', 4,  4 ,'Float', 0, 0, 0, 0, 53, '%');
@@ -111,8 +132,8 @@ insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DAT
 insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('3440'), 'Total Array Power', 'Total Array Power (Float)', 4,  0 ,'Float', 0, 0, 0, 0, 65, 'W');
 insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('3450'), 'Total Bus Power', 'Total Bus Power (Float)', 4,  0 ,'Float', 0, 0, 0, 0, 66, 'W');
 insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('3460'), 'Net Power Position', 'Net Power Position (Float)', 4,  0 ,'Float', 0, 0, 0, 0, 67, 'W');
-insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('3470'), 'Distance Travelled', 'Distance Travelled (Float)', 4,  0 ,'Float', 0, 0, 0, 0, 68, 'M');
-insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('3474'), 'Distance Remaining', 'Distance Remaining (Float)', 4,  4 ,'Float', 0, 0, 0, 0, 68, 'M');
+insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('3470'), 'Distance Travelled', 'Distance Travelled (Float)', 4,  0 ,'Float', 0, 0, 0, 0, 68, 'm');
+insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('3474'), 'Distance Remaining', 'Distance Remaining (Float)', 4,  4 ,'Float', 0, 0, 0, 0, 68, 'm');
 
 insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('4004'), 'Serial Number', 'Serial Number (Uint32)', 4,  4 ,'int', 0, 0, 0, 0, 40, 'NA');
 insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('4000'), 'Device ID', 'Device ID (char[4])', 4,  0 ,'Char', 0, 0, 0, 0, 40, 'NA');
@@ -274,6 +295,9 @@ insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DAT
 insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('70A2'), 'Amps In', 'Amps In', 1,  2 ,'int', 0, 0, 0, 0, 36, 'mA');
 insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('70A1'), 'Vin', 'Vin', 1,  1 ,'int', 0, 0, 0, 0, 36, 'mV');
 insert into data_pnt(DATA_PNT_CAN_ID, NAME, DESCR, DATA_LEN, CAN_DATA_OFFST, DATA_TYPE, LOW_ERR_THRHLD, LOW_WRNG_THRHLD, HIGH_WRNG_THRHLD, HIGH_ERR_THRHLD, MSRMNT_ID_FK, UNITS) values (hex_to_int('70A0'), 'Status / Vin', 'Status / Vin', 1,  0 ,'int', 0, 0, 0, 0, 36, 'NA');
+
+
+
 
 
 -- 

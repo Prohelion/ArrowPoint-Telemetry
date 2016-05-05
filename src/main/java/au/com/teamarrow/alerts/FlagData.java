@@ -14,6 +14,7 @@ public class FlagData {
 	private Double value = null;
 
 	private Integer currentAlertLevel = AlertData.NORMAL;
+	private Integer previouslyAlertedLevel = AlertData.NORMAL;
 
 	private boolean supressAlerts = false;
 	
@@ -39,12 +40,7 @@ public class FlagData {
 	
 	public void setValue(Double value) {
 		this.value = value;
-		
-		int previousAlertLevel = currentAlertLevel;
-			
-		currentAlertLevel = AlertData.NORMAL;
-		String message = "Normal Operation";
-		
+										
 		// Remove any decimal places (there should be none anyway)
 		int intValue = (int)value.doubleValue();		
 		
@@ -54,27 +50,48 @@ public class FlagData {
 		else
 			currentAlertLevel = AlertData.NORMAL;
 			
-		if ( previousAlertLevel != currentAlertLevel && supressAlerts == false) {							
+		if ( previouslyAlertedLevel != currentAlertLevel && supressAlerts == false) {							
 				
-				if (currentAlertLevel == AlertData.NORMAL)
-					message = "The flag '" + details + "' on device: " + device + " ("+ flagName + ") has been cleared";
-				else
-					message = "The flag '" + details + "' on device: " + device + " ("+ flagName + ") has been set";
+				String message = "Logical Error in Flagging if you see this message";
+
+				switch (currentAlertLevel) {
+					case AlertData.NORMAL: message = "alertLevel=INFO"; break;
+					case AlertData.INFORMATION: message = "alertLevel=INFO"; break;
+					case AlertData.WARNING: message = "alertLevel=WARNING"; break;
+					case AlertData.ALERT: message = "alertLevel=ALERT"; break;
+					case AlertData.SHUTDOWN: message = "alertLevel=SHUTDOWN"; break;
+				}
+				
+				if (currentAlertLevel == AlertData.NORMAL) {
+					message = message + " flag=\"" + details + "\" device=\"" + device + "\" flagName=\""+ flagName + "\" flagStatus=Cleared";
+					message = message + " description=\"The flag '" + details + "' on device " + device + " ("+ flagName + ") has been cleared\"";
+				} else {
+					message = message + " flag=\"" + details + "\" device=\"" + device + "\" flagName=\""+ flagName + "\" flagStatus=Set";
+					message = message + " description=\"The flag '" + details + "' on device " + device + " ("+ flagName + ") has been set\"";
+				}
 									
-				if (previousAlertLevel != currentAlertLevel) {
+				if (previouslyAlertedLevel != currentAlertLevel) {
 					switch (currentAlertLevel) {
-						case AlertData.NORMAL: log.info("INFO: " + message); break;
-						case AlertData.WARNING: log.warn("WARNING: " + message); break;
-						case AlertData.ALERT: log.error("ALERT: " + message); break;
-						case AlertData.SHUTDOWN: log.fatal("SHUTDOWN: " + message); break;
+						case AlertData.NORMAL: log.info(message); break;
+						case AlertData.INFORMATION: log.info(message); break;
+						case AlertData.WARNING: log.warn(message); break;
+						case AlertData.ALERT: log.error(message); break;
+						case AlertData.SHUTDOWN: log.fatal(message); break;
 					}
 					
 				}
-		
+				
+			previouslyAlertedLevel = currentAlertLevel;		
 			supressAlerts = true;
 			
 		}
 		
+	}
+
+	public void reset() {
+		currentAlertLevel = AlertData.NORMAL;
+		previouslyAlertedLevel = AlertData.NORMAL;		
+		supressAlerts = false;		
 	}
 	
 	public String getDevice() {
@@ -91,7 +108,6 @@ public class FlagData {
 		this.flagName = flagName;
 	}
 
-	
 	
 	public String getCanId() {
 		return canId;

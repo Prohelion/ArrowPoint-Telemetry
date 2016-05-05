@@ -9,11 +9,13 @@ public class AlertData {
 	
 	public final static int LOW_ALERT = 0;
 	public final static int HIGH_ALERT = 1;
+	public final static int PERCENTAGE_ALERT = 2;
 	
 	public final static int NORMAL = 0;
-	public final static int WARNING = 1;
-	public final static int ALERT = 2;
-	public final static int SHUTDOWN = 3;
+	public final static int INFORMATION = 1;
+	public final static int WARNING = 2;
+	public final static int ALERT = 3;
+	public final static int SHUTDOWN = 4;
 
 	private Double value = null;
 	private Double shutdownLevel = null;
@@ -26,6 +28,7 @@ public class AlertData {
 	private Integer alertType = null;
 	
 	private Integer currentAlertLevel = NORMAL;
+	private Integer previouslyAlertedLevel = NORMAL;
 	
 	private boolean supressAlerts = false;
 	
@@ -48,10 +51,7 @@ public class AlertData {
 	public void setValue(Double value) {
 		this.value = value;
 		
-		int previousAlertLevel = currentAlertLevel;
-			
 		currentAlertLevel = NORMAL;
-		String message = "Normal Operation";
 			
 		if (alertType == LOW_ALERT) {
 			if ( value < warningLevel ) currentAlertLevel = WARNING;
@@ -63,18 +63,35 @@ public class AlertData {
 			if ( value > warningLevel ) currentAlertLevel = WARNING;
 			if ( value > alertLevel ) currentAlertLevel = ALERT;
 			if ( value > shutdownLevel ) currentAlertLevel = SHUTDOWN;									
-		}
-				
+		}				
 			
-		if ( previousAlertLevel != currentAlertLevel && supressAlerts == false) {
+		if ( previouslyAlertedLevel != currentAlertLevel && supressAlerts == false) {
+					
+				String message = "Logical Error in Alerting if you see this message";
+			
+				switch (currentAlertLevel) {
+					case AlertData.NORMAL: message = "alertLevel=INFO"; break;
+					case AlertData.INFORMATION: message = "alertLevel=INFO"; break;
+					case AlertData.WARNING: message = "alertLevel=WARNING"; break;
+					case AlertData.ALERT: message = "alertLevel=ALERT"; break;
+					case AlertData.SHUTDOWN: message = "alertLevel=SHUTDOWN"; break;
+				}
 				
-							
+				message = message + " attribute=\"" + measurement + "\" device=\"" + device + "\" value=" + value; 
+				
+				switch (currentAlertLevel) {
+					case NORMAL: message = message + " thresholdType=NORMAL threshold=" + warningLevel; break;
+					case WARNING: message = message + " thresholdType=WARNING threshold=" + warningLevel; break;
+					case ALERT: message = message + " thresholdType=ALERT threshold=" + alertLevel; break;
+					case SHUTDOWN: message = message + " thresholdType=SHUTDOWN threshold=" + shutdownLevel; break;
+				}
+				
 				if (currentAlertLevel != NORMAL ) {
 			
 					switch (currentAlertLevel) {
-						case WARNING: message = "WARNING: The attribute: " + measurement + " on device: " + device + " at value: " + value;  break;
-						case ALERT: message = "ALERT: The attribute: " + measurement + " on device: " + device + " at value: " + value;  break;
-						case SHUTDOWN: message = "SHUTDOWN: The attribute: " + measurement + " on device: " + device + " at value: " + value;  break;
+						case WARNING: message = message + " description=\"The attribute: " + measurement + " on device: " + device + " at value: " + value;  break;
+						case ALERT: message =  message + " description=\"The attribute: " + measurement + " on device: " + device + " at value: " + value;  break;
+						case SHUTDOWN: message =  message + " description=\"The attribute: " + measurement + " on device: " + device + " at value: " + value;  break;
 					}
 								
 					switch (alertType) {
@@ -83,15 +100,15 @@ public class AlertData {
 					}
 
 					switch (currentAlertLevel) {
-						case WARNING: message = message + "the WARNING threshold of: " + warningLevel; break;
-						case ALERT: message = message + "the ALERT threshold of: " + alertLevel; break;
-						case SHUTDOWN: message = message + "the SHUTDOWN threshold of: " + shutdownLevel; break;
+						case WARNING: message = message + "the WARNING threshold of: " + warningLevel + "\""; break;
+						case ALERT: message = message + "the ALERT threshold of: " + alertLevel + "\""; break;
+						case SHUTDOWN: message = message + "the SHUTDOWN threshold of: " + shutdownLevel + "\""; break;
 					}
 													
 				} else
-					message =  "INFO: The attribute: " + measurement + " on device: " + device + " has returned to a normal level";
+					message =  message + " description=\"The attribute: " + measurement + " on device: " + device + " has returned to a normal level\"";
 								
-				if (previousAlertLevel != currentAlertLevel) {
+				if (previouslyAlertedLevel != currentAlertLevel) {
 					switch (currentAlertLevel) {
 						case NORMAL: log.info(message); break;
 						case WARNING: log.warn(message); break;
@@ -101,6 +118,7 @@ public class AlertData {
 					
 				}
 		
+			previouslyAlertedLevel = currentAlertLevel;
 			supressAlerts = true;
 			
 		}
@@ -108,6 +126,12 @@ public class AlertData {
 	}
 
 
+	public void reset() {
+		currentAlertLevel = NORMAL;
+		previouslyAlertedLevel = NORMAL;		
+		supressAlerts = false;		
+	}
+	
 	public Double getShutdownLevel() {
 		return shutdownLevel;
 	}

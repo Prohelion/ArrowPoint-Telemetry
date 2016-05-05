@@ -17,6 +17,10 @@ public class GpsSplitter {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(GpsSplitter.class);
 	
+	// Designed to deal with the bad data issues
+	private double latitudeDelta = -1;
+	private double lastLatitude = -1;
+	
 	private Double safeValueOf(String input, Double defaultValue) {
 			
 		Double value = defaultValue;
@@ -30,7 +34,21 @@ public class GpsSplitter {
 	}
 	
 	private Double GPRMC2Degrees(Double value) {
-    	return (int)(value / 100) + (value - ((int)(value / 100) * 100)) / 60;
+
+		LOG.error("Value = " + value); 
+		
+		int degrees = (int)(value / 100);
+		
+		double minutes = (value / 100) - degrees;
+		
+		double percentage = minutes / 0.6;
+		
+		double result = degrees + percentage;
+
+		double oldvalue = (int)(value / 100) + (value - ((int)(value / 100) * 100)) / 60;
+		
+		return result;
+		
 	}
 	
 	
@@ -58,17 +76,26 @@ public class GpsSplitter {
 			UdpPacket udpPacket2 = new UdpPacket();
 			
 			if ( gpsArray[0].equals("$GPRMC") ) {
-				
+								
 				Double latitude = safeValueOf(gpsArray[3],(double)0);
 				Double longitude = safeValueOf(gpsArray[5],(double)0);
 				Double speed = (Double)(safeValueOf(gpsArray[7],(double)0) * 0.514444444);
 				Double direction = safeValueOf(gpsArray[8],(double)0);
 				
-				if (gpsArray[4].equals("S")) latitude = latitude * -1;
-				if (gpsArray[6].equals("W")) longitude = longitude * -1;
-												
+				if (latitude < 1000) {
+					LOG.error("Got a latitude issue");
+					latitude = latitude * 10;
+				}
+				if (longitude < 10000) {
+					LOG.error("Got a longitude issue");
+					longitude = longitude * 10;
+				}
+								
 				latitude = GPRMC2Degrees(latitude);
 				longitude = GPRMC2Degrees(longitude);
+				
+				if (gpsArray[4].equals("S")) latitude = latitude * -1;
+				if (gpsArray[6].equals("W")) longitude = longitude * -1;
 								
 				canPacketList1.add(new CanPacket(0x331,longitude.floatValue(),latitude.floatValue()));
 				udpPacket1.setCanPackets(canPacketList1);

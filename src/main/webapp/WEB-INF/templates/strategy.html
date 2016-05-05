@@ -23,6 +23,12 @@
 	
 		<div class="container">
 	
+			<div class="row">
+				<h2>Please note, primary strategy management has been moved to Splunk</h2>
+				<p>This page is just here for backup. To see the strategy data go to the <a href="http://192.168.1.60:8000/">Splunk Console</a></p>	
+			</div>						
+		
+	
 			<!-- SOC Predicted vs Actual Today -->
 			<div class="row">
 				<h1>Strategy Model for Today</h1>	
@@ -104,9 +110,8 @@
 			
 			<hr />
 	
-			<footer>
-				<p>&copy; TeamArrow Vehicle Management System</p>
-			</footer>
+			<div th:substituteBy="footer :: details"></div>
+	
 	
 		</div>
 		<!-- /container -->

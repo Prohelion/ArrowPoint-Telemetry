@@ -74,26 +74,28 @@ public class AlertManager {
 						flagData.setCanId(flagItem[2]);
 						flagData.setDataPointCanId(new Integer(flagItem[3]));
 						flagData.setBit(new Integer(flagItem[4]));	
-												
-						if (flagItem[5].toUpperCase().equals("WARNING"))
+
+						if (flagItem[5].toUpperCase().equals("INFO"))
+							flagData.setFlagType(AlertData.INFORMATION);
+						else if (flagItem[5].toUpperCase().equals("WARNING"))
 							flagData.setFlagType(AlertData.WARNING);
-						if (flagItem[5].toUpperCase().equals("ALERT"))
+						else if (flagItem[5].toUpperCase().equals("ALERT"))
 							flagData.setFlagType(AlertData.ALERT);
-						if (flagItem[5].toUpperCase().equals("SHUTDOWN"))
+						else if (flagItem[5].toUpperCase().equals("SHUTDOWN"))
 							flagData.setFlagType(AlertData.SHUTDOWN);
+						else
+							throw new IOException("Bad flag type of " + flagItem[5] + " must be INFO, WARNING, ALERT or SHUTDOWN");						
 						
 						flagData.setDetails(flagItem[6]);
 
 						flagDetails.put(flagData.getDataPointCanId() + "-" + flagData.getBit(),flagData);
 						
 						if (!flagsTracking.containsKey(flagData.getDataPointCanId()))
-								flagsTracking.put(flagData.getDataPointCanId(), new Boolean(true));						
-						
-						
+								flagsTracking.put(flagData.getDataPointCanId(), new Boolean(true));																		
 						
 					} catch (Exception ex) {
 						// Bad data we just ignore on the load
-						log.info("Bad data on flags load");
+						log.info("Bad data on flags load: " + ex.getMessage());
 					}
 				}						
 					
@@ -162,15 +164,18 @@ public class AlertManager {
 						
 						if (alertItem[7].toUpperCase().equals("HIGH"))
 							alertData.setAlertType(AlertData.HIGH_ALERT);
-						
-						if (alertItem[7].toUpperCase().equals("LOW"))
+						else if (alertItem[7].toUpperCase().equals("LOW"))
 							alertData.setAlertType(AlertData.LOW_ALERT);
+						else if (alertItem[7].toUpperCase().equals("PERCENTAGE"))
+							alertData.setAlertType(AlertData.PERCENTAGE_ALERT);
+						else
+							throw new IOException("Bad state value of " + alertItem[7] + " must be HIGH or LOW");
 						
 						alertBoundaries.put(alertData.getDataPointCanId(),alertData);
 						
 					} catch (Exception ex) {
 						// Bad data we just ignore on the load
-						log.info("Bad data on alerts load");
+						log.info("Bad data on alerts load: " + ex.getMessage());
 					}
 				}						
 					
@@ -192,6 +197,7 @@ public class AlertManager {
 		}
 	}	
 
+	
 	public void setDataPoint(Integer dataPointCanId, Double value) {
 		
 		AlertData alertData = alertBoundaries.get(dataPointCanId);
@@ -212,27 +218,18 @@ public class AlertManager {
 	public int getCurrentAlertLevel() {
 		
 		int maxLevel = AlertData.NORMAL;
-		
-		Collection<AlertData> alerts = alertBoundaries.values();
-		
-		Iterator<AlertData> AlertIterator = alerts.iterator();
-		while (AlertIterator.hasNext()) {
-			AlertData alertData = AlertIterator.next();
-			
+
+		for (Entry<Integer, AlertData> entry : alertBoundaries.entrySet()) {
+			AlertData alertData = entry.getValue();
 			if (alertData.getCurrentAlertLevel() > maxLevel) 
-				maxLevel = alertData.getCurrentAlertLevel();		
+				maxLevel = alertData.getCurrentAlertLevel();						
 		}
-			
 		
-		Collection<FlagData> flags = flagDetails.values();
-		
-		Iterator<FlagData> flagIterator = flags.iterator();
-		while (flagIterator.hasNext()) {
-			FlagData flagData = flagIterator.next();
-			
+		for (Entry<String, FlagData> entry : flagDetails.entrySet()) {
+			FlagData flagData = entry.getValue();
 			if (flagData.getCurrentAlertLevel() > maxLevel) 
-				maxLevel = flagData.getCurrentAlertLevel();		
-		}	
+				maxLevel = flagData.getCurrentAlertLevel();								
+		}
 		
 		return maxLevel;
 		
@@ -240,44 +237,33 @@ public class AlertManager {
 
 	
 	public void resetAllSupression() {
-		
-		Collection<AlertData> alerts = alertBoundaries.values();
-		
-		Iterator<AlertData> iterator = alerts.iterator();
-		while (iterator.hasNext()) {
-			AlertData alertData = iterator.next();			
-			alertData.resetAlertSupression();
+				
+		for (Entry<Integer, AlertData> entry : alertBoundaries.entrySet()) {
+			AlertData alertData = entry.getValue();
+			alertData.resetAlertSupression();				
 		}
-
+		
 		for (Entry<String, FlagData> entry : flagDetails.entrySet()) {
 			FlagData flagData = entry.getValue();
 			flagData.resetAlertSupression();				
 		}
-
-/*		
-		Collection<FlagData> flags = flagDetails.values();
-		
-		Iterator<FlagData> flagIterator = flags.iterator();
-		while (iterator.hasNext()) {
-			FlagData flagData = flagIterator.next();			
-			flagData.resetAlertSupression();
-		}
-*/
 			
 	}
 
 	
-	public synchronized void triggerAlertScripts() {
+	public synchronized void triggerAlertScripts(boolean force) {
 						
 		int  alertLevel = getCurrentAlertLevel();
 		
 		supressionCounter++;
 		
-		if (previousAlertLevel != alertLevel && (supressionCounter >= supressionDelay)) {
+		if (force == true  || (previousAlertLevel != alertLevel && (supressionCounter >= supressionDelay))) {
 		
 			switch (alertLevel) {
 				case AlertData.NORMAL: 	executeCommand(scriptDir + normalLevelScript); 
 										break;
+				case AlertData.INFORMATION: 	executeCommand(scriptDir + normalLevelScript); 
+												break;										
 				case AlertData.WARNING: executeCommand(scriptDir + warningLevelScript);
 										break;
 				case AlertData.ALERT: 	executeCommand(scriptDir + alertLevelScript);
@@ -297,26 +283,41 @@ public class AlertManager {
 		if (supressionCounter >supressionDelay + 10 ) supressionCounter = 0;
 		
 	}
+
+
+	public void resetAlerts() {
+		previousAlertLevel = -1;
+
+		for (Entry<Integer, AlertData> entry : alertBoundaries.entrySet()) {
+			AlertData alertData = entry.getValue();
+			alertData.reset();				
+		}
+		
+		for (Entry<String, FlagData> entry : flagDetails.entrySet()) {
+			FlagData flagData = entry.getValue();
+			flagData.reset();				
+		}
+
+		triggerAlertScripts(true);		
+	}
 	
 	
 	public synchronized String executeCommand(String command) {
 
 		StringBuffer output = new StringBuffer();
+		String aux = "";
 
-		Process p;
+		Process process;
 		try {
-			p = Runtime.getRuntime().exec(command,null,new File(scriptDir));
-			/*
-				p.waitFor();
+			process = Runtime.getRuntime().exec(command,null,new File(scriptDir));
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			while ((aux = reader.readLine()) != null) {
+				output.append(aux);
+			}					
+			
+			process.waitFor();
 						
-				BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-
-            	String line = "";			
-				while ((line = reader.readLine())!= null) {
-					output.append(line + "\n");
-				}
-			*/
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

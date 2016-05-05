@@ -19,16 +19,23 @@ public class MapGeneratorTest {
 	
 	@Test
 	public void getKML() {
+		
+		boolean generateToD_Drive=false;
+		
 		mapGenerator.setMeasurementDataEnrichment(new MeasurementDataEnrichment());
 		mapGenerator.setRoute(route);		
 		mapGenerator.generateAllLayers();			
 		
 		String filename = System.getProperty("java.io.tmpdir") + "/test.kml";
 		
+		if (generateToD_Drive) filename = "D:/test.kml";
+		
 		mapGenerator.writeResultToFile(filename);
 		
-		File file = new File(filename);
-        file.delete();
+		if (!generateToD_Drive){
+			File file = new File(filename);
+        	file.delete();
+		}
 	}	
 		
 	

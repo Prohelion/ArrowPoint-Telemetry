@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title></title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+		<link rel="stylesheet" th:href="@{/css/main.css}" />
+		<link rel="stylesheet" th:href="@{/css/bootstrap-responsive.min.css}" />
+		<link rel="stylesheet" th:href="@{/css/main.css}" />
+		
+		<script th:src="@{/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js}"></script>
+	</head>
+	<body>	
+		<div th:substituteBy="header :: menu"></div>
+	
+		<div class="container">
+
+			<!-- Example row of columns -->
+			<div class="row">
+				
+				<div class="span12">
+				
+					<h3>Fleet Message Management</h3>
+				
+					<form method="post" action="message">
+	    			<table>
+	    				<tr>
+	        				<td>
+		        				<select name="messageOptions">
+		  							<option value="0">Typed Message</option>
+		  							<option value="1">Comms check?</option>
+		  							<option value="2">Lost comms</option>
+		  							<option value="3">Target = </option>
+		  							<option value="4">BOX BOX BOX</option>	  							
+								</select>
+						    </td>
+						    <td>
+	        					<input name="message" type="text"/>					        				
+							</td>
+	 				   	</tr> 				   				  
+	    				<tr>
+	    					<td>
+	    						<select name="messageReceiver">
+		  							<option value="0">Team</option>
+		  							<option value="1">Arrow1</option>
+		  							<option value="2">Lead</option>
+		  							<option value="3">Chase</option>	  							
+								</select>
+	    					</td>
+	        				<td>
+	            				<input type="submit" value="Send Message"/>        				        				        				
+	        				</td>
+	
+	    				</tr>
+					</table>
+					</form>
+			</div>
+			
+			<div class="span12">
+					<h3>Please Select which map you require</h3>
+					
+					<table>
+						<tbody>
+							<tr>
+								<td><a href="/telemetry/maps/ArrowPoint_Strategy.kml">Strategy Speed Predictions</a></td>
+							</tr>
+						</tbody>
+					</table>
+			</div>
+			
+			<div class="span12">
+					<h3>Reset Alerts</h3>
+					
+					<table>
+						<tbody>
+							<tr>
+								<td><a href="/telemetry/alertsReset">Click here to reset the alerts light</a></td>
+							</tr>
+						</tbody>
+					</table>
+			</div>
+			
+			<div class="span12">
+				
+					<h3>Data Point Manual Entry</h3>
+				
+					<form method="post" action="dataPoint">
+	    			<table>
+	    				<tr>
+	        				<td>
+		        				<select name="dataPointOptions">
+		  							<option value="0">Manual Entry</option>
+		  							<option value="13072">Latitude</option>
+		  							<option value="13076">Longitude</option>
+		  							<option value="13424">Distance Travelled (m)</option>
+		  							<option value="13428">Distance Remaining (m)</option>
+		  							<option value="16436">Velocity m/s</option>
+		  							<option value="13376">Total Array Power (w)</option>
+		  							<option value="13392">Bus Power (w)</option>
+		  							<option value="28484">SOC Percentage (ie 0.94)</option>	  							
+								</select>
+						    </td>
+						    <td>
+						    	canDataPointID (if Manual) 
+	        					<input name="dataPoint" type="text"/>					        				
+							</td>
+	 				   	</tr> 				   				  
+	    				<tr>
+	    					<td>
+	    						Float Value
+	    						<input name="fval" type="text"/>
+	    					</td>
+	        				<td>
+	            				<input type="submit" value="Send Packet"/>        				        				        				
+	        				</td>
+	
+	    				</tr>
+					</table>
+					</form>
+			</div>
+			
+			<div class="span12">
+				
+					<h3>GPS Manual Entry</h3>
+				
+					<form method="post" action="gps">
+	    			<table>
+	    				<tr>
+						    <td>
+						    	Latitude
+	        					<input name="latitude" type="text"/>					        				
+							</td>
+	 				   	</tr> 				   				  
+	    				<tr>
+	    					<td>
+	    						Longitude
+	    						<input name="longitude" type="text"/>
+	    					</td>
+	    				</tr>
+	    				<tr>
+	        				<td>
+	            				<input type="submit" value="Send Packet"/>        				        				        				
+	        				</td>	
+	    				</tr>
+					</table>
+					</form>
+			</div>			
+			
+			
+			</div>
+						
+			<hr />
+		
+			<div th:substituteBy="footer :: details"></div>
+		
+		</div>	
+		<!-- /container -->
+	
+		<!-- script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script -->
+		<script src="/js/vendor/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript">window.jQuery || document.write('\x3Cscript type="text/javascript" src="/telemetry/js/vendor/jquery-1.9.1.min.js">\x3C/script>');</script>
+	
+		<script th:src="@{/js/vendor/bootstrap.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery.flot.js}"></script>		
+	</body>
+</html>

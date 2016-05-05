@@ -11,6 +11,7 @@ import au.com.teamarrow.environment.GpsSplitter;
 
 public class GpsSplitterTest {
 
+	
 	@Test
 	public void testUnpackingPackingGPGGA() {
 		
@@ -61,5 +62,59 @@ public class GpsSplitterTest {
 					
 	
 	}
+	
+	
+	@Test
+	public void rawInputTest() {
+		
+		double manualLatEntry = 19.393;
+		double manualLongEntry = 134.201;
+		
+		int latDegrees = (int)manualLatEntry;
+	 	int longDegrees = (int)manualLongEntry;
+	 
+	 	double latMinutes = manualLatEntry - latDegrees;
+	 	double longMinutes = manualLongEntry - longDegrees;
+	 
+	 	latMinutes = .60 * latMinutes;
+	 	longMinutes = .60 * longMinutes;
+	 	
+	 	double finalLat = (latDegrees + latMinutes) * 100;
+	 	double finalLong = (longDegrees + longMinutes) * 100;
+	 	
+	 	String GPRMCStr = "$GPRMC,061650,A," + finalLat + ",S," + finalLong + ",E,10,145,250715,003.1,W*7F";
+	 
+	}
+	
+	@Test
+	public void testUnpackingPackingGPRMCWithBadData() {
+				
+		String testInput = new String("$GPRMC,061650,A,182.6303,S,15257.756,E,10,145,250715,003.1,W*7F");
+		
+		byte[] gpsBytes = testInput.getBytes();
+		
+		GpsSplitter gpsSplitter = new GpsSplitter();
+		
+		List<UdpPacket> udpPackets = gpsSplitter.splitGPS(gpsBytes);
+		
+		assert(udpPackets != null);
+		assertEquals(udpPackets.size(),2);				
+		
+		CanPacket canPacket331 = udpPackets.get(0).getCanPackets().get(0);
+		CanPacket canPacket332 = udpPackets.get(1).getCanPackets().get(0);
+		
+		assertEquals(canPacket331.getIdBase10(),0x331);		
+		assertEquals(canPacket332.getIdBase10(),0x332);
+		
+		assertEquals((long)canPacket331.getDataSegmentOne(),(long)-18.4383833333333);
+		assertEquals((long)canPacket331.getDataSegmentTwo(),(long)152.96259999999998);
+			
+		assertEquals((long)canPacket332.getDataSegmentOne(),(long)(10 * 0.514444444));
+		assertEquals((long)canPacket332.getDataSegmentTwo(),(long)145);
+					
+	
+	}
+	
+	
 	
 }

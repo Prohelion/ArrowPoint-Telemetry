@@ -40,10 +40,19 @@ public class KmlVisualRenderImpl implements VisualRender {
 		kmlRoute = placemark.createAndSetLineString();	
 	}
 	
-	public void newFolder(String name, boolean visible) {
-		folder = kmlDocument.createAndAddFolder();
+	public Folder getCurrentFolder() {
+		return folder;
+	}
+	
+	public void newFolder(String name, boolean visible, Folder currentFolder) {
+		
+		if (currentFolder == null)
+			folder = kmlDocument.createAndAddFolder();
+		else
+			folder = currentFolder.createAndAddFolder();
+				
 		folder.setName(name);
-		folder.setVisibility(visible);		
+		folder.setVisibility(visible);				
 		
 		Placemark placemark = folder.createAndAddPlacemark();
 		placemark.setVisibility(visible);

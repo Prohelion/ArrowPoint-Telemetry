@@ -7,22 +7,28 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import au.com.teamarrow.maps.Route;
 import au.com.teamarrow.service.MeasurementDataService;
 import au.com.teamarrow.service.impl.MeasurementDataEnrichment;
+import de.micromata.opengis.kml.v_2_2_0.Folder;
 import au.com.teamarrow.maps.SimulationData;
 import au.com.teamarrow.maps.VisualRender;
 
 @Component
 public class MapGenerator {
 
+	static Logger log = Logger.getLogger(MapGenerator.class.getName());
+	
 	@Autowired
     private MeasurementDataEnrichment enricherBean;
 	
@@ -200,9 +206,9 @@ public class MapGenerator {
 	public String generateSpeedMarkers(Double startLat, Double startLong, int currentSpeed, int speedPlus) {		
 				
 		if (speedPlus == 0) 
-			visualRender.newFolder("Current Speed", false); 
+			visualRender.newFolder("Current Speed", false, null); 
 		else
-			visualRender.newFolder("Current Speed (+" + speedPlus + ")", false);				
+			visualRender.newFolder("Current Speed (+" + speedPlus + ")", false, null);				
 			
 		runRouteFromLatLong(startLat, startLong, (currentSpeed+speedPlus)/3.6,8*60,true,false);
 		
@@ -216,6 +222,8 @@ public class MapGenerator {
 		File[] listOfFiles = null;
 		InputStream fis = null;
 		BufferedReader br = null;
+		Integer sectorCount = 1;		
+		Folder strategyFolder = null;
 
 		if (folder != null)
 			listOfFiles = folder.listFiles();
@@ -229,6 +237,8 @@ public class MapGenerator {
 		        	
 		    		try {
 
+		    			sectorCount = 1;
+		    			
 		    			fis = new FileInputStream(listOfFiles[i].getCanonicalPath()); 			
 		    			InputStreamReader isr = new InputStreamReader(fis);
 
@@ -238,18 +248,75 @@ public class MapGenerator {
 		    			br.readLine();
 		    						
 		    			// No errors up to here... then add a folder
-		    			visualRender.newFolder("Strategy - " + listOfFiles[i].getName(), false); 
+		    			visualRender.newFolder("Strategy - " + listOfFiles[i].getName(), false, null);
+		    			strategyFolder = visualRender.getCurrentFolder();
+		    			
+		    			visualRender.newFolder("Sector - " + sectorCount, false,strategyFolder);
+		    			sectorCount++;
 		    			
 		    			// Read the first line of actual data
-		    			String line = br.readLine();			
+		    			String line = br.readLine();		
+		    			
+		    			boolean stop = false;
+		    			String message = "";
 
 		    			while ((line = br.readLine()) != null) {
 
 		    				// use comma as separator
 		    				String[] routeItem = line.split(",");
 		    				
-		    				visualRender.addPlacemark(Double.parseDouble(routeItem[3]), Double.parseDouble(routeItem[4]), 0, routeItem[0], "ff00ff55");
+		    				String status = null;
+		    				String colour = "501400FF";
+		    				String formattedDate = routeItem[0];
+		    				String speedDistance = "(" + new Double(routeItem[1]).intValue() + "kph, " + new Double(routeItem[2]).intValue() + "km)";
+		    						    			
+							try {
+								Date date = new SimpleDateFormat("dd-MMM-yyy HH:mm:ss").parse(routeItem[0]);
+								formattedDate = new SimpleDateFormat("dd-MMM HH:mm").format(date);
+							} catch (ParseException e) {
+								log.error("Strategy date error loading file, date provided " + routeItem[0]);							
+							}		    						    					    			
+		    				
+		    				if (routeItem.length >= 13) status = routeItem[12]; 
+		    						    				
+		    				if (status == null) {
+		    					
+		    					if ( stop == true ) {
+		    						message = "Restart - " + formattedDate + speedDistance;
+		    						stop = false;
+		    					} else {
+		    						message = formattedDate + speedDistance;
+		    					}		    						
+		    					
+		    					colour = "5000E614";
+	    						visualRender.addPlacemark(Double.parseDouble(routeItem[4]), Double.parseDouble(routeItem[5]), Double.parseDouble(routeItem[6]), message, colour);
+		    				}
+		    				else if (status.toUpperCase().equals("NIGHT STOP")) {
+		    					colour = "50000000";
+		    					message = "Night Stop - " + formattedDate + speedDistance;
+		    					
+		    					// If we have just stopped, log one marker.
+		    					if (stop == false)
+		    						visualRender.addPlacemark(Double.parseDouble(routeItem[4]), Double.parseDouble(routeItem[5]), Double.parseDouble(routeItem[6]), message, colour);
+		    					stop = true;
+		    				}
+		    				else if (status.toUpperCase().equals("CONTROL STOP")) {
+		    					colour = "501400FF";
+		    					message = "Control Stop - " + formattedDate + speedDistance;
+		    					
+		    					// If we have just stopped, log one marker then create a new folder
+		    					if (stop == false) {
+		    						visualRender.addPlacemark(Double.parseDouble(routeItem[4]), Double.parseDouble(routeItem[5]), Double.parseDouble(routeItem[6]), message, colour);
+		    						// No errors up to here... then add a folder
+		    						visualRender.newFolder("Sector - " + sectorCount, false,strategyFolder);
+		    						sectorCount++;
+		    					}
+		    					
+		    					stop = true;
+		    				}
 
+		    						    					
+		    					
 		    			}
 
 		    			
@@ -300,7 +367,13 @@ public class MapGenerator {
 		generateRouteMap();			
 		
 		generateCurrentLatLong(startLat, startLong);
-		
+
+		generateSpeedMarkers(startLat, startLong, currentSpeed, -10);
+		generateSpeedMarkers(startLat, startLong, currentSpeed, -5);
+		generateSpeedMarkers(startLat, startLong, currentSpeed, -4);
+		generateSpeedMarkers(startLat, startLong, currentSpeed, -3);
+		generateSpeedMarkers(startLat, startLong, currentSpeed, -2);
+		generateSpeedMarkers(startLat, startLong, currentSpeed, -1);
 		generateSpeedMarkers(startLat, startLong, currentSpeed, 0);
 		generateSpeedMarkers(startLat, startLong, currentSpeed, 1);
 		generateSpeedMarkers(startLat, startLong, currentSpeed, 2);
@@ -308,8 +381,6 @@ public class MapGenerator {
 		generateSpeedMarkers(startLat, startLong, currentSpeed, 4);
 		generateSpeedMarkers(startLat, startLong, currentSpeed, 5);
 		generateSpeedMarkers(startLat, startLong, currentSpeed, 10);
-		generateSpeedMarkers(startLat, startLong, currentSpeed, 15);
-		generateSpeedMarkers(startLat, startLong, currentSpeed, 20);
 		
 		generateStrategyMarkers();
 		

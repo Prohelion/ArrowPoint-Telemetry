@@ -5,8 +5,8 @@ WaveSculpter,WS22 Limiting Flag,0x401,16400,2,WARNING,Velocity
 WaveSculpter,WS22 Limiting Flag,0x401,16400,3,WARNING,Bus Current
 WaveSculpter,WS22 Limiting Flag,0x401,16400,4,WARNING,Bus Voltage Upper Limit
 WaveSculpter,WS22 Limiting Flag,0x401,16400,5,WARNING,Bus Voltage Lower Limit
-WaveSculpter,WS22 Limiting Flag,0x401,16400,6,WARNING,IPM Temperature or Motor Temperature
-
+WaveSculpter,WS22 Limiting Flag,0x401,16400,6,WARNING,Controller Temperature or Motor Temperature
+WaveSculpter,WS22 Error Flag,0x401,16402,0,ALERT,Hardware over current
 WaveSculpter,WS22 Error Flag,0x401,16402,1,ALERT,Software over current
 WaveSculpter,WS22 Error Flag,0x401,16402,2,ALERT,DC Bus over voltage
 WaveSculpter,WS22 Error Flag,0x401,16402,3,ALERT,Bad motor position hall sequence
@@ -15,10 +15,23 @@ WaveSculpter,WS22 Error Flag,0x401,16402,5,ALERT,Config read error (some values 
 WaveSculpter,WS22 Error Flag,0x401,16402,6,ALERT,15V rail under voltage lock out (UVLO)
 WaveSculpter,WS22 Error Flag,0x401,16402,7,ALERT,Desaturation fault (IGBT desaturation, IGBT driver UVLO)
 WaveSculpter,WS22 Error Flag,0x401,16402,8,ALERT,Motor Over Speed (15% overshoot above max RPM)
-
 Driver Control,Driver Control Error Flag,0x505,20566,0,ALERT,Accelerator Low Value (Out of Range)
 Driver Control,Driver Control Error Flag,0x505,20566,1,ALERT,Accelerator High Value (Out of Range)
 Driver Control,Driver Control Error Flag,0x505,20566,2,ALERT,Accelerator Mismatched Value (On Pot)
 Driver Control,Driver Control Error Flag,0x505,20566,4,ALERT,Accelerator Low Value (Out of Range)
 Driver Control,Driver Control Error Flag,0x505,20566,5,ALERT,Accelerator High Value (Out of Range)
 Driver Control,Driver Control Error Flag,0x505,20566,6,ALERT,Accelerator Mismatched Value (On Pot)
+BMS,BMS Status Flag,0x6FB,28596,0,SHUTDOWN,Cell Over Voltage
+BMS,BMS Status Flag,0x6FB,28596,1,SHUTDOWN,Cell Under Voltage
+BMS,BMS Status Flag,0x6FB,28596,2,SHUTDOWN,Cell Over Temperature
+BMS,BMS Status Flag,0x6FB,28596,3,WARNING,Measurement Untrusted (redundant channel mismatch)
+BMS,BMS Status Flag,0x6FB,28596,4,SHUTDOWN,CMU Communications Timeout (lost CMU)
+BMS,BMS Status Flag,0x6FB,28596,5,INFO,BMU is in Setup mode
+BMS,BMS Status Flag,0x6FB,28596,6,WARNING,CMU CAN bus power status
+BMS-DC_DC,BMS DC-DC Status Flag,0x106,262,0,SHUTDOWN,Cell Over Voltage
+BMS-DC_DC,BMS DC-DC Status Flag,0x106,262,1,SHUTDOWN,Cell Under Voltage
+BMS-DC_DC,BMS DC-DC Status Flag,0x106,262,2,SHUTDOWN,Cell Over Temperature
+BMS-DC_DC,BMS DC-DC Status Flag,0x106,262,3,INFO,At least one cell is balancing
+BMS-DC_DC,BMS DC-DC Status Flag,0x106,262,4,SHUTDOWN,No telemetry from BMU
+BMS-DC_DC,BMS DC-DC Status Flag,0x106,262,5,SHUTDOWN,EStop Circuit is Open
+
