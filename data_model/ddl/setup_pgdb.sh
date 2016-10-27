@@ -6,14 +6,15 @@
 
 
 # Create database and setup required plsql language support
-createdb arrow1
-createlang -d arrow1 plpgsql
+dropdb --username=postgres arrow1
+createdb --username=postgres arrow1
+createlang --username=postgres -d arrow1 plpgsql
 
 # Create database schemas
-psql -d arrow1 -a -f postgres.sql
+psql --username=postgres -d arrow1 -a -f postgres.sql
 
 # Create database functions
-psql -d arrow1 -a -f functions.sql
+psql --username=postgres -d arrow1 -a -f functions.sql
 
 # Load test data
-psql -d arrow1 -a -f referencedata.sql
+psql --username=postgres -d arrow1 -a -f referencedata.sql
