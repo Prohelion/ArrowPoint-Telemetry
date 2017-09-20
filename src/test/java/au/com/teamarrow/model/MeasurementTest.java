@@ -25,15 +25,15 @@ public class MeasurementTest {
 
     @Test
     public void testSingleParameterConstructor() {
-        Measurement m = new Measurement(1L);
-        assertEquals(1L, m.getId());
+        Measurement m = new Measurement(1);
+        assert(m.getId().intValue() == 1);
     }
     
     @Test
     public void testEightParameterConstructor() {
-        Measurement m = new Measurement(1L, mDeviceType, mDevice, "TestName", 0x400, 1000, "TestType", Collections.<DataPoint>emptySet());
+        Measurement m = new Measurement(1, mDeviceType, mDevice, "TestName", 0x400, 1000, "TestType", Collections.<DataPoint>emptySet());
         
-        assertEquals(1L, m.getId());
+        assert(m.getId().intValue() == 1);
         assertEquals(mDeviceType, m.getDeviceType());
         assertEquals(mDevice, m.getDevice());
         assertEquals("TestName", m.getName());

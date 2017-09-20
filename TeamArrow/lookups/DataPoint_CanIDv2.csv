@@ -1,0 +1,179 @@
+data_pnt_can_id,dev_name,msrmnt_name,data_pnt_name
+12820,Weather Station,Weather Station Temp,Windchill Temp
+12816,Weather Station,Weather Station Temp,Air Temp
+12836,Weather Station,Weather Station Humidity,Relative Humidity
+12832,Weather Station,Weather Station Humidity,Air Pressure
+12852,Weather Station,Weather Station Wind,Wind Speed
+12848,Weather Station,Weather Station Wind,Wind Direction
+12864,Weather Station,Weather Station Compass,Compass Heading
+12884,Weather Station,Weather Station Radiation,Actual Global Radiation
+12880,Weather Station,Weather Station Radiation,Average Global Radiation
+12900,Weather Station,Weather Station Radiation Range,Min Global Radiation
+12896,Weather Station,Weather Station Radiation Range,Max Global Radiation
+12912,Weather Station,Weather Station Air,Air Density
+13072,Global Positioning System,GPS Location,Latitude
+13076,Global Positioning System,GPS Location,Longitude
+13088,Global Positioning System,GPS Speed / Direction,Velocity
+13092,Global Positioning System,GPS Speed / Direction,Direction
+13104,Global Positioning System,GPS Altitude / Satelite Nos,Altitude
+13108,Global Positioning System,GPS Altitude / Satelite Nos,Visible Satelites
+16388,Wave Sculptor,Wave Sculptor Device Info,Serial Number
+16384,Wave Sculptor,Wave Sculptor Device Info,Device ID
+16407,Wave Sculptor,Wave Sculptor Status Info,CAN Rx Errors (Uint8)
+16406,Wave Sculptor,Wave Sculptor Status Info,CAN Tx Errors
+16404,Wave Sculptor,Wave Sculptor Status Info,Active Motor Index
+16402,Wave Sculptor,Wave Sculptor Status Info,Error Flags
+16400,Wave Sculptor,Wave Sculptor Status Info,Limiting Flags
+16420,Wave Sculptor,Wave Sculptor Bus Measurement,Bus Current
+16416,Wave Sculptor,Wave Sculptor Bus Measurement,Bus Voltage
+16436,Wave Sculptor,Wave Sculptor Velocity,Vehicle Velocity m/s
+16432,Wave Sculptor,Wave Sculptor Velocity,Motor rpm
+16452,Wave Sculptor,Wave Sculptor Phase Current,Phase C RMS current
+16448,Wave Sculptor,Wave Sculptor Phase Current,Phase B RMS current
+16468,Wave Sculptor,Wave Sculptor Motor Voltage,Real-axis motor voltage vector
+16464,Wave Sculptor,Wave Sculptor Motor Voltage,Imaginary-axis motor voltage vector
+16484,Wave Sculptor,WWave Sculptor Motor Current,Real-axis motor current vector
+16480,Wave Sculptor,WWave Sculptor Motor Current,Imaginary-axis motor current vector
+16496,Wave Sculptor,Wave Sculptor Motor Back EMF,Peak phase-neutral motor voltage estimation
+16516,Wave Sculptor,Wave Sculptor Supply Voltage,15V supply voltage
+16532,Wave Sculptor,Wave Sculptor DSP Supply Voltage,3.3V supply voltage
+16528,Wave Sculptor,Wave Sculptor DSP Supply Voltage,1.9V supply voltage
+16564,Wave Sculptor,Wave Sculptor Heat Motor Temp,WS22 heatsink temperature
+16560,Wave Sculptor,Wave Sculptor Heat Motor Temp,Motor temperature
+16576,Wave Sculptor,Wave Sculptor DSP Temp,DSP operating temperature
+16612,Wave Sculptor,Wave Sculptor Energy and Odometer,Ah consumed by WS22 since last reset
+16608,Wave Sculptor,Wave Sculptor Energy and Odometer,Distance (metres) travelled
+20484,Driver Controller,Driver Controller Device info,Serial Number
+20480,Driver Controller,Driver Controller Device info,Device ID
+20500,Driver Controller,Driver Controller Motor Drive Command,Motor current setpoint percentage
+20496,Driver Controller,Driver Controller Motor Drive Command,Motor rpm setpoint
+20516,Driver Controller,Driver Controller Motor Power Command,Bus current setpoint percentage
+20567,Driver Controller,Driver Controller Switch Positions,State
+20566,Driver Controller,Driver Controller Switch Positions,Flags
+20560,Driver Controller,Driver Controller Switch Positions,Switch position bitfield
+24580,Battery Management System,Battery Management System Device Info,Serial Number
+24576,Battery Management System,Battery Management System Device Info,Device ID
+24598,Battery Management System,Battery Management System CMU 0 Status,Cell temperature
+24596,Battery Management System,Battery Management System CMU 0 Status,CMU PCB temperature
+24592,Battery Management System,Battery Management System CMU 0 Status,CMU serial number
+24646,Battery Management System,Battery Management System CMU 1 Status,Cell temperature
+24644,Battery Management System,Battery Management System CMU 1 Status,CMU PCB temperature
+24640,Battery Management System,Battery Management System CMU 1 Status,CMU serial number
+24694,Battery Management System,Battery Management System CMU 2 Status,Cell temperature
+24692,Battery Management System,Battery Management System CMU 2 Status,CMU PCB temperature
+24688,Battery Management System,Battery Management System CMU 2 Status,CMU serial number
+24742,Battery Management System,Battery Management System CMU 3 Status,Cell temperature
+24740,Battery Management System,Battery Management System CMU 3 Status,CMU PCB temperature
+24736,Battery Management System,Battery Management System CMU 3 Status,CMU serial number
+24790,Battery Management System,Battery Management System CMU 4 Status,Cell temperature
+24788,Battery Management System,Battery Management System CMU 4 Status,CMU PCB temperature
+24784,Battery Management System,Battery Management System CMU 4 Status,CMU serial number
+24614,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 0),Cell 3 Voltage
+24612,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 0),Cell 2 Voltage
+24610,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 0),Cell 1 Voltage
+24608,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 0),Cell 0 Voltage
+24630,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 0),Cell 7 Voltage
+24628,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 0),Cell 6 Voltage
+24626,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 0),Cell 5 Voltage
+24624,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 0),Cell 4 Voltage
+24662,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 1),Cell 3 Voltage
+24660,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 1),Cell 2 Voltage
+24658,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 1),Cell 1 Voltage
+24656,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 1),Cell 0 Voltage
+24678,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 1),Cell 7 Voltage
+24676,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 1),Cell 6 Voltage
+24674,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 1),Cell 5 Voltage
+24672,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 1),Cell 4 Voltage
+24710,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 2),Cell 3 Voltage
+24708,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 2),Cell 2 Voltage
+24706,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 2),Cell 1 Voltage
+24704,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 2),Cell 0 Voltage
+24726,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 2),Cell 7 Voltage
+24724,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 2),Cell 6 Voltage
+24722,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 2),Cell 5 Voltage
+24720,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 2),Cell 4 Voltage
+24758,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 3),Cell 3 Voltage
+24756,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 3),Cell 2 Voltage
+24754,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 3),Cell 1 Voltage
+24752,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 3),Cell 0 Voltage
+24774,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 3),Cell 7 Voltage
+24772,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 3),Cell 6 Voltage
+24770,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 3),Cell 5 Voltage
+24768,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 3),Cell 4 Voltage
+24806,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 4),Cell 3 Voltage
+24804,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 4),Cell 2 Voltage
+24802,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 4),Cell 1 Voltage
+24800,Battery Management System,Battery Management System Cell 0-3 Voltage (CMU 4),Cell 0 Voltage
+24822,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 4),Cell 7 Voltage
+24820,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 4),Cell 6 Voltage
+24818,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 4),Cell 5 Voltage
+24816,Battery Management System,Battery Management System Cell 4-7 Voltage (CMU 4),Cell 4 Voltage
+28484,Battery Management System,Battery Management System State of Charge,SOC Percentage
+28480,Battery Management System,Battery Management System State of Charge,SOC Ah
+28500,Wave Sculptor,Battery Management System Pack Balance,Balance Percentage
+28496,Wave Sculptor,Battery Management System Pack Balance,Balance Ah
+28535,Battery Management System,Battery Management System Precharge Status,Precharge timer
+28534,Battery Management System,Battery Management System Precharge Status,Timer flag
+28529,Battery Management System,Battery Management System Precharge Status,Precharge State
+28528,Battery Management System,Battery Management System Precharge Status,Contactor status
+28551,Battery Management System,Battery Management System Min Max Cell Voltage,Cell number max cell
+28550,Battery Management System,Battery Management System Min Max Cell Voltage,CMU number max cell
+28549,Battery Management System,Battery Management System Min Max Cell Voltage,Cell number min cell
+28548,Battery Management System,Battery Management System Min Max Cell Voltage,CMU number min cell
+28546,Battery Management System,Battery Management System Min Max Cell Voltage,Max cell voltage
+28544,Battery Management System,Battery Management System Min Max Cell Voltage,Min cell voltage
+28566,Battery Management System,Battery Management System Min Max Cell Temp,CMU number max temp
+28564,Battery Management System,Battery Management System Min Max Cell Temp,CMU number min temp
+28562,Battery Management System,Battery Management System Min Max Cell Temp,Max cell temperature
+28560,Battery Management System,Battery Management System Min Max Cell Temp,Min cell temperature
+28576,Battery Management System,Battery Management System Pack Voltage Current,Battery voltage
+28580,Battery Management System,Battery Management System Pack Voltage Current,Battery Current
+28598,Battery Management System,Battery Management System Pack Status,BMU Firmware build number
+28597,Battery Management System,Battery Management System Pack Status,CMU count
+28596,Battery Management System,Battery Management System Pack Status,Status Flags
+28594,Battery Management System,Battery Management System Pack Status,Balance voltage threshold falling mV
+28592,Battery Management System,Battery Management System Pack Status,Balance voltage threshold rising mV
+28614,Battery Management System,Battery Management System Fan Status,12V current CMUs
+28612,Battery Management System,Battery Management System Fan Status,12V current fans / contactors
+28610,Battery Management System,Battery Management System Fan Status,Fan speed 1
+28608,Battery Management System,Battery Management System Fan Status,Fan speed 0
+28629,Battery Management System,Battery Management System Ext Pack Status,BMU model ID
+28628,Battery Management System,Battery Management System Ext Pack Status,BMU hardware version
+28624,Battery Management System,Battery Management System Ext Pack Status,Extended status flags
+28692,Max Power Point Tracker 1,Max Power Point Tracker 1 Power,Amps
+28688,Max Power Point Tracker 1,Max Power Point Tracker 1 Power,Volts
+28710,Max Power Point Tracker 1,Max Power Point Tracker 1 Status,Ambient Temp
+28709,Max Power Point Tracker 1,Max Power Point Tracker 1 Status,Vout
+28708,Max Power Point Tracker 1,Max Power Point Tracker 1 Status,Vout
+28707,Max Power Point Tracker 1,Max Power Point Tracker 1 Status,Amps In
+28706,Max Power Point Tracker 1,Max Power Point Tracker 1 Status,Amps In
+28705,Max Power Point Tracker 1,Max Power Point Tracker 1 Status,Vin
+28704,Max Power Point Tracker 1,Max Power Point Tracker 1 Status,Status / Vin
+28756,Max Power Point Tracker 2,Max Power Point Tracker 2 Power,Amps
+28752,Max Power Point Tracker 2,Max Power Point Tracker 2 Power,Volts
+28774,Max Power Point Tracker 2,Max Power Point Tracker 2 Status,Ambient Temp
+28773,Max Power Point Tracker 2,Max Power Point Tracker 2 Status,Vout
+28772,Max Power Point Tracker 2,Max Power Point Tracker 2 Status,Vout
+28771,Max Power Point Tracker 2,Max Power Point Tracker 2 Status,Amps In
+28770,Max Power Point Tracker 2,Max Power Point Tracker 2 Status,Amps In
+28769,Max Power Point Tracker 2,Max Power Point Tracker 2 Status,Vin
+28768,Max Power Point Tracker 2,Max Power Point Tracker 2 Status,Status / Vin
+28820,Max Power Point Tracker 3,Max Power Point Tracker 3 Power,Amps
+28816,Max Power Point Tracker 3,Max Power Point Tracker 3 Power,Volts
+28838,Max Power Point Tracker 3,Max Power Point Tracker 3 Status,Ambient Temp
+28837,Max Power Point Tracker 3,Max Power Point Tracker 3 Status,Vout
+28836,Max Power Point Tracker 3,Max Power Point Tracker 3 Status,Vout
+28835,Max Power Point Tracker 3,Max Power Point Tracker 3 Status,Amps In
+28834,Max Power Point Tracker 3,Max Power Point Tracker 3 Status,Amps In
+28833,Max Power Point Tracker 3,Max Power Point Tracker 3 Status,Vin
+28832,Max Power Point Tracker 3,Max Power Point Tracker 3 Status,Status / Vin
+13328,Telemetry Calculated Data,Array 1 Power,Array 1 Power
+13344,Telemetry Calculated Data,Array 2 Power,Array 2 Power
+13360,Telemetry Calculated Data,Array 3 Power,Array 3 Power
+13376,Telemetry Calculated Data,Total Array Power,Total Array Power
+13392,Telemetry Calculated Data,Bus Power,Total Bus Power
+13408,Telemetry Calculated Data,Net Power Position,Net Power Position
+28518,Battery Management System,Battery Management System Charger Control,Total pack capacity
+28516,Battery Management System,Battery Management System Charger Control,Discharge cell voltage error
+28514,Battery Management System,Battery Management System Charger Control,Cell temperature margin
+28512,Battery Management System,Battery Management System Charger Control,Charge cell voltage error

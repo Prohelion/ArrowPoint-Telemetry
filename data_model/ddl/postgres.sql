@@ -35,6 +35,8 @@ DROP TABLE MED_TERM_TREND_DATA CASCADE
 ;
 DROP TABLE MSRMNT CASCADE 
 ;
+DROP TABLE MSRMNT_TYPE
+;
 DROP TABLE MSRMNT_DATA CASCADE 
 ;
 DROP TABLE SHT_TERM_TREND_DATA CASCADE 
@@ -114,7 +116,7 @@ CREATE TABLE LNG_TERM_TREND_DATA
      DATA_LEN INTEGER , 
      FVAL DOUBLE PRECISION , 
      IVAL INTEGER , 
-     CVAL CHAR (16) , 
+     CVAL VARCHAR (16) , 
      STATE VARCHAR (10) CHECK ( STATE IN ('HighErr', 'HighWarn', 'LowErr', 'LowWarn', 'Normal')) 
     ) 
 ;
@@ -159,7 +161,7 @@ CREATE TABLE MED_TERM_TREND_DATA
      DATA_LEN INTEGER , 
      FVAL DOUBLE PRECISION , 
      IVAL INTEGER , 
-     CVAL CHAR (16) , 
+     CVAL VARCHAR (16) , 
      STATE VARCHAR (10) CHECK ( STATE IN ('HighErr', 'HighWarn', 'LowErr', 'LowWarn', 'Normal')) 
     ) 
 ;
@@ -183,11 +185,11 @@ ALTER TABLE MED_TERM_TREND_DATA
 
 CREATE TABLE MSRMNT 
     ( 
-     MSRMNT_ID BIGSERIAL NOT NULL , 
+     MSRMNT_ID INTEGER NOT NULL , 
      MSRMNT_NAME VARCHAR (255) , 
      CAN_ID INTEGER , 
-     DEV_ID_FK INTEGER , 
-     DEV_TYPE_ID_FK INTEGER , 
+     DEV_ID_FK BIGINT , 
+     DEV_TYPE_ID_FK BIGINT , 
      REPRTNG_FRQ INTEGER , 
      MSRMNT_TYPE VARCHAR 
     ) 
@@ -205,6 +207,31 @@ ALTER TABLE MSRMNT
 
 
 
+
+CREATE TABLE MSRMNT_TYPE 
+    (      
+     MSRMNT_TYPE_ID BIGINT NOT NULL , 
+     MSRMNT_TYPE VARCHAR (255) , 
+     LOW_ERR_THRHLD DOUBLE PRECISION , 
+     LOW_WRNG_THRHLD DOUBLE PRECISION , 
+     HIGH_ERR_THRHLD DOUBLE PRECISION , 
+     HIGH_WRNG_THRHLD DOUBLE PRECISION , 
+     REPRTNG_FRQ INTEGER 
+    ) 
+;
+
+
+CREATE INDEX MSRMNT_TYPE__IDXv1 ON MSRMNT_TYPE
+    ( 
+     MSRMNT_TYPE_ID ASC 
+    ) 
+;
+
+ALTER TABLE MSRMNT_TYPE 
+    ADD CONSTRAINT MSRMNT_TYPE__PK PRIMARY KEY ( MSRMNT_TYPE_ID ) ;
+
+
+
 CREATE TABLE MSRMNT_DATA 
     ( 
      MSRMNT_DATA_ID BIGSERIAL NOT NULL , 
@@ -215,7 +242,7 @@ CREATE TABLE MSRMNT_DATA
      DATA_LEN INTEGER , 
      FVAL DOUBLE PRECISION , 
      IVAL INTEGER , 
-     CVAL CHAR (16) , 
+     CVAL VARCHAR (16) , 
      STATE VARCHAR (10) CHECK ( STATE IN ('HighErr', 'HighWarn', 'LowErr', 'LowWarn', 'Normal')) 
     ) 
 ;
@@ -247,7 +274,7 @@ CREATE TABLE SHT_TERM_TREND_DATA
      DATA_LEN INTEGER , 
      FVAL DOUBLE PRECISION , 
      IVAL INTEGER , 
-     CVAL CHAR (16) , 
+     CVAL VARCHAR (16) , 
      STATE VARCHAR (10) CHECK ( STATE IN ('HighErr', 'HighWarn', 'LowErr', 'LowWarn', 'Normal')) 
     ) 
 ;
@@ -363,8 +390,6 @@ ALTER TABLE all_trend_data
   OWNER TO postgres;
 
 
-DROP VIEW all_trend_data_summary;
-
 CREATE OR REPLACE VIEW all_trend_data_summary AS 
  SELECT ct.tstamp,
     ct."Velocity",
@@ -393,8 +418,6 @@ CREATE OR REPLACE VIEW all_trend_data_summary AS
 ALTER TABLE all_trend_data_summary
   OWNER TO postgres;
 
-DROP VIEW lng_term_trend_data_summary;
-
 CREATE OR REPLACE VIEW lng_term_trend_data_summary AS 
 SELECT ct.tstamp,
     ct."Velocity",
@@ -411,7 +434,7 @@ SELECT ct.tstamp,
     ct."Wind_Speed",
     ct."Wind_Direction",
     ct."Latitiude",
-    ct."Longitude"
+    ct."Longitude",
     ct."Setpoint",
     ct."Irradiance"
    FROM crosstab('
@@ -422,8 +445,6 @@ SELECT ct.tstamp,
 
 ALTER TABLE lng_term_trend_data_summary
   OWNER TO postgres;
-
-DROP VIEW med_term_trend_data_summary;
 
 CREATE OR REPLACE VIEW med_term_trend_data_summary AS 
 SELECT ct.tstamp,
@@ -441,7 +462,7 @@ SELECT ct.tstamp,
     ct."Wind_Speed",
     ct."Wind_Direction",
     ct."Latitiude",
-    ct."Longitude"
+    ct."Longitude",
     ct."Setpoint",
     ct."Irradiance"
    FROM crosstab('
@@ -452,9 +473,6 @@ SELECT ct.tstamp,
 
 ALTER TABLE med_term_trend_data_summary
   OWNER TO postgres;
-
-DROP VIEW sht_term_trend_data_summary;
-
 
 CREATE OR REPLACE VIEW sht_term_trend_data_summary AS 
 SELECT ct.tstamp,
@@ -472,7 +490,7 @@ SELECT ct.tstamp,
     ct."Wind_Speed",
     ct."Wind_Direction",
     ct."Latitiude",
-    ct."Longitude"
+    ct."Longitude",
     ct."Setpoint",
     ct."Irradiance"
    FROM crosstab('
@@ -518,7 +536,7 @@ CREATE OR REPLACE VIEW sht_and_med_term_trend_data_summary AS
     ct."Wind_Speed",
     ct."Wind_Direction",
     ct."Latitiude",
-    ct."Longitude"
+    ct."Longitude",
     ct."Setpoint",
     ct."Irradiance"
    FROM crosstab('
@@ -530,9 +548,6 @@ CREATE OR REPLACE VIEW sht_and_med_term_trend_data_summary AS
 ALTER TABLE sht_and_med_term_trend_data_summary
   OWNER TO postgres;
 
--- View: all_trend_data_with_deviceinfo
-
-DROP VIEW all_trend_data_with_deviceinfo;
 
 CREATE OR REPLACE VIEW all_trend_data_with_deviceinfo AS 
  SELECT trend_data.tstamp + '10:00:00'::interval AS "BNE_time",
@@ -551,6 +566,9 @@ CREATE OR REPLACE VIEW all_trend_data_with_deviceinfo AS
 
 ALTER TABLE all_trend_data_with_deviceinfo
   OWNER TO postgres;
+
+
+CREATE SEQUENCE HIBERNATE_SEQUENCE START WITH 1 INCREMENT BY 1; 
 
 
 -- Oracle SQL Developer Data Modeler Summary Report: 

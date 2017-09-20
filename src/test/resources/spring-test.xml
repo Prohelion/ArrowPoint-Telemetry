@@ -41,7 +41,7 @@
 		<property name="warningLevelScript" value="StatusWarning.bat"/>
 		<property name="alertLevelScript" value="StatusAlert.bat"/>
 		<property name="shutdownLevelScript" value="StatusShutdown.bat"/>
-		<property name="scriptDir" value="C:/TeamArrow/alerts/"/>
+		<property name="scriptDir" value="D:/Work/TeamArrow/teamarrowweb/TeamArrow/alerts/"/>
 	</bean>
 
 	<!-- These beans are used to set up the core engine of maps system -->

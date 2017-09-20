@@ -1,0 +1,10 @@
+CanProducer,DeviceID
+Wave Sculptor,WS22
+Driver Controller,EVDC
+Battery Management System,BMS
+Max Power Point Tracker 1,MPPT1
+Max Power Point Tracker 2,MPPT2
+Max Power Point Tracker 3,MPPT3
+Weather Station,WEATHER
+Global Positioning System,GPS
+Telemetry Calculated Data,TELEMETRY
