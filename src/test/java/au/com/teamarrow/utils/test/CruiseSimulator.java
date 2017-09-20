@@ -12,20 +12,16 @@ import au.com.teamarrow.service.CruiseSimulatorService;
 
 @ContextConfiguration(locations = {"/spring-simulator-test.xml"})
 public class CruiseSimulator {
-
-    @Autowired
-   	private CarTestUtils carTestUtils;
         
     @Autowired
    	private CruiseSimulatorService cruiseSimulatorService;
        
     public static void main (String[] arg) {
-
     	ClassPathXmlApplicationContext context =  new ClassPathXmlApplicationContext("/spring-simulator-test.xml");
     	CruiseSimulator cruiseSimulator = context.getBean(CruiseSimulator.class);
     	cruiseSimulator.start(arg);    	    	
     	context.registerShutdownHook();
-    	    	
+    	context.close();    	    	
     }
 	
     	

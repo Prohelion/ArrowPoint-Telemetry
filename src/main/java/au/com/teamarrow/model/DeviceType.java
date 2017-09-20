@@ -19,7 +19,9 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "dev_type", schema = "public", uniqueConstraints = @UniqueConstraint(columnNames = "dev_type"))
 public class DeviceType implements java.io.Serializable {
 
-    private long id;
+	private static final long serialVersionUID = -8497498103867367319L;
+	
+	private long id;
     private String type;
     private Set<Measurement> measurements = new HashSet<Measurement>(0);
 

@@ -14,7 +14,9 @@ import javax.persistence.Table;
 @Table(name = "msrmnt_type", schema = "public")
 public class MeasurementType implements java.io.Serializable {
 
-    private long id;
+    private static final long serialVersionUID = 126249344057648862L;
+	
+	private long id;
     private String type;
     private Double lowErrorThreshold;
     private Double lowWarningThreshold;

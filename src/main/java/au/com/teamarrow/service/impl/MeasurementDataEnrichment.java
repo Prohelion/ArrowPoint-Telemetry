@@ -4,19 +4,13 @@ import au.com.teamarrow.alerts.AlertManager;
 import au.com.teamarrow.maps.Route;
 import au.com.teamarrow.maps.impl.NoRouteNodeException;
 import au.com.teamarrow.model.MeasurementData;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.integration.annotation.Splitter;
 import org.springframework.messaging.Message;
-import org.springframework.stereotype.Component;
-
 
 public class MeasurementDataEnrichment {
 	

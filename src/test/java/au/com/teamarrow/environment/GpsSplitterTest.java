@@ -83,6 +83,8 @@ public class GpsSplitterTest {
 	 	double finalLong = (longDegrees + longMinutes) * 100;
 	 	
 	 	String GPRMCStr = "$GPRMC,061650,A," + finalLat + ",S," + finalLong + ",E,10,145,250715,003.1,W*7F";
+	 	
+	 	assert(GPRMCStr.equals("$GPRMC,061650,A,19.393,S,134.201,E,10,145,250715,003.1,W*7F"));
 	 
 	}
 	

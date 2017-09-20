@@ -20,7 +20,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @MappedSuperclass
 public abstract class AbstractMeasurementData implements java.io.Serializable {
 
-    protected long id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1083257021369869222L;
+	
+	protected long id;
     private Integer dataPointCanId;
     private DateTime timestamp;
     private Boolean extended;

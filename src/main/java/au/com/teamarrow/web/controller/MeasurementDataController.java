@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import au.com.teamarrow.model.MeasurementData;
-import au.com.teamarrow.model.PowerUseDto;
 import au.com.teamarrow.service.MeasurementDataService;
 
 @Controller

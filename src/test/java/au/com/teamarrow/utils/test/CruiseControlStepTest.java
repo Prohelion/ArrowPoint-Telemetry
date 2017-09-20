@@ -3,7 +3,7 @@ package au.com.teamarrow.utils.test;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -64,9 +64,10 @@ public class CruiseControlStepTest {
     
     public static void main (String[] arg) {
     	
-    	ApplicationContext context =  new ClassPathXmlApplicationContext("spring-test.xml");
+    	ConfigurableApplicationContext context =  new ClassPathXmlApplicationContext("spring-test.xml");
     	CruiseControlStepTest stepTest = context.getBean(CruiseControlStepTest.class);
     	stepTest.start(arg);
+    	context.close();
     	    	
     }
 	

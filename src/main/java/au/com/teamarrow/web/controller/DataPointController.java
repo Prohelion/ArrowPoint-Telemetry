@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import au.com.teamarrow.dao.DataPointRepository;
 import au.com.teamarrow.model.DataPoint;
 import au.com.teamarrow.model.Measurement;
-import au.com.teamarrow.service.MeasurementDataService;
 import au.com.teamarrow.service.MeasurementService;
 
 @Controller
@@ -21,10 +20,7 @@ public class DataPointController {
     
     @Autowired
     private MeasurementService measurementService;
-    
-    @Autowired
-    private MeasurementDataService measurementDataService;
-    
+        
     @Autowired
     private DataPointRepository dataPointRepository;
     

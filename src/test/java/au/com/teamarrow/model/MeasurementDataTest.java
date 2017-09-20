@@ -2,12 +2,8 @@ package au.com.teamarrow.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-
 import org.joda.time.DateTime;
 import org.junit.Test;
-
-import au.com.teamarrow.utils.test.PropertyAsserter;
-
 
 public class MeasurementDataTest {
 

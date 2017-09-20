@@ -6,10 +6,7 @@ import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,10 +15,8 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.util.ReflectionTestUtils;
-
 import au.com.teamarrow.dao.MeasurementDataRepository;
 import au.com.teamarrow.model.MeasurementData;
-import org.springframework.messaging.Message;
 
 public class MeasurementDataServiceImplTest {
 
@@ -30,10 +25,7 @@ public class MeasurementDataServiceImplTest {
     
     @Mock
     private Page<MeasurementData> mPage;
-    
-    @Mock
-    private Message mMessage;
-    
+        
     @Mock
     private MeasurementData mMeasurementData;
 
@@ -50,10 +42,7 @@ public class MeasurementDataServiceImplTest {
     @Test
     public void testGetMeasurementsForDevice() {
         when(this.mMeasurementDataRepository.findByDataPointCanId(any(Integer.class), any(Pageable.class))).thenReturn(mPage);
-        when(mPage.getContent()).thenReturn(new ArrayList<MeasurementData>());
-        
-        List<MeasurementData> result = service.getMeasurementsForDevice(0x400);
-        
+        when(mPage.getContent()).thenReturn(new ArrayList<MeasurementData>());        
         verify(mMeasurementDataRepository).findByDataPointCanId(any(Integer.class), any(Pageable.class));
         verify(mPage).getContent();
         verifyNoMoreInteractions(mMeasurementDataRepository, mPage);

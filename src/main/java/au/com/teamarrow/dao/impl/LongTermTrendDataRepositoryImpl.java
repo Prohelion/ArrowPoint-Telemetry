@@ -7,11 +7,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-
-import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Repository;
-
 import au.com.teamarrow.dao.CustomLongTermTrendDataRepository;
 import au.com.teamarrow.model.LongTermTrendData;
 
@@ -40,7 +37,7 @@ public class LongTermTrendDataRepositoryImpl implements CustomLongTermTrendDataR
     }*/
     
     @Override
-    public List<LongTermTrendData> getTrendDataForDay(Integer deviceId, DateMidnight day) {
+    public List<LongTermTrendData> getTrendDataForDay(Integer deviceId, DateTime day) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<LongTermTrendData> query = cb.createQuery(LongTermTrendData.class);
         Root<LongTermTrendData> data = query.from(LongTermTrendData.class);

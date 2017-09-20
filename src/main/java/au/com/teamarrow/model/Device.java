@@ -21,7 +21,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "dev", schema = "public")
 public class Device implements java.io.Serializable {
 
-    private long id;
+    private static final long serialVersionUID = 1224811522234193926L;
+	
+	private long id;
     private String name;
     private String abbreviation;
     private Set<Measurement> measurements = new HashSet<Measurement>(0);

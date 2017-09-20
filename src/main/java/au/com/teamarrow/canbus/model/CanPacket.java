@@ -220,9 +220,8 @@ public class CanPacket {
         return intbits;
     }    
     
-    
-    
-    private float bytesToFloat(byte[] data) {
+    @SuppressWarnings("unused")
+	private float bytesToFloat(byte[] data) {
     	int intbits = (data[0] & 0xFF) 
                 | ((data[1] & 0xFF) << 8) 
                 | ((data[2] & 0xFF) << 16) 

@@ -2,16 +2,12 @@ package au.com.teamarrow.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.joda.time.DateMidnight;
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -19,7 +15,6 @@ import org.springframework.messaging.Message;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import au.com.teamarrow.dao.LongTermTrendDataRepository;
 import au.com.teamarrow.dao.MeasurementDataRepository;
 import au.com.teamarrow.dao.MediumTermTrendDataRepository;
@@ -85,10 +80,11 @@ public class MeasurementDataServiceImpl implements MeasurementDataService {
         
         return data.getContent();*/
         
-        return longTermTrendDataRepository.getTrendDataForDay(deviceId, DateMidnight.now());
+        return longTermTrendDataRepository.getTrendDataForDay(deviceId, LocalDate.now().toDateTimeAtStartOfDay());
     }
     
 
+	@SuppressWarnings("unchecked")
 	@Override    
     public List<MeasurementData> findLatestDataForCanId(Integer canId) {
     	    	    	    	
@@ -123,7 +119,8 @@ public class MeasurementDataServiceImpl implements MeasurementDataService {
         return measurementDataRepository.findLongTermPowerUseData();
     }
 
-    @ServiceActivator
+    @SuppressWarnings("unchecked")
+	@ServiceActivator
     public void processMeasurementData(Message<MeasurementData> message) {
         MeasurementData md = (MeasurementData)message.getPayload();
         

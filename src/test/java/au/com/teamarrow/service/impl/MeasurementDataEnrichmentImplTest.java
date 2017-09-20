@@ -2,9 +2,7 @@ package au.com.teamarrow.service.impl;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,8 +11,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import au.com.teamarrow.alerts.AlertManager;
 import au.com.teamarrow.model.MeasurementData;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,10 +25,6 @@ public class MeasurementDataEnrichmentImplTest {
     public void testEnrichment() throws Exception {
 				
 		List<MeasurementData> results = null;
-		
-		DateTime dateTime = new DateTime();
-		
-		String value = dateTime.toString();
 		
 		MeasurementData array1Amps = new MeasurementData(0x7014,new DateTime(), false, false, 8, (double)0, 765, "", "");
 		MeasurementData array2Amps = new MeasurementData(0x7054,new DateTime(), false, false, 8, (double)0, 765, "", "");

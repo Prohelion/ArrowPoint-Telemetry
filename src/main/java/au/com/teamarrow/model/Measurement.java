@@ -24,7 +24,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "msrmnt", schema = "public")
 public class Measurement implements Serializable {
 
-    private long id;
+	private static final long serialVersionUID = -3706096966965380756L;
+	
+	private long id;
     private DeviceType deviceType;
     private Device device;
     private String name;

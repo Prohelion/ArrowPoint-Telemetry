@@ -26,7 +26,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties({"measurement"})
 public class DataPoint implements java.io.Serializable {
 
-    private long id;
+    private static final long serialVersionUID = -5126427925714981466L;
+	
+	private long id;
     private Measurement measurement;
     private Integer dataPointCanId;
     private String name;

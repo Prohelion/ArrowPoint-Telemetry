@@ -49,14 +49,12 @@ public class UdpPacketDeserializer implements Deserializer<UdpPacket> {
         
         boolean done = false;
         int start = 16;
-        boolean isBridgeHeartbeat = false;
+
         while (!done) {
             byte[] cpId = ArrayUtils.subarray(datastream, start, start + 4); // 17 - 20
             
             BitSet flags = BitSet.valueOf(ByteBuffer.wrap(ArrayUtils.subarray(datastream, start + 4, start + 5)));
             
-            isBridgeHeartbeat = flags.get(7); // heartbeat flag
-            boolean isSettingsPacket = flags.get(6);
             boolean isRtr = flags.get(1);
             boolean isExtended = flags.get(0);
             

@@ -1,8 +1,5 @@
 package au.com.teamarrow.alerts;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 import org.apache.log4j.Logger;
 
 public class AlertData {

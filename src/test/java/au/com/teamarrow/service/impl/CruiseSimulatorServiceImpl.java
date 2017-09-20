@@ -2,15 +2,11 @@ package au.com.teamarrow.service.impl;
 
 import java.text.NumberFormat;
 import java.util.Random;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import au.com.teamarrow.canbus.model.CanPacket;
 import au.com.teamarrow.service.CruiseSimulatorService;
 import au.com.teamarrow.utils.test.CarTestUtils;
@@ -19,9 +15,7 @@ import au.com.teamarrow.utils.test.CarTestUtils;
 @Service("cruiseSimulatorService")
 @Transactional
 public class CruiseSimulatorServiceImpl implements CruiseSimulatorService {
-    
-    private static final Logger LOG = LoggerFactory.getLogger(CanbusServiceImpl.class);
-          
+              
     @Autowired
     private CarTestUtils carTestUtils;
     

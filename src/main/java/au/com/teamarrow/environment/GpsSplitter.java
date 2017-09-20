@@ -16,11 +16,7 @@ import au.com.teamarrow.canbus.model.UdpPacket;
 public class GpsSplitter {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(GpsSplitter.class);
-	
-	// Designed to deal with the bad data issues
-	private double latitudeDelta = -1;
-	private double lastLatitude = -1;
-	
+		
 	private Double safeValueOf(String input, Double defaultValue) {
 			
 		Double value = defaultValue;
@@ -44,8 +40,6 @@ public class GpsSplitter {
 		double percentage = minutes / 0.6;
 		
 		double result = degrees + percentage;
-
-		double oldvalue = (int)(value / 100) + (value - ((int)(value / 100) * 100)) / 60;
 		
 		return result;
 		

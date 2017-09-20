@@ -4,11 +4,8 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,18 +20,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import au.com.teamarrow.alerts.AlertManager;
-import au.com.teamarrow.canbus.model.CanPacket;
-import au.com.teamarrow.canbus.model.UdpPacket;
 import au.com.teamarrow.dao.FleetMessage;
 import au.com.teamarrow.dao.ManualDataPoint;
 import au.com.teamarrow.dao.ManualLatLong;
 import au.com.teamarrow.maps.Route;
 import au.com.teamarrow.maps.impl.MapGenerator;
 import au.com.teamarrow.model.MeasurementData;
-import au.com.teamarrow.service.impl.MeasurementDataAggregator;
-
 
 @Controller
 @RequestMapping(value = "/")
@@ -201,6 +193,7 @@ public class FleetController extends AbstractController {
 	            		
 	            DatagramPacket send_packet = new DatagramPacket(send_bytes, send_bytes.length, address, UDP_SERVER_PORT);
 	            socket.send(send_packet);
+	            socket.close();
 	            
 	        } catch (Exception ex) {
 	        	

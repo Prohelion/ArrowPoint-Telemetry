@@ -30,8 +30,41 @@ public class UdpPacket {
     public void setCanPackets(ArrayList<CanPacket> canPacketList) {
         this.canPackets = canPacketList;
     }
+    
+    
+    public byte getLength() {
+		return length;
+	}
 
-    @Override
+	public void setLength(byte length) {
+		this.length = length;
+	}
+
+	public byte[] getData() {
+		return data;
+	}
+
+	public void setData(byte[] data) {
+		this.data = data;
+	}
+
+	public byte[] getBusId() {
+		return busId;
+	}
+
+	public void setBusId(byte[] busId) {
+		this.busId = busId;
+	}
+
+	public byte[] getSenderId() {
+		return senderId;
+	}
+
+	public void setSenderId(byte[] senderId) {
+		this.senderId = senderId;
+	}
+
+	@Override
     public String toString() {
     	
     	// These can be null so the logic attempt to avoid the encoding step in that case

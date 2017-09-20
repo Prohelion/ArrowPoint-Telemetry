@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import au.com.teamarrow.model.MeasurementData;
-import au.com.teamarrow.service.DeviceService;
 import au.com.teamarrow.service.MeasurementDataService;
 
 @Controller
@@ -42,11 +40,7 @@ public class DashboardController extends AbstractController {
     private double MPPT2Power = (double) 0;
     
     private double MPPT3Power = (double) 0;
-    
-    
-    @Autowired
-    private DeviceService deviceService;
-    
+          
     @Autowired
     private MeasurementDataService measurementDataService;
     

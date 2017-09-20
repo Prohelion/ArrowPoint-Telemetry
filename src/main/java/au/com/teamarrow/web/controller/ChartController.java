@@ -1,7 +1,5 @@
 package au.com.teamarrow.web.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,23 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import au.com.teamarrow.model.DataPoint;
-import au.com.teamarrow.model.Device;
 import au.com.teamarrow.service.DataPointService;
-import au.com.teamarrow.service.DeviceService;
-import au.com.teamarrow.service.MeasurementDataService;
 
 @Transactional
 @Controller
 public class ChartController extends AbstractController {
-    
-    @Autowired
-    private DeviceService deviceService;
-    
+       
     @Autowired
     private DataPointService dataPointService;
-    
-    @Autowired
-    private MeasurementDataService measurementDataService;
      
     @RequestMapping(value = "/chart.html", params = {"deviceId"})
     public String getChart(@RequestParam Integer deviceId, Model model) {

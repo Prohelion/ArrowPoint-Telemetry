@@ -12,7 +12,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.stereotype.Component;
@@ -41,9 +41,10 @@ public class LogReplayer {
 	
     public static void main (String[] arg) {
     	
-    	ApplicationContext context =  new ClassPathXmlApplicationContext("spring-test.xml");
+    	ConfigurableApplicationContext context =  new ClassPathXmlApplicationContext("spring-test.xml");
     	LogReplayer logReplayer = context.getBean(LogReplayer.class);
-    	logReplayer.start(arg);
+    	logReplayer.start(arg);   
+    	context.close();
     	    	
     }
 

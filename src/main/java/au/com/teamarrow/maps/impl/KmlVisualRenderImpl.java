@@ -129,8 +129,7 @@ public class KmlVisualRenderImpl implements VisualRender {
 	public void addPlacemark(double latitude, double longitude, double elevation,
 			String description, String colour) {
 			
-		Placemark placemark = null;
-		boolean visible = true;
+		Placemark placemark = null;		
 		
 		// Create a new placemark
 		if (folder == null) {		

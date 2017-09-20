@@ -1,12 +1,8 @@
 package au.com.teamarrow.service.impl;
 
-import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.ArrayUtils;
 import org.joda.time.DateTime;
@@ -15,10 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.annotation.Splitter;
 import org.springframework.stereotype.Component;
-
 import au.com.teamarrow.canbus.model.CanPacket;
 import au.com.teamarrow.dao.DataPointRepository;
-import au.com.teamarrow.dao.DeviceRepository;
 import au.com.teamarrow.dao.MeasurementRepository;
 import au.com.teamarrow.model.DataPoint;
 import au.com.teamarrow.model.Measurement;
@@ -29,9 +23,6 @@ public class MeasurementDataSplitter {
 
 	private static final Logger LOG = LoggerFactory.getLogger(MeasurementDataSplitter.class);
 	final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
-
-    @Autowired
-    private DeviceRepository deviceRepository;
     
     @Autowired
     private MeasurementRepository measurementRepository;

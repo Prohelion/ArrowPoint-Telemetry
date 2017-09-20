@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -21,9 +21,10 @@ public class CruiseControlTest {
 
     public static void main (String[] arg) {
     	
-    	ApplicationContext context =  new ClassPathXmlApplicationContext("spring-test.xml");
+    	ConfigurableApplicationContext context =  new ClassPathXmlApplicationContext("spring-test.xml");
     	CruiseControlTest cruiseTest = context.getBean(CruiseControlTest.class);
     	cruiseTest.start(arg);
+    	context.close();
     	    	
     }
 

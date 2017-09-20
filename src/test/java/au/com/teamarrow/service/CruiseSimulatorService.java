@@ -1,7 +1,6 @@
 package au.com.teamarrow.service;
 
 import au.com.teamarrow.canbus.model.CanPacket;
-import au.com.teamarrow.service.impl.CruiseSimulatorServiceImpl;
 
 import org.springframework.messaging.Message;
 
