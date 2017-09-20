@@ -102,7 +102,7 @@
 	</appender>
 
 	<logger name="CanLog" additivity="true">
-	    <level value="info"/>
+	    <level value="debug"/>
 	    <appender-ref ref="canlog" /> 
 	</logger>
 	
@@ -112,8 +112,8 @@
 	</logger>
 		
 	<logger name="org.springframework" additivity="false">
-	    <level value="info"/>
-	    <appender-ref ref="spring" /> 
+	    <level value="debug"/>
+	    <appender-ref ref="console" /> 
 	</logger> 
     
     <logger name="org.hibernate.tool.hbm2ddl" additivity="false">
@@ -145,8 +145,8 @@
     
     <!-- Root Logger -->
     <root>
-        <priority value="info" />
-        <appender-ref ref="error" />
+        <priority value="debug" />
+        <appender-ref ref="console" />
     </root>
 
 </log4j:configuration>

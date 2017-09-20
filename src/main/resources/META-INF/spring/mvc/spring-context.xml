@@ -18,6 +18,6 @@
 
 	<context:component-scan base-package="au.com.teamarrow"/>
 	
-	<context:property-placeholder location="classpath:/META-INF/hibernate.properties"/>
+	<context:property-placeholder location="classpath:/META-INF/application.properties"/>
   
 </beans>

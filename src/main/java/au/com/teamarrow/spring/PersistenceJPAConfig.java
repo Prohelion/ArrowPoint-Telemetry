@@ -73,12 +73,10 @@ public class PersistenceJPAConfig {
 
     final Properties additionalProperties() {
         final Properties hibernateProperties = new Properties();
-        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+       /* hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
-        hibernateProperties.setProperty("hibernate.search.default.directory_provider", env.getProperty("hibernate.search.default.directory_provider"));
-        hibernateProperties.setProperty("hibernate.search.default.indexBase", env.getProperty("hibernate.search.default.indexBase"));
         hibernateProperties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-
+*/
         return hibernateProperties;
     }
 
