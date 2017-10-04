@@ -64,19 +64,19 @@ insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_T
 insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (35, 'Max Power Point Tracker 3 Power', 'MPPT_Power', hex_to_int('709'), 6, 1, 1);
 insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (36, 'Max Power Point Tracker 3 Status', 'MPPT_Status', hex_to_int('70A'), 6, 1, 1);
 
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (37, 'Wave Sculptor Bus Measurement', 'WS22_Bus_Measurement', 1026, 1, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (38, 'Wave Sculptor DSP Supply Voltage', 'WS22_DSP_Supply_Voltage', 1033, 1, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (39, 'Wave Sculptor DSP Temp', 'WS22_DSP_Temp', 1036, 1, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (40, 'Wave Sculptor Device Info', 'WS22_Device_Info', 1024, 1, 1, 5);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (41, 'Wave Sculptor Energy and Odometer', 'WS22_Energy_Odo', 1038, 1, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (42, 'Wave Sculptor Heat Motor Temp', 'WS22_Heat_Motor_Temp', 1035, 1, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (43, 'Wave Sculptor Motor Back EMF', 'WS22_Motor_Back_EMF', 1031, 1, 1, 5);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (44, 'Wave Sculptor Motor Current', 'WS22_Motor_Current', 1030,  1, 1, 5);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (45, 'Wave Sculptor Motor Voltage', 'WS22_Motor_Voltage', 1029, 1, 1, 5);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (46, 'Wave Sculptor Phase Current', 'WS22_Phase_Current', 1028,  1, 1, 5);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (47, 'Wave Sculptor Status Info', 'WS22_Status_Info', 1025, 1, 1, 5);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (48, 'Wave Sculptor Supply Voltage', 'WS22_Supply_Voltage', 1032, 1, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (49, 'Wave Sculptor Velocity', 'WS22_Velocity', 1027, 1, 1, 5);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (37, 'Wave Sculptor Bus Measurement', 'WS22_Bus_Measurement', hex_to_int('402'), 1, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (38, 'Wave Sculptor DSP Supply Voltage', 'WS22_DSP_Supply_Voltage', hex_to_int('409'), 1, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (39, 'Wave Sculptor DSP Temp', 'WS22_DSP_Temp',  hex_to_int('40C'), 1, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (40, 'Wave Sculptor Device Info', 'WS22_Device_Info', hex_to_int('400'), 1, 1, 5);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (41, 'Wave Sculptor Energy and Odometer', 'WS22_Energy_Odo', hex_to_int('40E'), 1, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (42, 'Wave Sculptor Heat Motor Temp', 'WS22_Heat_Motor_Temp', hex_to_int('40B'), 1, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (43, 'Wave Sculptor Motor Back EMF', 'WS22_Motor_Back_EMF', hex_to_int('407'), 1, 1, 5);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (44, 'Wave Sculptor Motor Current', 'WS22_Motor_Current', hex_to_int('406'),  1, 1, 5);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (45, 'Wave Sculptor Motor Voltage', 'WS22_Motor_Voltage', hex_to_int('405'), 1, 1, 5);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (46, 'Wave Sculptor Phase Current', 'WS22_Phase_Current', hex_to_int('404'),  1, 1, 5);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (47, 'Wave Sculptor Status Info', 'WS22_Status_Info', hex_to_int('401'), 1, 1, 5);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (48, 'Wave Sculptor Supply Voltage', 'WS22_Supply_Voltage', hex_to_int('408'), 1, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (49, 'Wave Sculptor Velocity', 'WS22_Velocity', hex_to_int('403'), 1, 1, 5);
 
 insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (52, 'Weather Station Temp', 'Weather_Temp', hex_to_int('321'), 7, 1, 1);
 insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (53, 'Weather Station Humidity', 'Weather_Humidity', hex_to_int('322'), 7, 1, 1);
@@ -106,52 +106,53 @@ insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_T
 
 -- New STF Systems
 
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (101, 'Battery Management System CMU 0 Status', 'BMS_CMU_Sts', hex_to_int('601'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (102, 'Battery Management System CMU 1 Status', 'BMS_CMU_Sts' , hex_to_int('604'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (103, 'Battery Management System CMU 2 Status', 'BMS_CMU_Sts' , hex_to_int('607'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (104, 'Battery Management System CMU 3 Status', 'BMS_CMU_Sts' , hex_to_int('60A'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (105, 'Battery Management System CMU 4 Status', 'BMS_CMU_Sts' , hex_to_int('60D'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (106, 'Battery Management System Cell 0-3 Voltage (CMU 0)', 'BMS_Cell_Voltage', hex_to_int('602'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (107, 'Battery Management System Cell 4-7 Voltage (CMU 0)', 'BMS_Cell_Voltage', hex_to_int('603'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (108, 'Battery Management System Cell 0-3 Voltage (CMU 1)', 'BMS_Cell_Voltage', hex_to_int('605'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (109, 'Battery Management System Cell 4-7 Voltage (CMU 1)', 'BMS_Cell_Voltage', hex_to_int('606'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (110, 'Battery Management System Cell 0-3 Voltage (CMU 2)', 'BMS_Cell_Voltage', hex_to_int('608'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (111, 'Battery Management System Cell 4-7 Voltage (CMU 2)', 'BMS_Cell_Voltage', hex_to_int('609'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (112, 'Battery Management System Cell 0-3 Voltage (CMU 3)', 'BMS_Cell_Voltage', hex_to_int('60B'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (113, 'Battery Management System Cell 4-7 Voltage (CMU 3)', 'BMS_Cell_Voltage', hex_to_int('60C'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (114, 'Battery Management System Cell 0-3 Voltage (CMU 4)', 'BMS_Cell_Voltage', hex_to_int('60E'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (115, 'Battery Management System Cell 4-7 Voltage (CMU 4)', 'BMS_Cell_Voltage', hex_to_int('60F'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (116, 'Battery Management System Charger Control', 'BMS_Charger_Control', hex_to_int('6F6'), 12, 1, 10);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (117, 'Battery Management System Device Info', 'BMS_Device_Info', hex_to_int('600'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (118, 'Battery Management System Ext Pack Status', 'BMS_Ext_Pack_Sts', hex_to_int('6FD'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (119, 'Battery Management System Fan Status', 'BMS_Fan_Sts', hex_to_int('6FC'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (120, 'Battery Management System Min Max Cell Voltage', 'BMS_Min_Max_Cell_Voltage', hex_to_int('6F8'), 12, 1, 10);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (121, 'Battery Management System Min Max Cell Temp', 'BMS_Min_Max_Cell_Temp', hex_to_int('6F9'), 12, 1, 10);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (122, 'Battery Management System Pack Balance', 'BMS_Pack_Balance', hex_to_int('6F5'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (123, 'Battery Management System Pack Status', 'BMS_Pack_Sts', hex_to_int('6FB'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (124, 'Battery Management System Pack Voltage Current', 'BMS_Pack_Voltage_Current', hex_to_int('6FA'), 12, 1, 10);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (125, 'Battery Management System Precharge Status', 'BMS_Precharge_Sts', hex_to_int('6F7'), 12, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (126, 'Battery Management System State of Charge', 'BMS_SOC', hex_to_int('6F4'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (101, 'Battery Management System CMU 0 Status', 'BMS_CMU_Sts', hex_to_int('201'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (102, 'Battery Management System CMU 1 Status', 'BMS_CMU_Sts' , hex_to_int('204'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (103, 'Battery Management System CMU 2 Status', 'BMS_CMU_Sts' , hex_to_int('207'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (104, 'Battery Management System CMU 3 Status', 'BMS_CMU_Sts' , hex_to_int('20A'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (105, 'Battery Management System CMU 4 Status', 'BMS_CMU_Sts' , hex_to_int('20D'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (106, 'Battery Management System Cell 0-3 Voltage (CMU 0)', 'BMS_Cell_Voltage', hex_to_int('202'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (107, 'Battery Management System Cell 4-7 Voltage (CMU 0)', 'BMS_Cell_Voltage', hex_to_int('203'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (108, 'Battery Management System Cell 0-3 Voltage (CMU 1)', 'BMS_Cell_Voltage', hex_to_int('205'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (109, 'Battery Management System Cell 4-7 Voltage (CMU 1)', 'BMS_Cell_Voltage', hex_to_int('206'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (110, 'Battery Management System Cell 0-3 Voltage (CMU 2)', 'BMS_Cell_Voltage', hex_to_int('208'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (111, 'Battery Management System Cell 4-7 Voltage (CMU 2)', 'BMS_Cell_Voltage', hex_to_int('209'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (112, 'Battery Management System Cell 0-3 Voltage (CMU 3)', 'BMS_Cell_Voltage', hex_to_int('20B'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (113, 'Battery Management System Cell 4-7 Voltage (CMU 3)', 'BMS_Cell_Voltage', hex_to_int('20C'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (114, 'Battery Management System Cell 0-3 Voltage (CMU 4)', 'BMS_Cell_Voltage', hex_to_int('20E'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (115, 'Battery Management System Cell 4-7 Voltage (CMU 4)', 'BMS_Cell_Voltage', hex_to_int('20F'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (116, 'Battery Management System Charger Control', 'BMS_Charger_Control', hex_to_int('2F6'), 12, 1, 10);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (117, 'Battery Management System Device Info', 'BMS_Device_Info', hex_to_int('200'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (118, 'Battery Management System Ext Pack Status', 'BMS_Ext_Pack_Sts', hex_to_int('2FD'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (119, 'Battery Management System Fan Status', 'BMS_Fan_Sts', hex_to_int('2FC'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (120, 'Battery Management System Min Max Cell Voltage', 'BMS_Min_Max_Cell_Voltage', hex_to_int('2F8'), 12, 1, 10);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (121, 'Battery Management System Min Max Cell Temp', 'BMS_Min_Max_Cell_Temp', hex_to_int('2F9'), 12, 1, 10);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (122, 'Battery Management System Pack Balance', 'BMS_Pack_Balance', hex_to_int('2F5'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (123, 'Battery Management System Pack Status', 'BMS_Pack_Sts', hex_to_int('2FB'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (124, 'Battery Management System Pack Voltage Current', 'BMS_Pack_Voltage_Current', hex_to_int('2FA'), 12, 1, 10);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (125, 'Battery Management System Precharge Status', 'BMS_Precharge_Sts', hex_to_int('2F7'), 12, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (126, 'Battery Management System State of Charge', 'BMS_SOC', hex_to_int('2F4'), 12, 1, 1);
 
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (137, 'Wave Sculptor Bus Measurement', 'WS22_Bus_Measurement', 1026, 11, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (138, 'Wave Sculptor DSP Supply Voltage', 'WS22_DSP_Supply_Voltage', 1033, 11, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (139, 'Wave Sculptor DSP Temp', 'WS22_DSP_Temp', 1036, 11, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (140, 'Wave Sculptor Device Info', 'WS22_Device_Info', 1024, 11, 1, 5);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (141, 'Wave Sculptor Energy and Odometer', 'WS22_Energy_Odo', 1038, 11, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (142, 'Wave Sculptor Heat Motor Temp', 'WS22_Heat_Motor_Temp', 1035, 11, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (143, 'Wave Sculptor Motor Back EMF', 'WS22_Motor_Back_EMF', 1031, 11, 1, 5);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (144, 'Wave Sculptor Motor Current', 'WS22_Motor_Current', 1030,  11, 1, 5);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (145, 'Wave Sculptor Motor Voltage', 'WS22_Motor_Voltage', 1029, 11, 1, 5);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (146, 'Wave Sculptor Phase Current', 'WS22_Phase_Current', 1028,  11, 1, 5);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (147, 'Wave Sculptor Status Info', 'WS22_Status_Info', 1025, 11, 1, 5);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (148, 'Wave Sculptor Supply Voltage', 'WS22_Supply_Voltage', 1032, 11, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (149, 'Wave Sculptor Velocity', 'WS22_Velocity', 1027, 11, 1, 5);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (137, 'Wave Sculptor Bus Measurement', 'WS22_Bus_Measurement', hex_to_int('422'), 11, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (138, 'Wave Sculptor DSP Supply Voltage', 'WS22_DSP_Supply_Voltage', hex_to_int('429'), 11, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (139, 'Wave Sculptor DSP Temp', 'WS22_DSP_Temp',  hex_to_int('42C'), 11, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (140, 'Wave Sculptor Device Info', 'WS22_Device_Info', hex_to_int('420'), 11, 1, 5);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (141, 'Wave Sculptor Energy and Odometer', 'WS22_Energy_Odo', hex_to_int('42E'), 11, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (142, 'Wave Sculptor Heat Motor Temp', 'WS22_Heat_Motor_Temp', hex_to_int('42B'), 11, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (143, 'Wave Sculptor Motor Back EMF', 'WS22_Motor_Back_EMF', hex_to_int('427'), 11, 1, 5);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (144, 'Wave Sculptor Motor Current', 'WS22_Motor_Current', hex_to_int('426'),  11, 1, 5);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (145, 'Wave Sculptor Motor Voltage', 'WS22_Motor_Voltage', hex_to_int('425'), 11, 1, 5);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (146, 'Wave Sculptor Phase Current', 'WS22_Phase_Current', hex_to_int('424'),  11, 1, 5);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (147, 'Wave Sculptor Status Info', 'WS22_Status_Info', hex_to_int('421'), 11, 1, 5);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (148, 'Wave Sculptor Supply Voltage', 'WS22_Supply_Voltage', hex_to_int('428'), 11, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (149, 'Wave Sculptor Velocity', 'WS22_Velocity', hex_to_int('423'), 11, 1, 5);
 
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (180, 'BMS DC-DC Heartbeat', 'DC-DC_Heartbeat', hex_to_int('100'), 13, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (181, 'BMS DC-DC Cell Temp', 'DC-DC_Cell_Temp', hex_to_int('103'), 13, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (182, 'BMS DC-DC Cell Voltages', 'DC-DC_Cell_Voltages', hex_to_int('104'), 13, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (183, 'BMS DC-DC Cell Currents', 'DC-DC_Cell_Currents', hex_to_int('105'), 13, 1, 1);
-insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (184, 'BMS DC-DC Status Info', 'DC-DC_Status_Info', hex_to_int('106'), 13, 1, 1);
+
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (180, 'BMS DC-DC Heartbeat', 'DC-DC_Heartbeat', hex_to_int('110'), 13, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (181, 'BMS DC-DC Cell Temp', 'DC-DC_Cell_Temp', hex_to_int('113'), 13, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (182, 'BMS DC-DC Cell Voltages', 'DC-DC_Cell_Voltages', hex_to_int('114'), 13, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (183, 'BMS DC-DC Cell Currents', 'DC-DC_Cell_Currents', hex_to_int('115'), 13, 1, 1);
+insert into msrmnt(MSRMNT_ID, MSRMNT_NAME, MSRMNT_TYPE, CAN_ID, DEV_ID_FK, DEV_TYPE_ID_FK, REPRTNG_FRQ) values (184, 'BMS DC-DC Status Info', 'DC-DC_Status_Info', hex_to_int('116'), 13, 1, 1);
 
 
 -- DC-DC
