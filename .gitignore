@@ -3,3 +3,4 @@ target/
 Servers/
 logs/
 RemoteSystemsTempFiles/
+*.jar

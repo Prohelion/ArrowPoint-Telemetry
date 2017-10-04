@@ -294,7 +294,8 @@ public class DashboardController extends AbstractController {
         }
         
         public String getVehicleVelocityFormatted() {
-            return String.format("%.1f", vehicleVelocity.getFloatValue());
+        	if (vehicleVelocity.getFloatValue() == null) return ("0");
+        	return String.format("%.1f", vehicleVelocity.getFloatValue());
         }
       
         public void setVehicleVelocity(MeasurementData vehicleVelocity) {
@@ -306,6 +307,7 @@ public class DashboardController extends AbstractController {
         }
 
         public String getVehicleVelocityKMHFormatted() {
+        	if (vehicleVelocityKMH == null) return ("0");
         	return String.format("%.1f", vehicleVelocityKMH);            
         }
 
@@ -335,6 +337,7 @@ public class DashboardController extends AbstractController {
         }
       
         public String getThrottleSetPointFormatted() {
+        	if (throttleSetPoint.getFloatValue() == null) return("0");
         	return String.format("%.0f", throttleSetPoint.getFloatValue() * 100);        	
         }
         

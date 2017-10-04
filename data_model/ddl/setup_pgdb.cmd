@@ -1,19 +1,41 @@
 @echo off
 
-Rem Setup arrow1 database and create schema
+Rem Setup TeamArrow database and create schema / user
 Rem Run this as the postgres user
 Rem Assumes required DDL scripts are in the same directory as this script
 
+SET PGPASSWORD=postgres
+
+echo -----------------------------------------------------------------
+echo SETUP THE DATABASE
+echo -----------------------------------------------------------------
+echo.
+
 Rem Create database and setup required plsql language support
-dropdb --username=postgres arrow1
-createdb --username=postgres arrow1
-createlang --username=postgres -d arrow1 plpgsql
+dropdb --username=postgres TeamArrow
+pause
+dropuser --username=postgres teamarrow
+pause
+
+echo -----------------------------------------------------------------
+echo When prompted for the password answer ***REMOVED***
+echo -----------------------------------------------------------------
+echo.
+
+createuser --username=postgres --createdb --pwprompt teamarrow
+pause
+
+SET PGPASSWORD=***REMOVED***
+
+createdb --username=teamarrow TeamArrow
+pause
+createlang --username=teamarrow -d TeamArrow plpgsql
 
 Rem Create database schemas
-psql --username=postgres -d arrow1 -a -f postgres.sql
+psql --username=teamarrow -d TeamArrow -a -f postgres.sql
 
 Rem Create database functions
-psql --username=postgres -d arrow1 -a -f functions.sql
+psql --username=teamarrow -d TeamArrow -a -f functions.sql
 
 Rem Load test data
-psql --username=postgres -d arrow1 -a -f referencedata.sql
+psql --username=teamarrow -d TeamArrow -a -f referencedata.sql

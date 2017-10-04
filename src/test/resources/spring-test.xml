@@ -83,7 +83,6 @@
 	
 	<int:payload-serializing-transformer id="udpPacketSerializingTransformer"
 		input-channel="canbusOutputChannel"
-		serializer="udpPacketSerializer"
 		output-channel="output">
 	</int:payload-serializing-transformer>
 	
