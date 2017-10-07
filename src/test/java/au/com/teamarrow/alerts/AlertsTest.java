@@ -176,7 +176,7 @@ public class AlertsTest {
 
 	//@Test
 	public void testLights() {
-		String results = alertManager.executeCommand("D:/Work/TeamArrow/teamarrowweb/TeamArrow/alerts/StatusNormal.bat");
+		String results = alertManager.executeCommand("D:/TeamArrow/alerts/StatusNormal.bat");
 		
 		results = results + "";
 		

@@ -86,10 +86,10 @@
             <zipfileset excludes="META-INF/*.SF" src="D:/MavenRepo/org/jadira/usertype/usertype.core/3.1.0.CR8/usertype.core-3.1.0.CR8.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="D:/MavenRepo/org/jadira/usertype/usertype.spi/3.1.0.CR8/usertype.spi-3.1.0.CR8.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="D:/MavenRepo/net/sf/opencsv/opencsv/2.3/opencsv-2.3.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/MavenRepo/com/fasterxml/jackson/core/jackson-core/2.2.3/jackson-core-2.2.3.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/MavenRepo/com/fasterxml/jackson/core/jackson-databind/2.2.3/jackson-databind-2.2.3.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/MavenRepo/com/fasterxml/jackson/core/jackson-annotations/2.2.3/jackson-annotations-2.2.3.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="D:/MavenRepo/com/fasterxml/jackson/datatype/jackson-datatype-joda/2.2.3/jackson-datatype-joda-2.2.3.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="D:/MavenRepo/com/fasterxml/jackson/core/jackson-core/2.8.10/jackson-core-2.8.10.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="D:/MavenRepo/com/fasterxml/jackson/core/jackson-databind/2.8.10/jackson-databind-2.8.10.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="D:/MavenRepo/com/fasterxml/jackson/core/jackson-annotations/2.8.0/jackson-annotations-2.8.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="D:/MavenRepo/com/fasterxml/jackson/datatype/jackson-datatype-joda/2.8.10/jackson-datatype-joda-2.8.10.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="D:/MavenRepo/postgresql/postgresql/9.1-901-1.jdbc4/postgresql-9.1-901-1.jdbc4.jar"/>
         </jar>
     </target>

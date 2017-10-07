@@ -143,40 +143,36 @@ public class MeasurementDataEnrichment {
     				     }
     					 break;
     	
-	    	// Array 1 Amps
-	    	case 0x7014: array1Current = measurementData.getIntegerValue();
+	    	// Array 1 - Bonnet Amps
+	    	case 0x3632: array1Current = measurementData.getIntegerValue();
+	    				 break;
+	    
+	    	// Array 2 - Roof Amps
+	    	case 0x3634: array2Current = measurementData.getIntegerValue();
 	    				 break;
 	    	
-	    	// Array 1 Volts
-	    	case 0x7010: array1Voltage = measurementData.getIntegerValue();
+	    	// Array 3 - Boot Amps
+	    	case 0x3636: array3Current = measurementData.getIntegerValue();
+	    				 break;
+	    	
+	    	// Using Battery Voltage now rather than array voltage
+	    	case 0x2FA0: array1Voltage = measurementData.getIntegerValue();			 
 	    				 if (array1Current != -1) {
 	    					 Double power = (double)(array1Current * array1Voltage) / 1000000;
 	    					 
 	    					 // Create new item 3410
 	    					 powerData = new MeasurementData(0x3410, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
 	    				 }
-	    				 break;
-	    	
-	    	// Array 2 Amps
-	    	case 0x7054: array2Current = measurementData.getIntegerValue();
-	    				 break;
-	    	
-	    	// Array 2 Volts
-	    	case 0x7050: array2Voltage = measurementData.getIntegerValue();
+	    				 
+	    				 array2Voltage = measurementData.getIntegerValue();
 						 if (array2Current != -1) {
 							 Double power = (double)(array2Current * array2Voltage) / 1000000;
 							 
 							 // Create new item 3420
 							 powerData = new MeasurementData(0x3420, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
-						 }	    	
-	    				 break;
-	    	
-	    	// Array 3 Amps
-	    	case 0x7094: array3Current = measurementData.getIntegerValue();
-	    				 break;
-	    	
-	    	// Array 3 Volts
-	    	case 0x7090: array3Voltage = measurementData.getIntegerValue();
+						 }
+
+						 array3Voltage = measurementData.getIntegerValue();
 						 if (array3Current != -1) {
 							 Double power = (double)(array3Current * array3Voltage) / 1000000;
 							 
@@ -199,13 +195,9 @@ public class MeasurementDataEnrichment {
 							 if (power < 0) {
 								 LOG.error("Calulated Total Array power ({}) is in error: Array1Current {}, Array1Voltage {}, Array2Current {}, Array2Voltage {}, Array3Current {}, Array3Voltage", power, array1Current, array1Voltage, array2Current, array2Voltage, array3Current, array3Voltage  );
 							 }
-							 
-							 
-						 }	    		    	
-
-						 
-	    				 break;
-    	
+						 } 
+						 break;
+	    				 
 	    	// Bus Current
 	    	case 0x4024: busCurrent = measurementData.getFloatValue();
 	    				 break;
