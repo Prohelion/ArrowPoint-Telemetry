@@ -104,6 +104,9 @@ public class MeasurementDataEnrichment {
     	// Send the data point to the alerts engine
     	alertManager.setDataPoint(measurementData.getDataPointCanId(), measurementData.getFloatValue());
     	
+    	MeasurementData powerDataBonnet = null;
+    	MeasurementData powerDataRoof = null;
+    	MeasurementData powerDataBoot = null;
     	MeasurementData powerData = null;
     	MeasurementData totalPowerData = null;
     	MeasurementData distanceTravelledData = null;
@@ -161,7 +164,7 @@ public class MeasurementDataEnrichment {
 	    					 Double power = (double)(array1Current * array1Voltage) / 1000000;
 	    					 
 	    					 // Create new item 3410
-	    					 powerData = new MeasurementData(0x3410, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
+	    					 powerDataBonnet = new MeasurementData(0x3410, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
 	    				 }
 	    				 
 	    				 array2Voltage = measurementData.getIntegerValue();
@@ -169,7 +172,7 @@ public class MeasurementDataEnrichment {
 							 Double power = (double)(array2Current * array2Voltage) / 1000000;
 							 
 							 // Create new item 3420
-							 powerData = new MeasurementData(0x3420, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
+							 powerDataRoof = new MeasurementData(0x3420, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
 						 }
 
 						 array3Voltage = measurementData.getIntegerValue();
@@ -177,7 +180,7 @@ public class MeasurementDataEnrichment {
 							 Double power = (double)(array3Current * array3Voltage) / 1000000;
 							 
 							 // Create new item 3430
-							 powerData = new MeasurementData(0x3430, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
+							 powerDataBoot = new MeasurementData(0x3430, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
 						 }
 						 						 
 						 // Check if all array power data has been received and if so set the full array power
@@ -234,6 +237,9 @@ public class MeasurementDataEnrichment {
     	}
     	
     	if (powerData != null) returnList.add(powerData);
+    	if (powerDataBonnet != null) returnList.add(powerDataBonnet);
+    	if (powerDataBoot != null) returnList.add(powerDataBoot);
+    	if (powerDataRoof != null) returnList.add(powerDataRoof);
     	if (totalPowerData != null) returnList.add(totalPowerData);
     	if (distanceTravelledData != null) returnList.add(distanceTravelledData);
     	if (distanceRemainingData != null) returnList.add(distanceRemainingData);    	
