@@ -35,6 +35,8 @@ DROP TABLE MED_TERM_TREND_DATA CASCADE
 ;
 DROP TABLE MSRMNT CASCADE 
 ;
+DROP TABLE MSRMNT_TYPE
+;
 DROP TABLE MSRMNT_DATA CASCADE 
 ;
 DROP TABLE SHT_TERM_TREND_DATA CASCADE 
@@ -43,7 +45,7 @@ DROP TABLE AVG_POWER CASCADE
 ;
 CREATE TABLE DATA_PNT 
     ( 
-     DATA_PNT_ID BIGSERIAL NOT NULL , 
+     DATA_PNT_ID BIGINT NOT NULL , 
      DATA_PNT_CAN_ID INTEGER , 
      NAME VARCHAR (50) , 
      DESCR VARCHAR (256) , 
@@ -54,7 +56,7 @@ CREATE TABLE DATA_PNT
      LOW_WRNG_THRHLD DOUBLE PRECISION , 
      HIGH_WRNG_THRHLD DOUBLE PRECISION , 
      HIGH_ERR_THRHLD DOUBLE PRECISION , 
-     MSRMNT_ID_FK INTEGER  NOT NULL , 
+     MSRMNT_ID_FK BIGINT NOT NULL , 
      UNITS VARCHAR (30) 
     ) 
 ;
@@ -73,7 +75,7 @@ ALTER TABLE DATA_PNT
 
 CREATE TABLE DEV 
     ( 
-     DEV_ID BIGSERIAL NOT NULL , 
+     DEV_ID BIGINT NOT NULL , 
      DEV_NAME VARCHAR (255) , 
      DEV_ABBREV VARCHAR (10) 
     ) 
@@ -88,7 +90,7 @@ ALTER TABLE DEV
 
 CREATE TABLE DEV_TYPE 
     ( 
-     DEV_TYPE_ID BIGSERIAL NOT NULL , 
+     DEV_TYPE_ID BIGINT NOT NULL , 
      DEV_TYPE VARCHAR (20) 
     ) 
 ;
@@ -114,7 +116,7 @@ CREATE TABLE LNG_TERM_TREND_DATA
      DATA_LEN INTEGER , 
      FVAL DOUBLE PRECISION , 
      IVAL INTEGER , 
-     CVAL CHAR (16) , 
+     CVAL VARCHAR (16) , 
      STATE VARCHAR (10) CHECK ( STATE IN ('HighErr', 'HighWarn', 'LowErr', 'LowWarn', 'Normal')) 
     ) 
 ;
@@ -159,7 +161,7 @@ CREATE TABLE MED_TERM_TREND_DATA
      DATA_LEN INTEGER , 
      FVAL DOUBLE PRECISION , 
      IVAL INTEGER , 
-     CVAL CHAR (16) , 
+     CVAL VARCHAR (16) , 
      STATE VARCHAR (10) CHECK ( STATE IN ('HighErr', 'HighWarn', 'LowErr', 'LowWarn', 'Normal')) 
     ) 
 ;
@@ -183,11 +185,11 @@ ALTER TABLE MED_TERM_TREND_DATA
 
 CREATE TABLE MSRMNT 
     ( 
-     MSRMNT_ID BIGSERIAL NOT NULL , 
+     MSRMNT_ID BIGINT NOT NULL , 
      MSRMNT_NAME VARCHAR (255) , 
-     CAN_ID INTEGER , 
-     DEV_ID_FK INTEGER , 
-     DEV_TYPE_ID_FK INTEGER , 
+     CAN_ID INTEGER UNIQUE, 
+     DEV_ID_FK BIGINT NOT NULL , 
+     DEV_TYPE_ID_FK BIGINT NOT NULL , 
      REPRTNG_FRQ INTEGER , 
      MSRMNT_TYPE VARCHAR 
     ) 
@@ -205,17 +207,42 @@ ALTER TABLE MSRMNT
 
 
 
+
+CREATE TABLE MSRMNT_TYPE 
+    (      
+     MSRMNT_TYPE_ID BIGINT NOT NULL , 
+     MSRMNT_TYPE VARCHAR (255) , 
+     LOW_ERR_THRHLD DOUBLE PRECISION , 
+     LOW_WRNG_THRHLD DOUBLE PRECISION , 
+     HIGH_ERR_THRHLD DOUBLE PRECISION , 
+     HIGH_WRNG_THRHLD DOUBLE PRECISION , 
+     REPRTNG_FRQ INTEGER 
+    ) 
+;
+
+
+CREATE INDEX MSRMNT_TYPE__IDXv1 ON MSRMNT_TYPE
+    ( 
+     MSRMNT_TYPE_ID ASC 
+    ) 
+;
+
+ALTER TABLE MSRMNT_TYPE 
+    ADD CONSTRAINT MSRMNT_TYPE__PK PRIMARY KEY ( MSRMNT_TYPE_ID ) ;
+
+
+
 CREATE TABLE MSRMNT_DATA 
     ( 
-     MSRMNT_DATA_ID BIGSERIAL NOT NULL , 
-     DATA_PNT_CAN_ID INTEGER , 
+     MSRMNT_DATA_ID BIGINT NOT NULL , 
+     DATA_PNT_CAN_ID INTEGER NOT NULL , 
      TSTAMP TIMESTAMP , 
      EXTD BOOLEAN , 
      RTR BOOLEAN , 
      DATA_LEN INTEGER , 
      FVAL DOUBLE PRECISION , 
      IVAL INTEGER , 
-     CVAL CHAR (16) , 
+     CVAL VARCHAR (16) , 
      STATE VARCHAR (10) CHECK ( STATE IN ('HighErr', 'HighWarn', 'LowErr', 'LowWarn', 'Normal')) 
     ) 
 ;
@@ -240,14 +267,14 @@ ALTER TABLE MSRMNT_DATA
 CREATE TABLE SHT_TERM_TREND_DATA 
     ( 
      SHT_TERM_TREND_DATA_ID BIGSERIAL NOT NULL , 
-     DATA_PNT_CAN_ID INTEGER , 
+     DATA_PNT_CAN_ID INTEGER NOT NULL , 
      TSTAMP TIMESTAMP , 
      EXTD BOOLEAN , 
      RTR BOOLEAN , 
      DATA_LEN INTEGER , 
      FVAL DOUBLE PRECISION , 
      IVAL INTEGER , 
-     CVAL CHAR (16) , 
+     CVAL VARCHAR (16) , 
      STATE VARCHAR (10) CHECK ( STATE IN ('HighErr', 'HighWarn', 'LowErr', 'LowWarn', 'Normal')) 
     ) 
 ;
@@ -360,10 +387,8 @@ UNION
            FROM lng_term_trend_data;
 
 ALTER TABLE all_trend_data
-  OWNER TO postgres;
+  OWNER TO teamarrow;
 
-
-DROP VIEW all_trend_data_summary;
 
 CREATE OR REPLACE VIEW all_trend_data_summary AS 
  SELECT ct.tstamp,
@@ -391,9 +416,7 @@ CREATE OR REPLACE VIEW all_trend_data_summary AS
 		ORDER  BY 1,2 '::text, 'VALUES (''16436''), (''28484''), (''28480''),(''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072''), (''20500''), (''12884'')  '::text) ct(tstamp timestamp without time zone, "Velocity" double precision, "Battery_SOC" double precision, "Battery_Ah" double precision, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision, "Setpoint" double precision, "Irradiance" double precision);
 
 ALTER TABLE all_trend_data_summary
-  OWNER TO postgres;
-
-DROP VIEW lng_term_trend_data_summary;
+  OWNER TO teamarrow;
 
 CREATE OR REPLACE VIEW lng_term_trend_data_summary AS 
 SELECT ct.tstamp,
@@ -411,7 +434,7 @@ SELECT ct.tstamp,
     ct."Wind_Speed",
     ct."Wind_Direction",
     ct."Latitiude",
-    ct."Longitude"
+    ct."Longitude",
     ct."Setpoint",
     ct."Irradiance"
    FROM crosstab('
@@ -421,9 +444,7 @@ SELECT ct.tstamp,
 		ORDER  BY 1,2 '::text, 'VALUES (''16436''), (''28484''), (''28480''),(''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072''), (''20500''), (''12884'')  '::text) ct(tstamp timestamp without time zone, "Velocity" double precision, "Battery_SOC" double precision, "Battery_Ah" double precision, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision, "Setpoint" double precision, "Irradiance" double precision);
 
 ALTER TABLE lng_term_trend_data_summary
-  OWNER TO postgres;
-
-DROP VIEW med_term_trend_data_summary;
+  OWNER TO teamarrow;
 
 CREATE OR REPLACE VIEW med_term_trend_data_summary AS 
 SELECT ct.tstamp,
@@ -441,7 +462,7 @@ SELECT ct.tstamp,
     ct."Wind_Speed",
     ct."Wind_Direction",
     ct."Latitiude",
-    ct."Longitude"
+    ct."Longitude",
     ct."Setpoint",
     ct."Irradiance"
    FROM crosstab('
@@ -451,10 +472,7 @@ SELECT ct.tstamp,
 		ORDER  BY 1,2 '::text, 'VALUES (''16436''), (''28484''), (''28480''),(''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072''), (''20500''), (''12884'')  '::text) ct(tstamp timestamp without time zone, "Velocity" double precision, "Battery_SOC" double precision, "Battery_Ah" double precision, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision, "Setpoint" double precision, "Irradiance" double precision);
 
 ALTER TABLE med_term_trend_data_summary
-  OWNER TO postgres;
-
-DROP VIEW sht_term_trend_data_summary;
-
+  OWNER TO teamarrow;
 
 CREATE OR REPLACE VIEW sht_term_trend_data_summary AS 
 SELECT ct.tstamp,
@@ -472,7 +490,7 @@ SELECT ct.tstamp,
     ct."Wind_Speed",
     ct."Wind_Direction",
     ct."Latitiude",
-    ct."Longitude"
+    ct."Longitude",
     ct."Setpoint",
     ct."Irradiance"
    FROM crosstab('
@@ -482,7 +500,7 @@ SELECT ct.tstamp,
 		ORDER  BY 1,2 '::text, 'VALUES (''16436''), (''28484''), (''28480''),(''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072''), (''20500''), (''12884'')  '::text) ct(tstamp timestamp without time zone, "Velocity" double precision, "Battery_SOC" double precision, "Battery_Ah" double precision, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision, "Setpoint" double precision, "Irradiance" double precision);
 
 ALTER TABLE sht_term_trend_data_summary
-  OWNER TO postgres;
+  OWNER TO teamarrow;
 
 
 CREATE OR REPLACE VIEW sht_and_med_term_trend_data AS 
@@ -499,7 +517,7 @@ CREATE OR REPLACE VIEW sht_and_med_term_trend_data AS
    FROM sht_term_trend_data;
 
 ALTER TABLE sht_and_med_term_trend_data
-  OWNER TO postgres;
+  OWNER TO teamarrow;
 
 
 CREATE OR REPLACE VIEW sht_and_med_term_trend_data_summary AS 
@@ -518,7 +536,7 @@ CREATE OR REPLACE VIEW sht_and_med_term_trend_data_summary AS
     ct."Wind_Speed",
     ct."Wind_Direction",
     ct."Latitiude",
-    ct."Longitude"
+    ct."Longitude",
     ct."Setpoint",
     ct."Irradiance"
    FROM crosstab('
@@ -528,11 +546,8 @@ CREATE OR REPLACE VIEW sht_and_med_term_trend_data_summary AS
 		ORDER  BY 1,2 '::text, 'VALUES (''16436''), (''28484''), (''28480''),(''16420''::int), (''16416''), (''28692''), (''28688''), (''28756''), (''28752''), (''28820''), (''28816''), (''12852''), (''12848''), (''13076''), (''13072''), (''20500''), (''12884'')  '::text) ct(tstamp timestamp without time zone, "Velocity" double precision, "Battery_SOC" double precision, "Battery_Ah" double precision, "Bus_mA" double precision, "Bus_V" double precision, "Array1_mA" double precision, "Array1_V" double precision, "Array2_mA" double precision, "Array2_V" double precision, "Array3_mA" double precision, "Array3_V" double precision, "Wind_Speed" double precision, "Wind_Direction" double precision, "Latitiude" double precision, "Longitude" double precision, "Setpoint" double precision, "Irradiance" double precision);
 
 ALTER TABLE sht_and_med_term_trend_data_summary
-  OWNER TO postgres;
+  OWNER TO teamarrow;
 
--- View: all_trend_data_with_deviceinfo
-
-DROP VIEW all_trend_data_with_deviceinfo;
 
 CREATE OR REPLACE VIEW all_trend_data_with_deviceinfo AS 
  SELECT trend_data.tstamp + '10:00:00'::interval AS "BNE_time",
@@ -550,7 +565,24 @@ CREATE OR REPLACE VIEW all_trend_data_with_deviceinfo AS
   ORDER BY trend_data.tstamp, trend_data.data_pnt_can_id;
 
 ALTER TABLE all_trend_data_with_deviceinfo
-  OWNER TO postgres;
+  OWNER TO teamarrow;
+
+
+CREATE OR REPLACE VIEW splunk_lookup_data AS
+ SELECT data_pnt.data_pnt_can_id,
+    data_pnt.name AS data_pnt_name,
+    dev.dev_name,
+    msrmnt.msrmnt_name
+   FROM data_pnt
+     JOIN msrmnt ON data_pnt.msrmnt_id_fk = msrmnt.msrmnt_id
+     JOIN dev ON msrmnt.dev_id_fk = dev.dev_id;
+
+ALTER TABLE splunk_lookup_data
+  OWNER TO teamarrow;
+
+
+
+CREATE SEQUENCE HIBERNATE_SEQUENCE START WITH 1 INCREMENT BY 1; 
 
 
 -- Oracle SQL Developer Data Modeler Summary Report: 

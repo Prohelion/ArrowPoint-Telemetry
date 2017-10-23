@@ -6,13 +6,13 @@
 	
 	<!-- These beans are used to set up the core engine of alerts system -->
 	<bean id="AlertManager" class="au.com.teamarrow.alerts.AlertManager">
-		<property name="alertsFile" value="C:/TeamArrow/alerts/Alert_Values.csv"/>
-		<property name="flagsFile" value="C:/TeamArrow/alerts/Flag_Values.csv"/>
+		<property name="alertsFile" value="D:/TeamArrow/alerts/Alert_Values.csv"/>
+		<property name="flagsFile" value="D:/TeamArrow/alerts/Flag_Values.csv"/>
 		<property name="normalLevelScript" value="StatusNormal.bat"/>
 		<property name="warningLevelScript" value="StatusWarning.bat"/>
 		<property name="alertLevelScript" value="StatusAlert.bat"/>
 		<property name="shutdownLevelScript" value="StatusShutdown.bat"/>
-		<property name="scriptDir" value="C:/TeamArrow/alerts/"/>
+		<property name="scriptDir" value="D:/TeamArrow/alerts/"/>
 		<property name="supressionDelay" value="3"/>
 	</bean>
              

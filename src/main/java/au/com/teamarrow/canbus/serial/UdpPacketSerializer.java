@@ -22,6 +22,9 @@ public class UdpPacketSerializer implements Serializer<UdpPacket> {
 	public String searchForMac() throws SocketException {
 	    String firstInterface = null;        
 	    Map<String, String> addressByNetwork = new HashMap<>();
+	    
+	    System.setProperty("java.net.preferIPv4Stack" , "true");
+	    
 	    Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
 
 	    while(networkInterfaces.hasMoreElements()){
@@ -38,7 +41,8 @@ public class UdpPacketSerializer implements Serializer<UdpPacket> {
 	                addressByNetwork.put(network.getName(), sb.toString());	                
 	            }
 
-	            if(sb.toString().isEmpty()==false && firstInterface == null){
+	            // Getting some very long Mac addresses, I'm excluding anything longer than 17 characters as it blows up the logic below
+	            if(sb.toString().isEmpty()==false && firstInterface == null && sb.length() == 17){
 	                firstInterface = network.getName();
 	            }
 	        }

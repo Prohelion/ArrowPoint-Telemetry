@@ -24,9 +24,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "msrmnt", schema = "public")
 public class Measurement implements Serializable {
 
-	private static final long serialVersionUID = -3706096966965380756L;
+   private static final long serialVersionUID = -3478063846718598301L;
 	
-	private long id;
+	private Long id;
     private DeviceType deviceType;
     private Device device;
     private String name;
@@ -38,11 +38,11 @@ public class Measurement implements Serializable {
     public Measurement() {
     }
 
-    public Measurement(long id) {
+    public Measurement(Long id) {
         this.id = id;
     }
 
-    public Measurement(long id, DeviceType deviceType, Device device, String name, Integer canId,
+    public Measurement(Long id, DeviceType deviceType, Device device, String name, Integer canId,
         Integer reportingFrequency, String type, Set<DataPoint> dataPoints) {
         this.id = id;
         this.deviceType = deviceType;
@@ -56,11 +56,11 @@ public class Measurement implements Serializable {
 
     @Id
     @Column(name = "msrmnt_id", unique = true, nullable = false)
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

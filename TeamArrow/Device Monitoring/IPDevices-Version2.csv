@@ -1,0 +1,14 @@
+device,ip
+Telemetry System,192.168.1.60
+Arrow1 WCAN,192.168.1.10
+Access Point (Solar Car),192.168.1.22
+Network Link (Rear Escort),192.168.1.23
+Access Point (Rear Escort),192.168.1.24
+Phone (GPS),192.168.1.43
+Serial to Ethernet (Weather),192.168.1.42
+Telemetry,192.168.1.60
+Tablet 1,192.168.1.101
+Tablet 2,192.168.1.102
+Tablet 3,192.168.1.103
+Tablet 4,192.168.1.104
+Switch DHCP (Rear Escort),192.168.1.253

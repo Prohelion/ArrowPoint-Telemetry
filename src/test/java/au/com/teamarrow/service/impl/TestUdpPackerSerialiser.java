@@ -53,6 +53,10 @@ public class TestUdpPackerSerialiser {
 	    	
 	    	udpPacket.setCanPackets(canPacketList);
 	    	
+	    	// If this is failing on your machine run
+	    	// netsh interface teredo set state disabled
+	    	// as administrator
+	    	
 	        mcInput.send(MessageBuilder.withPayload(udpPacket).build()); 
 	    }
 	    

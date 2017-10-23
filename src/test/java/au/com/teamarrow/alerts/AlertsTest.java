@@ -2,14 +2,22 @@ package au.com.teamarrow.alerts;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
+import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.integration.splunk.event.SplunkEvent;
+import org.springframework.integration.support.MessageBuilder;
+import org.springframework.messaging.MessageChannel;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+import au.com.teamarrow.model.MeasurementData;
+
+//@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/spring-test.xml"})
 public class AlertsTest {
 		
@@ -17,13 +25,13 @@ public class AlertsTest {
     @Qualifier("AlertManager")
     AlertManager alertManager;
 		
-	@Test
+	//@Test
 	public void testLoadAlertFileCheckNormal() {		
 		assertTrue(alertManager.getCurrentAlertLevel() == AlertData.NORMAL);		
 	}	
 	
 
-	@Test
+//	@Test
 	public void testLoadAlertFileCheckAlertLow() {
 		
 		alertManager.resetAlerts();
@@ -46,7 +54,7 @@ public class AlertsTest {
 	}	
 	
 
-	@Test
+	//@Test
 	public void testLoadAlertFileCheckAlertHigh() {
 		
 		alertManager.resetAlerts();
@@ -68,7 +76,7 @@ public class AlertsTest {
 	}	
 	
 
-	@Test
+	//@Test
 	public void testAlertsReset() {
 		
 		try {		
@@ -106,7 +114,7 @@ public class AlertsTest {
 	}
 
 	
-	@Test
+	//@Test
 	public void testFlags() {		
 					
 		try {
@@ -166,16 +174,16 @@ public class AlertsTest {
 		
 	}
 
-	@Test
+	//@Test
 	public void testLights() {
-		String results = alertManager.executeCommand("C:/TeamArrow/alerts/StatusNormal.bat");
+		String results = alertManager.executeCommand("D:/TeamArrow/alerts/StatusNormal.bat");
 		
 		results = results + "";
 		
 	}
 	
 	
-	@Test
+	//@Test
 	public void testAlertScripts() {
 					
 		try {

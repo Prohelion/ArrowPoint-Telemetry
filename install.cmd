@@ -1,16 +1,13 @@
 @echo off
 
 ECHO.
-ECHO NOTE THIS BUILD REQUIRES JAVA 1.7 TO WORK CORRECTLY.  JAVA 1.8 WILL NOT WORK.
+ECHO NOTE THIS BUILD REQUIRES JAVA 1.8 TO WORK CORRECTLY.  JAVA 1.7 WILL NOT WORK.
 ECHO THIS BUILD IS ALSO DEPENDANT ON HAVE A SPLUNK INSTANCE INSTALLED LOCALLY
 ECHO IF YOU WANT TO RUN IT AS A LOCAL SERVER
-ECHO _____________________________________________________________________________
-ECHO If you start seeing cannot connect errors and you have a SPLUNK instance
-ECHO installed locally check your JDK has not disabled SSLv3... Details are here
-ECHO http://answers.splunk.com/answers/209379/no-appropriate-protocol-protocol-is-disabled-or-ci.html
+ECHO
 ECHO.
 
 call mvn clean install
 
-rmdir /S /Q "D:\JavaTools\Tomcat 7.0\webapps\telemetry"
-copy /Y D:\Work\TeamArrow\TeamArrowWeb\target\telemetry-0.2-SNAPSHOT.war "D:\JavaTools\Tomcat 7.0\webapps\telemetry.war"
+rmdir /S /Q "D:\JavaTools\apache-tomcat-9.0.0.M21\webapps\telemetry"
+copy /Y D:\Work\TeamArrow\TeamArrowWeb\target\telemetry-0.2-SNAPSHOT.war "D:\JavaTools\apache-tomcat-9.0.0.M21\webapps\telemetry.war"

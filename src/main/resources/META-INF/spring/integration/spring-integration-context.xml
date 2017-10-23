@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
 	xmlns:int-file="http://www.springframework.org/schema/integration/file"
 	xmlns:int-ip="http://www.springframework.org/schema/integration/ip"
 	xmlns:int-jms="http://www.springframework.org/schema/integration/jms"
 	xmlns:int-splunk="http://www.springframework.org/schema/integration/splunk"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:oxm="http://www.springframework.org/schema/oxm"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
@@ -13,209 +15,263 @@
 		http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
 		http://www.springframework.org/schema/integration/ip http://www.springframework.org/schema/integration/ip/spring-integration-ip.xsd
 		http://www.springframework.org/schema/integration/jms http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm.xsd">
 
 
+	
 	<int:logging-channel-adapter id="payloadLogger"
-		level="INFO" expression="'Payload:' + payload + ', Headers:' + headers" />
+		level="INFO"
+		expression="'Payload:' + payload + ', Headers:' + headers" />
 
-	<bean id="aggregatorBean" class="au.com.teamarrow.service.impl.MeasurementDataAggregator" />
-	<bean id="enricherBean" class="au.com.teamarrow.service.impl.MeasurementDataEnrichment" />
-	<bean id="javaSerializer" class="org.springframework.integration.ip.tcp.serializer.ByteArrayCrLfSerializer" />
-	<bean id="javaDeserializer" class="org.springframework.integration.ip.tcp.serializer.ByteArrayCrLfSerializer" />
-	<bean id="mapGenerator" class="au.com.teamarrow.maps.impl.MapGenerator">
-		<property name="measurementDataEnrichment" ref="enricherBean" />
-	</bean>
-
-	<int:channel id="csvOut" />
-	<int:channel id="csvLineOut" />
-	<int:channel id="canbusBridgeChannel" />
-	<int:channel id="filteredMeasurementDataChannel" datatype="au.com.teamarrow.model.MeasurementData" />
-	<int:channel id="nullChannel" datatype="org.springframework.integration.channel.NullChannel" />
-	<int:channel id="measurementDataChannel" datatype="au.com.teamarrow.model.MeasurementData" />
-	<int:channel id="measurementDataChannelEnriched" datatype="au.com.teamarrow.model.MeasurementData" />
-	<int:channel id="measurementDataChannelWithHeader" datatype="au.com.teamarrow.model.MeasurementData" />
-	<int:channel id="canPacketChannel" datatype="au.com.teamarrow.canbus.model.CanPacket" />
-	<int:channel id="input" />
-	<int:channel id="replies" />
-	<int:channel id="udpPacketChannel" datatype="au.com.teamarrow.canbus.model.UdpPacket"/>
-	<int:channel id="udpPacketOutputChannel" datatype="au.com.teamarrow.canbus.model.UdpPacket"/>
-	<int:channel id="actualUdpOutput" />	
-
-	<int-file:inbound-channel-adapter id="csvIn"
-		directory="file:///tmp" filename-pattern="*.csv" prevent-duplicates="true">
+	
+	<int:channel id="csvOut"/>	
+	<int:channel id="csvLineOut"/>	
+	
+	<int-file:inbound-channel-adapter id="csvIn" directory="file:///tmp" filename-pattern="*.csv" prevent-duplicates="true">
 		<int:poller id="poller" fixed-rate="5000" />
 	</int-file:inbound-channel-adapter>
 
-	
-	<int:splitter id="csvSplitter" input-channel="csvOut"
-		output-channel="csvLineOut" ref="csvLineSplitter"></int:splitter>
-
-	<int:service-activator id="canPacketBuilder"
-		input-channel="csvLineOut" output-channel="canPacketChannel" ref="canPacketBuilderService" />
-
-	<int-ip:udp-inbound-channel-adapter
-		id="bridgeReceiver" channel="canbusBridgeChannel" port="4876"
-		receive-buffer-size="1500" multicast="true" check-length="false"
-		lookup-host="false" multicast-address="239.255.60.60" />
-
-
-
-
-	<int-file:file-to-string-transformer input-channel="csvIn" output-channel="csvOut" delete-files="false"	charset="UTF-8" />
-	<int:payload-deserializing-transformer
-		id="udpPacketDeserializingTransformer" input-channel="canbusBridgeChannel"
-		deserializer="udpPacketDeserializer" output-channel="udpPacketChannel">
-	</int:payload-deserializing-transformer>
-
-
+	<int-file:file-to-string-transformer input-channel="csvIn" output-channel="csvOut" delete-files="false" charset="UTF-8" />
 
 	
-
-
-
-	<int:splitter id="canPacketSplitRouter" input-channel="udpPacketChannel"
-		output-channel="canPacketChannel" ref="canPacketSplitter">
+	 
+	 <int:splitter id="csvSplitter" input-channel="csvOut" output-channel="csvLineOut" ref="csvLineSplitter">
 	</int:splitter>
+ 	
+	<int:service-activator id="canPacketBuilder" 
+		input-channel="csvLineOut"
+		output-channel="canPacketChannel" 
+		ref="canPacketBuilderService" /> 	
+ 	
+ 	<int-ip:udp-inbound-channel-adapter id="bridgeReceiver"
+		channel="canbusBridgeChannel" port="4876" receive-buffer-size="1500"
+		multicast="true" check-length="false" lookup-host="false"
+		multicast-address="239.255.60.60" />
 
+	
+	
+	<int:channel id="canbusBridgeChannel"/>		
+	
+	
+	<int:payload-deserializing-transformer id="udpPacketDeserializingTransformer"
+		input-channel="canbusBridgeChannel"
+		deserializer="udpPacketDeserializer"
+		output-channel="udpPacketChannel">
+	</int:payload-deserializing-transformer>
+	
+	
+	
+	<int:channel id="udpPacketChannel"
+		datatype="au.com.teamarrow.canbus.model.UdpPacket">
+	</int:channel>
+	
+	
+	
+	<int:splitter id="canPacketSplitRouter"
+		input-channel="udpPacketChannel" 
+		output-channel="canPacketChannel" 
+		ref="canPacketSplitter">
+	</int:splitter>
+	
+	
+	
+	<int:channel id="canPacketChannel"
+		datatype="au.com.teamarrow.canbus.model.CanPacket">
+	</int:channel>
+	
+	
+	
 	<int:splitter id="measurementDataSplitRouter"
-		input-channel="canPacketChannel" output-channel="measurementDataChannel"
+		input-channel="canPacketChannel" 
+		output-channel="measurementDataChannel" 
 		ref="measurementDataSplitter">
 	</int:splitter>
-
-
+		
+	
 	<int:publish-subscribe-channel id="measurementAggregatedDataChannel"
 		datatype="au.com.teamarrow.model.MeasurementData" ignore-failures="true">
 	</int:publish-subscribe-channel>
 
-
+		
 	<int:recipient-list-router id="measurementDataRouter"
 		input-channel="measurementAggregatedDataChannel">
-		<int:recipient channel="filteredMeasurementDataChannel"
-			selector-expression="payload.dataPointCanId le 1536 or payload.dataPointCanId ge 1551" /> <!-- no 0x40b with 1027 -->
-		<int:recipient channel="nullChannel"
-			selector-expression="payload.dataPointCanId ge 1537 and payload.dataPointCanId le 1550" />
+		<int:recipient channel="filteredMeasurementDataChannel" selector-expression="payload.dataPointCanId le 1536 or payload.dataPointCanId ge 1551" /> <!-- no 0x40b with 1027 -->
+		<int:recipient channel="nullChannel" selector-expression="payload.dataPointCanId ge 1537 and payload.dataPointCanId le 1550" />
 	</int:recipient-list-router>
 
-
-
-	<int:service-activator id="measurementDataServiceActivator"
-		input-channel="filteredMeasurementDataChannel" output-channel="nullChannel"
+	
+	<int:channel id="filteredMeasurementDataChannel"
+		datatype="au.com.teamarrow.model.MeasurementData">
+	</int:channel>
+	
+	
+	<int:service-activator id="measurementDataServiceActivator" 
+		input-channel="filteredMeasurementDataChannel"
+		output-channel="nullChannel" 
 		ref="measurementDataService" />
 
+	<bean id="aggregatorBean" class="au.com.teamarrow.service.impl.MeasurementDataAggregator"/>
+	<bean id="enricherBean" class="au.com.teamarrow.service.impl.MeasurementDataEnrichment"/>	
 
+	<bean id="mapGenerator" class="au.com.teamarrow.maps.impl.MapGenerator">
+	   		<property name="measurementDataEnrichment" ref="enricherBean"/>
+	</bean>	   		
+		
+	<int:channel id="measurementDataChannel"
+		datatype="au.com.teamarrow.model.MeasurementData">
+	</int:channel>
 
-
+	<int:channel id="measurementDataChannelEnriched"
+		datatype="au.com.teamarrow.model.MeasurementData">
+	</int:channel>
+	
+	<int:channel id="measurementDataChannelWithHeader"
+				datatype="au.com.teamarrow.model.MeasurementData">
+	</int:channel>
+	
+	
 	<int:recipient-list-router id="measurementAggregatorRouter"
 		input-channel="measurementDataChannelWithHeader">
-		<int:recipient channel="dataForAgregation"
-			selector-expression="payload.dataPointCanId ge 1024" /> <!-- Greater than 400 then aggregate -->
-		<int:recipient channel="measurementAggregatedDataChannel"
-			selector-expression="payload.dataPointCanId ge 768 and payload.dataPointCanId le 832" />  <!-- 300 to 340 range -->
+		<int:recipient channel="dataForAgregation" selector-expression="payload.dataPointCanId ge 1024" /> <!-- Greater than 400 then aggregate-->
+		<int:recipient channel="measurementAggregatedDataChannel" selector-expression="payload.dataPointCanId ge 768 and payload.dataPointCanId le 832" />  <!-- 300 to 340 range -->
 	</int:recipient-list-router>
-
-
+	
+	
 	<int:header-enricher id="headerEnrichment"
-		output-channel="measurementDataChannelWithHeader" input-channel="measurementDataChannelEnriched">
-		<int:correlation-id expression="payload.dataPointCanId"
-			overwrite="true" />
-	</int:header-enricher>
+		output-channel="measurementDataChannelWithHeader"
+		input-channel="measurementDataChannelEnriched">
+        <int:correlation-id expression="payload.dataPointCanId" overwrite="true" />
+    </int:header-enricher>
 
 	<bean id="releaseStrategy" class="org.springframework.integration.aggregator.TimeoutCountSequenceSizeReleaseStrategy">
-		<!-- Release when: 10 Messages ... or ... -->
-		<constructor-arg index="0" value="10" />
-		<!-- ... 1 second since first request -->
-		<constructor-arg index="1" value="1000" />
-	</bean>
-
+    	<!-- Release when: 10 Messages ... or ... -->
+    	<constructor-arg index="0" value="10" />
+    	<!-- ... 1 second since first request -->
+    	<constructor-arg index="1" value="1000" />
+	</bean>	
+			
 	<int:aggregator id="messageDataAggregator" ref="aggregatorBean"
 		method="collect" output-channel="measurementAggregatedDataChannel"
-		release-strategy="releaseStrategy" expire-groups-upon-completion="true"
+		release-strategy="releaseStrategy"
+		expire-groups-upon-completion="true"
 		send-partial-result-on-expiry="true" send-timeout="86420000"
-		discard-channel="nullChannel" input-channel="dataForAgregation">
-	</int:aggregator>
+		discard-channel="nullChannel" input-channel="dataForAgregation">        
+    </int:aggregator>
 
 
 	<!-- Poller for Weather data -->
-	<int-ip:tcp-connection-factory id="client" type="client" host="192.168.1.42" port="100" single-use="true"
-		so-timeout="1000" deserializer="javaDeserializer" serializer="javaSerializer" />
+	  
+	<bean id="javaSerializer"  class="org.springframework.integration.ip.tcp.serializer.ByteArrayCrLfSerializer"/>
+	<bean id="javaDeserializer"  class="org.springframework.integration.ip.tcp.serializer.ByteArrayCrLfSerializer"/>
 
-	<int-ip:tcp-outbound-channel-adapter id="outboundClient" channel="input" connection-factory="client" />
-	<int-ip:tcp-inbound-channel-adapter	id="inboundClient" channel="replies" connection-factory="client" />
+	<int-ip:tcp-connection-factory id="client"
+	    type="client"
+	    host="192.168.1.42"
+	    port="100"
+	    single-use="true" 	    
+	    so-timeout="1000"
+	    deserializer="javaDeserializer"
+	    serializer="javaSerializer"/>
 
-	<int:inbound-channel-adapter id="triggerWeatherE0" expression="'E0'" channel="input">
-		<int:poller fixed-delay="5000" />
+	<int:channel id="input" />
+	<int:channel id="replies" />
+
+	<int-ip:tcp-outbound-channel-adapter id="outboundClient" channel="input" connection-factory="client"/>
+
+	<int-ip:tcp-inbound-channel-adapter id="inboundClient" channel="replies" connection-factory="client"/>
+
+	<int:inbound-channel-adapter 
+		id="triggerWeatherE0"
+		expression="'E0'"
+		channel="input"	>
+    	<int:poller fixed-delay="5000"/>        	
 	</int:inbound-channel-adapter>
 
-	<int:inbound-channel-adapter id="triggerWeatherE4" expression="'E4'" channel="input">
-		<int:poller fixed-delay="5000" />
+	<int:inbound-channel-adapter 
+		id="triggerWeatherE4"
+		expression="'E4'"
+		channel="input"	>
+    	<int:poller fixed-delay="5000"/>        	
 	</int:inbound-channel-adapter>
-
+	
 	<int:splitter id="weatherSplitter" input-channel="replies" output-channel="udpPacketOutputChannel">
-		<bean class="au.com.teamarrow.environment.WeatherSplitter" />
+  			<bean class="au.com.teamarrow.environment.WeatherSplitter"/>
 	</int:splitter>
 
+	<int:channel id="udpPacketOutputChannel"
+		datatype="au.com.teamarrow.canbus.model.UdpPacket">
+	</int:channel>	
 	
-
-	<int:payload-serializing-transformer
-		id="udpPacketSerializingTransformer" input-channel="udpPacketOutputChannel"
-		serializer="udpPacketSerializer" output-channel="actualUdpOutput">
+	<int:payload-serializing-transformer id="udpPacketSerializingTransformer"
+		input-channel="udpPacketOutputChannel"
+		serializer="udpPacketSerializer"
+		output-channel="actualUdpOutput">
 	</int:payload-serializing-transformer>
+	
+	<int:channel id="actualUdpOutput" />
+	
+	<int-ip:udp-outbound-channel-adapter id="canbusSender"
+	    host="239.255.60.60"
+    	port="4876"
+    	multicast="true"
+    	check-length="false"
+    	channel="actualUdpOutput" />
 
-	<int-ip:udp-outbound-channel-adapter
-		id="canbusSender" host="239.255.60.60" port="4876" multicast="true"
-		check-length="false" channel="actualUdpOutput" />
 
+	<!--  GPS inbound  -->
 
-	<!-- GPS inbound -->
-
-	<bean id="lfSeserializer"
-		class="org.springframework.integration.ip.tcp.serializer.ByteArrayLfSerializer" />
-
-
+ 	<bean id="lfSeserializer" class="org.springframework.integration.ip.tcp.serializer.ByteArrayLfSerializer"/>
+ 	
+  	
 	<int-ip:tcp-connection-factory id="GpsServer"
-		type="server" host="192.168.1.60" port="11123" deserializer="lfSeserializer"
-		serializer="lfSeserializer" />
+		type="server"
+		host="192.168.1.60"		
+		port="11123"
+		deserializer="lfSeserializer"
+  		serializer="lfSeserializer"/>
 
 	<int-ip:tcp-inbound-gateway id="gatewayGps"
-		connection-factory="GpsServer" request-channel="serverBytes2GpsSplitterChannel"
-		error-channel="errorChannel" />
+		connection-factory="GpsServer"
+		request-channel="serverBytes2GpsSplitterChannel"
+		error-channel="errorChannel"/>
 
 	<int:channel id="serverBytes2GpsSplitterChannel" />
-
-	<int:splitter id="gpsSplitter" input-channel="serverBytes2GpsSplitterChannel"
-		output-channel="udpPacketOutputChannel">
-		<bean class="au.com.teamarrow.environment.GpsSplitter" />
-	</int:splitter>
+		
+	<int:splitter id="gpsSplitter" input-channel="serverBytes2GpsSplitterChannel" output-channel="udpPacketOutputChannel">
+  			<bean class="au.com.teamarrow.environment.GpsSplitter"/>
+	</int:splitter>				
 
 	<int:channel id="errorChannel" />
-	<int:transformer id="errorHandler" input-channel="errorChannel"
-		expression="payload.failedMessage.payload + ':' + payload.cause.message" />
-
-
-	<int:transformer id="measurementDataToSplunkTransformer"
-		input-channel="measurementAggregatedDataChannel" output-channel="splunkData"
-		ref="measurementDataToSplunkTransformerBean" />
-
-	<bean id="measurementDataToSplunkTransformerBean"
-		class="au.com.teamarrow.splunk.MeasurementDataToSplunkTransformer" />
-
-	<int:channel id="splunkData" />
-
+	<int:transformer id="errorHandler"
+		input-channel="errorChannel"
+		expression="payload.failedMessage.payload + ':' + payload.cause.message"/>
+  
+    	
+	<int:transformer id="measurementDataToSplunkTransformer" input-channel="measurementAggregatedDataChannel"
+                output-channel="splunkData" ref="measurementDataToSplunkTransformerBean"/>
+		
+	<bean id="measurementDataToSplunkTransformerBean" class="au.com.teamarrow.splunk.MeasurementDataToSplunkTransformer"/>
+	
+	<int:channel id="splunkData"/>
+	
 	<int:channel id="dataForAgregation"></int:channel>
-
+		
 	<!-- Splunk Configuration -->
-	<int-splunk:server id="splunkServer" host="localhost"
-		port="8089" username="admin" password="***REMOVED***" scheme="https" />
 
-	<int-splunk:outbound-channel-adapter
-		id="splunkOutboundChannelAdapter" channel="splunkData"
-		splunk-server-ref="splunkServer">
-		<int-splunk:tcp-writer port="9999" />
-	</int-splunk:outbound-channel-adapter>
-
-
-	<int:splitter id="messageEnricher" ref="enricherBean"
-		input-channel="measurementDataChannel" output-channel="measurementDataChannelEnriched">
-	</int:splitter>
+     <int-splunk:server id="splunkServer" host="localhost" port="8089" username="admin" password="***REMOVED***" owner="admin" scheme="https"/>
+	
+	 <int-splunk:outbound-channel-adapter
+        id="splunkOutboundChannelAdapter"
+        channel="splunkData"  
+        splunk-server-ref="splunkServer"
+      >
+        <int-splunk:tcp-writer port="9999"/>
+    </int-splunk:outbound-channel-adapter>
+	
+	
+	 <int:splitter id="messageEnricher" ref="enricherBean"
+	 	input-channel="measurementDataChannel"
+	 	output-channel="measurementDataChannelEnriched">
+	 </int:splitter>
 </beans>
