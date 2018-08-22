@@ -160,11 +160,6 @@
 	</reporting>
 	<dependencies>
 
-		<!-- Spring Boot -->
-		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter</artifactId> 
-			</dependency> <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-tomcat</artifactId> 
-			</dependency> <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-actuator</artifactId> 
-			</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -186,11 +181,10 @@
 			<scope>test</scope>
 		</dependency>
 
-
 		<!-- Spring Integration -->
 		<dependency>
-			<groupId>org.springframework.integration</groupId>
-			<artifactId>spring-integration-core</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-integration</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.integration</groupId>
@@ -210,7 +204,7 @@
 			<groupId>org.springframework.integration</groupId>
 			<artifactId>spring-integration-splunk</artifactId>
 			<version>1.1.0.RELEASE</version>
-		</dependency>
+		</dependency> 
 		<dependency>
 			<groupId>com.splunk</groupId>
 			<artifactId>splunk</artifactId>
@@ -241,19 +235,17 @@
 			<artifactId>commons-codec</artifactId>
 		</dependency>
 
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-		</dependency>
-
+		<!-- KML Support -->
 		<dependency>
 			<groupId>de.micromata.jak</groupId>
 			<artifactId>JavaAPIforKml</artifactId>
 			<version>2.2.0</version>
 		</dependency>
 
-
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib-nodep</artifactId>
@@ -268,6 +260,9 @@
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 		</dependency>
+		
+		
+		<!-- CSV Files -->
 		<dependency>
 			<groupId>au.com.bytecode</groupId>
 			<artifactId>opencsv</artifactId>
@@ -289,16 +284,6 @@
 		</dependency>
 
 		<!-- Database and connectivity -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>spring-tx</artifactId>
-					<groupId>org.springframework</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-jdbc</artifactId>
