@@ -52,7 +52,7 @@ public class MeasurementDataServiceImpl implements MeasurementDataService {
     @Override
     public List<MeasurementData> getMeasurementsForDevice(Integer deviceId) {
         
-        Page<MeasurementData> data = measurementDataRepository.findByDataPointCanId(deviceId, new PageRequest(0, 500, sort));
+        Page<MeasurementData> data = measurementDataRepository.findByDataPointCanId(deviceId, PageRequest.of(0, 500, sort));
         
         return data.getContent();
     }
@@ -60,7 +60,7 @@ public class MeasurementDataServiceImpl implements MeasurementDataService {
     @Override
     public List<ShortTermTrendData> getShortTermTrendDataForDevice(Integer deviceId) {
         
-        Page<ShortTermTrendData> data = shortTermTrendDataRepository.findByDataPointCanId(deviceId, new PageRequest(0, 500, sort));
+        Page<ShortTermTrendData> data = shortTermTrendDataRepository.findByDataPointCanId(deviceId, PageRequest.of(0, 500, sort));
         
         return data.getContent();
     }
@@ -68,18 +68,13 @@ public class MeasurementDataServiceImpl implements MeasurementDataService {
     @Override
     public List<MediumTermTrendData> getMediumTermTrendDataForDevice(Integer deviceId) {
         
-        Page<MediumTermTrendData> data = mediumTermTrendDataRepository.findByDataPointCanId(deviceId, new PageRequest(0, 50000, sort));
+        Page<MediumTermTrendData> data = mediumTermTrendDataRepository.findByDataPointCanId(deviceId, PageRequest.of(0, 50000, sort));
         
         return data.getContent();
     }
     
     @Override
-    public List<LongTermTrendData> getLongTermTrendDataForDevice(Integer deviceId) {
-        
-        /*Page<LongTermTrendData> data = longTermTrendDataRepository.findByDataPointCanId(deviceId, new PageRequest(0, 500, sort));
-        
-        return data.getContent();*/
-        
+    public List<LongTermTrendData> getLongTermTrendDataForDevice(Integer deviceId) {        
         return longTermTrendDataRepository.getTrendDataForDay(deviceId, LocalDate.now().toDateTimeAtStartOfDay());
     }
     

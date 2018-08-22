@@ -2,22 +2,13 @@ package au.com.teamarrow.alerts;
 
 import static org.junit.Assert.*;
 
-import java.util.Date;
-
-import org.joda.time.DateTime;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.integration.splunk.event.SplunkEvent;
-import org.springframework.integration.support.MessageBuilder;
-import org.springframework.messaging.MessageChannel;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import au.com.teamarrow.model.MeasurementData;
-
-//@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/spring-test.xml"})
 public class AlertsTest {
 		

@@ -33,7 +33,7 @@ $(function() {
     
     function getData() {
     	var points = [];
-    	var het = [], hwt = [], lwt = [], let = [];
+    	var het_array = [], hwt_array = [], lwt_array = [], let_array = [];
     	
     	$.ajax({
 			// have to use synchronous here, else the function 
@@ -53,20 +53,20 @@ $(function() {
 						points.push([result[i][0], result[i][3]]);
 					}
 				
-		            het.push([result[i].ts, highErrorThreshold]);
-		            hwt.push([result[i].ts, highWarningThreshold]);
-		            lwt.push([result[i].ts, lowWarningThreshold]);
-		            let.push([result[i].ts, lowErrorThreshold]);
+		            het_array.push([result[i].ts, highErrorThreshold]);
+		            hwt_array.push([result[i].ts, highWarningThreshold]);
+		            lwt_array.push([result[i].ts, lowWarningThreshold]);
+		            let_array.push([result[i].ts, lowErrorThreshold]);
 				}
 			}
 		});
     	
     	return [
 	        {data: points, label: 'Data'},
-	        {data: het, label: 'High Error Theshold'},
-	        {data: hwt, label: 'High Warning Theshold'},
-	        {data: lwt, label: 'Low Warning Theshold'},
-	        {data: let, label: 'Low Error Theshold'},];
+	        {data: het_array, label: 'High Error Theshold'},
+	        {data: hwt_array, label: 'High Warning Theshold'},
+	        {data: lwt_array, label: 'Low Warning Theshold'},
+	        {data: let_array, label: 'Low Error Theshold'},];
     }
     
     var plot = $.plot($("#chartdiv"), getData(), defaultChartOptions);

@@ -17,7 +17,7 @@ public class DataPointServiceImpl implements DataPointService {
     @Override
     @Transactional(readOnly = true)
     public DataPoint get(Long id) {
-        return dataPointRepository.findOne(id);
+        return dataPointRepository.findById(id).orElse(null);
     }
     
     @Override

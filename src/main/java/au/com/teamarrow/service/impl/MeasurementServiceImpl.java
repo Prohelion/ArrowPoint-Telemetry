@@ -27,13 +27,13 @@ public class MeasurementServiceImpl implements MeasurementService {
     @Override
     @Transactional(readOnly = true)
     public Measurement get(Long measurementId) {
-        return measurementRepository.findOne(measurementId);
+        return measurementRepository.findById(measurementId).orElse(null);
     }
     
     @Override
     @Transactional(readOnly = true)
     public List<Measurement> getMeasurementsForDevice(Long deviceId) {
-        Device d = deviceRepository.findOne(deviceId);
+        Device d = deviceRepository.findById(deviceId).orElse(null);
         
         List<Measurement> l = new ArrayList<Measurement>();
         l.addAll(d.getMeasurements());

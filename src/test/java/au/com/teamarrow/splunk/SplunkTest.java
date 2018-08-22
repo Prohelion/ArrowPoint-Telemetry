@@ -5,14 +5,12 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Date;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 
 import org.joda.time.DateTime;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -45,7 +43,7 @@ public class SplunkTest {
 	
 	private static String DATA_KEY = "data";
 	
-	@Test
+	//@Test
 	public void testSendMessageToSplunk() {
 		
         HttpService.setSslSecurityProtocol(SSLSecurityProtocol.TLSv1_2);
@@ -62,7 +60,7 @@ public class SplunkTest {
 		
 	}	
 	
-	@Test
+	//@Test
 	public void testSendMeasurementDataToSplunk() {
 
         HttpService.setSslSecurityProtocol(SSLSecurityProtocol.TLSv1_2);
@@ -79,7 +77,7 @@ public class SplunkTest {
 	}
 
 	
-	@Test
+	//@Test
 	public void loginToSplunk() {
 	
 		System.setProperty("https.protocols", "TLSv1,TLSv1.1,TLSv1.2");

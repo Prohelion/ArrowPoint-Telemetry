@@ -118,6 +118,8 @@
 	   		<property name="measurementDataEnrichment" ref="enricherBean"/>
 	</bean>	   		
 		
+	<int:channel id="nullChannel"></int:channel>		
+		
 	<int:channel id="measurementDataChannel"
 		datatype="au.com.teamarrow.model.MeasurementData">
 	</int:channel>
