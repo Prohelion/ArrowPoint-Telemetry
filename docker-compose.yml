@@ -5,34 +5,38 @@ volumes:
   opt-splunk-var:
 
 services: 
-  timescaledb:
-    image: timescale/timescaledb:latest-pg10
+    timescaledb:
+        image: timescale/timescaledb:latest-pg10
+        environment:
+            POSTGRES_USER: "teamarrow"
+            POSTGRES_PASSWORD: "***REMOVED***"
+        ports:
+            - 5432:5432
+        restart: unless-stopped            
+   
+    pgadmin:
+        image: dpage/pgadmin4:latest
+        depends_on:
+            - timescaledb
+        environment:
+            PGADMIN_DEFAULT_EMAIL: "admin@teamarrow.com.au"
+            PGADMIN_DEFAULT_PASSWORD: "***REMOVED***"
+        ports:
+            - 5080:80
+        restart: unless-stopped
 
-  splunkenterprise:
-    hostname: splunkenterprise
-    image: splunk/splunk:7.1.2
-    environment:
-      SPLUNK_START_ARGS: --accept-license --seed-passwd ***REMOVED***
-      SPLUNK_ENABLE_LISTEN: 9997
-      SPLUNK_ADD: tcp 1514
-    volumes:
-    - opt-splunk-etc:/opt/splunk/etc
-    - opt-splunk-var:/opt/splunk/var
-    ports:
-    - "8000:8000"
-    - "9997:9997"
-    - "8088:8088"
-    - "1514:1514"
-
-  spring-boot-telemetry-webapp:
-    image: telemetry-springboot
-    depends_on:
-      - timescaledb
-    ports:
-      - 8080:8080
-    environment:
-      - DATABASE_HOST=docker-mysql
-      - DATABASE_USER=root
-      - DATABASE_PASSWORD=root
-      - DATABASE_NAME=test  
-      - DATABASE_PORT=3306
+    splunkenterprise:
+        hostname: splunkenterprise
+        image: splunk/splunk:latest
+        environment:
+          SPLUNK_START_ARGS: --accept-license --answer-yes --seed-passwd ***REMOVED***
+          SPLUNK_ENABLE_LISTEN: 9997
+          SPLUNK_ADD: tcp 1514
+        volumes:
+            - opt-splunk-etc:/opt/splunk/etc
+            - opt-splunk-var:/opt/splunk/var
+        ports:
+            - 8000:8000
+            - 9997:9997
+            - 8088:8088
+            - 1514:1514        

@@ -1,6 +1,7 @@
 package au.com.teamarrow.environment;
 import static org.junit.Assert.*;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import org.junit.Test;
@@ -82,9 +83,11 @@ public class GpsSplitterTest {
 	 	double finalLat = (latDegrees + latMinutes) * 100;
 	 	double finalLong = (longDegrees + longMinutes) * 100;
 	 	
-	 	String GPRMCStr = "$GPRMC,061650,A," + finalLat + ",S," + finalLong + ",E,10,145,250715,003.1,W*7F";
+	 	DecimalFormat df = new DecimalFormat("####0.000");
 	 	
-	 	assert(GPRMCStr.equals("$GPRMC,061650,A,19.393,S,134.201,E,10,145,250715,003.1,W*7F"));
+	 	String GPRMCStr = "$GPRMC,061650,A," + df.format(finalLat) + ",S," + df.format(finalLong) + ",E,10,145,250715,003.1,W*7F";
+	 	
+	 	assert(GPRMCStr.equals("$GPRMC,061650,A,1923.580,S,13412.060,E,10,145,250715,003.1,W*7F"));
 	 
 	}
 	

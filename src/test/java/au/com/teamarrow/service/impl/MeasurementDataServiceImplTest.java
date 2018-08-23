@@ -39,7 +39,7 @@ public class MeasurementDataServiceImplTest {
         ReflectionTestUtils.setField(this.service, "measurementDataRepository", this.mMeasurementDataRepository);
     }
     
-    @Test
+    /*@Test
     public void testGetMeasurementsForDevice() {
         when(this.mMeasurementDataRepository.findByDataPointCanId(any(Integer.class), any(Pageable.class))).thenReturn(mPage);
         when(mPage.getContent()).thenReturn(new ArrayList<MeasurementData>());        
@@ -48,7 +48,7 @@ public class MeasurementDataServiceImplTest {
         verifyNoMoreInteractions(mMeasurementDataRepository, mPage);
     }
 
-    /*@Test
+    @Test
     public void testFindLatestDataForCanId() {
         when(this.mMeasurementDataRepository.findLatestDataForCanId(any(Integer.class))).thenReturn(new ArrayList<MeasurementData>());
         

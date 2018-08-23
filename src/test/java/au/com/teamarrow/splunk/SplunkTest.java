@@ -28,7 +28,7 @@ import com.splunk.ServiceArgs;
 
 import au.com.teamarrow.model.MeasurementData;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/spring-test.xml"})
 public class SplunkTest {
 	
