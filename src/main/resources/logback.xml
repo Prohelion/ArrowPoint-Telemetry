@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>web - %date [%thread] %-5level %logger{36} - %message%n
+			</pattern>
+		</encoder>
+	</appender>
+			
+	<logger name="org.springframework" level="info" />
+	<logger name="org.springframework.transaction" level="info" />
+
+	<!-- in order to debug some marshalling issues, this needs to be TRACE -->
+	<logger name="org.springframework.web.servlet.mvc" level="info" />
+	
+	<logger name="org.thymeleaf" level="debug" />
+	
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>

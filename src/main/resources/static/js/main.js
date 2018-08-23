@@ -34,7 +34,7 @@ $(function() {
 		
 		$.ajax({
 			async: false,
-			url: '/telemetry/measurements.json?deviceId=' + s.val(),
+			url: '/measurements.json?deviceId=' + s.val(),
 			dataType:'json',
 			success: function(result) {
 				var mOpts = '<option value="">-- Please select a measurement --</option>';
@@ -52,7 +52,7 @@ $(function() {
 		
 		$.ajax({
 			async: false,
-			url: '/telemetry/datapoints.json?measurementId=' + s.val(),
+			url: '/datapoints.json?measurementId=' + s.val(),
 			dataType:'json',
 			success: function(result) {
 				var mOpts = '<option value="">-- Please select a data point --</option>';
@@ -105,7 +105,7 @@ $(function() {
 			// have to use synchronous here, else the function 
 			// will return before the data is fetched
 			async: false,
-			url: '/telemetry/measurement-data.json?deviceId=' + deviceLkup,
+			url: '/measurement-data.json?deviceId=' + deviceLkup,
 			dataType:'json',
 			success: function(result) {
 				// We only want data from the last minute otherwise
@@ -160,7 +160,7 @@ $(function() {
 
 		$.ajax({
 			async: false,
-			url: '/telemetry/index.json?canId=' + canId,
+			url: '/index.json?canId=' + canId,
 			dataType:'json',
 			success: function(result) {
 				for (var i = 0; i < result.length; i++) {
@@ -173,7 +173,7 @@ $(function() {
 	function getCmuData(cmuIdx) {
 		$.ajax({
 			async: false,
-			url: '/telemetry/cmu.json?cmuIdx=' + cmuIdx,
+			url: '/cmu.json?cmuIdx=' + cmuIdx,
 			dataType:'json',
 			success: function(result) {
 				for (var i = 0; i < result.length; i++) {
@@ -207,12 +207,12 @@ $(function() {
 	}
 
     function update() {
-    	getConfiguredDataSet('/telemetry/battery-pack.json');
-    	getConfiguredDataSet('/telemetry/motor-controller-temperatures.json');
-    	getConfiguredDataSet('/telemetry/vehicle-velocity.json');
-    	getConfiguredDataSet('/telemetry/power-trackers.json', { ptIdx: 1});
-    	getConfiguredDataSet('/telemetry/power-trackers.json', { ptIdx: 2});
-    	getConfiguredDataSet('/telemetry/power-trackers.json', { ptIdx: 3});
+    	getConfiguredDataSet('/battery-pack.json');
+    	getConfiguredDataSet('/motor-controller-temperatures.json');
+    	getConfiguredDataSet('/vehicle-velocity.json');
+    	getConfiguredDataSet('/power-trackers.json', { ptIdx: 1});
+    	getConfiguredDataSet('/power-trackers.json', { ptIdx: 2});
+    	getConfiguredDataSet('/power-trackers.json', { ptIdx: 3});
     	     
         setTimeout(update, 5000);
     }

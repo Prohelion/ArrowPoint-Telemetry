@@ -10,14 +10,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import au.com.teamarrow.maps.Route;
 
-
 public class CvsRouteImpl implements Route {
-
-	static Logger log = Logger.getLogger(CvsRouteImpl.class.getName());
+	
+	private static final Logger LOG = LoggerFactory.getLogger(CvsRouteImpl.class);
 
 	GeoSpatialUtilities geoUtils = new GeoSpatialUtilities();	
 	List<RouteNode> route = new ArrayList<RouteNode>();
@@ -250,7 +249,7 @@ public class CvsRouteImpl implements Route {
 			if (distance < closestDistance) {
 				closestDistance = distance;
 				closestNode = nodeIndex;
-				log.debug("A new closest node has been found, with a distance of : "
+				LOG.debug("A new closest node has been found, with a distance of : "
 						+ distance + "m");
 			}
 

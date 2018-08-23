@@ -11,7 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.annotation.Splitter;
 import org.springframework.messaging.Message;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MeasurementDataEnrichment {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(MeasurementDataEnrichment.class);

@@ -39,4 +39,13 @@ services:
             - 8000:8000
             - 9997:9997
             - 8088:8088
-            - 1514:1514        
+            - 8089:8089
+            - 9999:9999
+            - 1514:1514                   
+            
+#    appserver:        
+#        image: teamarrow/telemetry:latest
+#        ports:
+#          - "8080:8080"
+#          - "5005:5005"
+#        restart: unless-stopped

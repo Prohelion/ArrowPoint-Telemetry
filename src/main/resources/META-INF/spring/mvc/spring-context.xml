@@ -17,10 +17,7 @@
 				http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
 	<context:component-scan base-package="au.com.teamarrow"/>
-	
-	<context:property-placeholder location="classpath:/META-INF/hibernate.properties"/>
-	
-	<bean id="protocolSetter" class="au.com.teamarrow.splunk.ProtocolSetter"/>
-	
+
+	<bean id="protocolSetter" class="au.com.teamarrow.splunk.ProtocolSetter"/>	
   
 </beans>

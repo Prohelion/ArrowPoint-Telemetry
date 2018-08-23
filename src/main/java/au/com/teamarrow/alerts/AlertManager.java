@@ -10,8 +10,7 @@ import java.io.InputStreamReader;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
-
-import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AlertManager {
 	
@@ -24,11 +23,10 @@ public class AlertManager {
 	private String shutdownLevelScript = null;
 	private String scriptDir = null;
 	private int previousAlertLevel = -1;
-	
 	private int supressionDelay = 3;
 	private int supressionCounter = supressionDelay + 2;
 	
-	static Logger log = Logger.getLogger("Alerts");		
+	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(AlertManager.class);
 	
 	public void setSupressionDelay(int delay) {
 		this.supressionDelay = delay;
@@ -93,7 +91,7 @@ public class AlertManager {
 						
 					} catch (Exception ex) {
 						// Bad data we just ignore on the load
-						log.info("Bad data on flags load: " + ex.getMessage());
+						LOG.info("Bad data on flags load: " + ex.getMessage());
 					}
 				}						
 					
@@ -173,10 +171,9 @@ public class AlertManager {
 						
 					} catch (Exception ex) {
 						// Bad data we just ignore on the load
-						log.info("Bad data on alerts load: " + ex.getMessage());
+						LOG.info("Bad data on alerts load: " + ex.getMessage());
 					}
-				}						
-					
+				}											
 			}
 
 			

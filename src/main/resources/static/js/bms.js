@@ -26,7 +26,7 @@ $(function() {
 
 		$.ajax({
 			async: false,
-			url: '/telemetry/bms.json?canId=' + canId,
+			url: '/bms.json?canId=' + canId,
 			dataType:'json',
 			success: function(result) {
 				for (var i = 0; i < result.length; i++) {

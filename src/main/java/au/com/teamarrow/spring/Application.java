@@ -5,18 +5,22 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.context.request.RequestContextListener;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages={"au.com.teamarrow"})
 @EnableScheduling
 @EnableTransactionManagement
-@EnableAutoConfiguration
-@Configuration
-@ImportResource({"classpath*:spring-context.xml","classpath*:spring-web.xml","classpath*:spring-data.xml"})
+@ImportResource({	"classpath:/META-INF/spring/mvc/spring-context.xml",
+					"classpath:/META-INF/spring/mvc/spring-data.xml",
+					"classpath:/META-INF/spring/maps/ArrowPointMaps.xml",
+					"classpath:/META-INF/spring/alerts/ArrowPointAlerts.xml",
+					"classpath:/META-INF/spring/integration/spring-integration-context.xml"})
 public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

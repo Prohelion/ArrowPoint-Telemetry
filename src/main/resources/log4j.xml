@@ -2,7 +2,9 @@
 <!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
-    <!-- Appenders -->
+	<!--  Note this file has been replaced the logback file, I've left it here for reference at the moment
+
+    
     <appender name="error" class="org.apache.log4j.RollingFileAppender">
         <param name="file" value="logs/error.log"/>        
         <param name="MaxFileSize" value="10000KB"/>
@@ -114,7 +116,7 @@
 	<logger name="org.springframework" additivity="false">
 	    <level value="info"/>
 	    <appender-ref ref="console" /> 
-	</logger> 
+	</logger>   
     
     <logger name="org.hibernate.tool.hbm2ddl" additivity="false">
 	    <level value="info"/>
@@ -134,19 +136,19 @@
 	<logger name="Alerts" additivity="false">
 	    <level value="info"/>
 	    <appender-ref ref="alerts" />
-	</logger>
+	</logger> -->
 
 
-	<!-- Logger to remove TCP outbound alerts to a seperate file -->    
+	<!-- Logger to remove TCP outbound alerts to a seperate file -->
+	<!-- 	  
     <logger name="org.springframework.integration.ip.tcp.TcpSendingMessageHandler" additivity="false">
 	    <level value="info"/>
 	    <appender-ref ref="tcpAlerts" />
 	</logger>
     
-    <!-- Root Logger -->
     <root>
-        <priority value="info" />
+    	<level value="info" />
         <appender-ref ref="console" />
-    </root>
+    </root> -->
 
 </log4j:configuration>

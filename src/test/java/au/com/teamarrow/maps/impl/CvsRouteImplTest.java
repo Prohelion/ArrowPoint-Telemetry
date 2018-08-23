@@ -4,13 +4,10 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import au.com.teamarrow.maps.Route;
 import au.com.teamarrow.maps.impl.NoRouteNodeException;
 import au.com.teamarrow.maps.impl.RouteNode;
@@ -18,8 +15,6 @@ import au.com.teamarrow.maps.impl.RouteNode;
 
 public class CvsRouteImplTest {
 
-	static Logger log = Logger.getLogger(CvsRouteImplTest.class.getName());
-	
 	private ApplicationContext context;
 	
 	Route route;

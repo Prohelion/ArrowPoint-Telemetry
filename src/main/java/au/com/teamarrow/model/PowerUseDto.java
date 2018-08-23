@@ -30,7 +30,7 @@ public class PowerUseDto implements Serializable {
     }
 
     @Column(name = "tstamp")
-    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
     @DateTimeFormat(pattern = "dd/MM/yy HH:mm:ss")
     @JsonFormat(pattern = "dd/MM/yy HH:mm:ss")
     @JsonProperty(value = "ts")

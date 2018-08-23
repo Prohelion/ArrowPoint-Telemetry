@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @PropertySource({"classpath:application.properties"})
-@ComponentScan({"au.com.teamarrow.dao"})
+@ComponentScan({"au.com.teamarrow"})
 @EnableJpaRepositories(basePackages = "au.com.teamarrow.dao")
 public class PersistenceJPAConfig {
 
@@ -50,13 +50,23 @@ public class PersistenceJPAConfig {
         ds.setUrl(env.getProperty("jdbc.url"));
         ds.setUsername(env.getProperty("jdbc.user"));
         ds.setPassword(env.getProperty("jdbc.pass"));
-        ds.setMaxActive(10);
-        ds.setMaxIdle(5);
-        ds.setInitialSize(5);
-        ds.setMinIdle(1);
+        ds.setInitialSize(10);
+        ds.setMaxActive(50);
+        ds.setMaxIdle(10);
+        ds.setMinIdle(5);
+        ds.setTimeBetweenEvictionRunsMillis(34000);
+        ds.setMinEvictableIdleTimeMillis(55000);
         ds.setValidationQuery("SELECT 1");
+        ds.setValidationInterval(34000);
+        ds.setTestOnBorrow(true);
+        ds.setRemoveAbandoned(true);
+        ds.setRemoveAbandonedTimeout(1800);
+        ds.setLogAbandoned(false); 
+        ds.setJdbcInterceptors(
+                "org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;" +
+                "org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer;" + 
+                "org.apache.tomcat.jdbc.pool.interceptor.ResetAbandonedTimer");        
         return ds;
-
     }
 
     @Bean
@@ -73,10 +83,12 @@ public class PersistenceJPAConfig {
 
     final Properties additionalProperties() {
         final Properties hibernateProperties = new Properties();
-       /* hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
         hibernateProperties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-*/
+        hibernateProperties.setProperty("jadira.usertype.autoRegisterUserTypes", env.getProperty("jadira.usertype.autoRegisterUserTypes"));
+        hibernateProperties.setProperty("jadira.usertype.databaseZone", env.getProperty("jadira.usertype.databaseZone"));
+        hibernateProperties.setProperty("jadira.usertype.javaZone", env.getProperty("jadira.usertype.javaZone"));
         return hibernateProperties;
     }
 

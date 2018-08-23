@@ -13,10 +13,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import au.com.teamarrow.alerts.AlertManager;
 import au.com.teamarrow.maps.Route;
 import au.com.teamarrow.service.impl.MeasurementDataEnrichment;
 import de.micromata.opengis.kml.v_2_2_0.Folder;
@@ -26,7 +27,7 @@ import au.com.teamarrow.maps.VisualRender;
 @Component
 public class MapGenerator {
 
-	static Logger log = Logger.getLogger(MapGenerator.class.getName());
+	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(MapGenerator.class);
 	
 	@Autowired
     private MeasurementDataEnrichment enricherBean;
@@ -273,7 +274,7 @@ public class MapGenerator {
 								Date date = new SimpleDateFormat("dd-MMM-yyy HH:mm:ss").parse(routeItem[0]);
 								formattedDate = new SimpleDateFormat("dd-MMM HH:mm").format(date);
 							} catch (ParseException e) {
-								log.error("Strategy date error loading file, date provided " + routeItem[0]);							
+								LOG.error("Strategy date error loading file, date provided " + routeItem[0]);							
 							}		    						    					    			
 		    				
 		    				if (routeItem.length >= 13) status = routeItem[12]; 

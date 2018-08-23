@@ -1,6 +1,6 @@
 package au.com.teamarrow.alerts;
 
-import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FlagData {
 
@@ -12,13 +12,11 @@ public class FlagData {
 	private Integer flagType = null;
 	private String details = null;
 	private Double value = null;
-
 	private Integer currentAlertLevel = AlertData.NORMAL;
 	private Integer previouslyAlertedLevel = AlertData.NORMAL;
-
 	private boolean supressAlerts = false;
 	
-	static Logger log = Logger.getLogger("Alerts");
+	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(FlagData.class);
 	
 	public void resetAlertSupression() {
 		supressAlerts = false;
@@ -72,11 +70,11 @@ public class FlagData {
 									
 				if (previouslyAlertedLevel != currentAlertLevel) {
 					switch (currentAlertLevel) {
-						case AlertData.NORMAL: log.info(message); break;
-						case AlertData.INFORMATION: log.info(message); break;
-						case AlertData.WARNING: log.warn(message); break;
-						case AlertData.ALERT: log.error(message); break;
-						case AlertData.SHUTDOWN: log.fatal(message); break;
+						case AlertData.NORMAL: LOG.info(message); break;
+						case AlertData.INFORMATION: LOG.info(message); break;
+						case AlertData.WARNING: LOG.warn(message); break;
+						case AlertData.ALERT: LOG.error(message); break;
+						case AlertData.SHUTDOWN: LOG.error(message); break;
 					}
 					
 				}
