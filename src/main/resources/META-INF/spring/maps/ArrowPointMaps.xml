@@ -5,7 +5,7 @@
 
 <!-- These beans are used to set up the core engine of maps system -->
 	<bean id="Route" class="au.com.teamarrow.maps.impl.CvsRouteImpl">
-		<property name="routeFile" value="D:\Work\TeamArrow\teamarrowweb\TeamArrow\Route\routedata.csv"/>
+		<property name="routeFile" value="./config/route/routedata.csv"/>
 		<property name="controlStopDistances">
 			<list>
 				<value>321000</value>

@@ -24,7 +24,6 @@
 		<compiler.source.version>1.8</compiler.source.version>
 		<compiler.target.version>1.8</compiler.target.version>
 		<docker.image.prefix>teamarrow</docker.image.prefix>
-		<start-class>au.com.teamarrow.spring.Application</start-class>
 	</properties>
 	<repositories>
 		<repository>
@@ -48,6 +47,13 @@
 	</repositories>
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>au.com.teamarrow.spring.Application</mainClass>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -292,13 +298,13 @@
 			<artifactId>tomcat-jdbc</artifactId>
 		</dependency>
 		<dependency>
-    		<groupId>org.apache.commons</groupId>
-    		<artifactId>commons-dbcp2</artifactId>
-		</dependency>		
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+		</dependency>
 		<dependency>
-    		<groupId>org.jadira.usertype</groupId>
-    		<artifactId>usertype.core</artifactId>
-    		<version>6.0.1.GA</version>
+			<groupId>org.jadira.usertype</groupId>
+			<artifactId>usertype.core</artifactId>
+			<version>6.0.1.GA</version>
 		</dependency>
 		<dependency>
 			<groupId>postgresql</groupId>
