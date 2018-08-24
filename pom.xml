@@ -6,8 +6,8 @@
 	<artifactId>telemetry</artifactId>
 	<version>0.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>Team Arrow Telemetry</name>
-	<description>Team Arrow Telemetry System</description>
+	<name>Prohelion Telemetry</name>
+	<description>>Prohelion Telemetry System</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -23,7 +23,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<compiler.source.version>1.8</compiler.source.version>
 		<compiler.target.version>1.8</compiler.target.version>
-		<docker.image.prefix>teamarrow</docker.image.prefix>
+		<docker.image.prefix>prohelion</docker.image.prefix>
 	</properties>
 	<repositories>
 		<repository>

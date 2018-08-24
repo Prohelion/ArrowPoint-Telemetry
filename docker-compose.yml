@@ -44,7 +44,7 @@ services:
             - 1514:1514                   
             
     telemetry:        
-        image: teamarrow/telemetry:0.2-SNAPSHOT
+        image: prohelion/telemetry:0.2-SNAPSHOT
         depends_on:
           - timescaledb
           - splunkenterprise
