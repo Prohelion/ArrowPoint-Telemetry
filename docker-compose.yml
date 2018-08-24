@@ -6,7 +6,7 @@ volumes:
 
 services: 
     timescaledb:
-        image: timescale/timescaledb:latest-pg10
+        image: prohelion/timescaledb-with-data:0.2
         environment:
             POSTGRES_USER: "teamarrow"
             POSTGRES_PASSWORD: "***REMOVED***"
@@ -43,7 +43,7 @@ services:
             - 9999:9999
             - 1514:1514                   
             
-    appserver:        
+    telemetry:        
         image: teamarrow/telemetry:0.2-SNAPSHOT
         depends_on:
           - timescaledb

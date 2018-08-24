@@ -1,9 +1,3 @@
-delete from data_pnt;
-delete from msrmnt;
-delete from msrmnt_type;
-delete from dev;
-delete from dev_type;
-
 insert into dev_type(DEV_TYPE_ID, DEV_TYPE) values (1, 'Analog');
 insert into dev_type(DEV_TYPE_ID, DEV_TYPE) values (2, 'Binary');
 
