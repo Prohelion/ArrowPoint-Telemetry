@@ -12,12 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import au.com.teamarrow.alerts.AlertManager;
 import au.com.teamarrow.maps.Route;
 import au.com.teamarrow.service.impl.MeasurementDataEnrichment;
 import de.micromata.opengis.kml.v_2_2_0.Folder;

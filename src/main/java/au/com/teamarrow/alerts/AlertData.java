@@ -3,8 +3,6 @@ package au.com.teamarrow.alerts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import au.com.teamarrow.service.impl.MeasurementDataEnrichment;
-
 public class AlertData {
 	
 	public final static int LOW_ALERT = 0;
