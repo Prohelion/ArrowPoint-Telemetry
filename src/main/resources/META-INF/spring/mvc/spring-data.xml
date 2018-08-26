@@ -22,6 +22,7 @@
 	      <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="default"/>
 	      <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="controllers"/>
 	      <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="devices"/>
+	      <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="dataPoints"/>
 	      <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="MeasureRepoCanSetupById" />
 	      <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="DataPointRepoCanSetupById" />
 	      <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="DataPointRepoCanSetupByMeasurement" />	      

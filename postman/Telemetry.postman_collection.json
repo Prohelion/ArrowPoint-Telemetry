@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "ac9c2d5e-17d1-470f-907d-a5032822d1c2",
+		"name": "Telemetry",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Devices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:9000/devices.json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"devices.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Measurements by Device",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:9000/measurements.json?deviceId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"measurements.json"
+					],
+					"query": [
+						{
+							"key": "deviceId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DataPoints for Measurement ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:9000/datapoints.json?measurementId=49",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"datapoints.json"
+					],
+					"query": [
+						{
+							"key": "measurementId",
+							"value": "49"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DataPoints by CanID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:9000/datapoints.json?dataPointCanId=16436",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"datapoints.json"
+					],
+					"query": [
+						{
+							"key": "dataPointCanId",
+							"value": "16436"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find latest data for CanID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost/index.json?canId=16436",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"index.json"
+					],
+					"query": [
+						{
+							"key": "canId",
+							"value": "16436"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Battery Pack data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:9000/battery-pack.json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"battery-pack.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Motor Controller Temps",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:9000/motor-controller-temperatures.json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"motor-controller-temperatures.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vehicle Velocity",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:9000/vehicle-velocity.json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"vehicle-velocity.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Power Trackers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:9000/power-trackers.json?ptIdx=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"power-trackers.json"
+					],
+					"query": [
+						{
+							"key": "ptIdx",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

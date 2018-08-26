@@ -43,10 +43,10 @@ services:
             - 9999:9999
             - 1514:1514                   
             
-    telemetry:        
-        image: prohelion/telemetry:0.2-SNAPSHOT
-        depends_on:
-          - timescaledb
-          - splunkenterprise
-        ports:
-          - "9000:9000"        
+#    telemetry:        
+#        image: prohelion/telemetry:0.2-SNAPSHOT
+#        depends_on:
+#          - timescaledb
+#          - splunkenterprise
+#        ports:
+#          - "9000:9000"        
