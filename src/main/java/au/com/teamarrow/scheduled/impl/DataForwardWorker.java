@@ -1,7 +1,5 @@
 package au.com.teamarrow.scheduled.impl;
 
-import static org.hamcrest.CoreMatchers.notNullValue;
-
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -44,7 +42,13 @@ public class DataForwardWorker implements Worker {
 	@Override
 	public void work() {
 
-		ArrayList<MeasurementData> measurementData = new ArrayList<MeasurementData>();
+		String forwardURL = env.getProperty("data.forward.url");
+		if (forwardURL == null || forwardURL.length() == 0) {
+			LOG.error("Forwarder has been enabled but no data.forward.url has been set");
+			return;
+		}			
+		
+		ArrayList<MeasurementData> measurementData = new ArrayList<MeasurementData>();		
 		
 		List<DataPoint> dataPoints = dataPointService.getDataPoints();
 		
@@ -54,21 +58,27 @@ public class DataForwardWorker implements Worker {
 	        CollectionUtils.addAll(measurementData, measurementDataService.findLatestDataForCanId(iterator.next().getDataPointCanId()));  			
 		}
 		
-		ClientHttpRequestFactory requestFactory = getClientHttpRequestFactory();
-		RestTemplate restTemplate = new RestTemplate(requestFactory);
-		 
-		HttpEntity<ArrayList<MeasurementData>> request = new HttpEntity<>(measurementData);
-		URI location = restTemplate.postForLocation(env.getProperty("data.relay.url"), request);
+		if (measurementData != null && measurementData.size() > 0) {
 		
-		if (location == null)
-			LOG.error("Forwarder has been unable to forward to address (data.relay.url) = " + env.getProperty("data.relay.url") );
+			LOG.info("Forwarding " + measurementData.size() + " measurements to ");
+			
+			ClientHttpRequestFactory requestFactory = getClientHttpRequestFactory();
+			RestTemplate restTemplate = new RestTemplate(requestFactory);
+			 
+			HttpEntity<ArrayList<MeasurementData>> request = new HttpEntity<>(measurementData);
+			URI location = restTemplate.postForLocation(forwardURL, request);
+			
+			if (location == null)
+				LOG.error("Forwarder has been unable to forward to address (data.forward.url) = " + forwardURL );
+			
+		} else
+			LOG.info("Data Forwarder is reporting no data available to forward");
 		
 	}
 	
 	private ClientHttpRequestFactory getClientHttpRequestFactory() {
 	    int timeout = 5000;
-	    HttpComponentsClientHttpRequestFactory clientHttpRequestFactory
-	      = new HttpComponentsClientHttpRequestFactory();
+	    HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory();
 	    clientHttpRequestFactory.setConnectTimeout(timeout);
 	    return clientHttpRequestFactory;
 	}
