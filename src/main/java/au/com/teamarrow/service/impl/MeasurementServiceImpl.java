@@ -47,4 +47,10 @@ public class MeasurementServiceImpl implements MeasurementService {
         
         return l;
     }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<Measurement> findAll() {
+    	return measurementRepository.findAll();
+    }
 }

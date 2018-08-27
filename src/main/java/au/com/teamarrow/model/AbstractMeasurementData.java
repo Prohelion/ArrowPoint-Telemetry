@@ -70,7 +70,7 @@ public abstract class AbstractMeasurementData implements java.io.Serializable {
     }
 
     @Column(name = "tstamp", length = 29)
-    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")  
     @DateTimeFormat(pattern = "dd/MM/yy HH:mm:ss")
     @JsonFormat(pattern = "dd/MM/yy HH:mm:ss")
     @JsonProperty(value = "ts")

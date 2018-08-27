@@ -12,4 +12,6 @@ public interface MeasurementService {
     Measurement get(Long measurementId);
 
     List<Measurement> getMeasurementsForDevice(Long deviceId);
+
+	List<Measurement> findAll();
 }

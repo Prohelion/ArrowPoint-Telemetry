@@ -91,7 +91,8 @@ public class MeasurementDataServiceImpl implements MeasurementDataService {
         } else {        	
         	  LOG.debug("No cached data found for id " + canId);        	 
         	  measurementData =  measurementDataRepository.findLatestDataForCanId(canId);
-        	  c.put(canId, measurementData);
+        	  if (measurementData != null && !measurementData.isEmpty())
+        		  c.put(canId, measurementData);
         }        
     	
 		return measurementData;		        

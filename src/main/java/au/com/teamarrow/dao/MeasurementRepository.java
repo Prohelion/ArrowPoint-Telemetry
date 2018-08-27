@@ -16,4 +16,6 @@ public interface MeasurementRepository extends PagingAndSortingRepository<Measur
     Measurement findByCanId(Integer canId);
 
     List<Measurement> findByDevice(Device d);
+    
+    List<Measurement> findAll();
 }

@@ -18,10 +18,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import au.com.teamarrow.model.DataPoint;
+import au.com.teamarrow.model.Measurement;
 import au.com.teamarrow.model.MeasurementData;
 import au.com.teamarrow.scheduled.Worker;
 import au.com.teamarrow.service.DataPointService;
 import au.com.teamarrow.service.MeasurementDataService;
+import au.com.teamarrow.service.MeasurementService;
 
 @Component("dataForwardWorker")
 @PropertySource({"classpath:application.properties"})
@@ -35,6 +37,9 @@ public class DataForwardWorker implements Worker {
 	
 	@Autowired
 	MeasurementDataService measurementDataService;
+	
+	@Autowired
+	MeasurementService measurementService;
 	
     @Autowired
     private Environment env;
@@ -50,12 +55,12 @@ public class DataForwardWorker implements Worker {
 		
 		ArrayList<MeasurementData> measurementData = new ArrayList<MeasurementData>();		
 		
-		List<DataPoint> dataPoints = dataPointService.getDataPoints();
-		
-		Iterator<DataPoint> iterator = dataPoints.iterator();
+		List<Measurement> measurements = measurementService.findAll();										
+		Iterator<Measurement> iterator = measurements.iterator();
 		
 		while (iterator.hasNext()) {			
-	        CollectionUtils.addAll(measurementData, measurementDataService.findLatestDataForCanId(iterator.next().getDataPointCanId()));  			
+			Measurement measurement = iterator.next();
+	        CollectionUtils.addAll(measurementData, measurementDataService.findLatestDataForCanId(measurement.getCanId()));  			
 		}
 		
 		if (measurementData != null && measurementData.size() > 0) {
