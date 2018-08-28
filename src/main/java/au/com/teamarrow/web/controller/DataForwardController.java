@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import au.com.teamarrow.canbus.model.CarData;
 import au.com.teamarrow.model.MeasurementData;
 
 @Controller
@@ -55,4 +57,20 @@ public class DataForwardController {
 	        
 	    }		
 	}
+	
+	
+	@RequestMapping(value = { "/tablet-data.json" }, method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<?> receiveForwardedData(@RequestBody CarData carData) {	
+		
+		URI location = ServletUriComponentsBuilder
+				.fromCurrentRequest()
+				.path("/")
+				.buildAndExpand()
+				.toUri();
+
+		return ResponseEntity.created(location).build();		
+		
+	}
+	
 }
