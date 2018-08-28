@@ -44,7 +44,7 @@ function LogTeam(teamNumber) {
 	
 	
 	
-		<div th:substituteBy="header :: menu"></div>
+		<div th:replace="header :: menu"></div>
 	
 		<div class="container">
 	
@@ -85,7 +85,7 @@ function LogTeam(teamNumber) {
 		
 		<hr />
 	
-		<div th:substituteBy="footer :: details"></div>
+		<div th:replace="footer :: details"></div>
 		
 		</div>
 		<!-- /container -->

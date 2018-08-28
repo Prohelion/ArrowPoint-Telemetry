@@ -33,7 +33,7 @@
 		<script th:src="@{/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js}"></script>
 	</head>
 	<body>
-		<div th:substituteBy="header :: menu"></div>
+		<div th:replace="header :: menu"></div>
 	
 		<div class="container">
 	
@@ -45,11 +45,8 @@
 			</div>
 	
 			<hr />
-	
-	
-			<footer>
-				<p>&copy; TeamArrow Vehicle Management System</p>
-			</footer>
+		
+			<div th:replace="footer :: details"></div>
 			
 		</div>
 		<!-- /container -->
