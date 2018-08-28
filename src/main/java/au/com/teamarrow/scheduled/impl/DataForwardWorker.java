@@ -16,8 +16,6 @@ import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
-import au.com.teamarrow.model.DataPoint;
 import au.com.teamarrow.model.Measurement;
 import au.com.teamarrow.model.MeasurementData;
 import au.com.teamarrow.scheduled.Worker;
@@ -65,7 +63,7 @@ public class DataForwardWorker implements Worker {
 		
 		if (measurementData != null && measurementData.size() > 0) {
 		
-			LOG.info("Forwarding " + measurementData.size() + " measurements to ");
+			LOG.info("Forwarding " + measurementData.size() + " measurements to " + forwardURL);
 			
 			ClientHttpRequestFactory requestFactory = getClientHttpRequestFactory();
 			RestTemplate restTemplate = new RestTemplate(requestFactory);

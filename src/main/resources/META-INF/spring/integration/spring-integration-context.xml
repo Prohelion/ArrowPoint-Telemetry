@@ -272,7 +272,8 @@
 		id="measurementDataToSplunkTransformer"
 		input-channel="measurementAggregatedDataChannel"
 		output-channel="splunkData"
-		ref="measurementDataToSplunkTransformerBean" />
+		ref="measurementDataToSplunkTransformerBean" 
+		auto-startup="false"/>
 
 	<bean id="measurementDataToSplunkTransformerBean"
 		class="au.com.teamarrow.splunk.MeasurementDataToSplunkTransformer" />

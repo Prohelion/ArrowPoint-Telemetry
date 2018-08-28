@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import au.com.teamarrow.model.MeasurementData;
-import au.com.teamarrow.model.ShortTermTrendData;
 
 @Controller
 public class DataForwardController {
@@ -36,7 +34,8 @@ public class DataForwardController {
 			Iterator<MeasurementData> iterator = forwardedData.iterator();
 		
 			while (iterator.hasNext()) {
-				MeasurementData measurementData = iterator.next();			
+				// Using new here to create a clone with a new ID
+				MeasurementData measurementData = new MeasurementData(iterator.next());			
 				measurementAggregatedDataChannel.send(MessageBuilder.withPayload(measurementData).build());			
 			}
 			

@@ -30,6 +30,7 @@ public class IntegrationConfig implements ApplicationListener<ContextRefreshedEv
     	if (env.getProperty("enable.splunk.connector").equalsIgnoreCase("true")) {
     		LOG.info("Splunk Connector has been enabled");
     		controlChannel.send(new GenericMessage<String>("@splunkOutboundChannelAdapter.start()"));
+    		controlChannel.send(new GenericMessage<String>("@measurementDataToSplunkTransformer.start()"));
     	} else
     		LOG.info("Splunk Connector has been disabled");
     	

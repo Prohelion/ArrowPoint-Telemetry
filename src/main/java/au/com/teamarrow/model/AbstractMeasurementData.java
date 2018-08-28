@@ -11,7 +11,6 @@ import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -83,7 +82,7 @@ public abstract class AbstractMeasurementData implements java.io.Serializable {
     }
 
     @Column(name = "extd")
-    @JsonIgnore
+    @JsonProperty(value = "extd")
     public Boolean getExtended() {
         return this.extended;
     }
@@ -93,7 +92,7 @@ public abstract class AbstractMeasurementData implements java.io.Serializable {
     }
 
     @Column(name = "rtr")
-    @JsonIgnore
+    @JsonProperty(value = "rtr")
     public Boolean getRetry() {
         return this.retry;
     }
@@ -103,7 +102,7 @@ public abstract class AbstractMeasurementData implements java.io.Serializable {
     }
 
     @Column(name = "data_len")
-    @JsonIgnore
+    @JsonProperty(value = "len")
     public Integer getLength() {
         return this.length;
     }

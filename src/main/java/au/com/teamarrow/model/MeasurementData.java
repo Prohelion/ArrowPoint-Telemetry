@@ -30,6 +30,18 @@ public class MeasurementData extends AbstractMeasurementData implements Serializ
         Integer length, Double floatValue, Integer integerValue, String charValue, String state) {
         super(dataPointCanId, timestamp, extended, retry, length, floatValue, integerValue, charValue, state);
     }
+    
+    public MeasurementData(MeasurementData measurementData) {
+    	super(measurementData.getDataPointCanId(),
+    		  measurementData.getTimestamp(),
+    		  measurementData.getExtended(),
+    	      measurementData.getRetry(),
+    	      measurementData.getLength(),
+    	      measurementData.getFloatValue(),
+    	      measurementData.getIntegerValue(),
+    	      measurementData.getCharValue(),
+    	      measurementData.getState());
+    }
 
     @Id
     @Column(name = "msrmnt_data_id", unique = true, nullable = false)
