@@ -2,6 +2,12 @@ package au.com.teamarrow.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
 import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -79,6 +85,11 @@ public class MeasurementDataServiceImpl implements MeasurementDataService {
     }
     
 
+    private static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+        Set<Object> seen = ConcurrentHashMap.newKeySet();
+        return t -> seen.add(keyExtractor.apply(t));
+    }
+    
 	@SuppressWarnings("unchecked")
 	@Override    
     public List<MeasurementData> findLatestDataForCanId(Integer canId) {
@@ -91,8 +102,16 @@ public class MeasurementDataServiceImpl implements MeasurementDataService {
         } else {        	
         	  LOG.debug("No cached data found for id " + canId);        	 
         	  measurementData =  measurementDataRepository.findLatestDataForCanId(canId);
-        	  if (measurementData != null && !measurementData.isEmpty())
-        		  c.put(canId, measurementData);
+        	  
+        	  // It is possible that if multiple events trigger at exactly the same time you can get duplicates
+        	  // This is very unlikely but it an occur.  To address the issue we filter them out here 
+        	  // as filtering them out in the SQL has performance implications
+        	  List<MeasurementData> measurementDataListWithoutDuplicates = measurementData.stream().filter(distinctByKey(MeasurementData::getDataPointCanId)).collect(Collectors.toList());
+        	  
+        	  if (measurementDataListWithoutDuplicates != null && !measurementDataListWithoutDuplicates.isEmpty())
+        		  c.put(canId, measurementDataListWithoutDuplicates);
+        	  
+        	  return measurementDataListWithoutDuplicates;
         }        
     	
 		return measurementData;		        
