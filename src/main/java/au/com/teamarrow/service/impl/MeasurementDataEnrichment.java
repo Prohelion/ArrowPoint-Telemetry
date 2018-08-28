@@ -4,16 +4,20 @@ import au.com.teamarrow.alerts.AlertManager;
 import au.com.teamarrow.maps.Route;
 import au.com.teamarrow.maps.impl.NoRouteNodeException;
 import au.com.teamarrow.model.MeasurementData;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.integration.annotation.Splitter;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class MeasurementDataEnrichment {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(MeasurementDataEnrichment.class);
@@ -100,9 +104,6 @@ public class MeasurementDataEnrichment {
     	// Send the data point to the alerts engine
     	alertManager.setDataPoint(measurementData.getDataPointCanId(), measurementData.getFloatValue());
     	
-    	MeasurementData powerDataBonnet = null;
-    	MeasurementData powerDataRoof = null;
-    	MeasurementData powerDataBoot = null;
     	MeasurementData powerData = null;
     	MeasurementData totalPowerData = null;
     	MeasurementData distanceTravelledData = null;
@@ -142,41 +143,45 @@ public class MeasurementDataEnrichment {
     				     }
     					 break;
     	
-	    	// Array 1 - Bonnet Amps
-	    	case 0x3632: array1Current = measurementData.getIntegerValue();
-	    				 break;
-	    
-	    	// Array 2 - Roof Amps
-	    	case 0x3634: array2Current = measurementData.getIntegerValue();
+	    	// Array 1 Amps
+	    	case 0x7014: array1Current = measurementData.getIntegerValue();
 	    				 break;
 	    	
-	    	// Array 3 - Boot Amps
-	    	case 0x3636: array3Current = measurementData.getIntegerValue();
-	    				 break;
-	    	
-	    	// Using Battery Voltage now rather than array voltage
-	    	case 0x2FA0: array1Voltage = measurementData.getIntegerValue();			 
+	    	// Array 1 Volts
+	    	case 0x7010: array1Voltage = measurementData.getIntegerValue();
 	    				 if (array1Current != -1) {
 	    					 Double power = (double)(array1Current * array1Voltage) / 1000000;
 	    					 
 	    					 // Create new item 3410
-	    					 powerDataBonnet = new MeasurementData(0x3410, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
+	    					 powerData = new MeasurementData(0x3410, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
 	    				 }
-	    				 
-	    				 array2Voltage = measurementData.getIntegerValue();
+	    				 break;
+	    	
+	    	// Array 2 Amps
+	    	case 0x7054: array2Current = measurementData.getIntegerValue();
+	    				 break;
+	    	
+	    	// Array 2 Volts
+	    	case 0x7050: array2Voltage = measurementData.getIntegerValue();
 						 if (array2Current != -1) {
 							 Double power = (double)(array2Current * array2Voltage) / 1000000;
 							 
 							 // Create new item 3420
-							 powerDataRoof = new MeasurementData(0x3420, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
-						 }
-
-						 array3Voltage = measurementData.getIntegerValue();
+							 powerData = new MeasurementData(0x3420, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
+						 }	    	
+	    				 break;
+	    	
+	    	// Array 3 Amps
+	    	case 0x7094: array3Current = measurementData.getIntegerValue();
+	    				 break;
+	    	
+	    	// Array 3 Volts
+	    	case 0x7090: array3Voltage = measurementData.getIntegerValue();
 						 if (array3Current != -1) {
 							 Double power = (double)(array3Current * array3Voltage) / 1000000;
 							 
 							 // Create new item 3430
-							 powerDataBoot = new MeasurementData(0x3430, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
+							 powerData = new MeasurementData(0x3430, measurementData.getTimestamp(), false, false, 8, power, 0, "", "Normal");	    					 
 						 }
 						 						 
 						 // Check if all array power data has been received and if so set the full array power
@@ -194,9 +199,13 @@ public class MeasurementDataEnrichment {
 							 if (power < 0) {
 								 LOG.error("Calulated Total Array power ({}) is in error: Array1Current {}, Array1Voltage {}, Array2Current {}, Array2Voltage {}, Array3Current {}, Array3Voltage", power, array1Current, array1Voltage, array2Current, array2Voltage, array3Current, array3Voltage  );
 							 }
-						 } 
-						 break;
-	    				 
+							 
+							 
+						 }	    		    	
+
+						 
+	    				 break;
+    	
 	    	// Bus Current
 	    	case 0x4024: busCurrent = measurementData.getFloatValue();
 	    				 break;
@@ -233,9 +242,6 @@ public class MeasurementDataEnrichment {
     	}
     	
     	if (powerData != null) returnList.add(powerData);
-    	if (powerDataBonnet != null) returnList.add(powerDataBonnet);
-    	if (powerDataBoot != null) returnList.add(powerDataBoot);
-    	if (powerDataRoof != null) returnList.add(powerDataRoof);
     	if (totalPowerData != null) returnList.add(totalPowerData);
     	if (distanceTravelledData != null) returnList.add(distanceTravelledData);
     	if (distanceRemainingData != null) returnList.add(distanceRemainingData);    	
