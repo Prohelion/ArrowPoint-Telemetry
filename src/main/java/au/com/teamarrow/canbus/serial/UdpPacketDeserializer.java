@@ -64,7 +64,7 @@ public class UdpPacketDeserializer implements Deserializer<UdpPacket> {
             CanPacket cp = new CanPacket(cpId, isExtended, isRtr, length, data);
             
             // Log the receipt of this Can Packet
-            CANLOG.info("0x" + Hex.encodeHexString(cp.getId()).substring(length-3) + " \t, 0x" +  Hex.encodeHexString(cp.getData()) + " \t\t, " + cp.getDataSegmentOne() + " \t\t, " + cp.getDataSegmentTwo() + " \t, 127.0.0.1");
+            CANLOG.debug("0x" + Hex.encodeHexString(cp.getId()).substring(length-3) + " \t, 0x" +  Hex.encodeHexString(cp.getData()) + " \t\t, " + cp.getDataSegmentOne() + " \t\t, " + cp.getDataSegmentTwo() + " \t, 127.0.0.1");
                         
             packets.add(cp);
             
