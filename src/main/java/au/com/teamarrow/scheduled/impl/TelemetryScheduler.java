@@ -70,9 +70,11 @@ public class TelemetryScheduler {
     
     @Scheduled(cron = "${data.forward.cron}")
 	public void doDataForward() {
-    	 LOG.debug("Start data forward worker");	   
-		 dataForwardWorker.work();	     
-		 LOG.debug("Data forward complete");
+    	if (env.getProperty("enable.data.forward","false").equalsIgnoreCase("true")) {
+    		LOG.debug("Start data forward worker");	   
+    		dataForwardWorker.work();	     
+    		LOG.debug("Data forward complete");
+    	}
     }
     
 	@Scheduled(fixedRate = 2000)

@@ -21,10 +21,7 @@
 
 	<!--  Control Bus Configuration -->
 	<int:channel id="controlChannel"/>
-	<int:control-bus input-channel="controlChannel"/>
-	
-		
-
+	<int:control-bus input-channel="controlChannel"/>	
 
 	<int:logging-channel-adapter
 		id="payloadLogger" level="INFO"
@@ -273,7 +270,7 @@
 		input-channel="measurementAggregatedDataChannel"
 		output-channel="splunkData"
 		ref="measurementDataToSplunkTransformerBean" 
-		auto-startup="false"/>
+		auto-startup="true"/>
 
 	<bean id="measurementDataToSplunkTransformerBean"
 		class="au.com.teamarrow.splunk.MeasurementDataToSplunkTransformer" />
@@ -290,7 +287,7 @@
 
 	<int-splunk:outbound-channel-adapter
 		id="splunkOutboundChannelAdapter" channel="splunkData"
-		splunk-server-ref="splunkServer" auto-startup="false">
+		splunk-server-ref="splunkServer" auto-startup="true">
 		<int-splunk:tcp-writer port="9999" />
 	</int-splunk:outbound-channel-adapter>
 
