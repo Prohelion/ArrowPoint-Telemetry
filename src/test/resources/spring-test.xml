@@ -17,20 +17,10 @@
 		http://www.springframework.org/schema/integration/splunk/spring-integration-splunk.xsd">
 
 	<context:component-scan base-package="com.teamarrow.utils.test"/>
-	
-	<bean id="LogReplayer" class="au.com.teamarrow.utils.test.LogReplayer"/>
-	<bean id="CruiseControlStepTest" class="au.com.teamarrow.utils.test.CruiseControlStepTest"/>
-	<bean id="CruiseControlTest" class="au.com.teamarrow.utils.test.CruiseControlTest"/>
-	<bean id="CarTestUtils" class="au.com.teamarrow.utils.test.CarTestUtils"/>
-	<bean id="CruiseSimulator" class="au.com.teamarrow.utils.test.CruiseSimulator"/>
-	
+		
 	<bean id="udpPacketSerializer" class="au.com.teamarrow.canbus.serial.UdpPacketSerializer"/>
 	<bean id="udpPacketDeserializer" class="au.com.teamarrow.canbus.serial.UdpPacketDeserializer"/>
 	<bean id="canPacketSplitter" class="au.com.teamarrow.canbus.serial.CanPacketSplitter"/>
-	<bean id="cruiseSimulatorService" class="au.com.teamarrow.service.impl.CruiseSimulatorServiceImpl">
-		<property name="variationHertz" value="5"/>
-		<property name="velocityVariationPercent" value="0.001"/>	
-	</bean>	
 	<bean id="enricherBean" class="au.com.teamarrow.service.impl.MeasurementDataEnrichment"/>		
 	
 	<!-- These beans are used to set up the core engine of maps system -->

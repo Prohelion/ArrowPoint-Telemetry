@@ -1,4 +1,4 @@
-package au.com.teamarrow.utils.test;
+package utilities;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -11,27 +11,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.messaging.MessageChannel;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.test.context.ContextConfiguration;
-
 import au.com.teamarrow.canbus.model.CanPacket;
 import au.com.teamarrow.canbus.model.UdpPacket;
 
 @Component
-@ContextConfiguration(locations = {"/spring-test.xml"})
-@Service
 public class LogReplayer {
-
-	
-	//	can bus globals
-	@Autowired
-	@Qualifier("canbusOutputChannel")
-	MessageChannel mcInput;
 
     @Autowired
    	private CarTestUtils carTestUtils;
@@ -39,18 +24,7 @@ public class LogReplayer {
     static CanPacket canPacket;
     static UdpPacket udpPacket = new UdpPacket();	
 	
-    public static void main (String[] arg) {
-    	
-    	ConfigurableApplicationContext context =  new ClassPathXmlApplicationContext("spring-test.xml");
-    	LogReplayer logReplayer = context.getBean(LogReplayer.class);
-    	logReplayer.start(arg);   
-    	context.close();
-    	    	
-    }
-
-    
-    
-	private void start (String[] arg) {
+	public void start (String[] arg) {
 		
 		String line = "";
 		String cvsSplitBy = ",";

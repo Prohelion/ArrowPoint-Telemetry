@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-ip="http://www.springframework.org/schema/integration/ip"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:int-splunk="http://www.springframework.org/schema/integration/splunk"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration
+		http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration/ip
+		http://www.springframework.org/schema/integration/ip/spring-integration-ip.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/integration/splunk 
+		http://www.springframework.org/schema/integration/splunk/spring-integration-splunk.xsd">
+		
+	<int:channel id="udpPacketOutputChannel"
+		datatype="au.com.teamarrow.canbus.model.UdpPacket">
+	</int:channel>	
+	
+	<int:payload-serializing-transformer id="udpPacketSerializingTransformer"
+		input-channel="udpPacketOutputChannel"
+		serializer="udpPacketSerializer"
+		output-channel="output">
+	</int:payload-serializing-transformer>
+	
+	<int:channel id="output" />
+	
+	<int-ip:udp-outbound-channel-adapter id="canbusSender"
+	    host="239.255.60.60"
+    	port="4876"
+    	multicast="true"
+    	check-length="false"
+    	channel="output" />
+
+</beans>

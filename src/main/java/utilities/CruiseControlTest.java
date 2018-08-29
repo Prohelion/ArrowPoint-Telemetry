@@ -1,15 +1,12 @@
-package au.com.teamarrow.utils.test;
+package utilities;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.stereotype.Component;
 
-
-@ContextConfiguration(locations = {"/spring-test.xml"})
+@Component
 public class CruiseControlTest {
 
 	public static final double KPH_TO_RPM = 9.81;
@@ -18,18 +15,8 @@ public class CruiseControlTest {
 	
     @Autowired
    	private CarTestUtils carTestUtils;
-
-    public static void main (String[] arg) {
-    	
-    	ConfigurableApplicationContext context =  new ClassPathXmlApplicationContext("spring-test.xml");
-    	CruiseControlTest cruiseTest = context.getBean(CruiseControlTest.class);
-    	cruiseTest.start(arg);
-    	context.close();
-    	    	
-    }
-
 	
-	private void start (String[] arg) {
+	public void start (String[] arg) {
 		
 		int i = 0;
 	

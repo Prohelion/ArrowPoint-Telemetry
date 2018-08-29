@@ -1,17 +1,13 @@
-package au.com.teamarrow.utils.test;
+package utilities;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.test.context.ContextConfiguration;
-
 import au.com.teamarrow.canbus.model.CanPacket;
 import au.com.teamarrow.canbus.model.UdpPacket;
 
@@ -27,14 +23,11 @@ Cruise Control Mission Control v1.0
  */
 
 @Component
-@ContextConfiguration(locations = {"/spring-test.xml"})
-@Service
 public class CarTestUtils {
-
 	
 	//	can bus globals
 	@Autowired
-    @Qualifier("canbusOutputChannel")
+    @Qualifier("udpPacketOutputChannel")
     MessageChannel mcInput;
 	
     static CanPacket canPacket;

@@ -1,19 +1,16 @@
-package au.com.teamarrow.utils.test;
+package utilities;
 
 import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.stereotype.Component;
 
-@ContextConfiguration(locations = {"/spring-test.xml"})
+@Component
 public class CruiseControlStepTest {
 
     @Autowired
    	private CarTestUtils carTestUtils;
         
-    private void start (String[] arg) {
+    public void start (String[] arg) {
 
        	byte[] bytes = new byte[50];
 
@@ -61,14 +58,5 @@ public class CruiseControlStepTest {
     	}
     	
     }
-    
-    public static void main (String[] arg) {
     	
-    	ConfigurableApplicationContext context =  new ClassPathXmlApplicationContext("spring-test.xml");
-    	CruiseControlStepTest stepTest = context.getBean(CruiseControlStepTest.class);
-    	stepTest.start(arg);
-    	context.close();
-    	    	
-    }
-	
 }
