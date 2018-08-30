@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ac9c2d5e-17d1-470f-907d-a5032822d1c2",
+		"_postman_id": "92e6ca41-e254-41f6-987f-4098cefa8591",
 		"name": "Telemetry",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -10,7 +10,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:9000/devices.json",
 					"protocol": "http",
@@ -30,7 +33,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:9000/measurements.json?deviceId=1",
 					"protocol": "http",
@@ -56,7 +62,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:9000/datapoints.json?measurementId=49",
 					"protocol": "http",
@@ -82,7 +91,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:9000/datapoints.json?dataPointCanId=16436",
 					"protocol": "http",
@@ -108,7 +120,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost/index.json?canId=16436",
 					"protocol": "http",
@@ -133,7 +148,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:9000/battery-pack.json",
 					"protocol": "http",
@@ -153,7 +171,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:9000/motor-controller-temperatures.json",
 					"protocol": "http",
@@ -173,7 +194,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:9000/vehicle-velocity.json",
 					"protocol": "http",
@@ -193,7 +217,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:9000/power-trackers.json?ptIdx=1",
 					"protocol": "http",
@@ -209,6 +236,46 @@
 							"key": "ptIdx",
 							"value": "1"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Data Forward",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Car Data Forward",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n                \"lastSpeed\": 0,\n                \"lastSOC\": 100.0,\n                \"lastLockedSOC\": 0.0,\n                \"lastArray1Volts\": 0.0,\n                \"lastArray2Volts\": 0.0,\n                \"lastArray3Volts\": 0.0,\n                \"lastArray1Amps\": 0.0,\n                \"lastArray2Amps\": 0.0,\n                \"lastArray3Amps\": 0.0,\n                \"lastBusPower\": 0.0,\n                \"lastBusAmps\": 0.0,\n                \"lastBusVolts\": 0.0,\n                \"lastBatteryAmps\": 0.0,\n                \"lastBatteryVolts\": -1.0,\n                \"lastMotorTemp\": 0.0,\n                \"lastControllerTemp\": 0.0,\n                \"lastMinimumCellV\": -1,\n                \"lastMaximumCellV\": 0,\n                \"lastTwelveVBusVolts\": -1,\n                \"lastMaxCellTemp\": 0,\n                \"lastMotorPowerSetpoint\": 0,\n                \"lastMaxSOMSetpoint\": 100,\n                \"latitude\": 0.0,\n                \"longitude\": 0.0,\n                \"MinThreshMinimumCellV\": 2.9,\n                \"MaxThreshMotorTemp\": 100,\n                \"MaxThreshMaxCellTemp\": 60,\n                \"MaxThreshControllerTemp\": 50,\n                \"cruiseControl\": false,\n                \"setPointCruiseControl\": false,\n                \"speedCruiseControl\": false,\n                \"SOMCruiseControl\": false,\n                \"cruiseTargetSpeed\": 0,\n                \"leftBlinker\": false,\n                \"rightBlinker\": false,\n                \"hazard\": false,\n                \"idle\": false,\n                \"reverse\": false,\n                \"neutral\": false,\n                \"drive\": false,\n                \"run\": false,\n                \"regen\": false,\n                \"brakes\": false,\n                \"horn\": false,\n                \"testLayout\": false,\n                \"msSinceLastPacket\": 0,\n                \"secSinceLastPacket\": 0,\n                \"alerts\": \"\",\n                \"driverMessage\": \"\",\n                \"driverMode\": true\n              }"
+				},
+				"url": {
+					"raw": "http://localhost:9000/tablet-data.json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"tablet-data.json"
 					]
 				}
 			},
