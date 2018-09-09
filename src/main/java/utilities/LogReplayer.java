@@ -45,40 +45,57 @@ public class LogReplayer {
 			System.out.print("Enter the log you wish to replay > ");
 	        String csvFile = br.readLine();
 			
-			br = new BufferedReader(new FileReader(csvFile));
-			
-			// Remove first line in case it is the header
-			line = br.readLine();
-			
-			while ((line = br.readLine()) != null) {							
+	        System.out.print("Do you wish to loop the file (Y/N) > ");
+	        String repeat = br.readLine();
+	        boolean repeatLoop = true;
 	 
-			    // use comma as separator
-				String[] can = line.split(cvsSplitBy);
-	 				
-				previousDate = parsedDate;
+	        while (repeatLoop) {
+	        	repeatLoop = false;
+
+				br = new BufferedReader(new FileReader(csvFile));
 				
-				try {
-					parsedDate = formatter.parse(can[0]);
-				} catch (ParseException e) {
-					e.printStackTrace();
+				// Remove first line in case it is the header
+				line = br.readLine();
+				
+				while ((line = br.readLine()) != null) {							
+		 				
+				    // use comma as separator
+					String[] can = line.split(cvsSplitBy);
+		 				
+					previousDate = parsedDate;
+					
+					try {
+						parsedDate = formatter.parse(can[0]);
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+
+					//
+					if (parsedDate != null && previousDate != null)
+						diff = parsedDate.getTime() - previousDate.getTime();
+					
+					try {
+						if ( diff > 1000 ) diff = 1000;
+						Thread.sleep(diff);					
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+									
+					System.out.println("Delay = " + diff + " : CanPackey [time = " + can[0] + " , id = " + can[2] + " , data=" + can[4] + "]");	 
+					carTestUtils.sendCan("0" + can[2].substring(3, 6),can[4].substring(3, 19));				
+					
 				}
 
-				//
-				if (parsedDate != null && previousDate != null)
-					diff = parsedDate.getTime() - previousDate.getTime();
-				
-				try {
-					if ( diff > 1000 ) diff = 1000;
-					Thread.sleep(diff);					
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-								
-				System.out.println("Delay = " + diff + " : CanPackey [time = " + can[0] + " , id = " + can[2] + " , data=" + can[4] + "]");	 
-				carTestUtils.sendCan("0" + can[2].substring(3, 6),can[4].substring(3, 19));				
-				
-			}
-	 
+				br.close();
+	        	if (repeat != null && repeat.toUpperCase().startsWith("Y")) {
+	        		repeatLoop = true;
+	        		previousDate = null;
+	    			parsedDate = null;
+	        		System.out.println("About to replay file");
+	        	}
+	        	
+	        }
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -92,12 +109,9 @@ public class LogReplayer {
 				}
 			}
 		}
-	 
+
 		System.out.println("Done");
 	  }		
-		
-		
-		
 		
 }
 		 
