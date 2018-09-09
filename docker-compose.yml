@@ -6,7 +6,7 @@ volumes:
 
 services: 
     timescaledb:
-        image: prohelion/timescaledb-with-data:0.2
+        image: prohelion/timescaledb-with-data:0.3
         environment:
             POSTGRES_USER: "teamarrow"
             POSTGRES_PASSWORD: "***REMOVED***"
@@ -15,19 +15,21 @@ services:
         restart: unless-stopped            
    
     pgadmin:
-        image: dpage/pgadmin4:latest
+        image: prohelion/pgadmin4:0.3
         depends_on:
             - timescaledb
         environment:
             PGADMIN_DEFAULT_EMAIL: "admin@teamarrow.com.au"
             PGADMIN_DEFAULT_PASSWORD: "***REMOVED***"
+        logging:
+            driver: "none"
         ports:
             - 5080:80
         restart: unless-stopped
 
     splunkenterprise:
         hostname: splunkenterprise
-        image: splunk/splunk:latest
+        image: prohelion/splunk:0.31
         environment:
           SPLUNK_START_ARGS: --accept-license --answer-yes --seed-passwd ***REMOVED***
           SPLUNK_ENABLE_LISTEN: 9997
@@ -45,12 +47,12 @@ services:
         
 # This will only work on linux as it requires network_mode: host
 # For other platforms run the service in SpringBoot locally or Tomcat       
-    telemetry:        
-        image: prohelion/telemetry:0.2-SNAPSHOT
-        depends_on:
-          - timescaledb
-          - splunkenterprise
+#    telemetry:        
+#        image: prohelion/telemetry:0.3-SNAPSHOT
+#        depends_on:
+#          - timescaledb
+#          - splunkenterprise
 #        network_mode: "host"          
-        ports:
-          - "9000:9000"        
-          - "4876:4876/udp"        
+#        ports:
+#          - "9000:9000"        
+#          - "4876:4876/udp"        

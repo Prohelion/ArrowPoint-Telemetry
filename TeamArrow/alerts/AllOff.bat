@@ -1,2 +1,0 @@
-call USBCMDAP V 0 0 101 20 7 0
-call USBCMDAP V 0 0 101 12 0 7 

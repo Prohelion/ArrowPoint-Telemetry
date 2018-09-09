@@ -1,14 +1,14 @@
-time,device,ip
-15-08-2015 12:30,Telemetry System,192.168.1.60
-15-08-2015 12:30,Arrow1 WCAN,192.168.1.10
-15-08-2015 12:30,Access Point (Solar Car),192.168.1.22
-15-08-2015 12:30,Network Link (Rear Escort),192.168.1.23
-15-08-2015 12:30,Access Point (Rear Escort),192.168.1.24
-15-08-2015 12:30,Phone (GPS),192.168.1.43
-15-08-2015 12:30,Serial to Ethernet (Weather),192.168.1.42
-15-08-2015 12:30,Telemetry,192.168.1.60
-15-08-2015 12:30,Tablet 1,192.168.1.101
-15-08-2015 12:30,Tablet 2,192.168.1.102
-15-08-2015 12:30,Tablet 3,192.168.1.103
-15-08-2015 12:30,Tablet 4,192.168.1.104
-15-08-2015 12:30,Switch DHCP (Rear Escort),192.168.1.253
+device,ip
+Telemetry System,192.168.1.60
+Arrow1 WCAN,192.168.1.10
+Access Point (Solar Car),192.168.1.22
+Network Link (Rear Escort),192.168.1.23
+Access Point (Rear Escort),192.168.1.24
+Phone (GPS),192.168.1.43
+Serial to Ethernet (Weather),192.168.1.42
+Telemetry,192.168.1.60
+Tablet 1,192.168.1.101
+Tablet 2,192.168.1.102
+Tablet 3,192.168.1.103
+Tablet 4,192.168.1.104
+Switch DHCP (Rear Escort),192.168.1.253
