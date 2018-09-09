@@ -2,19 +2,96 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
-        <title>Spring Security Example </title>
+        
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+        <meta charset="utf-8">
+        <title>Prohelion Telemetry Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+         <style type="text/css">
+            /* CSS used here will be applied after bootstrap.css */
+
+body { 
+ background: url('/img/login-background.jpg') no-repeat center center fixed; 
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+}
+
+.panel-default {
+ opacity: 0.9;
+ margin-top:30px;
+}
+.form-group.last {
+ margin-bottom:0px;
+}
+        </style>
     </head>
     <body>
-        <div th:if="${param.error}">
+                      
+        <div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                  <strong>Prohelion Telemetry Login</strong>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" th:action="@{/login}" method="post">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">
+                            Username</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" name="username" id="username" placeholder="Username" required="" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">
+                            Password</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" id="password" name="password" placeholder="Password" required="" type="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="remember-me">
+                                    Remember me
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group last">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button type="submit" class="btn btn-success btn-sm">
+                                Sign in</button>
+                                 <button type="reset" class="btn btn-default btn-sm">
+                                Reset</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="panel-footer">
+                <div th:if="${param.error}">
             Invalid username and password.
         </div>
         <div th:if="${param.logout}">
             You have been logged out.
         </div>
-        <form th:action="@{/login}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
-        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
+        
+        
+        
+        
+        
     </body>
 </html>
+
+
