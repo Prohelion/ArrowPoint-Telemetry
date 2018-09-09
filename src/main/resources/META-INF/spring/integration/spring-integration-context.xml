@@ -18,6 +18,11 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm.xsd">
 
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	  <property name="location">
+	    <value>application.properties</value>
+	  </property>
+	</bean>
 
 	<!--  Control Bus Configuration -->
 	<int:channel id="controlChannel"/>
@@ -196,22 +201,22 @@
 	<int:channel id="weather-poll-replies" />
 
 	<int-ip:tcp-outbound-channel-adapter
-		id="outbound-weather-poller" channel="weather-poll-command" connection-factory="client" auto-startup="false" />
+		id="outbound-weather-poller" channel="weather-poll-command" connection-factory="client" auto-startup="${enable.weather.connector}" />
 
 	<int:inbound-channel-adapter
 		id="triggerWeatherE0" expression="'E0'" channel="weather-poll-command"
-		auto-startup="false">
+		auto-startup="${enable.weather.connector}">
 		<int:poller fixed-delay="5000" />
 	</int:inbound-channel-adapter>
 
 	<int:inbound-channel-adapter
 		id="triggerWeatherE4" expression="'E4'" channel="weather-poll-command"
-		auto-startup="false">
+		auto-startup="${enable.weather.connector}">
 		<int:poller fixed-delay="5000" />
 	</int:inbound-channel-adapter>
 
 	<int-ip:tcp-inbound-channel-adapter
-		id="inbound-weather-poll-replies" channel="weather-poll-replies" connection-factory="client" auto-startup="false"/>
+		id="inbound-weather-poll-replies" channel="weather-poll-replies" connection-factory="client" auto-startup="${enable.weather.connector}"/>
 
 	<int:splitter id="weatherSplitter" input-channel="weather-poll-replies"
 		output-channel="udpPacketOutputChannel">
@@ -249,7 +254,7 @@
 		connection-factory="GpsServer"
 		request-channel="serverBytes2GpsSplitterChannel"
 		error-channel="errorChannel"
-		auto-startup="false" />
+		auto-startup="${enable.gps.connector}" />
 
 	<int:channel id="serverBytes2GpsSplitterChannel" />
 
@@ -270,7 +275,7 @@
 		input-channel="measurementAggregatedDataChannel"
 		output-channel="splunkData"
 		ref="measurementDataToSplunkTransformerBean" 
-		auto-startup="true"/>
+		auto-startup="${enable.splunk.connector}"/>
 
 	<bean id="measurementDataToSplunkTransformerBean"
 		class="au.com.teamarrow.splunk.MeasurementDataToSplunkTransformer" />
@@ -287,7 +292,7 @@
 
 	<int-splunk:outbound-channel-adapter
 		id="splunkOutboundChannelAdapter" channel="splunkData"
-		splunk-server-ref="splunkServer" auto-startup="true">
+		splunk-server-ref="splunkServer" auto-startup="${enable.splunk.connector}">
 		<int-splunk:tcp-writer port="9999" />
 	</int-splunk:outbound-channel-adapter>
 

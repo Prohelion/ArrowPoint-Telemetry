@@ -6,7 +6,7 @@ volumes:
 
 services: 
     timescaledb:
-        image: prohelion/timescaledb-with-data:0.2
+        image: prohelion/timescaledb-with-data:0.3
         environment:
             POSTGRES_USER: "teamarrow"
             POSTGRES_PASSWORD: "***REMOVED***"
@@ -15,19 +15,21 @@ services:
         restart: unless-stopped            
    
     pgadmin:
-        image: dpage/pgadmin4:latest
+        image: prohelion/pgadmin4:0.3
         depends_on:
             - timescaledb
         environment:
             PGADMIN_DEFAULT_EMAIL: "admin@teamarrow.com.au"
             PGADMIN_DEFAULT_PASSWORD: "***REMOVED***"
+        logging:
+            driver: "none"
         ports:
             - 5080:80
         restart: unless-stopped
 
     splunkenterprise:
         hostname: splunkenterprise
-        image: splunk/splunk:latest
+        image: prohelion/splunk:0.31
         environment:
           SPLUNK_START_ARGS: --accept-license --answer-yes --seed-passwd ***REMOVED***
           SPLUNK_ENABLE_LISTEN: 9997

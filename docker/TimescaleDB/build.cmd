@@ -3,8 +3,7 @@ copy ..\..\data_model\ddl\functions.sql functions.sqld
 copy ..\..\data_model\ddl\referencedata.sql referencedata.sqld
 copy ..\..\data_model\ddl\setup_pgdb_docker.sh .
 
-docker build -t timescaledb-with-data .
-docker tag timescaledb-with-data prohelion/timescaledb-with-data:0.2
+docker build -t prohelion/timescaledb-with-data:0.3 .
 
 del *.sql
 del *.sqld

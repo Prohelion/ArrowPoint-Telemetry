@@ -20,7 +20,7 @@ import au.com.teamarrow.canbus.model.UdpPacket;
 @Component
 public class UdpPacketDeserializer implements Deserializer<UdpPacket> {
 
-	private static final Logger CANLOG = LoggerFactory.getLogger("CanLog");
+	private static final Logger CANLOG = LoggerFactory.getLogger(UdpPacketDeserializer.class);
 	
     public UdpPacket deserialize(InputStream inputStream) throws IOException {
         byte[] b = new byte[512];

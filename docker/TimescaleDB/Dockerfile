@@ -4,4 +4,5 @@ FROM timescale/timescaledb:latest-pg10
 ENV POSTGRES_USER "teamarrow"
 ENV POSTGRES_PASSWORD "***REMOVED***"
 
-ADD * /docker-entrypoint-initdb.d/
+COPY *.sqld /docker-entrypoint-initdb.d/
+COPY *.sh /docker-entrypoint-initdb.d/
