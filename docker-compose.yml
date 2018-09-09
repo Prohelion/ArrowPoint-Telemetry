@@ -29,7 +29,7 @@ services:
 
     splunkenterprise:
         hostname: splunkenterprise
-        image: prohelion/splunk:0.31
+        image: prohelion/splunk:0.32
         environment:
           SPLUNK_START_ARGS: --accept-license --answer-yes --seed-passwd ***REMOVED***
           SPLUNK_ENABLE_LISTEN: 9997
