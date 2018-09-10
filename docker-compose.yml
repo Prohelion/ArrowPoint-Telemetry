@@ -49,10 +49,9 @@ services:
 # For other platforms run the service in SpringBoot locally or Tomcat       
 #    telemetry:        
 #        image: prohelion/telemetry:0.3-SNAPSHOT
-#        depends_on:
-#          - timescaledb
-#          - splunkenterprise
-#        network_mode: "host"          
-#        ports:
-#          - "9000:9000"        
-#          - "4876:4876/udp"        
+##        depends_on:
+ #         - timescaledb
+ #         - splunkenterprise          
+ #       ports:
+ #         - "9000:9000"        
+ #         - "4876:4876/udp"        
