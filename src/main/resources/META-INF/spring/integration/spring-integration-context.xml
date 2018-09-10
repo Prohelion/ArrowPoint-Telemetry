@@ -37,34 +37,28 @@
 	<int:channel id="csvLineOut" />
 
 	<int-file:inbound-channel-adapter
-		id="csvIn" directory="file:///tmp" filename-pattern="*.csv"
+		id="csvIn" directory="${can.loader.directory}" filename-pattern="${can.loader.pattern}"
 		prevent-duplicates="true">
-		<int:poller id="poller" fixed-rate="5000" />
+		<int:poller id="poller" fixed-rate="${can.loader.poll.interval}" />
 	</int-file:inbound-channel-adapter>
 
 	<int-file:file-to-string-transformer
 		input-channel="csvIn" output-channel="csvOut" delete-files="false"
 		charset="UTF-8" />
 
-
-
 	<int:splitter id="csvSplitter" input-channel="csvOut"
 		output-channel="csvLineOut" ref="csvLineSplitter" />
-
 
 	<int:service-activator id="canPacketBuilder"
 		input-channel="csvLineOut" output-channel="canPacketChannel"
 		ref="canPacketBuilderService" />
 
 	<int-ip:udp-inbound-channel-adapter
-		id="bridgeReceiver" channel="canbusBridgeChannel" port="4876"
+		id="bridgeReceiver" channel="canbusBridgeChannel" port="${udp.port}"
 		receive-buffer-size="1500" multicast="true" check-length="false"
-		lookup-host="false" multicast-address="239.255.60.60" />
-
-
+		lookup-host="false" multicast-address="${udp.host}" />
 
 	<int:channel id="canbusBridgeChannel" />
-
 
 	<int:payload-deserializing-transformer
 		id="udpPacketDeserializingTransformer"
@@ -193,30 +187,30 @@
 		class="org.springframework.integration.ip.tcp.serializer.ByteArrayCrLfSerializer" />
 
 	<int-ip:tcp-connection-factory
-		id="client" type="client" host="192.168.1.42" port="100"
-		single-use="true" so-timeout="1000" deserializer="javaDeserializer"
+		id="weather-client" type="client" host="${weather.host}" port="${weather.port}"
+		single-use="true" so-timeout="${weather.timeout}" deserializer="javaDeserializer"
 		serializer="javaSerializer" />
 
 	<int:channel id="weather-poll-command" />
 	<int:channel id="weather-poll-replies" />
 
 	<int-ip:tcp-outbound-channel-adapter
-		id="outbound-weather-poller" channel="weather-poll-command" connection-factory="client" auto-startup="${enable.weather.connector}" />
+		id="outbound-weather-poller" channel="weather-poll-command" connection-factory="weather-client" auto-startup="${enable.weather.connector}" />
 
 	<int:inbound-channel-adapter
 		id="triggerWeatherE0" expression="'E0'" channel="weather-poll-command"
 		auto-startup="${enable.weather.connector}">
-		<int:poller fixed-delay="5000" />
+		<int:poller fixed-delay="${weather.poll.interval}" />
 	</int:inbound-channel-adapter>
 
 	<int:inbound-channel-adapter
 		id="triggerWeatherE4" expression="'E4'" channel="weather-poll-command"
 		auto-startup="${enable.weather.connector}">
-		<int:poller fixed-delay="5000" />
+		<int:poller fixed-delay="${weather.poll.interval}" />
 	</int:inbound-channel-adapter>
 
 	<int-ip:tcp-inbound-channel-adapter
-		id="inbound-weather-poll-replies" channel="weather-poll-replies" connection-factory="client" auto-startup="${enable.weather.connector}"/>
+		id="inbound-weather-poll-replies" channel="weather-poll-replies" connection-factory="weather-client" auto-startup="${enable.weather.connector}"/>
 
 	<int:splitter id="weatherSplitter" input-channel="weather-poll-replies"
 		output-channel="udpPacketOutputChannel">
@@ -236,7 +230,7 @@
 	<int:channel id="actualUdpOutput" />
 
 	<int-ip:udp-outbound-channel-adapter
-		id="canbusSender" host="239.255.60.60" port="4876" multicast="true"
+		id="canbusSender" host="${udp.host}" port="${udp.port}" multicast="true"
 		check-length="false" channel="actualUdpOutput" />
 
 
@@ -247,7 +241,7 @@
 
 
 	<int-ip:tcp-connection-factory
-		id="GpsServer" type="server" host="192.168.1.60" port="11123"
+		id="GpsServer" type="server" host="${gps.host}" port="${gps.port}"
 		deserializer="lfSeserializer" serializer="lfSeserializer" />
 
 	<int-ip:tcp-inbound-gateway id="gatewayGps"
@@ -287,13 +281,13 @@
 	<!-- Splunk Configuration -->
 
 	<int-splunk:server id="splunkServer"
-		host="splunkenterprise" port="8089" username="admin"
-		password="***REMOVED***" owner="admin" scheme="https" />
+		host="${splunk.host}" port="${splunk.port}" username="${splunk.username}"
+		password="${splunk.password}" owner="${splunk.owner}" scheme="${splunk.scheme}" />
 
 	<int-splunk:outbound-channel-adapter
 		id="splunkOutboundChannelAdapter" channel="splunkData"
 		splunk-server-ref="splunkServer" auto-startup="${enable.splunk.connector}">
-		<int-splunk:tcp-writer port="9999" />
+		<int-splunk:tcp-writer port="${splunk.tcpwriter.port}" />
 	</int-splunk:outbound-channel-adapter>
 
 

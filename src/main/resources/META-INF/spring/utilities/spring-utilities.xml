@@ -16,6 +16,12 @@
 		http://www.springframework.org/schema/integration/splunk 
 		http://www.springframework.org/schema/integration/splunk/spring-integration-splunk.xsd">
 		
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	  <property name="location">
+	    <value>application.properties</value>
+	  </property>
+	</bean>		
+			
 	<int:channel id="udpPacketOutputChannel"
 		datatype="au.com.teamarrow.canbus.model.UdpPacket">
 	</int:channel>	
@@ -29,8 +35,8 @@
 	<int:channel id="output" />
 	
 	<int-ip:udp-outbound-channel-adapter id="canbusSender"
-	    host="239.255.60.60"
-    	port="4876"
+	    host="${udp.host}"
+    	port="${udp.port}"
     	multicast="true"
     	check-length="false"
     	channel="output" />

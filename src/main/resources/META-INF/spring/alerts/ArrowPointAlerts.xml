@@ -3,16 +3,21 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	  <property name="location">
+	    <value>application.properties</value>
+	  </property>
+	</bean>
 	
 	<!-- These beans are used to set up the core engine of alerts system -->
 	<bean id="AlertManager" class="au.com.teamarrow.alerts.AlertManager">
-		<property name="alertsFile" value="./config/alerts/Alert_Values.csv"/>
-		<property name="flagsFile" value="./config/alerts/Flag_Values.csv"/>
+		<property name="alertsFile" value="${alerts.values.file}"/>
+		<property name="flagsFile" value="${alerts.flags.file}"/>
 		<property name="normalLevelScript" value="StatusNormal.bat"/>
 		<property name="warningLevelScript" value="StatusWarning.bat"/>
 		<property name="alertLevelScript" value="StatusAlert.bat"/>
 		<property name="shutdownLevelScript" value="StatusShutdown.bat"/>
-		<property name="scriptDir" value="./config/alerts/"/>
+		<property name="scriptDir" value="${alerts.dir}"/>
 		<property name="supressionDelay" value="3"/>
 	</bean>
              

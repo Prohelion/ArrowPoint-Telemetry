@@ -11,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,7 @@ import au.com.teamarrow.model.MeasurementData;
 
 @Controller
 @RequestMapping(value = "/")
+@PropertySource({"classpath:application.properties"})
 public class FleetController extends AbstractController {
         
 	private static final Logger LOG = LoggerFactory.getLogger(FleetController.class);
@@ -52,9 +55,10 @@ public class FleetController extends AbstractController {
     @Qualifier("serverBytes2GpsSplitterChannel")
     MessageChannel serverBytes2GpsSplitterChannel;
 
+	@Autowired
+	private Environment env;
 	
     private static final int MAX_UDP_DATAGRAM_LEN = 512;
-    private static final int UDP_SERVER_PORT = 4879;
 
 	
     public FleetController() {
@@ -179,19 +183,19 @@ public class FleetController extends AbstractController {
 
 	        InetAddress address = null;
 	        try {
-	            address = InetAddress.getByName("239.255.60.60");
+	            address = InetAddress.getByName(env.getProperty("udp.host"));
 	        } catch (UnknownHostException e1) {
 	            e1.printStackTrace();
 	        }
 			        
 	        try {
-	        	MulticastSocket socket = new MulticastSocket(UDP_SERVER_PORT); // must bind receive side
+	        	MulticastSocket socket = new MulticastSocket(new Integer(env.getProperty("udp.port"))); // must bind receive side
 	        	socket.joinGroup(address);
 	        	socket.setSoTimeout(100);
 				
 	            send_bytes = new String(message).getBytes();
 	            		
-	            DatagramPacket send_packet = new DatagramPacket(send_bytes, send_bytes.length, address, UDP_SERVER_PORT);
+	            DatagramPacket send_packet = new DatagramPacket(send_bytes, send_bytes.length, address, new Integer(env.getProperty("udp.port")));
 	            socket.send(send_packet);
 	            socket.close();
 	            

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title></title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+		<link rel="stylesheet" th:href="@{/css/main.css}" />
+		<link rel="stylesheet" th:href="@{/css/bootstrap-responsive.min.css}" />
+		<link rel="stylesheet" th:href="@{/css/main.css}" />
+		
+		<script th:src="@{/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js}"></script>
+	</head>
+	<body>	
+		<div th:replace="header :: menu"></div>
+	
+		<div class="container">
+
+			<!-- Example row of columns -->
+			<div class="row">
+				
+				<div class="span12">			
+			
+	    			<table>
+	        				<tr><td colspan="2" ><h1>Telemetry Configuration</h1></td></tr>
+	        				<tr></tr>
+	        				<tr><td colspan="2" ><h2>Application</h2></td></tr>
+	        				<tr><td>telemetry.username</td><td th:text="${@environment.getProperty('telemetry.username')}"></td></tr>
+	        				<tr><td>telemetry.password</td><td th:text="${@environment.getProperty('telemetry.password')}"></td></tr>
+	        				<tr></tr>
+	        				<tr><td colspan="2"><h2>Splunk</h2></td></tr>
+	        				<tr><td>enable.splunk.connector</td><td th:text="${@environment.getProperty('enable.splunk.connector')}"></td></tr>
+	        				<tr><td>splunk.host</td><td th:text="${@environment.getProperty('splunk.host')}"></td></tr>
+	        				<tr><td>splunk.port</td><td th:text="${@environment.getProperty('splunk.port')}"></td></tr>
+	        				<tr><td>splunk.username</td><td th:text="${@environment.getProperty('splunk.username')}"></td></tr>
+	        				<tr><td>splunk.password</td><td th:text="${@environment.getProperty('splunk.password')}"></td></tr>
+	        				<tr><td>splunk.owner</td><td th:text="${@environment.getProperty('splunk.owner')}"></td></tr>
+	        				<tr><td>splunk.scheme</td><td th:text="${@environment.getProperty('splunk.scheme')}"></td></tr>
+	        				<tr><td>splunk.tcpwriter.port</td><td th:text="${@environment.getProperty('splunk.tcpwriter.port')}"></td></tr>
+	        				<tr></tr>
+	        				<tr><td colspan="2"><h2>Weather Data Connection</h2></td></tr>
+	        				<tr><td>enable.weather.connector</td><td th:text="${@environment.getProperty('enable.weather.connector')}"></td></tr>
+	        				<tr><td>weather.host</td><td th:text="${@environment.getProperty('weather.host')}"></td></tr>
+	        				<tr><td>weather.port</td><td th:text="${@environment.getProperty('weather.port')}"></td></tr>
+	        				<tr><td>weather.timeout</td><td th:text="${@environment.getProperty('weather.timeout')}"></td></tr>
+	        				<tr><td>weather.poll.interval</td><td th:text="${@environment.getProperty('weather.poll.interval')}"></td></tr>
+	        				<tr></tr>
+	        				<tr><td colspan="2"><h2>GPS Connection Listener</h2></td></tr>
+	        				<tr><td>enable.gps.connector</td><td th:text="${@environment.getProperty('enable.gps.connector')}"></td></tr>
+	        				<tr><td>gps.host</td><td th:text="${@environment.getProperty('gps.host')}"></td></tr>
+	        				<tr><td>gps.port</td><td th:text="${@environment.getProperty('gps.port')}"></td></tr>
+	        				<tr></tr>
+	        				<tr><td colspan="2"><h2>Telemetry Data Forwarder</h2></td></tr>
+	        				<tr><td>enable.data.forward</td><td th:text="${@environment.getProperty('enable.data.forward')}"></td></tr>
+	        				<tr><td>data.forward.cron</td><td th:text="${@environment.getProperty('data.forward.cron')}"></td></tr>
+	        				<tr><td>data.forward.url</td><td th:text="${@environment.getProperty('data.forward.url')}"></td></tr>
+	        				<tr></tr>
+	        				<tr><td colspan="2"><h2>Alerting and Lights</h2></td></tr>
+	        				<tr><td>enable.alerts</td><td th:text="${@environment.getProperty('enable.alerts')}"></td></tr>
+	        				<tr><td>alerts.dir</td><td th:text="${@environment.getProperty('alerts.dir')}"></td></tr>
+	        				<tr><td>alerts.values.file</td><td th:text="${@environment.getProperty('alerts.values.file')}"></td></tr>
+	        				<tr><td>alerts.flags.file</td><td th:text="${@environment.getProperty('alerts.flags.file')}"></td></tr>
+	        				<tr></tr>
+	        				<tr><td colspan="2"><h2>Route</h2></td></tr>
+	        				<tr><td>route.file</td><td th:text="${@environment.getProperty('route.file')}"></td></tr>
+	        				<tr></tr>
+	        				<tr><td colspan="2"><h2>UDP Receive and Broadcast</h2></td></tr>
+	        				<tr><td>udp.host</td><td th:text="${@environment.getProperty('udp.host')}"></td></tr>
+	        				<tr><td>udp.port</td><td th:text="${@environment.getProperty('udp.port')}"></td></tr>
+	        				<tr></tr>
+	        				<tr><td colspan="2"><h2>Can File Loader</h2></td></tr>
+	        				<tr><td>can.loader.directory</td><td th:text="${@environment.getProperty('can.loader.directory')}"></td></tr>
+	        				<tr><td>can.loader.pattern</td><td th:text="${@environment.getProperty('can.loader.pattern')}"></td></tr>
+	        				<tr><td>can.loader.poll.interval</td><td th:text="${@environment.getProperty('can.loader.poll.interval')}"></td></tr>
+	        				<tr></tr>
+	        				<tr><td colspan="2"><h1>Infrastructure Configuration</h1></td></tr>
+	        				<tr><td>spring.application.name</td><td th:text="${@environment.getProperty('spring.application.name')}"></td></tr>
+	        				<tr><td>spring.mvc.favicon.enabled</td><td th:text="${@environment.getProperty('spring.mvc.favicon.enabled')}"></td></tr>
+	        				<tr><td>server.port</td><td th:text="${@environment.getProperty('server.port')}"></td></tr>
+	        				<tr><td>server.servlet.contextPath</td><td th:text="${@environment.getProperty('server.servlet.contextPath')}"></td></tr>
+	        				<tr><td>server.servlet.session.timeout</td><td th:text="${@environment.getProperty('server.servlet.session.timeout')}"></td></tr>
+	        				<tr></tr>
+	        				<tr><td colspan="2"><h2>Thymeleaf Configuration</h2></td></tr>
+	        				<tr><td>spring.thymeleaf.cache</td><td th:text="${@environment.getProperty('spring.thymeleaf.cache')}"></td></tr>
+	        				<tr><td>spring.thymeleaf.enabled</td><td th:text="${@environment.getProperty('spring.thymeleaf.enabled')}"></td></tr>
+	        				<tr><td>spring.thymeleaf.prefix</td><td th:text="${@environment.getProperty('spring.thymeleaf.prefix')}"></td></tr>
+	        				<tr><td>spring.thymeleaf.suffix</td><td th:text="${@environment.getProperty('spring.thymeleaf.suffix')}"></td></tr>
+	        				<tr></tr>
+	        				<tr><td colspan="2"><h2>DataSource Configuration</h2></td></tr>
+	        				<tr><td>jdbc.driverClassName</td><td th:text="${@environment.getProperty('jdbc.driverClassName')}"></td></tr>
+	        				<tr><td>jdbc.url</td><td th:text="${@environment.getProperty('jdbc.url')}">/td></tr>
+	        				<tr><td>jdbc.user</td><td th:text="${@environment.getProperty('jdbc.user')}"></td></tr>
+	        				<tr><td>jdbc.pass</td><td th:text="${@environment.getProperty('jdbc.pass')}"></td></tr>
+	        				<tr><td>init-db</td><td th:text="${@environment.getProperty('init-db')}"></td></tr>
+	        				<tr></tr>
+	        				<tr><td colspan="2"><h2>Hibernate Configuration</h2></td></tr>
+	        				<tr><td>hibernate.dialect</td><td th:text="${@environment.getProperty('hibernate.dialect')}"></td></tr>
+	        				<tr><td>hibernate.show_sql</td><td th:text="${@environment.getProperty('hibernate.show_sql')}"></td></tr>
+	        				<tr><td>hibernate.hbm2ddl.auto</td><td th:text="${@environment.getProperty('hibernate.hbm2ddl.auto')}"></td></tr>
+	        				<tr><td>jadira.usertype.autoRegisterUserTypes</td><td th:text="${@environment.getProperty('jadira.usertype.autoRegisterUserTypes')}"></td></tr>
+	        				<tr><td>jadira.usertype.databaseZone</td><td th:text="${@environment.getProperty('jadira.usertype.databaseZone')}"></td></tr>
+	        				<tr><td>jadira.usertype.javaZone</td><td th:text="${@environment.getProperty('jadira.usertype.javaZone')}"></td></tr>
+	        				<tr></tr>
+	        				<tr><td colspan="2"><h2>Debugging Configuration</h2></td></tr>
+	        				<tr><td>logging.level.org.springframework.web</td><td th:text="${@environment.getProperty('logging.level.org.springframework.web')}"></td></tr>
+	        				<tr><td>logging.level.org.hibernate</td><td th:text="${@environment.getProperty('logging.level.org.hibernate')}"></td></tr>
+	        				<tr></tr>
+	        				<tr><td># Use for SQL debugging</td></tr>
+	        				<tr><td>logging.level.org.hibernate.SQL</td><td th:text="${@environment.getProperty('logging.level.org.hibernate.SQL')}"></td></tr>
+	        				<tr><td>logging.level.org.hibernate.type.descriptor.sql.BasicBinder</td><td th:text="${@environment.getProperty('logging.level.org.hibernate.type.descriptor.sql.BasicBinder')}"></td></tr>
+	        				<tr><td>logging.level.org.springframework.transaction.interceptor</td><td th:text="${@environment.getProperty('logging.level.org.springframework.transaction.interceptor')}"></td></tr>
+					</table>
+			</div>
+								
+		</div>
+								
+		<div th:replace="footer :: details"></div>
+		
+		</div>	
+		<!-- /container -->
+	
+		<!-- script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script -->
+		<script src="/js/vendor/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript">window.jQuery || document.write('\x3Cscript type="text/javascript" src="/js/vendor/jquery-1.9.1.min.js">\x3C/script>');</script>
+	
+		<script th:src="@{/js/vendor/bootstrap.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery.flot.js}"></script>		
+	</body>
+</html>

@@ -3,9 +3,15 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<!-- These beans are used to set up the core engine of maps system -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	  <property name="location">
+	    <value>application.properties</value>
+	  </property>
+	</bean>
+
+	<!-- These beans are used to set up the core engine of maps system -->
 	<bean id="Route" class="au.com.teamarrow.maps.impl.CvsRouteImpl">
-		<property name="routeFile" value="./config/route/routedata.csv"/>
+		<property name="routeFile" value="${route.file}"/>
 		<property name="controlStopDistances">
 			<list>
 				<value>321000</value>
