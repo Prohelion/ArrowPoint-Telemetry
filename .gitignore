@@ -8,3 +8,5 @@ Servers/
 logs/
 RemoteSystemsTempFiles/
 *.jar
+docker/splunk/etc.tar
+docker/splunk/var.tar

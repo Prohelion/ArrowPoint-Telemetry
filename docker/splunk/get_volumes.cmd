@@ -1,0 +1,2 @@
+PowerShell Invoke-WebRequest -OutFile etc.tar https://s3.eu-central-1.amazonaws.com/prohelion-splunk-config/etc.tar
+PowerShell Invoke-WebRequest -OutFile var.tar https://s3.eu-central-1.amazonaws.com/prohelion-splunk-config/var.tar
