@@ -255,15 +255,15 @@ public class AlertManager {
 		if (force == true  || (previousAlertLevel != alertLevel && (supressionCounter >= supressionDelay))) {
 		
 			switch (alertLevel) {
-				case AlertData.NORMAL: 	executeCommand(scriptDir + normalLevelScript); 
+				case AlertData.NORMAL: 	executeCommand(normalLevelScript); 
 										break;
-				case AlertData.INFORMATION: 	executeCommand(scriptDir + normalLevelScript); 
+				case AlertData.INFORMATION: 	executeCommand(normalLevelScript); 
 												break;										
-				case AlertData.WARNING: executeCommand(scriptDir + warningLevelScript);
+				case AlertData.WARNING: executeCommand(warningLevelScript);
 										break;
-				case AlertData.ALERT: 	executeCommand(scriptDir + alertLevelScript);
+				case AlertData.ALERT: 	executeCommand(alertLevelScript);
 										break;
-				case AlertData.SHUTDOWN: 	executeCommand(scriptDir + shutdownLevelScript);
+				case AlertData.SHUTDOWN: 	executeCommand(shutdownLevelScript);
 											break;																			
 			}
 			
@@ -301,10 +301,12 @@ public class AlertManager {
 
 		StringBuffer output = new StringBuffer();
 		String aux = "";
-
+		String fullCommandPath = scriptDir + "/" + command;
+		
+		
 		Process process;
 		try {
-			process = Runtime.getRuntime().exec(command,null,new File(scriptDir));
+			process = Runtime.getRuntime().exec(fullCommandPath,null,new File(scriptDir));
 
 			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			while ((aux = reader.readLine()) != null) {
