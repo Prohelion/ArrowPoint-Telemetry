@@ -1,5 +1,10 @@
 package au.com.teamarrow.service.impl;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -7,8 +12,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-
-import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +84,9 @@ public class MeasurementDataServiceImpl implements MeasurementDataService {
     
     @Override
     public List<LongTermTrendData> getLongTermTrendDataForDevice(Integer deviceId) {        
-        return longTermTrendDataRepository.getTrendDataForDay(deviceId, LocalDate.now().toDateTimeAtStartOfDay());
+    	OffsetDateTime odt = OffsetDateTime.ofInstant(Instant.now(), ZoneId.of("UTC"));
+    	LocalDateTime odtStart = odt.toLocalDate().atStartOfDay();    	
+        return longTermTrendDataRepository.getTrendDataForDay(deviceId,odtStart.atOffset(ZoneOffset.UTC));
     }
     
 

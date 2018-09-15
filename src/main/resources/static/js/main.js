@@ -112,11 +112,11 @@ $(function() {
 				// the graph renders incorrectly
 				
 				// First get the most recent time from the list by iterating and looking
-				var lastTime = Date.parse(result[result.length-1].ts);
+				var lastTime = Date.parse(result[result.length-1].timestamp);
 				
 				for (var i = 0; i < result.length; i++) {
-					if (Date.parse(result[i].ts) > lastTime) 
-						lastTime = Date.parse(result[i].ts);
+					if (Date.parse(result[i].timestamp) > lastTime) 
+						lastTime = Date.parse(result[i].timestamp);
 				}
 				
 				var fromTime = lastTime - 60000;
@@ -125,7 +125,7 @@ $(function() {
 				//console.log("from time" + fromTime );
 				
 				for (var i = 0; i < result.length; i++) {
-					if ( Date.parse(result[i].ts) >= fromTime) points.push([Date.parse(result[i].ts), result[i].fv]);
+					if ( Date.parse(result[i].timestamp) >= fromTime) points.push([Date.parse(result[i].timestamp), result[i].fv]);
 		            // console.log(new Date(result[i].timestamp), result[i].floatValue);
 				}
 			}

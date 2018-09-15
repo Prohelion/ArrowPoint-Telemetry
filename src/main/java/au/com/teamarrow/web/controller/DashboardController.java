@@ -278,7 +278,7 @@ public class DashboardController extends AbstractController {
         
         public VehicleVelocityDto(List<MeasurementData> vt, List<MeasurementData> mt) {
             this.vehicleVelocity = (vt.size() > 0 ? vt.get(0) : null); 
-            this.vehicleVelocityKMH = vehicleVelocity.getFloatValue() * 3.6; // 60 * 60 / 1000
+            this.vehicleVelocityKMH = (this.vehicleVelocity!= null ? vehicleVelocity.getFloatValue() * 3.6 : 0); // 60 * 60 / 1000
             this.motorRpm = (vt.size() > 1 ? vt.get(1) : null);  
             this.throttleSetPoint = (mt.size() > 0 ? mt.get(0) : null);
         }

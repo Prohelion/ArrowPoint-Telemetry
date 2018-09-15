@@ -21,7 +21,8 @@
 	<bean id="udpPacketSerializer" class="au.com.teamarrow.canbus.serial.UdpPacketSerializer"/>
 	<bean id="udpPacketDeserializer" class="au.com.teamarrow.canbus.serial.UdpPacketDeserializer"/>
 	<bean id="canPacketSplitter" class="au.com.teamarrow.canbus.serial.CanPacketSplitter"/>
-	<bean id="enricherBean" class="au.com.teamarrow.service.impl.MeasurementDataEnrichment"/>		
+	<bean id="enricherBean" class="au.com.teamarrow.service.impl.MeasurementDataEnrichment"/>
+	<bean id="fleetServiceBean" class="au.com.teamarrow.service.impl.FleetServiceImpl"/>				
 	
 	<!-- These beans are used to set up the core engine of maps system -->
 	<bean id="AlertManager" class="au.com.teamarrow.alerts.AlertManager">

@@ -1,11 +1,13 @@
 package au.com.teamarrow.service.impl;
 
 import java.math.BigInteger;
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.ArrayUtils;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,7 +127,8 @@ public class MeasurementDataSplitter {
             }
                  
             //LOG.warn("Point {} Length {} points offset {}", dp.getDataPointCanId(), dataLength, offset);
-            measurements.add(new MeasurementData((cpId << 4) | offset, new DateTime(), canPacket.isExtended(), canPacket.isRtr(), 
+            OffsetDateTime dt = OffsetDateTime.ofInstant(Instant.now(), ZoneId.of("UTC"));
+            measurements.add(new MeasurementData((cpId << 4) | offset, dt, canPacket.isExtended(), canPacket.isRtr(), 
                 canPacket.getData().length, f.doubleValue(), i, s, "Normal"));
         }
         

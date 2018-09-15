@@ -30,6 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**","/img/**","/js/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/forward-data.json").permitAll()
                 .antMatchers(HttpMethod.POST, "/car-data.json").permitAll()
+                .antMatchers(HttpMethod.GET, "/measurement-data.json").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()

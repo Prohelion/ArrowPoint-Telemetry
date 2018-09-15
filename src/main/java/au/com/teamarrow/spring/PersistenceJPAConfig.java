@@ -84,9 +84,6 @@ public class PersistenceJPAConfig {
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
         hibernateProperties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-        hibernateProperties.setProperty("jadira.usertype.autoRegisterUserTypes", env.getProperty("jadira.usertype.autoRegisterUserTypes"));
-        hibernateProperties.setProperty("jadira.usertype.databaseZone", env.getProperty("jadira.usertype.databaseZone"));
-        hibernateProperties.setProperty("jadira.usertype.javaZone", env.getProperty("jadira.usertype.javaZone"));
         return hibernateProperties;
     }
 

@@ -2,14 +2,17 @@ package au.com.teamarrow.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import org.joda.time.DateTime;
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import org.junit.Test;
 
 public class MeasurementDataTest {
 
     @Test
     public void testNineParameterConstructor() {
-        DateTime dt = DateTime.now();
+    	OffsetDateTime dt = OffsetDateTime.ofInstant(Instant.now(), ZoneId.of("UTC"));
+
         MeasurementData md = new MeasurementData(0x400, dt, false, false, 128, 0.0, 0, "0.0", "Normal");
         
         assertEquals((Integer)0x400, md.getDataPointCanId());

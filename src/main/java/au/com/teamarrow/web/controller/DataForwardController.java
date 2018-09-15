@@ -1,10 +1,11 @@
 package au.com.teamarrow.web.controller;
 
 import java.net.URI;
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.util.Iterator;
 import java.util.List;
-
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -61,7 +62,7 @@ public class DataForwardController {
 	
 	private void sendMessage(Integer dataPointCanId, Double floatValue) {
 
-	 	DateTime timestamp = DateTime.now();;
+		OffsetDateTime dt = OffsetDateTime.ofInstant(Instant.now(), ZoneId.of("UTC"));
         Integer length = 8;
         Integer integerValue = new Double(floatValue).intValue();;
         String charValue = "";
@@ -69,7 +70,7 @@ public class DataForwardController {
 	 	Boolean extended = false;
 	 	Boolean retry = false;
 	 	
-		MeasurementData measurementData = new MeasurementData(dataPointCanId, timestamp, extended, retry,
+		MeasurementData measurementData = new MeasurementData(dataPointCanId, dt, extended, retry,
 		        length, floatValue, integerValue, charValue, state);
 		
 		measurementAggregatedDataChannel.send(MessageBuilder.withPayload(measurementData).build());			

@@ -1,23 +1,21 @@
 package au.com.teamarrow.canbus.model;
 
 import java.nio.ByteBuffer;
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
 import org.apache.commons.codec.binary.Hex;
-import org.joda.time.DateTime;
-
-import au.com.teamarrow.contrib.jodatime.binding.DateTimeXmlAdapter;
 
 @XmlRootElement(name = "CanPacket")
 public class CanPacket {
     
     private byte[] id;
     private Integer idBase10;
-    private DateTime timestamp;
+    private OffsetDateTime timestamp;
     private boolean extended;
     private boolean rtr;
     private byte length;
@@ -29,7 +27,7 @@ public class CanPacket {
         
     
     public CanPacket(byte[] id, boolean extended, boolean rtr, byte length, byte[] data) {
-        this.timestamp = new DateTime();
+        this.timestamp = OffsetDateTime.ofInstant(Instant.now(), ZoneId.of("UTC"));
         this.id = id;
         
         this.idBase10 = ByteBuffer.wrap(id).getInt();               
@@ -58,7 +56,7 @@ public class CanPacket {
     	System.arraycopy(segmentTwoInvert,0,data,0,segmentTwoInvert.length);
     	System.arraycopy(segmentOneInvert,0,data,segmentTwoInvert.length,segmentOneInvert.length);
 
-        this.timestamp = new DateTime();
+        this.timestamp = OffsetDateTime.ofInstant(Instant.now(), ZoneId.of("UTC"));
         this.id = id;
         
         this.idBase10 = base10id;               
@@ -88,7 +86,7 @@ public class CanPacket {
     	System.arraycopy(segmentTwoInvert,0,data,0,segmentTwoInvert.length);
     	System.arraycopy(segmentOneInvert,0,data,segmentTwoInvert.length,segmentOneInvert.length);
 
-        this.timestamp = new DateTime();
+        this.timestamp = OffsetDateTime.ofInstant(Instant.now(), ZoneId.of("UTC"));
         this.id = id;
         
         this.idBase10 = base10id;               
@@ -118,12 +116,11 @@ public class CanPacket {
     }
   
     @XmlAttribute(name="time")
-    @XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
-    public DateTime getTimestamp() {
+    public OffsetDateTime getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(DateTime timestamp) {
+    public void setTimestamp(OffsetDateTime timestamp) {
         this.timestamp = timestamp;
     }
 

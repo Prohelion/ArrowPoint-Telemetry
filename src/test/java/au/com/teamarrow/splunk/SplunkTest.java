@@ -5,19 +5,18 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
-
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
-
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.integration.splunk.event.SplunkEvent;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.test.context.ContextConfiguration;
-
 import com.splunk.Application;
 import com.splunk.HttpService;
 import com.splunk.SSLSecurityProtocol;
@@ -62,9 +61,11 @@ public class SplunkTest {
 	public void testSendMeasurementDataToSplunk() {
 
         HttpService.setSslSecurityProtocol(SSLSecurityProtocol.TLSv1_2);
-		
+
+        OffsetDateTime dt = OffsetDateTime.ofInstant(Instant.now(), ZoneId.of("UTC"));
+        
 		try {
-			MeasurementData data = new MeasurementData(1234, new DateTime(), false, false, 16, (double)100, 200, "C", "Good");					  			
+			MeasurementData data = new MeasurementData(1234, dt, false, false, 16, (double)100, 200, "C", "Good");					  			
 			measurementAggregatedDataChannel.send(MessageBuilder.withPayload(data).build());
 		} catch (Exception ex) {
 			assertTrue(false);
