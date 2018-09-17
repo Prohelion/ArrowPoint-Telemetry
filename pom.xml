@@ -319,9 +319,8 @@
 			<artifactId>commons-dbcp2</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>9.1-901-1.jdbc4</version>
+		    <groupId>org.postgresql</groupId>
+    		<artifactId>postgresql</artifactId>
 		</dependency>
 	</dependencies>
 </project>
