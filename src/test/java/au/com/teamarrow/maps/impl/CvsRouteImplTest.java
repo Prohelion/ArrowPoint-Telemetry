@@ -30,7 +30,8 @@ public class CvsRouteImplTest {
 	public void setRouteFile() {		
 		String routefile = "/test_routedata.csv";
 		
-		assertNotNull("CSV Route file missing", getClass().getResource(routefile));		
+		assertNotNull("CSV Route file missing", getClass().getResource(routefile));
+		route.setEnableRoute(true);
 		route.setRouteFile(routefile);		
 		assertTrue(route.getNumberOfNodes() == 5700);
 	}

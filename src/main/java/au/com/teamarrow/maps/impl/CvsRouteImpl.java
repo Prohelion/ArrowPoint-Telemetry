@@ -26,7 +26,7 @@ public class CvsRouteImpl implements Route {
 	int[] controlStopDistances;
 	int numberOfControlStops;
 	String routeFile = new String();
-	boolean enableRoute = false;
+	boolean enableRoute = true;
 
 	String[] controlStopDescriptions;
 	int scheduleStopNo = 0;
