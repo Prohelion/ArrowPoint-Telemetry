@@ -6,6 +6,8 @@ import au.com.teamarrow.maps.impl.NoRouteNodeException;
 import au.com.teamarrow.maps.impl.RouteNode;
 
 public interface Route {
+	
+	void setEnableRoute(boolean enable);
 
 	void setRoute(List<RouteNode> route);
 			

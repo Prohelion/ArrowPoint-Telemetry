@@ -26,10 +26,16 @@ public class CvsRouteImpl implements Route {
 	int[] controlStopDistances;
 	int numberOfControlStops;
 	String routeFile = new String();
+	boolean enableRoute = false;
 
 	String[] controlStopDescriptions;
 	int scheduleStopNo = 0;
 
+	@Override
+	public void setEnableRoute(boolean enableRoute) {
+		this.enableRoute = enableRoute;
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -57,12 +63,14 @@ public class CvsRouteImpl implements Route {
 	 */
 	public void setRouteFile(String routeFile) {
 
+		if (enableRoute == false) return;
+		
 		BufferedReader br = null;
 		String line = "";
 		String cvsSplitBy = ",";
 		
 		this.routeFile = routeFile;
-
+		
 		RouteNode previousPoint = new RouteNode();
 		RouteNode currentPoint = new RouteNode();
 		route = new ArrayList<RouteNode>();
@@ -509,4 +517,5 @@ public class CvsRouteImpl implements Route {
 		return controlStopDescriptions;
 	}
 
+	
 }

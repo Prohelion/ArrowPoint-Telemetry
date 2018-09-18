@@ -48,7 +48,7 @@ services:
 # This will only work on linux as it requires network_mode: host
 # For other platforms run the service in SpringBoot locally or Tomcat       
 #    telemetry:        
-#        image: prohelion/telemetry:0.3-SNAPSHOT
+#        image: prohelion/telemetry:0.4-SNAPSHOT
 ##        depends_on:
  #         - timescaledb
  #         - splunkenterprise          

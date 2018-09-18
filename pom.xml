@@ -5,10 +5,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.teamarrow</groupId>
 	<artifactId>telemetry</artifactId>
-	<version>0.3-SNAPSHOT</version>
+	<version>0.4-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Prohelion Telemetry</name>
-	<description>>Prohelion Telemetry System</description>
+	<description>Prohelion Telemetry System</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
