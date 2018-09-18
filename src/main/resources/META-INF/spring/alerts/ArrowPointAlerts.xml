@@ -11,6 +11,7 @@
 	
 	<!-- These beans are used to set up the core engine of alerts system -->
 	<bean id="AlertManager" class="au.com.teamarrow.alerts.AlertManager">
+		<property name="enableAlerts" value="${enable.alerts}"/>
 		<property name="alertsFile" value="${alerts.values.file}"/>
 		<property name="flagsFile" value="${alerts.flags.file}"/>
 		<property name="normalLevelScript" value="StatusNormal.bat"/>

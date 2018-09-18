@@ -25,8 +25,13 @@ public class AlertManager {
 	private int previousAlertLevel = -1;
 	private int supressionDelay = 3;
 	private int supressionCounter = supressionDelay + 2;
+	private boolean enableAlerts = true;
 	
 	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(AlertManager.class);
+	
+	public void setEnableAlerts(boolean enableAlerts) {
+		this.enableAlerts = enableAlerts;
+	}
 	
 	public void setSupressionDelay(int delay) {
 		this.supressionDelay = delay;
@@ -35,6 +40,8 @@ public class AlertManager {
 	
 	public void setFlagsFile(String flagsFile) {
 
+		if (enableAlerts == false) return;
+		
 		BufferedReader br = null;
 		String line = "";
 		String cvsSplitBy = ",";
@@ -118,6 +125,8 @@ public class AlertManager {
 	
 	
 	public void setAlertsFile(String alertFile) {
+		
+		if (enableAlerts == false) return;
 		
 		BufferedReader br = null;
 		String line = "";
