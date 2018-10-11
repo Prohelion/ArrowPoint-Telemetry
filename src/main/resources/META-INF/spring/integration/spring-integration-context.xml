@@ -56,7 +56,8 @@
 	<int-ip:udp-inbound-channel-adapter
 		id="bridgeReceiver" channel="canbusBridgeChannel" port="${udp.port}"
 		receive-buffer-size="1500" multicast="true" check-length="false"
-		lookup-host="false" multicast-address="${udp.host}" />
+		lookup-host="false" multicast-address="${udp.host}"
+		local-address="${udp.local.address}" />
 
 	<int:channel id="canbusBridgeChannel" />
 
