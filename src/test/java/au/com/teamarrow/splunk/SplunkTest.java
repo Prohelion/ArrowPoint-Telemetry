@@ -1,4 +1,4 @@
-package au.com.teamarrow.splunk;
+au.com.teamarrow.splunk;
 
 import static org.junit.Assert.*;
 
