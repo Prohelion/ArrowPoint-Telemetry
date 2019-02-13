@@ -1,0 +1,1 @@
+docker build --no-cache -t prohelion/pgadmin4:0.4 .

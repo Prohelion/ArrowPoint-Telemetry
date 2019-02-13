@@ -204,6 +204,8 @@ public class AlertManager {
 	
 	public void setDataPoint(Integer dataPointCanId, Double value) {
 		
+		if (!enableAlerts) return;	
+		
 		AlertData alertData = alertBoundaries.get(dataPointCanId);
 		
 		// We are not tracking this value, so return
@@ -257,6 +259,9 @@ public class AlertManager {
 	
 	public synchronized void triggerAlertScripts(boolean force) {
 						
+		// If alerts are not enabled then just return
+		if (!enableAlerts) return;
+		
 		int  alertLevel = getCurrentAlertLevel();
 		
 		supressionCounter++;

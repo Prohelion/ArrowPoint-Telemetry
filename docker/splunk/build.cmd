@@ -1,0 +1,1 @@
+docker build --no-cache -t prohelion/splunk:0.4 .

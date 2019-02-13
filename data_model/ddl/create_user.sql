@@ -4,9 +4,9 @@ BEGIN
    IF NOT EXISTS (
       SELECT *
       FROM   pg_catalog.pg_user
-      WHERE  usename = 'teamarrow') THEN
+      WHERE  usename = 'prohelion') THEN
 
-      CREATE USER teamarrow WITH CREATEDB PASSWORD 'teamarrow';
+      CREATE USER prohelion WITH CREATEDB PASSWORD 'passw0rd!';
    END IF;
 END
 $body$;

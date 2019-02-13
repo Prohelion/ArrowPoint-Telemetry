@@ -1,10 +1,10 @@
 @echo off
 
-Rem Setup TeamArrow database and create schema / user
+Rem Setup Prohelion database and create schema / user
 Rem Run this as the postgres user
 Rem Assumes required DDL scripts are in the same directory as this script
 
-SET PGPASSWORD=***REMOVED***
+SET PGPASSWORD=passw0rd!
 
 echo -----------------------------------------------------------------
 echo SETUP THE DATABASE
@@ -12,15 +12,15 @@ echo -----------------------------------------------------------------
 echo.
 
 Rem Create database and setup required plsql language support
-dropdb --username=teamarrow teamarrow
-createdb --username=teamarrow teamarrow
-createlang --username=teamarrow -d teamarrow plpgsql
+dropdb --username=prohelion prohelion
+createdb --username=prohelion prohelion
+createlang --username=prohelion -d prohelion plpgsql
 
 Rem Create database schemas
-psql --username=teamarrow -d teamarrow -a -f postgres.sql
+psql --username=prohelion -d prohelion -a -f postgres.sql
 
 Rem Create database functions
-psql --username=teamarrow -d teamarrow -a -f functions.sql
+psql --username=prohelion -d prohelion -a -f functions.sql
 
 Rem Load test data
-psql --username=teamarrow -d teamarrow -a -f referencedata.sql
+psql --username=prohelion -d prohelion -a -f referencedata.sql

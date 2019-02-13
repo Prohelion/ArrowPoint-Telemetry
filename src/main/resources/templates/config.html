@@ -105,8 +105,7 @@
 	        				<tr><td colspan="2"><h2>Debugging Configuration</h2></td></tr>
 	        				<tr><td>logging.level.org.springframework.web</td><td th:text="${@environment.getProperty('logging.level.org.springframework.web')}"></td></tr>
 	        				<tr><td>logging.level.org.hibernate</td><td th:text="${@environment.getProperty('logging.level.org.hibernate')}"></td></tr>
-	        				<tr></tr>
-	        				<tr><td># Use for SQL debugging</td></tr>
+	        				<tr></tr>	        				
 	        				<tr><td>logging.level.org.hibernate.SQL</td><td th:text="${@environment.getProperty('logging.level.org.hibernate.SQL')}"></td></tr>
 	        				<tr><td>logging.level.org.hibernate.type.descriptor.sql.BasicBinder</td><td th:text="${@environment.getProperty('logging.level.org.hibernate.type.descriptor.sql.BasicBinder')}"></td></tr>
 	        				<tr><td>logging.level.org.springframework.transaction.interceptor</td><td th:text="${@environment.getProperty('logging.level.org.springframework.transaction.interceptor')}"></td></tr>

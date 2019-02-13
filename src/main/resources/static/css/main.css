@@ -14,8 +14,8 @@
 	background-color: #DA262E;
 	color: #111;
 }
-.navbar .brand {
-	padding: 9px 20px;
+.navbar .brand {	
+    width: 50px;
 }
 
 h2 {
