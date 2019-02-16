@@ -1,0 +1,2 @@
+docker run --rm --volumes-from arrowpoint-telemetry_splunkenterprise_1 -v $(pwd):/backup ubuntu bash -c "tar cvf /backup/etc.tar /opt/splunk/etc"
+docker run --rm --volumes-from arrowpoint-telemetry_splunkenterprise_1 -v $(pwd):/backup ubuntu bash -c "tar cvf /backup/var.tar /opt/splunk/var"

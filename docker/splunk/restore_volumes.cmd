@@ -1,2 +1,0 @@
-docker run --rm --volumes-from teamarrowweb_splunkenterprise_1 -v %cd%:/backup ubuntu bash -c "cd /opt/splunk/etc && tar xvf /backup/etc.tar --strip 3"
-docker run --rm --volumes-from teamarrowweb_splunkenterprise_1 -v %cd%:/backup ubuntu bash -c "cd /opt/splunk/var && tar xvf /backup/var.tar --strip 3"

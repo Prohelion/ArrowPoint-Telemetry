@@ -1,0 +1,100 @@
+<form>
+  <label>Long Term Analysis</label>
+  <fieldset submitButton="false" autoRun="true">
+    <input type="multiselect" token="selected_data_pnt_can_id" searchWhenChanged="true">
+      <label>Attributes to Graph</label>
+      <search>
+        <query>| inputlookup DataPoint_CanID |  eval full_name =  dev_name." - ".data_pnt_name | dedup data_pnt_can_id</query>
+      </search>
+      <fieldForLabel>full_name</fieldForLabel>
+      <fieldForValue>data_pnt_can_id</fieldForValue>
+      <prefix>(</prefix>
+      <suffix>)</suffix>
+      <valuePrefix>dataPointCanId="</valuePrefix>
+      <valueSuffix>"</valueSuffix>
+      <delimiter> OR </delimiter>
+    </input>
+    <input type="time" token="timerange">
+      <label>Time Range</label>
+      <default>
+        <earliest>0</earliest>
+        <latest></latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <chart>
+        <title>Select the date range you wish to review</title>
+        <search>
+          <query>index="prohelion_telemetry" source="prohelion_telemetry" dev_name="Wave Sculptor" msrmnt_name="Wave Sculptor Velocity"  | timechart span=1h count(fval)</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <selection>
+          <set token="selection_earliest">$start$</set>
+          <set token="selection_latest">$end$</set>
+          <set token="start_splunk_web_access">$start.splunk_web_access$</set>
+          <set token="end_splunk_web_access">$end.splunk_web_access$</set>
+        </selection>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">-45</option>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.enabled">false</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.bubbleMaximumSize">50</option>
+        <option name="charting.chart.bubbleMinimumSize">10</option>
+        <option name="charting.chart.bubbleSizeBy">area</option>
+        <option name="charting.chart.nullValueMode">connect</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="charting.data.count">9999</option>
+        <option name="charting.axisTitleX.text">Number of datapoints</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <chart>
+        <title>Actual Data</title>
+        <search>
+          <query>index="prohelion_telemetry" source="prohelion_telemetry" $selected_data_pnt_can_id$ | eval full_name =  dev_name." - ".data_pnt_name | timechart bins=9999 avg(fval) by full_name</query>
+          <earliest>$selection_earliest$</earliest>
+          <latest>$selection_latest$</latest>
+        </search>
+        <option name="charting.chart">line</option>
+        <option name="charting.axisY2.enabled">false</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.scale">log</option>
+        <option name="charting.chart.bubbleMaximumSize">50</option>
+        <option name="charting.chart.bubbleMinimumSize">10</option>
+        <option name="charting.chart.bubbleSizeBy">area</option>
+        <option name="charting.chart.nullValueMode">connect</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="charting.data.count">9999</option>
+      </chart>
+    </panel>
+  </row>
+</form>

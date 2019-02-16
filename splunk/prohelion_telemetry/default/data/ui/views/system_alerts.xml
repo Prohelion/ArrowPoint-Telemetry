@@ -1,0 +1,55 @@
+<dashboard>
+  <label>System Alerts</label>
+  <row>
+    <panel>
+      <chart>
+        <title>System Temperatures</title>
+        <search>
+          <query>index="prohelion_telemetry" source="prohelion_telemetry" data_pnt_name="Motor temperature" OR data_pnt_name="WS22 heatsink temperature" OR data_pnt_name="CMU PCB temperature" OR data_pnt_name="Max cell temperature" | rex field=data_pnt_name "(?&lt;Device&gt;.*) temperature" |  rex field=msrmnt_name "Battery Management System (?&lt;Device&gt;.*) Status" |  rex field=msrmnt_name "Battery Management System Min (?&lt;Device&gt;.*) Temp" |  eval temp = if(fval &gt; 100, (fval / 10), fval) | eval temp=round(temp,2)  | eval warning='Warning Threshold'  | eval alert='Alert Threshold'  | eval shutdown='Shutdown Threshold'| eval warningspan = alert-warning | eval alertspan= shutdown-alert | eval shutdownspan = 100 - (warning + warningspan + alertspan) | chart max(temp) as Temp, max(shutdownspan) as Shutdown, max(alertspan) as Alert, max(warningspan) as Warning, max(warning) as Normal by Device</query>
+          <earliest>rt-10s</earliest>
+          <latest>rtnow</latest>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.enabled">false</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.bubbleMaximumSize">50</option>
+        <option name="charting.chart.bubbleMinimumSize">10</option>
+        <option name="charting.chart.bubbleSizeBy">area</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.overlayFields">Temp</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="charting.seriesColors">[0x000000,0xbf3030,0xeaab10,0xd6e800,0x84E900]</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <title>Can Data</title>
+        <search>
+          <query>index="prohelion_telemetry" source="prohelion_telemetry" data_pnt_name="Motor temperature" OR data_pnt_name="WS22 heatsink temperature" OR data_pnt_name="CMU PCB temperature" OR data_pnt_name="Max cell temperature" | rex field=data_pnt_name "(?&lt;Device&gt;.*) temperature" |  rex field=msrmnt_name "Battery Management System (?&lt;Device&gt;.*) Status" |  rex field=msrmnt_name "Battery Management System Min (?&lt;Device&gt;.*) Temp" |  eval temp = if(fval &gt; 100, (fval / 10), fval) | eval temp=round(temp,2)  | eval warning='Warning Threshold'  | eval alert='Alert Threshold'  | eval shutdown='Shutdown Threshold'| eval warningspan = alert-warning | eval alertspan= shutdown-alert | eval shutdownspan = 100 - (warning + warningspan + alertspan) | chart max(temp) as Temp, max(shutdownspan) as Shutdown, max(alertspan) as Alert, max(warningspan) as Warning, max(warning) as Normal by Device</query>
+          <earliest>rt-10s</earliest>
+          <latest>rtnow</latest>
+        </search>
+        <option name="count">10</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">cell</option>
+        <option name="rowNumbers">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+  </row>
+</dashboard>

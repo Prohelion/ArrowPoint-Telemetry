@@ -1,0 +1,26 @@
+{
+    "modelName": "LatLong",
+    "displayName": "LatLong",
+    "description": "",
+    "objectSummary": {
+        "Event-Based": 0,
+        "Transaction-Based": 0,
+        "Search-Based": 1
+    },
+    "objects": [
+        {
+            "objectName": "Search_Object",
+            "displayName": "Search Object",
+            "parentName": "BaseSearch",
+            "comment": "",
+            "fields": [],
+            "calculations": [],
+            "constraints": [],
+            "lineage": "Search_Object",
+            "baseSearch": "source=prohelion_telemetry dev_name=\"Global Positioning System\" data_pnt_name=Longitude OR data_pnt_name=Latitude | eval fval = fval /100"
+        }
+    ],
+    "objectNameList": [
+        "Search_Object"
+    ]
+}

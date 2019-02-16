@@ -1,0 +1,106 @@
+[app/ui]
+version = 7.1.2
+modtime = 1536393756.556686000
+
+[app/launcher]
+version = 7.1.2
+modtime = 1536393756.557662000
+
+[datamodels/BatteryTemps]
+access = read : [ * ]
+export = system
+owner = admin
+version = 7.1.2
+modtime = 1536410911.951514000
+
+[models/BatteryTemps]
+access = read : [ * ]
+export = system
+owner = admin
+version = 7.1.2
+modtime = 1536410911.952851000
+
+[datamodels/CMUBatteryVoltages]
+access = read : [ * ]
+export = system
+owner = admin
+version = 7.1.2
+modtime = 1536411008.983465000
+
+[models/CMUBatteryVoltages]
+access = read : [ * ]
+export = system
+owner = admin
+version = 7.1.2
+modtime = 1536411008.985641000
+
+[datamodels/LatLong]
+access = read : [ * ]
+export = system
+owner = admin
+version = 7.1.2
+modtime = 1536399078.628914000
+
+[models/LatLong]
+access = read : [ * ]
+export = system
+owner = admin
+version = 7.1.2
+modtime = 1536399078.633413000
+
+[datamodels/SolarArrayPowerModel]
+access = read : [ * ]
+export = system
+owner = admin
+version = 7.1.2
+modtime = 1536411058.831731000
+
+[models/SolarArrayPowerModel]
+access = read : [ * ]
+export = system
+owner = admin
+version = 7.1.2
+modtime = 1536411058.835740000
+
+[lookups/DataPoint_CanID]
+access = read : [ * ]
+export = system
+owner = admin
+version = 7.1.2
+modtime = 1536401967.213247000
+
+[indexes/prohelion_network]
+owner = admin
+version = 7.1.2
+modtime = 1536403833.711186000
+
+[transforms/DataPoint_CanID]
+access = read : [ * ]
+export = system
+owner = admin
+version = 7.1.2
+modtime = 1536405067.269209000
+
+[lookups/IPDevices]
+access = read : [ * ]
+export = system
+owner = admin
+version = 7.1.2
+modtime = 1536405299.109646000
+
+[props/source%3A%3Aprohelion_telemetry/LOOKUP-Prohelion_Telemetry_Lookup]
+access = read : [ * ]
+export = system
+owner = admin
+version = 7.1.2
+modtime = 1536405563.353874000
+
+[indexes/prohelion_telemetry]
+owner = admin
+version = 7.1.2
+modtime = 1536409527.690140000
+
+[inputs/tcp%3A%2F%2F9999]
+owner = admin
+version = 7.1.2
+modtime = 1536410390.131490000

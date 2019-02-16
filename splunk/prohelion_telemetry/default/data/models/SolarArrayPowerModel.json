@@ -1,0 +1,75 @@
+{
+    "modelName": "SolarArrayPowerModel",
+    "displayName": "SolarArrayPowerModel",
+    "description": "",
+    "objectSummary": {
+        "Event-Based": 0,
+        "Transaction-Based": 0,
+        "Search-Based": 1
+    },
+    "objects": [
+        {
+            "objectName": "Search_Object",
+            "displayName": "Search Object",
+            "parentName": "BaseSearch",
+            "comment": "",
+            "fields": [
+                {
+                    "fieldName": "_time",
+                    "owner": "Search_Object",
+                    "type": "timestamp",
+                    "fieldSearch": "_time=*",
+                    "required": true,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "_time",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "column",
+                    "owner": "Search_Object",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "column",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "fval",
+                    "owner": "Search_Object",
+                    "type": "number",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "fval",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "solarArray",
+                    "owner": "Search_Object",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "solarArray",
+                    "comment": ""
+                }
+            ],
+            "calculations": [],
+            "constraints": [],
+            "lineage": "Search_Object",
+            "baseSearch": "source=prohelion_telemetry (dev_name=\"Telemetry Calculated Data\" OR dev_name=\"Max Power Point Tracker 1\" OR dev_name=\"Max Power Point Tracker 2\" OR dev_name=\"Max Power Point Tracker 3\") AND (data_pnt_name = \"Amps\" OR data_pnt_name = \"Volts\" OR data_pnt_name=\"Array 1 Power\" OR data_pnt_name=\"Array 2 Power\" OR data_pnt_name=\"Array 3 Power\") | eval column = case(data_pnt_name == \"Amps\",\"Amps\",data_pnt_name=\"Volts\", \"Volts\",data_pnt_name == \"Array 1 Power\",\"Power\",data_pnt_name == \"Array 2 Power\",\"Power\",data_pnt_name ==\"Array 3 Power\",\"Power\") | eval solarArray = case(dev_name == \"Max Power Point Tracker 1\",\"Array 1\",dev_name == \"Max Power Point Tracker 2\",\"Array 2\",dev_name == \"Max Power Point Tracker 3\",\"Array 3\",data_pnt_name == \"Array 1 Power\",\"Array 1\",data_pnt_name == \"Array 2 Power\",\"Array 2\",data_pnt_name == \"Array 3 Power\",\"Array 3\") | eval fval = case(column=\"Volts\",Round(fval/1000,2),column=\"Amps\",Round(fval/1000,2),column=\"Power\",Round(fval,2)) | fields column, solarArray, fval"
+        }
+    ],
+    "objectNameList": [
+        "Search_Object"
+    ]
+}
