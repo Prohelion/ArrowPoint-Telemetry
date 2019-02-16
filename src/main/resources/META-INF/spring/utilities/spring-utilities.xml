@@ -23,7 +23,7 @@
 	</bean>		
 			
 	<int:channel id="udpPacketOutputChannel"
-		datatype="au.com.teamarrow.canbus.model.UdpPacket">
+		datatype="com.prohelion.canbus.model.UdpPacket">
 	</int:channel>	
 	
 	<int:payload-serializing-transformer id="udpPacketSerializingTransformer"

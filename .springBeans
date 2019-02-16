@@ -9,9 +9,9 @@
 	<configs>
 		<config>src/main/resources/META-INF/spring/mvc/spring-data.xml</config>
 		<config>java:utilities.CarUtilities</config>
+		<config>java:com.prohelion.spring.Application</config>
 	</configs>
 	<autoconfigs>
-		<config>java:au.com.teamarrow.spring.Application</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

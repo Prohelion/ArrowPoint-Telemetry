@@ -3,9 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.teamarrow</groupId>
+	<groupId>com.prohelion</groupId>
 	<artifactId>telemetry</artifactId>
-	<version>0.41-SNAPSHOT</version>
+	<version>1.5.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Prohelion Telemetry</name>
 	<description>Prohelion Telemetry System</description>
@@ -52,7 +52,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>au.com.teamarrow.spring.Application</mainClass>
+					<mainClass>com.prohelion.spring.Application</mainClass>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -323,4 +323,8 @@
     		<artifactId>postgresql</artifactId>
 		</dependency>
 	</dependencies>
+	<organization>
+		<name>Prohelion</name>
+		<url>www.prohelio.com</url>
+	</organization>
 </project>

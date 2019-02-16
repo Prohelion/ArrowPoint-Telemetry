@@ -10,7 +10,7 @@
 	</bean>
 
 	<!-- These beans are used to set up the core engine of maps system -->
-	<bean id="Route" class="au.com.teamarrow.maps.impl.CvsRouteImpl">
+	<bean id="Route" class="com.prohelion.maps.impl.CvsRouteImpl">
 		<property name="enableRoute" value="${enable.route}"/>
 		<property name="routeFile" value="${route.file}"/>
 		<property name="controlStopDistances">

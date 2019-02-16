@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.context.annotation.ImportResource;
 
-@SpringBootApplication(scanBasePackages={"utilities","au.com.teamarrow.canbus.serial"})
+@SpringBootApplication(scanBasePackages={"utilities","com.prohelion.canbus.serial"})
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})
 @ImportResource({"classpath:/META-INF/spring/utilities/spring-utilities.xml"})
 public class CarUtilities implements CommandLineRunner {
@@ -44,7 +44,7 @@ public class CarUtilities implements CommandLineRunner {
 		
 		int selection = 0;
 		
-		System.out.println("TeamArrow Car Testing Utilities");
+		System.out.println("Prohelion Car Testing Utilities");
 		System.out.println("");
 		System.out.println("What utility would you like to run?");
 		System.out.println("-----------------------------------");

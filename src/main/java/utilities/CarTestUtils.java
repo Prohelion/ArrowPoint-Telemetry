@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.stereotype.Component;
-import au.com.teamarrow.canbus.model.CanPacket;
-import au.com.teamarrow.canbus.model.UdpPacket;
+
+import com.prohelion.canbus.model.CanPacket;
+import com.prohelion.canbus.model.UdpPacket;
 
 /*
    ______________  _________

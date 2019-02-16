@@ -12,8 +12,9 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import au.com.teamarrow.canbus.model.CanPacket;
-import au.com.teamarrow.canbus.model.UdpPacket;
+
+import com.prohelion.canbus.model.CanPacket;
+import com.prohelion.canbus.model.UdpPacket;
 
 @Component
 public class LogReplayer {
@@ -30,7 +31,7 @@ public class LogReplayer {
 		String cvsSplitBy = ",";
 		DateFormat formatter = new SimpleDateFormat("HH:mm:ss.SSS");
 		
-		System.out.println("TeamArrow Log Replayer V1.0");
+		System.out.println("Prohelion Log Replayer V1.0");
 		System.out.println("Note: Filenames should entered using Java form");
 		System.out.println("D:/temp/car-park-test.csv");
 		

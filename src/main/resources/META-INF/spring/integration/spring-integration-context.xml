@@ -83,7 +83,7 @@
 
 
 	<int:channel id="udpPacketChannel"
-		datatype="au.com.teamarrow.canbus.model.UdpPacket" />
+		datatype="com.prohelion.canbus.model.UdpPacket" />
 
 
 
@@ -96,7 +96,7 @@
 
 
 	<int:channel id="canPacketChannel"
-		datatype="au.com.teamarrow.canbus.model.CanPacket" />
+		datatype="com.prohelion.canbus.model.CanPacket" />
 
 
 
@@ -109,7 +109,7 @@
 
 	<int:publish-subscribe-channel
 		id="measurementAggregatedDataChannel"
-		datatype="au.com.teamarrow.model.MeasurementData"
+		datatype="com.prohelion.model.MeasurementData"
 		ignore-failures="true" />
 
 
@@ -125,7 +125,7 @@
 
 
 	<int:channel id="filteredMeasurementDataChannel"
-		datatype="au.com.teamarrow.model.MeasurementData" />
+		datatype="com.prohelion.model.MeasurementData" />
 
 
 
@@ -135,25 +135,25 @@
 		output-channel="nullChannel" ref="measurementDataService" />
 
 	<bean id="aggregatorBean"
-		class="au.com.teamarrow.service.impl.MeasurementDataAggregator" />
+		class="com.prohelion.service.impl.MeasurementDataAggregator" />
 	<bean id="enricherBean"
-		class="au.com.teamarrow.service.impl.MeasurementDataEnrichment" />
+		class="com.prohelion.service.impl.MeasurementDataEnrichment" />
 
 	<bean id="mapGenerator"
-		class="au.com.teamarrow.maps.impl.MapGenerator">
+		class="com.prohelion.maps.impl.MapGenerator">
 		<property name="measurementDataEnrichment" ref="enricherBean" />
 	</bean>
 
 	<int:channel id="measurementDataChannel"
-		datatype="au.com.teamarrow.model.MeasurementData" />
+		datatype="com.prohelion.model.MeasurementData" />
 
 
 	<int:channel id="measurementDataChannelEnriched"
-		datatype="au.com.teamarrow.model.MeasurementData" />
+		datatype="com.prohelion.model.MeasurementData" />
 
 
 	<int:channel id="measurementDataChannelWithHeader"
-		datatype="au.com.teamarrow.model.MeasurementData" />
+		datatype="com.prohelion.model.MeasurementData" />
 
 
 
@@ -228,11 +228,11 @@
 
 	<int:splitter id="weatherSplitter" input-channel="weather-poll-replies"
 		output-channel="udpPacketOutputChannel">
-		<bean class="au.com.teamarrow.environment.WeatherSplitter" />
+		<bean class="com.prohelion.environment.WeatherSplitter" />
 	</int:splitter>
 
 	<int:channel id="udpPacketOutputChannel"
-		datatype="au.com.teamarrow.canbus.model.UdpPacket" />
+		datatype="com.prohelion.canbus.model.UdpPacket" />
 
 
 	<int:payload-serializing-transformer
@@ -269,7 +269,7 @@
 	<int:splitter id="gpsSplitter"
 		input-channel="serverBytes2GpsSplitterChannel"
 		output-channel="udpPacketOutputChannel">
-		<bean class="au.com.teamarrow.environment.GpsSplitter" />
+		<bean class="com.prohelion.environment.GpsSplitter" />
 	</int:splitter>
 
 	<int:channel id="errorChannel" />
@@ -286,7 +286,7 @@
 		auto-startup="${enable.splunk.connector}"/>
 
 	<bean id="measurementDataToSplunkTransformerBean"
-		class="au.com.teamarrow.splunk.MeasurementDataToSplunkTransformer" />
+		class="com.prohelion.splunk.MeasurementDataToSplunkTransformer" />
 
 	<int:channel id="splunkData" />
 

@@ -108,7 +108,7 @@
 	    <appender-ref ref="canlog" /> 
 	</logger>
 	
-	<logger name="au.com.teamarrow" additivity="true">
+	<logger name="com.prohelion" additivity="true">
 	    <level value="info"/>
 	    <appender-ref ref="arrow" /> 
 	</logger>

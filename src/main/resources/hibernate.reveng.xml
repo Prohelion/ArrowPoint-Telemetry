@@ -16,12 +16,12 @@
 	<table-filter match-name=".*" exclude="true"></table-filter>
 
 	<table schema="public" name="dev_type"
-		class="au.com.teamarrow.model.DeviceType">
+		class="com.prohelion.model.DeviceType">
 		<column name="dev_type_id" property="Id"></column>
 		<column name="dev_type" property="Type"></column>
 	</table>
 	<table schema="public" name="msrmnt"
-		class="au.com.teamarrow.model.Measurement">
+		class="com.prohelion.model.Measurement">
 		<column name="msrmnt_id" property="Id"></column>
 		<column name="msrmnt_name" property="Name"></column>
 		<column name="can_id" property="canId"></column>
@@ -33,7 +33,7 @@
 		<column name="msrmnt_type" property="Type"></column>
 	</table>
 	<table schema="public" name="msrmnt_data"
-		class="au.com.teamarrow.model.MeasurementData">
+		class="com.prohelion.model.MeasurementData">
 		<column name="msrmnt_data_id" property="Id"></column>
 		<column name="data_pnt_can_id" property="DataPointCanId"></column>
 		<column name="tstamp" property="Timestamp" type="DateTime"></column>
@@ -46,13 +46,13 @@
 		<column name="state" property="State"></column>
 	</table>
 	<table schema="public" name="dev"
-		class="au.com.teamarrow.model.Device">
+		class="com.prohelion.model.Device">
 		<column name="dev_id" property="Id"></column>
 		<column name="dev_name" property="Name"></column>
 		<column name="dev_abbrev" property="Abbreviation"></column>
 	</table>
 	<table schema="public" name="data_pnt"
-		class="au.com.teamarrow.model.DataPoint">
+		class="com.prohelion.model.DataPoint">
 		<column name="data_pnt_id" property="Id"></column>
 		<column name="data_pnt_can_id" property="DataPointCanId"></column>
 		<column name="name" property="Name"></column>
@@ -70,7 +70,7 @@
 		<column name="units" property="Units"></column>
 	</table>
 	<table schema="public" name="msrmnt_type"
-		class="au.com.teamarrow.model.MeasurementType">
+		class="com.prohelion.model.MeasurementType">
 		<column name="msrmnt_type_id" property="Id"></column>
 		<column name="msrmnt_type" property="Type"></column>
 		<column name="low_err_thrhld" property="LowErrorThreshold"></column>

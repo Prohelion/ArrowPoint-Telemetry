@@ -16,27 +16,36 @@
 		http://www.springframework.org/schema/integration/splunk 
 		http://www.springframework.org/schema/integration/splunk/spring-integration-splunk.xsd">
 
-	<context:component-scan base-package="com.teamarrow.utils.test"/>
+	<context:component-scan base-package="com.prohelion.utils.test"/>
 		
-	<bean id="udpPacketSerializer" class="au.com.teamarrow.canbus.serial.UdpPacketSerializer"/>
-	<bean id="udpPacketDeserializer" class="au.com.teamarrow.canbus.serial.UdpPacketDeserializer"/>
-	<bean id="canPacketSplitter" class="au.com.teamarrow.canbus.serial.CanPacketSplitter"/>
-	<bean id="enricherBean" class="au.com.teamarrow.service.impl.MeasurementDataEnrichment"/>
-	<bean id="fleetServiceBean" class="au.com.teamarrow.service.impl.FleetServiceImpl"/>				
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	  <property name="location">
+	    <value>application.properties</value>
+	  </property>
+	</bean>				
+		
+	<bean id="udpPacketSerializer" class="com.prohelion.canbus.serial.UdpPacketSerializer"/>
+	<bean id="udpPacketDeserializer" class="com.prohelion.canbus.serial.UdpPacketDeserializer"/>
+	<bean id="canPacketSplitter" class="com.prohelion.canbus.serial.CanPacketSplitter"/>
+	<bean id="enricherBean" class="com.prohelion.service.impl.MeasurementDataEnrichment"/>
+	<bean id="fleetServiceBean" class="com.prohelion.service.impl.FleetServiceImpl"/>				
+	<bean id="mapGeneratorBean" class="com.prohelion.maps.impl.MapGenerator"/>
 	
-	<!-- These beans are used to set up the core engine of maps system -->
-	<bean id="AlertManager" class="au.com.teamarrow.alerts.AlertManager">
-		<property name="alertsFile" value="/Alert_Values.csv"/>
-		<property name="flagsFile" value="/Flag_Values.csv"/>
+	<!-- These beans are used to set up the core engine of alerts system -->
+	<bean id="AlertManager" class="com.prohelion.alerts.AlertManager">
+		<property name="enableAlerts" value="${enable.alerts}"/>
+		<property name="alertsFile" value="${alerts.values.file}"/>
+		<property name="flagsFile" value="${alerts.flags.file}"/>
 		<property name="normalLevelScript" value="StatusNormal.bat"/>
 		<property name="warningLevelScript" value="StatusWarning.bat"/>
 		<property name="alertLevelScript" value="StatusAlert.bat"/>
 		<property name="shutdownLevelScript" value="StatusShutdown.bat"/>
-		<property name="scriptDir" value="C:/TeamArrow/config/alerts/"/>
+		<property name="scriptDir" value="${alerts.dir}"/>
+		<property name="supressionDelay" value="3"/>
 	</bean>
 
 	<!-- These beans are used to set up the core engine of maps system -->
-	<bean id="Route" class="au.com.teamarrow.maps.impl.CvsRouteImpl">
+	<bean id="Route" class="com.prohelion.maps.impl.CvsRouteImpl">
 		<property name="routeFile" value="/test_routedata.csv"/>
 		<property name="controlStopDistances">
 			<list>
@@ -69,7 +78,7 @@
 	
 	
 	<int:channel id="canbusOutputChannel"
-		datatype="au.com.teamarrow.canbus.model.UdpPacket">
+		datatype="com.prohelion.canbus.model.UdpPacket">
 	</int:channel>	
 	
 	<int:payload-serializing-transformer id="udpPacketSerializingTransformer"
@@ -93,12 +102,16 @@
 	<int:transformer id="measurementDataToSplunkTransformer" input-channel="measurementAggregatedDataChannel"
                 output-channel="splunkData" ref="measurementDataToSplunkTransformerBean"/>
                 
-	<bean id="measurementDataToSplunkTransformerBean" class="au.com.teamarrow.splunk.MeasurementDataToSplunkTransformer"/>                
+	<bean id="measurementDataToSplunkTransformerBean" class="com.prohelion.splunk.MeasurementDataToSplunkTransformer"/>                
                 	
 	 <int:channel id="splunkData"/>
 	 <int:channel id="measurementAggregatedDataChannel"/>		
-
-     <int-splunk:server id="splunkServer" host="localhost" port="8089" username="teamarrow" password="***REMOVED***" scheme="https"/>	
+     
+     <int-splunk:server id="splunkServer"
+		host="${splunk.host}" port="${splunk.port}" username="${splunk.username}"
+		password="${splunk.password}" owner="${splunk.owner}" scheme="${splunk.scheme}" />
+     
+     	
 	 <!-- <int-splunk:outbound-channel-adapter id="splunkOutboundChannelAdapter" channel="splunkData" splunk-server-ref="splunkServer">     
      	<int-splunk:tcp-writer port="9999"/>
      </int-splunk:outbound-channel-adapter> -->

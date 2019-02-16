@@ -13,18 +13,18 @@
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="com.teamarrow.utils.test"/>
+	<context:component-scan base-package="com.prohelion.utils.test"/>
 	
-	<bean id="LogReplayer" class="au.com.teamarrow.utils.test.LogReplayer"/>
-	<bean id="CruiseControlStepTest" class="au.com.teamarrow.utils.test.CruiseControlStepTest"/>
-	<bean id="CruiseControlTest" class="au.com.teamarrow.utils.test.CruiseControlTest"/>
-	<bean id="CarTestUtils" class="au.com.teamarrow.utils.test.CarTestUtils"/>
-	<bean id="CruiseSimulator" class="au.com.teamarrow.utils.test.CruiseSimulator"/>
+	<bean id="LogReplayer" class="com.prohelion.utils.test.LogReplayer"/>
+	<bean id="CruiseControlStepTest" class="com.prohelion.utils.test.CruiseControlStepTest"/>
+	<bean id="CruiseControlTest" class="com.prohelion.utils.test.CruiseControlTest"/>
+	<bean id="CarTestUtils" class="com.prohelion.utils.test.CarTestUtils"/>
+	<bean id="CruiseSimulator" class="com.prohelion.utils.test.CruiseSimulator"/>
 	
-	<bean id="udpPacketSerializer" class="au.com.teamarrow.canbus.serial.UdpPacketSerializer"/>
-	<bean id="udpPacketDeserializer" class="au.com.teamarrow.canbus.serial.UdpPacketDeserializer"/>
-	<bean id="canPacketSplitter" class="au.com.teamarrow.canbus.serial.CanPacketSplitter"/>
-	<bean id="cruiseSimulatorService" class="au.com.teamarrow.service.impl.CruiseSimulatorServiceImpl">
+	<bean id="udpPacketSerializer" class="com.prohelion.canbus.serial.UdpPacketSerializer"/>
+	<bean id="udpPacketDeserializer" class="com.prohelion.canbus.serial.UdpPacketDeserializer"/>
+	<bean id="canPacketSplitter" class="com.prohelion.canbus.serial.CanPacketSplitter"/>
+	<bean id="cruiseSimulatorService" class="com.prohelion.service.impl.CruiseSimulatorServiceImpl">
 		<property name="variationHertz" value="5"/>
 		<property name="velocityVariationPercent" value="0.001"/>	
 		<property name="active" value="false"/>
@@ -32,7 +32,7 @@
 	
 	
 	<int:channel id="canbusOutputChannel"
-		datatype="au.com.teamarrow.canbus.model.UdpPacket">
+		datatype="com.prohelion.canbus.model.UdpPacket">
 	</int:channel>	
 	
 	<int:payload-serializing-transformer id="udpPacketSerializingTransformer"
@@ -65,7 +65,7 @@
 	</int:payload-deserializing-transformer>
 	
 	<int:channel id="udpPacketChannel"
-		datatype="au.com.teamarrow.canbus.model.UdpPacket">
+		datatype="com.prohelion.canbus.model.UdpPacket">
 	</int:channel>
 	
 	<int:splitter id="canPacketSplitRouter"
@@ -75,11 +75,11 @@
 	</int:splitter>
 	
 	<int:channel id="canPacketChannel"
-		datatype="au.com.teamarrow.canbus.model.CanPacket">
+		datatype="com.prohelion.canbus.model.CanPacket">
 	</int:channel>
 	
 	<int:channel id="filteredCanPacketChannel"
-		datatype="au.com.teamarrow.canbus.model.CanPacket">
+		datatype="com.prohelion.canbus.model.CanPacket">
 	</int:channel>
 
 	<int:service-activator id="cruiseSimulator"
