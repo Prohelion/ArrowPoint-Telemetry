@@ -95,11 +95,6 @@ owner = admin
 version = 7.1.2
 modtime = 1536405563.353874000
 
-[indexes/prohelion_telemetry]
-owner = admin
-version = 7.1.2
-modtime = 1536409527.690140000
-
 [inputs/tcp%3A%2F%2F9999]
 owner = admin
 version = 7.1.2

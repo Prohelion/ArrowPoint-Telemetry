@@ -4,7 +4,7 @@
     <panel>
       <chart>
         <search>
-          <query>index="prohelion_telemetry" source="prohelion_telemetry" msrmnt_name="Weather Station Wind" data_pnt_name="Wind Speed"| timechart max(fval)</query>
+          <query>source="prohelion_telemetry" msrmnt_name="Weather Station Wind" data_pnt_name="Wind Speed"| timechart max(fval)</query>
           <earliest>rt-120s</earliest>
           <latest>rtnow</latest>
         </search>
@@ -37,7 +37,7 @@
       <chart>
         <title>Drection</title>
         <search>
-          <query>index="prohelion_telemetry" source="prohelion_telemetry" dev_name="Weather Station" data_pnt_name="Wind Direction" | timechart min(fval)</query>
+          <query>source="prohelion_telemetry" dev_name="Weather Station" data_pnt_name="Wind Direction" | timechart min(fval)</query>
           <earliest>rt-1000s</earliest>
           <latest>rtnow</latest>
         </search>
@@ -70,7 +70,7 @@
       <chart>
         <title>Compass Heading</title>
         <search>
-          <query>index="prohelion_telemetry" source="prohelion_telemetry" dev_name="Weather Station" data_pnt_name="Compass Heading"| timechart min(fval)</query>
+          <query>source="prohelion_telemetry" dev_name="Weather Station" data_pnt_name="Compass Heading"| timechart min(fval)</query>
           <earliest>rt-120s</earliest>
           <latest>rtnow</latest>
         </search>

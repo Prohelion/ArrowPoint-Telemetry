@@ -5,7 +5,7 @@
       <chart>
         <title>Battery (SOC)</title>
         <search>
-          <query>index="prohelion_telemetry" source="prohelion_telemetry" dev_name="Battery Management System" data_pnt_name="SOC Percentage" | eval percentage=min(fval)*100 | gauge percentage</query>
+          <query>source="prohelion_telemetry" dev_name="Battery Management System" data_pnt_name="SOC Percentage" | eval percentage=min(fval)*100 | gauge percentage</query>
           <earliest>rt-2m</earliest>
           <latest>rtnow</latest>
         </search>
@@ -36,7 +36,7 @@
       <single>
         <title>Throttle Setpoint</title>
         <search>
-          <query>index="prohelion_telemetry" source="prohelion_telemetry" dev_name="Driver Controller"  data_pnt_name="Motor current setpoint percentage" | eval percentage=Round(min(fval)*100 ,1)  | gauge  percentage</query>
+          <query>source="prohelion_telemetry" dev_name="Driver Controller"  data_pnt_name="Motor current setpoint percentage" | eval percentage=Round(min(fval)*100 ,1)  | gauge  percentage</query>
           <earliest>rt-5s</earliest>
           <latest>rtnow</latest>
         </search>
@@ -47,7 +47,7 @@
       <chart>
         <title>Speed</title>
         <search>
-          <query>index="prohelion_telemetry" source="prohelion_telemetry" dev_name="Wave Sculptor" data_pnt_name="Vehicle Velocity m/s"  | eval kph = fval*3.6| gauge kph</query>
+          <query>source="prohelion_telemetry" dev_name="Wave Sculptor" data_pnt_name="Vehicle Velocity m/s"  | eval kph = fval*3.6| gauge kph</query>
           <earliest>rt-5s</earliest>
           <latest>rtnow</latest>
         </search>
@@ -78,7 +78,7 @@
       <chart>
         <title>Speed over Time</title>
         <search>
-          <query>index="prohelion_telemetry" source="prohelion_telemetry" dev_name="Wave Sculptor" data_pnt_name="Vehicle Velocity m/s"   | eval kph = fval*3.6| timechart max(kph) span=2sec</query>
+          <query>source="prohelion_telemetry" dev_name="Wave Sculptor" data_pnt_name="Vehicle Velocity m/s"   | eval kph = fval*3.6| timechart max(kph) span=2sec</query>
           <earliest>rt-120s</earliest>
           <latest>rtnow</latest>
         </search>

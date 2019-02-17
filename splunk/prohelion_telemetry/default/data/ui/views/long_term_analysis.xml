@@ -27,7 +27,7 @@
       <chart>
         <title>Select the date range you wish to review</title>
         <search>
-          <query>index="prohelion_telemetry" source="prohelion_telemetry" dev_name="Wave Sculptor" msrmnt_name="Wave Sculptor Velocity"  | timechart span=1h count(fval)</query>
+          <query>source="prohelion_telemetry" dev_name="Wave Sculptor" msrmnt_name="Wave Sculptor Velocity"  | timechart span=1h count(fval)</query>
           <earliest>$timerange.earliest$</earliest>
           <latest>$timerange.latest$</latest>
         </search>
@@ -68,7 +68,7 @@
       <chart>
         <title>Actual Data</title>
         <search>
-          <query>index="prohelion_telemetry" source="prohelion_telemetry" $selected_data_pnt_can_id$ | eval full_name =  dev_name." - ".data_pnt_name | timechart bins=9999 avg(fval) by full_name</query>
+          <query>source="prohelion_telemetry" $selected_data_pnt_can_id$ | eval full_name =  dev_name." - ".data_pnt_name | timechart bins=9999 avg(fval) by full_name</query>
           <earliest>$selection_earliest$</earliest>
           <latest>$selection_latest$</latest>
         </search>

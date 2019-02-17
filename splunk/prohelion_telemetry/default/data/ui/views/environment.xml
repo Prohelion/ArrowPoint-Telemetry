@@ -14,7 +14,7 @@
       <chart>
         <title>Wind Speed (across car)</title>
         <search>
-          <query>index="prohelion_telemetry" source="prohelion_telemetry" msrmnt_name="Weather Station Wind" data_pnt_name="Wind Speed"|  eval fval = fval *3.6 | timechart max(fval)</query>
+          <query>source="prohelion_telemetry" msrmnt_name="Weather Station Wind" data_pnt_name="Wind Speed"|  eval fval = fval *3.6 | timechart max(fval)</query>
           <earliest>$timerange.earliest$</earliest>
           <latest>$timerange.latest$</latest>
         </search>
@@ -46,7 +46,7 @@
       <chart>
         <title>Direction</title>
         <search>
-          <query>index="prohelion_telemetry" source="prohelion_telemetry" dev_name="Weather Station" data_pnt_name="Wind Direction" | timechart min(fval)</query>
+          <query>source="prohelion_telemetry" dev_name="Weather Station" data_pnt_name="Wind Direction" | timechart min(fval)</query>
           <earliest>$timerange.earliest$</earliest>
           <latest>$timerange.latest$</latest>
         </search>
@@ -78,7 +78,7 @@
       <chart>
         <title>Compass Heading (Updates every few minutes)</title>
         <search>
-          <query>index="prohelion_telemetry" source="prohelion_telemetry" dev_name="Weather Station" data_pnt_name="Compass Heading"| timechart min(fval)</query>
+          <query>source="prohelion_telemetry" dev_name="Weather Station" data_pnt_name="Compass Heading"| timechart min(fval)</query>
           <earliest>$timerange.earliest$</earliest>
           <latest>$timerange.latest$</latest>
         </search>
@@ -111,7 +111,7 @@
       <chart>
         <title>Average Irradiance</title>
         <search>
-          <query>index="prohelion_telemetry" source="prohelion_telemetry" dev_name="Weather Station" data_pnt_name="Average Global Radiation"| timechart max(fval)</query>
+          <query>source="prohelion_telemetry" dev_name="Weather Station" data_pnt_name="Average Global Radiation"| timechart max(fval)</query>
           <earliest>$timerange.earliest$</earliest>
           <latest>$timerange.latest$</latest>
         </search>

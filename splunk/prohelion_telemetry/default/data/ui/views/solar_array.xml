@@ -29,7 +29,7 @@
       <chart>
         <title>Average Irradiance</title>
         <search>
-          <query>index="prohelion_telemetry" source="prohelion_telemetry" dev_name="Weather Station" data_pnt_name="Average Global Radiation"| timechart max(fval) bins=9999</query>
+          <query>source="prohelion_telemetry" dev_name="Weather Station" data_pnt_name="Average Global Radiation"| timechart max(fval) bins=9999</query>
           <earliest>$timerange.earliest$</earliest>
           <latest>$timerange.latest$</latest>
         </search>
@@ -65,7 +65,7 @@
       <chart>
         <title>Solar Power over Time</title>
         <search>
-          <query>index="prohelion_telemetry" source="prohelion_telemetry" ( msrmnt_name="Array 1 Power" OR  msrmnt_name="Array 2 Power" OR  msrmnt_name="Array 3 Power" OR data_pnt_name="Total Array Power") AND dev_name="Telemetry Calculated Data"| timechart bins=9999 avg(fval) by msrmnt_name</query>
+          <query>source="prohelion_telemetry" ( msrmnt_name="Array 1 Power" OR  msrmnt_name="Array 2 Power" OR  msrmnt_name="Array 3 Power" OR data_pnt_name="Total Array Power") AND dev_name="Telemetry Calculated Data"| timechart bins=9999 avg(fval) by msrmnt_name</query>
           <earliest>$timerange.earliest$</earliest>
           <latest>$timerange.latest$</latest>
         </search>

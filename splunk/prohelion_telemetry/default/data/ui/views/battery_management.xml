@@ -5,7 +5,7 @@
       <chart>
         <title>State of Charge</title>
         <search>
-          <query>index="prohelion_telemetry" source="prohelion_telemetry" dev_name="Battery Management System" 28484 data_pnt_name="SOC Percentage"| timechart avg(fval) span=5sec</query>
+          <query>source="prohelion_telemetry" dev_name="Battery Management System" 28484 data_pnt_name="SOC Percentage"| timechart avg(fval) span=5sec</query>
           <earliest>rt-5m</earliest>
           <latest>rtnow</latest>
         </search>
@@ -36,7 +36,7 @@
       <chart>
         <title>Minimum Cell Voltage</title>
         <search>
-          <query>index="prohelion_telemetry" source="prohelion_telemetry" dev_name="Battery Management System" data_pnt_name="Min cell voltage"| timechart min(fval) span=10sec</query>
+          <query>source="prohelion_telemetry" dev_name="Battery Management System" data_pnt_name="Min cell voltage"| timechart min(fval) span=10sec</query>
           <earliest>rt-5m</earliest>
           <latest>rtnow</latest>
         </search>
