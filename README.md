@@ -16,7 +16,7 @@ The ArrowPoint-Telemetry system is very light weight (considering what it is doi
 Examples of the software in use can be seen here - https://www.youtube.com/watch?reload=9&v=lWkXEb8v1tk
 
 Documentation for the Prohelion ArrowPoint Telemetry solution can be found on the Prohelion Wiki which is located here
-https://prohelion.atlassian.net/wiki/spaces/DOCS/pages/291471627/ArrowPoint+Telemetry
+https://prohelion.atlassian.net/wiki/spaces/DOCS/pages/303432127/ArrowPoint+Telemetry
 
 If you are interested in contributing to the solution, please see our contribution file here
 https://github.com/Prohelion/ArrowPoint-Telemetry/blob/master/CONTRIBUTING.md

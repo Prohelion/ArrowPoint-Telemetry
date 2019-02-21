@@ -37,12 +37,6 @@ are test cases please make sure you have a 100% pass rates before trying to cont
   or an **executable test case** demonstrating the expected behavior that is not
   occurring.
 
-* If possible, use the relevant bug report templates to create the issue.
-  Simply copy the content of the appropriate template into a .rb file, make the
-  necessary changes to demonstrate the issue, and **paste the content into the
-  issue description**:
-  * [**Prohelion** master issues][master template]
-
 ### 5. Implement your fix or feature
 
 At this point, you're ready to make your changes! Feel free to ask for help;
