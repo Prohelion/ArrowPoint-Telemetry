@@ -1,0 +1,1 @@
+If you wish to bulkload CANbus files they should be dropped in here with a .csv file extension
