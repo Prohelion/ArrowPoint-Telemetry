@@ -7,7 +7,7 @@
 	<artifactId>telemetry</artifactId>
 	<version>1.5.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>Prohelion Telemetry</name>
+	<name>Prohelion Telemetry</name>  
 	<description>Prohelion Telemetry System</description>
 
 	<parent>
