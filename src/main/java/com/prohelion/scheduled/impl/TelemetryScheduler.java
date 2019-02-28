@@ -26,7 +26,7 @@ public class TelemetryScheduler {
     @Autowired
     @Qualifier("alertsWorker")
     private Worker alertsWorker;
-
+   
     @Autowired
     @Qualifier("dataForwardWorker")
     private Worker dataForwardWorker;               
