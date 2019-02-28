@@ -1,10 +1,5 @@
 package com.prohelion.service.impl;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -24,16 +19,8 @@ import org.springframework.messaging.Message;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.prohelion.dao.LongTermTrendDataRepository;
 import com.prohelion.dao.MeasurementDataRepository;
-import com.prohelion.dao.MediumTermTrendDataRepository;
-import com.prohelion.dao.ShortTermTrendDataRepository;
-import com.prohelion.model.LongTermTrendData;
 import com.prohelion.model.MeasurementData;
-import com.prohelion.model.MediumTermTrendData;
-import com.prohelion.model.PowerUseDto;
-import com.prohelion.model.ShortTermTrendData;
 import com.prohelion.service.MeasurementDataService;
 
 @Service("measurementDataService")
@@ -44,16 +31,7 @@ public class MeasurementDataServiceImpl implements MeasurementDataService {
     
     @Autowired
     private MeasurementDataRepository measurementDataRepository;
-    
-    @Autowired
-    private ShortTermTrendDataRepository shortTermTrendDataRepository;
-    
-    @Autowired
-    private MediumTermTrendDataRepository mediumTermTrendDataRepository;
-
-    @Autowired
-    private LongTermTrendDataRepository longTermTrendDataRepository;
-    
+        
     @Autowired 
     private CacheManager cacheManager;
     
@@ -65,31 +43,7 @@ public class MeasurementDataServiceImpl implements MeasurementDataService {
         Page<MeasurementData> data = measurementDataRepository.findByDataPointCanId(deviceId, PageRequest.of(0, 500, sort));
         
         return data.getContent();
-    }
-    
-    @Override
-    public List<ShortTermTrendData> getShortTermTrendDataForDevice(Integer deviceId) {
-        
-        Page<ShortTermTrendData> data = shortTermTrendDataRepository.findByDataPointCanId(deviceId, PageRequest.of(0, 500, sort));
-        
-        return data.getContent();
-    }
-    
-    @Override
-    public List<MediumTermTrendData> getMediumTermTrendDataForDevice(Integer deviceId) {
-        
-        Page<MediumTermTrendData> data = mediumTermTrendDataRepository.findByDataPointCanId(deviceId, PageRequest.of(0, 50000, sort));
-        
-        return data.getContent();
-    }
-    
-    @Override
-    public List<LongTermTrendData> getLongTermTrendDataForDevice(Integer deviceId) {        
-    	OffsetDateTime odt = OffsetDateTime.ofInstant(Instant.now(), ZoneId.of("UTC"));
-    	LocalDateTime odtStart = odt.toLocalDate().atStartOfDay();    	
-        return longTermTrendDataRepository.getTrendDataForDay(deviceId,odtStart.atOffset(ZoneOffset.UTC));
-    }
-    
+    }              
 
     private static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
         Set<Object> seen = ConcurrentHashMap.newKeySet();
@@ -123,23 +77,6 @@ public class MeasurementDataServiceImpl implements MeasurementDataService {
 		return measurementData;		        
     }
     
-    @Override
-    public List<PowerUseDto> getShortTermPowerData() {
-        return measurementDataRepository.findShortTermPowerUseData();
-    }
-    
-    @Override
-    public List<PowerUseDto> getMediumTermPowerData() {
-        List<PowerUseDto> a = measurementDataRepository.findMediumTermPowerUseData(); 
-        
-        return a;
-    }
-    
-    @Override
-    public List<PowerUseDto> getLongTermPowerData() {
-        return measurementDataRepository.findLongTermPowerUseData();
-    }
-
     @SuppressWarnings("unchecked")
 	@ServiceActivator
     public void processMeasurementData(Message<MeasurementData> message) {

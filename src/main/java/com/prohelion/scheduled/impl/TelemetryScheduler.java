@@ -22,52 +22,14 @@ public class TelemetryScheduler {
  
     @Autowired
     private Environment env;
-    
-    @Autowired
-    @Qualifier("archiveCanShortTermWorker")
-    private Worker archiveCanShortTermWorker;
-
-    @Autowired
-    @Qualifier("archiveCanMediumTermWorker")
-    private Worker archiveCanMediumTermWorker;
-
-    @Autowired
-    @Qualifier("archiveCanLongTermWorker")
-    private Worker archiveCanLongTermWorker;
-
-    @Autowired
-    @Qualifier("calculateRollingPowerAvgWorker")
-    private Worker calculateRollingPowerAvgWorker;
-    
+        
     @Autowired
     @Qualifier("alertsWorker")
     private Worker alertsWorker;
 
     @Autowired
     @Qualifier("dataForwardWorker")
-    private Worker dataForwardWorker;
-            
-    @Scheduled(cron = "0 * * * * *")
-	public void doArchiveCanShortTerm() {
-		 LOG.debug("Start archive of short term data");	   
-		 archiveCanShortTermWorker.work();	     
-		 LOG.debug("Archive of short term data complete");
-	}
-  
-    @Scheduled(cron = "0 0,10,20,30,40,50 * * * *")
-	public void doArchiveCanMediumTerm() {
-		 LOG.debug("Start archive of medium term data");	   
-		 archiveCanMediumTermWorker.work();	     
-		 LOG.debug("Archive of medium term data complete");
-    }
-        
-    @Scheduled(cron = "0 59 23 * * *")
-	public void doArchiveCanLongTerm() {
-		 LOG.debug("Start archive of long term data");	   
-		 archiveCanLongTermWorker.work();	     
-		 LOG.debug("Archive of long term data complete");
-    }
-   	 
+    private Worker dataForwardWorker;               
     
     @Scheduled(cron = "${data.forward.cron}")
 	public void doDataForward() {

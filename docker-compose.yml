@@ -6,7 +6,7 @@ volumes:
 
 services: 
     timescaledb:
-        image: prohelion/timescaledb-with-data:0.4
+        image: prohelion/timescaledb-with-data:0.4.1
         environment:
             POSTGRES_USER: "prohelion"
             POSTGRES_PASSWORD: "passw0rd!"
