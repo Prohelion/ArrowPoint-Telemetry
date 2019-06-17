@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import com.prohelion.model.AbstractMeasurementData;
 import com.prohelion.service.DataPointService;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
+@ApiIgnore
 @RequestMapping(value = "/trend")
 public class TrendDataController extends AbstractController {
             

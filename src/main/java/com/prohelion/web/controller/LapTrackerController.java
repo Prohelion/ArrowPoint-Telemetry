@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 
 @Controller
 @RequestMapping(value = "/")
@@ -26,7 +28,7 @@ public class LapTrackerController extends AbstractController {
         
     }
     
-        
+    @ApiIgnore        
     @RequestMapping(value = { "/laptracker.html" }, method = RequestMethod.GET)
     public String getLapTracker(Model model) {
         return "laptracker";

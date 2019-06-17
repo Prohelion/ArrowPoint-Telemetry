@@ -322,7 +322,22 @@
 		    <groupId>org.postgresql</groupId>
     		<artifactId>postgresql</artifactId>
 		</dependency>
+		
+		<!-- Swagger  -->
+		<dependency>
+    		<groupId>io.springfox</groupId>
+    		<artifactId>springfox-swagger2</artifactId>
+    		<version>2.9.2</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>io.springfox</groupId>
+    		<artifactId>springfox-swagger-ui</artifactId>
+    		<version>2.9.2</version>
+		</dependency>
 	</dependencies>
+	
+	
 	<organization>
 		<name>Prohelion</name>
 		<url>www.prohelio.com</url>

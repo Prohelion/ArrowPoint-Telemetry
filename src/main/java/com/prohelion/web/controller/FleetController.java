@@ -28,6 +28,8 @@ import com.prohelion.maps.impl.MapGenerator;
 import com.prohelion.model.MeasurementData;
 import com.prohelion.service.impl.FleetServiceImpl;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
 @RequestMapping(value = "/")
 public class FleetController extends AbstractController {
@@ -59,6 +61,7 @@ public class FleetController extends AbstractController {
         
     }
         
+    @ApiIgnore
     @RequestMapping(value = { "/fleet.html" }, method = RequestMethod.GET)
     public String getFleet(Model model) {
         return "fleet";
@@ -69,8 +72,8 @@ public class FleetController extends AbstractController {
     	alertManager.resetAlerts();
         return "fleet";
     }
-
     
+    @ApiIgnore
 	@RequestMapping(value="/maps/{type}", method = RequestMethod.GET, produces = "application/vnd.google-earth.kml+xml; charset=utf-8")
 	public @ResponseBody String getMapInKml(@PathVariable String type) {			
 		
@@ -83,6 +86,7 @@ public class FleetController extends AbstractController {
     
 
 	 @RequestMapping("/gps")
+	 @ApiIgnore
 	 public String gpsAction(@ModelAttribute("gps") ManualLatLong manualLatLong, Map<String, Object> map, HttpServletRequest request) {
 
 		 	int latDegrees = (int)manualLatLong.getLatitude();
@@ -104,7 +108,7 @@ public class FleetController extends AbstractController {
 			return "fleet";
 	 }
 
-
+	 @ApiIgnore
 	 @RequestMapping("/dataPoint")
 	 public String dataPointAction(@ModelAttribute("dataPoint") ManualDataPoint manualDataPoint, Map<String, Object> map, HttpServletRequest request) {
 		 
@@ -145,6 +149,7 @@ public class FleetController extends AbstractController {
 	 }
 	 
 	 @RequestMapping("/message")
+	 @ApiIgnore
 	 public String messageAction(@ModelAttribute("fleetMessage") FleetMessage fleetMessage, Map<String, Object> map, HttpServletRequest request) {
 		 
 		 String message = "Logical Error on web interface if you see this message"; 

@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.prohelion.model.DataPoint;
 import com.prohelion.service.DataPointService;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Transactional
 @Controller
+@ApiIgnore
 public class ChartController extends AbstractController {
        
     @Autowired

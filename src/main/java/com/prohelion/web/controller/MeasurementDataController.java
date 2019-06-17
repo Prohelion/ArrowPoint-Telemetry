@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.prohelion.model.MeasurementData;
 import com.prohelion.service.MeasurementDataService;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
 @RequestMapping(value = "/")
 public class MeasurementDataController {
@@ -30,6 +32,7 @@ public class MeasurementDataController {
     }
     
     @Transactional
+    @ApiIgnore
     @RequestMapping(value = { "/snapshot.html" }, method = RequestMethod.GET, params = { "deviceId" })
     public String getTelemetrySnapshot(@RequestParam(required = true) Integer deviceId, Model model)
     {
