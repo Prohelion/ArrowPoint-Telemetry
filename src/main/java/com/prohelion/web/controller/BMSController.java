@@ -41,7 +41,7 @@ public class BMSController extends AbstractController {
         return "bms";
     }
     
-    @ApiOperation(value = "View a list of available measurement data for the BMU", response = Iterable.class)
+    @ApiOperation(value = "View a list of available measurement data for the BMU", response = MeasurementData.class)
     @RequestMapping(value = { "/bms.json" }, method = RequestMethod.GET, params = { "canId" })
     public @ResponseBody List<MeasurementData> getBMSCanData(@RequestParam(required = true) Integer canId)
     {
@@ -49,7 +49,7 @@ public class BMSController extends AbstractController {
 
     }
     
-    @ApiOperation(value = "View a list of available measurement data for the CMU", response = Iterable.class)
+    @ApiOperation(value = "View a list of available measurement data for the CMU", response = MeasurementData.class)
     @RequestMapping(value = { "/cmu.json" }, method = RequestMethod.GET)
     public @ResponseBody List<MeasurementData> getCmuData(@RequestParam(required = true) Integer cmuIdx) {
         List<MeasurementData> cmuData = new ArrayList<MeasurementData>();
