@@ -1,15 +1,15 @@
 # ArrowPoint-Telemetry
 The ArrowPoint Telemetry Solution is designed to provide telemetry capture and management information for managing a race car.
 
-The out of the box implementation is designed for use in Solar or Electric racing cars that use technology from 
-Prohelion (www.prohelion.com) or Tritium (www.tritium.com.au).  This solution was origionally developed by TeamArrow (www.teamarrow.com.au)
-and has been used in racing environments since 2013.  TeamArrow continue to use this application as the heart of its telemetry and strategy
+The out of the box implementation is designed for use in Solar or Electric racing cars that use technology from
+Prohelion (www.prohelion.com) or Tritium (www.tritium.com.au). This solution was originally developed by TeamArrow (www.teamarrow.com.au)
+and has been used in racing environments since 2013. TeamArrow continues to use this application as the heart of its telemetry and strategy
 management solutions.
 
-The solution captures and stores all telemetry data in a race environment and has been used to capture over 60,000,000 data points in 
+The solution captures and stores all telemetry data in a race environment and has been used to capture over 60,000,000 data points in
 previous events and testing and can manage, track and store around 400 data points a second when running on a i7 laptop.
-It provide reporting (via Splunk) across full data sets via a web interface and allows teams to build and track massive data sets 
-via dashboards and dynamically modifyable searches.
+It provides reporting (via Splunk) across full data sets via a web interface and allows teams to build and track massive data sets
+via dashboards and dynamically modifiable searches.
 
 The ArrowPoint-Telemetry system is very light weight (considering what it is doing!) and TeamArrow have historically run it on a single CPU laptop, which we tuck on the seat in the chase car or can be run in the cloud (we use Amazon EC2) when coupled with the ArrowPoint-Tablet for data relay.
 
@@ -27,14 +27,14 @@ The application provides
 - Alerting via a visual alert (USB light), when key data points go out of range
 - Storage of CANbus data in a relational data set for later report
 - Relaying of data to other ArrowPoint-Telemetry instances
-- Integration with SPLUNK for larger scale data capture and realtime reporting
+- Integration with SPLUNK for larger scale data capture and real time reporting
 
 The application is compatible with
- 
+
 - Prohelion Battery Packs
 - Tritium WaveSculpters
 - Tritium BMUs and CMUs
 
-The Wifi connection should be broadcasting CANbus data using the Tritium CANbus identifiers.
+The WiFi connection should be broadcasting CANbus data using the Tritium CANbus identifiers.
 
 Any issues please or question, please raise them on our GitHub account at https://github.com/Prohelion/ArrowPoint-Telemetry
